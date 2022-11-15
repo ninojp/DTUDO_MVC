@@ -1,4 +1,10 @@
 {
     "description": "Dtudo MVC",
-    "authors": [{"name": "Nino JP","homepage": "https://localhost/DTUDO_MVC/"}]
+    "authors": [
+        {"name": "Nino JP",
+        "homepage": "https://localhost/DTUDO_MVC/",
+        "email": "meu.sem@gmail.com"}],
+    "autoload": {"psr-4": 
+        { "Core\\": "core" } },
+    "require": {}
 }
