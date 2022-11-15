@@ -5,6 +5,10 @@
         "homepage": "https://localhost/DTUDO_MVC/",
         "email": "meu.sem@gmail.com"}],
     "autoload": {"psr-4": 
-        { "Core\\": "core" } },
+        { "Core\\": "core",
+          "App\\": "app",
+          "Sts\\": "app/sts"
+        }
+         },
     "require": {}
 }
