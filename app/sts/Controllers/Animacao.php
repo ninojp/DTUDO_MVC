@@ -7,8 +7,11 @@ if(!defined('C7E3L8K9E5')){
 }
 use Core\ConfigView;
 
-/** Controller da página Erro */
-class Erro
+/** Controller da página Animacao 
+ * a idéia agora é colocar informação sobre os animes aqui
+ * depois fazer um site somente para DOWNLOAD usando o mesmo banco de dados
+*/
+class Animacao
 {
     /** $data - Recebe os dados que devem ser enviados para VIEW
      * @var array|string|null */
@@ -18,9 +21,8 @@ class Erro
     * @return void */
     public function index()
     {
-        // $this->data=[];
-        $this->data=null;
-        $loadView = new ConfigView("sts/Views/erro/erro",$this->data);
+        $this->data=[];
+        $loadView = new ConfigView("sts/Views/animacao/animacao",$this->data);
         $loadView->loadView();
     }
 }

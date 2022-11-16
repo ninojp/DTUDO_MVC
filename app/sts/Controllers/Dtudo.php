@@ -7,8 +7,8 @@ if(!defined('C7E3L8K9E5')){
 }
 use Core\ConfigView;
 
-/** Controller da página Erro */
-class Erro
+/** Controller da página INICIAL dtudo */
+class Dtudo
 {
     /** $data - Recebe os dados que devem ser enviados para VIEW
      * @var array|string|null */
@@ -18,9 +18,8 @@ class Erro
     * @return void */
     public function index()
     {
-        // $this->data=[];
-        $this->data=null;
-        $loadView = new ConfigView("sts/Views/erro/erro",$this->data);
+        $this->data=[];
+        $loadView = new ConfigView("sts/Views/dtudo/dtudo",$this->data);
         $loadView->loadView();
     }
 }

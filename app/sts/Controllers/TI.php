@@ -7,8 +7,11 @@ if(!defined('C7E3L8K9E5')){
 }
 use Core\ConfigView;
 
-/** Controller da página Erro */
-class Erro
+/** Controller da página T.I
+ * informações sobre T.I hardware e software 
+ * a ideia e colocar a parte de como ganhar dinheiro com T.I 
+ * e a pagina sobre criptoativos tudo junto aqui */
+class TI
 {
     /** $data - Recebe os dados que devem ser enviados para VIEW
      * @var array|string|null */
@@ -18,9 +21,8 @@ class Erro
     * @return void */
     public function index()
     {
-        // $this->data=[];
-        $this->data=null;
-        $loadView = new ConfigView("sts/Views/erro/erro",$this->data);
+        $this->data=[];
+        $loadView = new ConfigView("sts/Views/ti/ti",$this->data);
         $loadView->loadView();
     }
 }

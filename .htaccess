@@ -23,5 +23,7 @@ RewriteCond %{REQUEST_FILENAME} !-l
 # O sinalizador [L] faz mod_rewrite com que o processamento do conjunto de regras seja interrompido
 RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
 
+Options -Indexes
+
 #exemplo apenas
 #index.php?url=contato/index&artigo=1&origem=email

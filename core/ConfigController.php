@@ -1,6 +1,11 @@
 <?php
 //indica q esta classe pertence ao namespace CORE
 namespace Core;
+if(!defined('C7E3L8K9E5')){
+    //DEVE SER USADO APENAS UMA DAS OPÇÕES
+    // header('Location: /'); 
+    die ('Erro! Página não encontrada');       
+}
 /** @author Nino JP <meu.sem@gmail.com>
  * Esta classe recebe a URL e manipula a mesma. Carrega a CONTROLLER 
  * esta também é uma classe filha da classe abstrata (Config) */
@@ -37,7 +42,6 @@ class ConfigController extends Config
                 //se não estiver direciona para pagina ERRO!
                 $this->urlController = $this->slugController(CONTROLLERERRO);
             }
-
         }else{
             // echo "Acessa a página inicial<br>";
             $this->urlController = $this->slugController(CONTROLLER);

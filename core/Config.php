@@ -1,6 +1,10 @@
 <?php
 namespace Core;
-
+if(!defined('C7E3L8K9E5')){
+    //DEVE SER USADO APENAS UMA DAS OPÇÕES
+    // header('Location: /'); 
+    die ('Erro! Página não encontrada');       
+}
 /** classe abstrata para não ser instanciada por outras, apenas classes filhas podem instanciala
 * Possui as constantes com as configurações.
 * Configurações de endereço do projeto.
@@ -17,7 +21,7 @@ abstract class Config
         //contante definindo url do site
         define('URL','https://localhost/DTUDO_MVC/');
         //contante definindo qual é a pagina INICIAL do site
-        define('CONTROLLER','Home');
+        define('CONTROLLER','Dtudo');
         define('CONTROLLERERRO','Erro');
 
         define('EMAILADM','meu.sem@gmail.com');
