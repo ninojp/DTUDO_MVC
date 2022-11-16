@@ -18,13 +18,20 @@ abstract class Config
      * @return void */
     protected function config():void
     {
-        //contante definindo url do site
+        //constante - definindo url do site
         define('URL','https://localhost/DTUDO_MVC/');
-        //contante definindo qual é a pagina INICIAL do site
+        //constante - definindo qual é a pagina INICIAL do site
         define('CONTROLLER','Dtudo');
         define('CONTROLLERERRO','Erro');
-
+        //constante - define o email do ADM
         define('EMAILADM','meu.sem@gmail.com');
 
+        //constantes - das credenciais de acesso ao DB
+        define('HOST','localhost');
+        define('DBNAME','dtudo_bd');
+        define('USER','root');
+        define('PASS','');
+        define('PORT',3306);
+        
     }
 }

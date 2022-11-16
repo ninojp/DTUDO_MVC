@@ -46,7 +46,6 @@ class ConfigController extends Config
             // echo "Acessa a página inicial<br>";
             $this->urlController = $this->slugController(CONTROLLER);
         }
-        echo "Controller: {$this->urlController}<br>";
     }
     //========================================================================================
     /** Método privado não pode ser instanciado fora da classe

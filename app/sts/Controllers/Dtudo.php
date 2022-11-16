@@ -5,7 +5,7 @@ if(!defined('C7E3L8K9E5')){
     // header('Location: /'); 
     die ('Erro! Página não encontrada');       
 }
-use Core\ConfigView;
+// use Core\ConfigView;
 
 /** Controller da página INICIAL dtudo */
 class Dtudo
@@ -18,8 +18,13 @@ class Dtudo
     * @return void */
     public function index()
     {
-        $this->data=[];
-        $loadView = new ConfigView("sts/Views/dtudo/dtudo",$this->data);
+        //instancia a classe StsDtudo e criar o objeto $dtudo
+        //dessa vez eu coloquei o endereço da CLASSE(normalmente eu uso o USE)
+        $dtudo = new \Sts\models\StsDtudo();
+        $this->data = $dtudo->index(); 
+        
+        //continua apresentando erro no $this->data, mas está funcionando o resultado 
+        $loadView = new \Core\ConfigView("sts/Views/dtudo/dtudo", $this->data);
         $loadView->loadView();
     }
 }

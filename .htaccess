@@ -23,6 +23,7 @@ RewriteCond %{REQUEST_FILENAME} !-l
 # O sinalizador [L] faz mod_rewrite com que o processamento do conjunto de regras seja interrompido
 RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
 
+# Foi adicionado para impedir que após ser redirecionado para pasta raiz pelas paginas, o usuario, não consiga ver os arquivos e diretórios raiz do site.
 Options -Indexes
 
 #exemplo apenas

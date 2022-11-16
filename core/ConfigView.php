@@ -38,7 +38,7 @@ class ConfigView
             include 'app/'.$this->nameView.'.php';
             include 'app/sts/Views/include/footer.php';
         }else{
-            die ('Não! encontrou a pagina indicada pela view! <br>');
+            die ('Não foi possivel encontrar a pagina! Tente novamente ou entre em contato com: '.EMAILADM.'<br>');
         }   
     }
 }
