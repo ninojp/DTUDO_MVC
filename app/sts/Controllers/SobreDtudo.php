@@ -6,6 +6,7 @@ if(!defined('C7E3L8K9E5')){
     die ('Erro! Página não encontrada');       
 }
 use Core\ConfigView;
+use Sts\Models\StsSobreDtudo;
 
 /** Controller da página SobreDtudo
  * aqui vai ficar as informações sobre o site(ou sobre min curriculo), informações de contato
@@ -17,16 +18,30 @@ class SobreDtudo
     /** $data - Recebe os dados que devem ser enviados para VIEW
      * @var array|string|null
      * no php 8(foi adicionado a união, pode colocar mais de uma tipagem) pode se usar o |PAIPE(ou) para indicar q pode ser ARRAY ou|STRING ou|NULL */
-    private array|string|null $data;
+    private array|string|null $data = null;
+
+    /** $dataForm Recebe os dados da view e os insere no DB através da Models
+     * @var array|string|null */
+    private array|string|null $dataForm;
     //=============================================================================================
     /** Instanciar a classe responsável por carregar a View
     * @return void */
-    public function index()
+    public function index():void
     {
-        //ESTA CONTROLLER NÃO VAI RECEBER $DADOS
-        // $this->data=[];
-        // $this->data=null;
-        $this->data = "Mensagem enviada com sucesso!<br>";
+        //Receber os dados q vem do formulário da view sobredtudo
+        $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+
+        if(!empty($this->dataForm['addContMsg'])){
+            $createSobreMsg = new StsSobreDtudo();
+            if($createSobreMsg->create($this->dataForm)){
+                echo "Cadastrado!<br>";
+            }else{
+                echo "NÃO! Cadastrado!<br>";
+                $this->data['form'] = $this->dataForm;
+            }
+        }
+        
+        // $this->data = "Mensagem enviada com sucesso!<br>";
         $loadView = new ConfigView("sts/Views/sobredtudo/sobredtudo",$this->data);
         $loadView->loadView();
     }

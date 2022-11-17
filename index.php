@@ -1,4 +1,7 @@
 <?php
+session_start();//iniciar a sessão
+ob_start();// após o redirecionamento, Limpar os dados do buffer de saida 
+
 //Constante q define q o usuario está acessando paginas internas através da página "index.php"
 //numero(alfanumérico) aléatório depois pode ser alterado 
 define('C7E3L8K9E5',true);
