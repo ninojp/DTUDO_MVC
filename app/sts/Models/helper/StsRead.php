@@ -102,7 +102,7 @@ class StsRead extends StsConn
     {
         if($this->values){
             foreach($this->values as $link => $value){
-                if(($link == 'limite') or ($link == 'offset') or ($link == 'id')){
+                if(($link == 'limit') or ($link == 'offset') or ($link == 'id')){
                     $value = (int) $value;
                 }
                 $this->query->bindValue(":{$link}", $value, (is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR));

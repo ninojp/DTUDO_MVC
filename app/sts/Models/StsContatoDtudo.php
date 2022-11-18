@@ -9,14 +9,14 @@ if(!defined('C7E3L8K9E5')){
     die ('Erro! Página não encontrada');       
 }
 /** classe Models responsável por cadastrar as informações do formulario no DB */
-class StsSobreDtudo
+class StsContatoDtudo
+//======================================================
+/////////    NO CURSO ESTA É A MODELs CONTATO    ///////
+//======================================================
 {
     /** Recebe os registros do Banco de Dados
-     * @var array */
-    private array $data;
-    /** Recebe os registros do Banco de Dados
-     * @var object */
-    private object $connection;
+     * @var array|null */
+    private array|null $data;
 
     /** ============================================================================================
      *
@@ -29,14 +29,14 @@ class StsSobreDtudo
         $this->data['created'] = date("Y-m-d H:i:s");
         // var_dump($this->data);
 
-        //instancia a classe:StsCreate do Models:helper, e cria o objeto:$createSobreDtudoMsg
-        $createSobreDtudoMsg = new StsCreate();
+        //instancia a classe:StsCreate do Models:helper, e cria o objeto:$createContatoDtudoMsg
+        $createContatoDtudoMsg = new StsCreate();
         //instancia o método:exeCreate, e passa para ele o nome da tabela e os dados
-        $createSobreDtudoMsg->exeCreate("sts_sobre_dtudo_msgs",$this->data);
+        $createContatoDtudoMsg->exeCreate("sts_sobre_dtudo_msgs1",$this->data);
 
-        if($createSobreDtudoMsg->getResult()){
+        if($createContatoDtudoMsg->getResult()){
             //recupera(apresenta) o ultimo ID inserido 
-            // var_dump($createSobreDtudoMsg->getResult());
+            // var_dump($createContatoDtudoMsg->getResult());
             $_SESSION['msg'] = "<p class='alert alert-success'>Mensagem enviada com Sucesso(salvou no DB)</p>";
             return true;
         }else{

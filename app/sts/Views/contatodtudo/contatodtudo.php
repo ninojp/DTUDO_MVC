@@ -8,12 +8,15 @@ if (isset($this->data)) {
     $valuesForm = $this->data['form'];
     extract($valuesForm);
 } ?>
-<h1 class="text-center m-5">VIEW! da página SOBRE-DTUDO!!!</h1>
+<h1 class="text-center m-5">VIEW! da página CONTATO DTUDO!!!</h1>
 <?php
 if(isset($_SESSION['msg'])){
    echo $_SESSION['msg'];
    unset($_SESSION['msg']);
 }
+//======================================================
+/////////  NO CURSO ESTA É A CONTROLER CONTATO   ///////
+//====================================================== 
 ?>
 <div class="conatiner p-5">
     <div class="row">

@@ -28,7 +28,7 @@ class ConfigView
         // var_dump($this->data);
     }
     /** ===============================================================================
-     * Carregar a view
+     * Este é o método que Carrega a view das paginas(layout)
      * Verificar se o arquivo existe, e carregar caso exista, não existindo para o carregamento
      * @return void */
     public function loadView():void

@@ -13,6 +13,9 @@ use Core\ConfigView;
 
 /** Controller da página INICIAL dtudo */
 class Dtudo
+//======================================================
+/////////  NO CURSO ESTA É A CONTROLER HOME   ///////
+//======================================================
 {
     /** $data - Recebe os dados que devem ser enviados para VIEW
      * @var array|string|null */
@@ -31,7 +34,7 @@ class Dtudo
         
         //continua apresentando erro no $this->data, mas está funcionando o resultado 
         // $this->data=null;
-        $loadView = new ConfigView("sts/Views/dtudo/dtudo",$this->data);
+        $loadView = new ConfigView("sts/Views/dtudo/dtudo", $this->data);
         $loadView->loadView();
     }
 }
