@@ -30,13 +30,16 @@ class SobreDtudo
     {
         //Receber os dados q vem do formulário da view sobredtudo
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-
+        
+        //verifica se foi feito a submissão do form, através do botão:addContMsg
         if(!empty($this->dataForm['addContMsg'])){
+            //limpa os dados:addContMsg
+            unset($this->dataForm['addContMsg']);
             $createSobreMsg = new StsSobreDtudo();
             if($createSobreMsg->create($this->dataForm)){
-                echo "Cadastrado!<br>";
+                // echo "Cadastrado!<br>";
             }else{
-                echo "NÃO! Cadastrado!<br>";
+                // echo "NÃO! Cadastrado!<br>";
                 $this->data['form'] = $this->dataForm;
             }
         }

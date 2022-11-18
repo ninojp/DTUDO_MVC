@@ -13,12 +13,18 @@ class ConfigController extends Config
 {
     /** @var string - $url, recebe a URL do arquivo .HTACCESS  */
     private string $url;
-    /** @var array - $urlArray, Recebe o URL q foi convertida para um array */
+    /** @var array - $urlArray: Recebe o URL q foi convertida para um array */
     private array $urlArray;
+    /** @var string - $urlController: Recebe da URL o nome da controller */
     private string $urlController;
+    /** $urlParameter: Recebe da URL o parâmetro */
     // private string $urlParameter;
+    /** @var string - $urlSlugController: Converter valores obtidos da URL... */
     private string $urlSlugController;
+    /** @var array - $format: Recebe o array de caracteres especiais que devem ser substituidos */
     private array $format;
+    /** @var string - $classLoad: Recebe a classe */
+    private string $classLoad;
 
     //=============================================================================================
     /** Recebe via _GET a URL do .htaccess
@@ -88,9 +94,31 @@ class ConfigController extends Config
     public function loadPage()
     {
         // echo 'Carregar a pagina/controller<br>';
-        $classLoad = "\\Sts\\Controllers\\".$this->urlController;
-        $classPage = new $classLoad();
-        $classPage->index();
+        $this->classLoad = "\\Sts\\Controllers\\".$this->urlController;
+        //verifica se existe a classe:$classLoad(url carregada), se existir 
+        if(class_exists($this->classLoad)){
+            $this->loadClass();
+        }else{
+           $this->urlController = $this->slugController(CONTROLLERERRO);
+           //função recursiva, uma função(método:loadPage()) q chama ela mesma 
+           $this->loadPage();
+        }
+        
     }
-
+    /** ==========================================================================================
+     * Verificar se o método existe, existindo o método carraga a pagina
+     * Não existindo o método, para o carregamento e apresenta mensagem de erro.
+     * @return void */
+    private function loadClass():void
+    {
+        //Não entendi, por que usar o ATRIBUTO desta forma: classLoad(), muito menos o uso do NEW
+        $classPage = new $this->classLoad;
+        // $classPage = new $this->classLoad; //assin também funcionou, mas sem o NEW não
+        if(method_exists($classPage, "index")){
+            $classPage->index();
+        }else{
+            die ('ERRO! Tente novamente ou entre em contato com: '.EMAILADM.'<br>');
+        }
+        
+    }
 }

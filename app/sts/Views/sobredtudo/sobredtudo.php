@@ -36,8 +36,8 @@ if(isset($_SESSION['msg'])){
                     <input class="form-control" type="text" name="assunto" id="assunto" placeholder="Assunto da mensagem" value="<?php if(isset($assunto)) {echo $assunto;}?>">
                 </div>
                 <div class="col mb-3">
-                    <label class="form-label" for="mensagem">Menssagem:</label>
-                    <textarea class="form-control" rows="6" cols="50" name="content" id="mensagem" placeholder="Conteudo da mensagem"><?php if(isset($content)) {echo $content;}?></textarea>
+                    <label class="form-label" for="content">Menssagem:</label>
+                    <textarea class="form-control" rows="6" cols="50" name="content" id="content" placeholder="Conteudo da mensagem"><?php if(isset($content)) {echo $content;}?></textarea>
                 </div>
                 <input class="btn btn-sm btn-outline-info" name="addContMsg" type="submit" value="Enviar Dados">
             </form>

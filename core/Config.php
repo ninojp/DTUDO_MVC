@@ -22,13 +22,13 @@ abstract class Config
         define('URL','https://localhost/DTUDO_MVC/');
         //constante - definindo qual é a pagina INICIAL do site
         define('CONTROLLER','Dtudo');
-        define('CONTROLLERERRO','Erro');
+        define('CONTROLLERERRO','erro');
         //constante - define o email do ADM
         define('EMAILADM','meu.sem@gmail.com');
 
         //constantes - das credenciais de acesso ao DB
         define('HOST','localhost');
-        define('DBNAME','dtudo_bd');
+        define('DBNAME','dtudo_mvc');
         define('USER','root');
         define('PASS','');
         define('PORT',3306);

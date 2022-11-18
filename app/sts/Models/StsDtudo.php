@@ -14,15 +14,13 @@ class StsDtudo
 {
     /** Recebe os registros do Banco de Dados
      * @var array */
-    private array $data;
-    /** Recebe os registros do Banco de Dados
-     * @var object */
-    private object $connection;
+    // private array|string|null $data;
+    private array|string|null $data;
 
     /** ============================================================================================
      *
      * @return void  */
-    public function index():array
+    public function index()
     {
         /* $this->data = ['title'=>'Topo da Página', 'description'=>'Descrição do Serviço'];
         // instancia a classe:StsConn e cria o objeto:$connection, para fazer a conexão
@@ -41,11 +39,13 @@ class StsDtudo
         // $viewDtudo->exeRead("anime","WHERE id_anime=:id LIMIT :limite", "id=1&limite=1");
 
         //instancia o fullRead(), q faz uma query de apenas os campos no select
-        $viewDtudo->fullRead("SELECT id_anime,nome_anime,nome_completo_anime,descricao_anime,personagens,img_mini FROM anime WHERE id_anime=:id_anime LIMIT :limite", "id_anime=1&limite=1");
+        $viewDtudo->fullRead("SELECT id,nome,email,assunto FROM sts_sobre_dtudo_msgs WHERE id=:id LIMIT :limite", "id=1&limite=1");//
         $this->data = $viewDtudo->getResult();
+        
 
         // var_dump($this->data);
-        // $this->data= [];
+        // $this->data = [];
         return $this->data;
+        // echo "Mensagem de teste...<br>";
     }
 }
