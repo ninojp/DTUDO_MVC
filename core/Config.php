@@ -28,7 +28,7 @@ abstract class Config
 
         //constantes - das credenciais de acesso ao DB
         define('HOST','localhost');
-        define('DBNAME','dtudo_mvc');
+        define('DBNAME','celke');
         define('USER','root');
         define('PASS','');
         define('PORT',3306);
