@@ -1,0 +1,141 @@
+@charset "UTF-8";
+/* Este CSS vai conter a definição para todas as paginas 
+Google Fontes escolhidas:
+font-family: 'Cinzel Decorative', cursive;
+font-family: 'Cutive Mono', monospace;
+font-family: 'Kalam', cursive;
+font-family: 'Ubuntu', sans-serif; */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* Variáveis GLOBAIs das CORES da Pagina ******************************************************/
+:root{
+    --gelo: rgba(235,238,246,1);
+    --gelo2: rgba(246,247,249,1);
+    --branco: #fff;
+    --transp: transparent;
+    --dark: rgba(55,54,54,1);
+    --preto: #000;
+    --preto20: rgba(0,0,0,0.2);
+    --preto40: rgba(0,0,0,0.4);
+    --preto60: rgba(0,0,0,0.6);
+    --preto80: rgba(0,0,0,0.8);
+    --azulClaro: rgba(13,110,253,1);
+    --azulMedio: rgba(4,9,170,1);
+    --azulEscuro: rgba(5,35,57,1);
+    --azulScuro: rgba(1,13,21,1);
+    --gold: rgba(255,215,0,1);
+    --laranja: rgba(240,191,76,1);
+    --vermelho: rgba(172,2,2,1);
+    --verdeScuro: rgba(6,16,0,1);
+    --verdeEscuro: rgba(16,44,0,1);
+    --verdeClaro: rgba(27,74,0,1);
+}
+body{
+    min-height: 100vh;
+    background-color: var(--preto) !important;
+    color: var(--azulClaro);
+}
+
+/* MAIN div conteiner com o conteudo central da pagina */
+#main_princ{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--preto);
+    justify-content: space-around;
+    align-items: center;
+    padding: 3rem 0rem;
+}
+/* DIVs com o conteudo H2, A, IMG, P */
+.divs_link{
+    width: calc(33% - 20px);
+    background-color: var(--azulScuro);
+    border-radius: 5px;
+    text-align: center;
+    padding: 20px;
+}
+.h2_titulo{
+    text-align: center;
+    /* font-family: 'Cinzel Decorative', cursive; */
+    /* font-family: 'Cutive Mono', monospace; */
+    font-family: 'Kalam', cursive;
+    /* font-family: 'Ubuntu', sans-serif; */
+    color: var(--branco);
+}
+.p_texto{
+    color: var(--azulClaro);
+    font-family: 'Cutive Mono', monospace !important;
+}
+#img_ti{
+    width: 30%;
+    object-fit: cover;
+}
+#img_money{
+    width: 40%;
+}
+#img_anime{
+    width: 70%;
+}
+/* media query para responsividade, tela menor que 1024px */
+@media (max-width: 1024px) {
+    /* MAIN div conteiner com o conteudo central da pagina */
+    #main_princ{
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        padding: 3rem 0rem;
+    }
+    /* DIVs com o conteudo H2, A, IMG, P */
+    .divs_link{
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+        color: var(--azulClaro);
+        justify-content: center;
+        padding-top: 2rem;
+        width: calc(50% - 10px);
+    }
+    #img_ti{
+        width: 50%;
+        text-align: center;
+    }
+    #img_money{
+        width: 70%;
+    }
+    #img_anime{
+        width: 80%;
+    }
+}
+
+/* media query para responsividade, tela menor que 590px */
+@media (max-width: 590px) {
+    /* MAIN div conteiner com o conteudo central da pagina */
+    #main_princ{
+        display: block;
+        justify-content: center;
+        align-items: center;
+        padding: 3rem 0rem;
+    }
+    /* DIVs com o conteudo H2, A, IMG, P */
+    .divs_link{
+        text-align: center;
+        padding-top: 2rem;
+        width: 100%;
+    }
+    #img_ti{
+        width: 60%;
+    }
+    #img_money{
+        width: 70%;
+    }
+    #img_anime{
+        width: 90%;
+    }
+}
+
+
+
