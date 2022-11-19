@@ -14,6 +14,7 @@ class ConfigController extends Config
     private string $classLoad;
     private array $format;
     private string $urlSlugController;
+    private string $urlSlugMetodo;
 
     /** =============================================================================================
      * Este método se autoexecuta quando a classe é instanciada */
@@ -38,9 +39,9 @@ class ConfigController extends Config
             }
             // 2 parte, é o método:$urlMetodo
             if(isset($this->urlArray[1])){
-                $this->urlMetodo = $this->urlArray[1];
+                $this->urlMetodo = $this->slugMetodo($this->urlArray[1]);
             }else{
-                $this->urlMetodo = METODO;
+                $this->urlMetodo = $this->slugMetodo(METODO);
             }
             // 3 parte, é um parametro/valor(ira receber um id por exemplo):$urlParameter
             if(isset($this->urlArray[2])){
@@ -51,7 +52,7 @@ class ConfigController extends Config
         }else{
             // Se não receber valores na URL, então use o padrão a seguir, nesta ordem
             $this->urlController = $this->slugController(CONTROLLERERRO);
-            $this->urlMetodo = METODO;
+            $this->urlMetodo = $this->slugMetodo(METODO);
             $this->urlParameter = "";
         }
         echo "Controller: {$this->urlController}<br>";
@@ -76,7 +77,6 @@ class ConfigController extends Config
     }
     /** =========================================================================================
      * Faz o tratamento da url para um formato aceito como nome de classe
-     *
      * @param [type] $slugController
      * @return string */
     private function slugController($slugController):string
@@ -94,12 +94,24 @@ class ConfigController extends Config
         var_dump($this->urlSlugController);
         return $this->urlSlugController;
     }
+    /** ==========================================================================================
+     * Faz o tratamento da url para um formato aceito como nome de MÉTODO
+     * @return string */
+    private function slugMetodo($urlSlugMetodo):string
+    {
+        //faz todo o tratamento com o Método:slugController() e depois atribui para: $urlSlugMetodo
+        $this->urlSlugMetodo = $this->slugController($urlSlugMetodo);
+        //Converter a primeira letra da frase em Minúsculo
+        $this->urlSlugMetodo = lcfirst($this->urlSlugMetodo);
+        var_dump($this->urlSlugMetodo);
+        return $this->urlSlugMetodo;
+    }
     /** ============================================================================================
      * Método responsável pelo controle de carregamento das views
      * @return void */
     public function loadPage():void
     {
-        echo "(core/configController/loadPage:) Carregar pagina: {$this->urlController}<br>";
+        echo "(configController/loadPage:) Carregar pagina: {$this->urlController}<br>";
 
         /* Se estiver UTILIZANDO LINUX pode gerar erro, pois no linux a primeira LETRA da classe precisa sempre estar em maiúculo. será feito acima no método:slugController( */
         // $this->urlController = ucwords($this->urlController);
