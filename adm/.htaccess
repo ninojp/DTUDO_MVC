@@ -1,0 +1,14 @@
+# Documentação: https://httpd.apache.org/docs/2.4/rewrite/flags.html
+
+# Ativa o módulo Rewrite, que faz a reescrita de URL.
+RewriteEngine On
+
+# Todos os detalhes estão comentados no arquivo .htaccess na RAIZ deste projeto
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+
+# index.php?url=users/index&id=2&sit=2
+# https://localhost/DTUDO_MVC/adm/view-users/index?id=2&sit=2
