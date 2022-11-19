@@ -1,5 +1,5 @@
 <?php
-
+namespace Core;
 abstract class Config
 {
     protected function configAdm()

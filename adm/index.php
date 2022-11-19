@@ -1,3 +1,12 @@
+<?php
+use Core\ConfigController;
+
+require './vendor/autoload.php';
+// require './core/ConfigController.php';
+$home = new ConfigController();
+$home->loadPage();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -7,12 +16,6 @@
     <title>Area administrativa</title>
 </head>
 <body>
-    <?php
-
-// use Core\ConfigController;
-
-        require './core/ConfigController.php';
-        $home = new ConfigController();
-    ?>
+    
 </body>
 </html>

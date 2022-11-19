@@ -1,0 +1,16 @@
+{
+    "description": "Área Administrativa - Curso PHP Development",
+    "authors": [
+        {
+            "name": "Nino JP",
+            "email": "meu.sem@gmail.com"
+        } ],
+    "autoload": {
+        "psr-4": {
+            "Core\\": "core",
+            "App\\": "app",
+            "Adms\\": "app/adms"
+        }
+    },
+    "require": {}
+}
