@@ -16,6 +16,7 @@ class Erro
         echo "adms/Controller/Erro.php: <h1> Página(controller) de ERRO!</h1>";
 
         $this->data = "<p class='alert alert-danger'>Página não encontrada</p>";
+        // $this->data = [];
 
         //instancia a classe, cria o objeto e passa o parametro:$this->data
         $loadView = new ConfigView("adms/Views/erro/erro",$this->data);

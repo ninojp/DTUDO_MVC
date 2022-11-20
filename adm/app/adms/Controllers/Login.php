@@ -1,4 +1,5 @@
 <?php
+
 namespace App\adms\controllers;
 
 use App\adms\Models\AdmsLogin;
@@ -14,26 +15,26 @@ class Login
     /** ===================================================================================
      * Método GENÉRICO q instancia a classe:ConfigView() para carregar a View da pagina, 
      * e enviar os dados para a view, através do método:loadView() - @return void */
-    public function index():void
+    public function index(): void
     {
         // echo "adms/Controller/Login.php: <h1> Página(controller) de Login</h1>";
 
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-        
-        if(!empty($this->dataForm['SendLogin'])){
+
+        if (!empty($this->dataForm['SendLogin'])) {
             // var_dump($this->dataForm);
 
-            new AdmsLogin
+            $valLogin = new AdmsLogin();
+            $valLogin->login($this->dataForm);
+
             //cria uma nova posição dentro do array $dataForm
             $this->data['form'] = $this->dataForm;
-
         }
 
         // $this->data = null;
         //Instancio a classe:ConfigView() e crio o objeto:$loadView
-        $loadView = new ConfigView("adms/Views/login/login",$this->data);
+        $loadView = new ConfigView("adms/Views/login/login", $this->data);
         //Instancia o método:loadView() da classe:ConfigView
         $loadView->loadView();
-
     }
 }

@@ -5,6 +5,9 @@
         // var_dump($this->data['form']);
         $valorForm = $this->data['form'];
     }
+
+    //Criptografar a senha
+    // echo password_hash("123456a", PASSWORD_DEFAULT);
 ?>
 <h1 class="text-center mt-5">Área Restrita</h1>
 <form action="" method="POST">

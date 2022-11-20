@@ -66,7 +66,7 @@ class ConfigController extends Config
             }
         }else{
             // Se não receber valores na URL, então use o padrão a seguir, nesta ordem
-            $this->urlController = $this->slugController(CONTROLLERERRO);
+            $this->urlController = $this->slugController(CONTROLLER);
             $this->urlMetodo = $this->slugMetodo(METODO);
             $this->urlParameter = "";
         }

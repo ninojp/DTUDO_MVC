@@ -12,5 +12,12 @@ abstract class Config
         define('CONTROLLERERRO','Erro');
 
         define('EMAILADM', 'meu.sem@gmail.com');
+
+        //credenciais do DB
+        define('HOST','localhost');
+        define('USER','root');
+        define('PASS','');
+        define('DBNAME','celke_adm');
+        define('PORT',3306);
     }
 }
