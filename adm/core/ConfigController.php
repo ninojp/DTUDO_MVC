@@ -1,23 +1,38 @@
 <?php
 namespace Core;
 
-use App\adms\controllers\Login;
-use App\adms\controllers\Users;
-
+// use App\adms\controllers\Login;
+// use App\adms\controllers\Users;
+/** Recebe a URL e manipula - Carregar a CONTROLLER
+ * @author Nino JP <meu.sem@gmail.com>
+ * DOCUMENTAÇÃO - Manual
+ * https://www.php-fig.org/psr/
+ * https://github.com/php-fig/fig-standards/blob/master/proposed/phpdoc.md
+ * https://github.com/php-fig/fig-standards/blob/master/proposed/phpdoc-tags.md */
 class ConfigController extends Config
 {
+    /** @var string $url Recebe a URL do .htaccess */
     private string $url;
+    /** @var array $urlArray Recebe a URL convertida para array */
     private array $urlArray;
+    /** @var string $urlController Recebe da URL o nome da controller */
     private string $urlController;
+    /** @var string $urlMetodo Recebe da URL o nome do método */
     private string $urlMetodo;
+    /** @var string $urlParamentro Recebe da URL o parâmetro */
     private string $urlParameter;
+    /** @var string $classLoad Controller que deve ser carregada */
     private string $classLoad;
+    /** @var array $format Recebe o array de caracteres especiais que devem ser substituido */
     private array $format;
+    /** @var string $urlSlugController Recebe o controller tratada */
     private string $urlSlugController;
+    /** @var string $urlSlugMetodo Recebe o metodo tratado */
     private string $urlSlugMetodo;
 
     /** =============================================================================================
-     * Este método se autoexecuta quando a classe é instanciada */
+     * Este método se autoexecuta quando a classe é instanciada 
+     * Recebe a URL do .HTACCESS - Validar a URL */
     public function __construct()
     {
         //instanicia o método:configAdm() da classe pai:Config
@@ -25,12 +40,12 @@ class ConfigController extends Config
         // Verifica se esta recebendo algo na URL
         if (!empty(filter_input(INPUT_GET, 'url', FILTER_DEFAULT))) {
             $this->url = filter_input(INPUT_GET, 'url', FILTER_DEFAULT);
-            var_dump($this->url);
+            // var_dump($this->url);
             //instancia o método:clearUrl() para executar(automaticamente), junto com este método
             $this->clearUrl();
             // Se receber, divide a string:url em três partes e cria um array:$urlArray
             $this->urlArray = explode("/", $this->url);
-            var_dump($this->urlArray);
+            // var_dump($this->urlArray);
             // 1 parte, é a controller:$urlController
             if(isset($this->urlArray[0])){
                 $this->urlController = $this->slugController($this->urlArray[0]);
@@ -55,12 +70,12 @@ class ConfigController extends Config
             $this->urlMetodo = $this->slugMetodo(METODO);
             $this->urlParameter = "";
         }
-        echo "Controller: {$this->urlController}<br>";
-        echo "Método: {$this->urlMetodo}<br>";
-        echo "Parametro: {$this->urlParameter}<br>";
+        // echo "Controller: {$this->urlController}<br>";
+        // echo "Método: {$this->urlMetodo}<br>";
+        // echo "Parametro: {$this->urlParameter}<br>";
     }
     /** ===========================================================================================
-     * Método para fazer a limpeza da URL
+     * Método privado para fazer a limpeza da URL
      * @return void */
     private function clearUrl():void
     {
@@ -77,9 +92,8 @@ class ConfigController extends Config
     }
     /** =========================================================================================
      * Faz o tratamento da url para um formato aceito como nome de classe
-     * @param [type] $slugController
-     * @return string */
-    private function slugController($slugController):string
+     * @return string - @param [string] $slugController */
+    private function slugController(string $slugController):string
     {
         $this->urlSlugController = $slugController;
         //Converter tudo para minusculo
@@ -91,27 +105,27 @@ class ConfigController extends Config
         //Retirar o espaço em branco
         $this->urlSlugController = str_replace(" ","",$this->urlSlugController);
 
-        var_dump($this->urlSlugController);
+        // var_dump($this->urlSlugController);
         return $this->urlSlugController;
     }
     /** ==========================================================================================
      * Faz o tratamento da url para um formato aceito como nome de MÉTODO
-     * @return string */
-    private function slugMetodo($urlSlugMetodo):string
+     * @return string - instanciar o método que trata a controller */
+    private function slugMetodo(string $urlSlugMetodo):string
     {
         //faz todo o tratamento com o Método:slugController() e depois atribui para: $urlSlugMetodo
         $this->urlSlugMetodo = $this->slugController($urlSlugMetodo);
         //Converter a primeira letra da frase em Minúsculo
         $this->urlSlugMetodo = lcfirst($this->urlSlugMetodo);
-        var_dump($this->urlSlugMetodo);
+        // var_dump($this->urlSlugMetodo);
         return $this->urlSlugMetodo;
     }
     /** ============================================================================================
      * Método responsável pelo controle de carregamento das views
-     * @return void */
+     * @return void - instanciar as classes da controller e carreagr o método */
     public function loadPage():void
     {
-        echo "(configController/loadPage:) Carregar pagina: {$this->urlController}<br>";
+        // echo "core/configController/loadPage(): Carregar pagina: {$this->urlController}<br>";
 
         /* Se estiver UTILIZANDO LINUX pode gerar erro, pois no linux a primeira LETRA da classe precisa sempre estar em maiúculo. será feito acima no método:slugController( */
         // $this->urlController = ucwords($this->urlController);
