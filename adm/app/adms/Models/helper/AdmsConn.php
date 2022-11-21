@@ -23,7 +23,7 @@ abstract class AdmsConn
             // echo "OK! Conexão com sucesso";
             return $this->connect;
         }catch(PDOException $err){
-            die("Erro 502(conexão)! Tente Novamente ou entre em contato com: ".EMAILADM);
+            die("Erro - 001! Tente Novamente ou entre em contato com: ".EMAILADM);
         }
     }
     

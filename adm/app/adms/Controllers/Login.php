@@ -26,9 +26,13 @@ class Login
 
             $valLogin = new AdmsLogin();
             $valLogin->login($this->dataForm);
-
-            //cria uma nova posição dentro do array $dataForm
-            $this->data['form'] = $this->dataForm;
+            if($valLogin->getResult()){
+                $urlRedirect = URLADM."dashboard/index";
+                header("Location: $urlRedirect");
+            }else{
+                //cria uma nova posição dentro do array $dataForm,(mantém os dados no formulário)
+                $this->data['form'] = $this->dataForm;
+            }
         }
 
         // $this->data = null;

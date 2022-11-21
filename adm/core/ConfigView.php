@@ -26,7 +26,7 @@ class ConfigView
             include 'app/'.$this->nameView.'.php';
         }else{
             //pode-se criar uma tabela com codigos de erros, para uso interno:Erro 501
-            die("Erro 501! Tente Novamente ou entre em contato com: ".EMAILADM);
+            die("Erro - 002! Tente Novamente ou entre em contato com: ".EMAILADM);
         }
     }
 }

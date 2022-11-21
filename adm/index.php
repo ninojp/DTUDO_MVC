@@ -1,4 +1,5 @@
 <?php
+session_start();
 use Core\ConfigController;
 //Carregar o AUTOLOAD do composer
 require './vendor/autoload.php';

@@ -66,7 +66,7 @@ class ConfigController extends Config
             }
         }else{
             // Se não receber valores na URL, então use o padrão a seguir, nesta ordem
-            $this->urlController = $this->slugController(CONTROLLER);
+            $this->urlController = $this->slugController(CONTROLLERERRO);
             $this->urlMetodo = $this->slugMetodo(METODO);
             $this->urlParameter = "";
         }
@@ -135,15 +135,19 @@ class ConfigController extends Config
         // Atribui(pega) o que está dentro deste atributo:$urlController,
         // concatena com o que está nesta controller com este endereço:\\App\\adms\\Controllers\\
         // E depois Atribui tudo para o atributo:$classLoad 
-        $this->classLoad = "\\App\\adms\\Controllers\\".$this->urlController;
+        // $this->classLoad = "\\App\\adms\\Controllers\\".$this->urlController;
         
         // instancio a classe q esta em:classLoad, E atribui para um OBJETO:$classPage
         // $classPage = new $this->classLoad;
         
         //Desta forma também Funciona, pois está instanciando uma classe através do atributo.
-        $classPage = new $this->classLoad();
+        // $classPage = new $this->classLoad();
         //usa o objeto para instaciar o MÉTODO q está no atributo:$urlMetodo
-        $classPage->{$this->urlMetodo}();
+        // $classPage->{$this->urlMetodo}();
+
+        $loadPgAdm = new CarregarPgAdm();
+        $loadPgAdm->loadPage($this->urlController, $this->urlMetodo, $this->urlParameter);
+
 
         // Exemplo: carregado de forma estática
         // require './app/adms/Controllers/Login.php';
