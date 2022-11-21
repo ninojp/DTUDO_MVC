@@ -8,7 +8,7 @@
     //Criptografar a senha
     // echo password_hash("123456a", PASSWORD_DEFAULT);
 ?>
-<h1 class="text-center mt-5">Área Restrita</h1>
+<h1 class="text-center mt-5">Fazer o Login</h1>
 <?php
 if(isset($_SESSION['msg'])){
     echo $_SESSION['msg'];
@@ -27,11 +27,16 @@ if(isset($_SESSION['msg'])){
                 <input class="form-control" type="password" name="password" id="password" value="<?php if(isset($valorForm)){echo $valorForm['password'];} ?>" placeholder="Digite a Senha do usuário">
             </div>
             <div class="mb-3">
-                <input type="submit" name="SendLogin" value="Acessar">
+                <input class="btn btn-primary" type="submit" name="SendLogin" value="Acessar">
             </div>
         </div>
     </div>
 </form>
+<div class="m-5">
+<!-- Para direcionar para o endereço, URL:URLADM, nome da CONTROLLER:NewUser precisa ter um SEPARADOR entre os termos(espaço ou traço)e depois o nome do método usado:index(dentro da controller) -->
+    <a class="btn btn-info" href="<?=URLADM?>new-user/index">Cadastrar Usuário</a>
+</div>
+
 <br><br>
 Usuário: cesar@celke.com.br<br>
 Senha: 123456a<br>

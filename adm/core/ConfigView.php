@@ -22,8 +22,14 @@ class ConfigView
         //verifica se existe o arquivo(indicado pela controller) a ser carregado 
         if(file_exists('app/'.$this->nameView.'.php')){
             // var_dump($this->data);
+            //inclui o arquivo head.php com o cabeçalho html para todas as Paginas(Views)
+            include 'app/adms/Views/include/head.php';
+
             //se existir, inclui o arquivo(indicado pela controller)
             include 'app/'.$this->nameView.'.php';
+
+            //inclui o arquivo footer.php com o rodapé html para todas as Paginas(Views)
+            include 'app/adms/Views/include/footer.php';
         }else{
             //pode-se criar uma tabela com codigos de erros, para uso interno:Erro 501
             die("Erro - 002! Tente Novamente ou entre em contato com: ".EMAILADM);
