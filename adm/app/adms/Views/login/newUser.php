@@ -20,15 +20,16 @@ if(isset($_SESSION['msg'])){
         <div class="col-12 m-5">
             <div class="col-md-4 offset-md-4 mb-3">
                 <label class="form-label" for="name">Nome:</label>
-                <input class="form-control" type="text" name="name" id="name" value="<?php if(isset($valorForm)){echo $valorForm['name'];} ?>" placeholder="Digite o nome Completo">
+                <input class="form-control" type="text" name="name" id="name" value="<?php if(isset($valorForm)){echo $valorForm['name'];} ?>" placeholder="Digite o nome Completo"
+                required>
             </div>
             <div class="col-md-4 offset-md-4 mb-3">
                 <label class="form-label" for="email">Email:</label>
-                <input class="form-control" type="email" name="email" id="email" value="<?php if(isset($valorForm)){echo $valorForm['email'];} ?>" placeholder="Digite o Email">
+                <input class="form-control" type="email" name="email" id="email" value="<?php if(isset($valorForm)){echo $valorForm['email'];} ?>" placeholder="Digite o Email" required>
             </div>
             <div class="col-md-4 offset-md-4 mb-3">
                 <label class="form-label" for="password">Senha:</label>
-                <input class="form-control" type="password" name="password" id="password" value="<?php if(isset($valorForm)){echo $valorForm['password'];} ?>" placeholder="Digite a Senha do usuário">
+                <input class="form-control" type="password" name="password" id="password" value="<?php if(isset($valorForm)){echo $valorForm['password'];} ?>" placeholder="Digite a Senha do usuário" required>
             </div>
             <div class="col-md-2 offset-5 mb-3">
                 <button class="btn btn-primary" type="submit" name="SendNewUser" value="Cadastrar">Cadastrar</button>

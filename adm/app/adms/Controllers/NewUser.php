@@ -22,8 +22,8 @@ class NewUser
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
         if (!empty($this->dataForm['SendNewUser'])) {
-            var_dump($this->dataForm);
-
+            // var_dump($this->dataForm);
+            unset($this->dataForm['SendNewUser']);
             $createNewUser = new AdmsNewUser();
             $createNewUser->create($this->dataForm);
             //Verifica ee o resultado da QUERY é TRUE, se for faz o redirecionamento para:URLADM
