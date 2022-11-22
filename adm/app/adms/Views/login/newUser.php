@@ -13,11 +13,13 @@ if(isset($_SESSION['msg'])){
     unset($_SESSION['msg']);
 }
 ?>
-<form action="" method="POST">
+
+<span id="msg"></span>
+<form action="" method="POST" id="form-new-user">
     <div class="row m-5">
         <div class="col-12 m-5">
             <div class="col-md-4 offset-md-4 mb-3">
-                <label class="form-label" for="name">Usuário:</label>
+                <label class="form-label" for="name">Nome:</label>
                 <input class="form-control" type="text" name="name" id="name" value="<?php if(isset($valorForm)){echo $valorForm['name'];} ?>" placeholder="Digite o nome Completo">
             </div>
             <div class="col-md-4 offset-md-4 mb-3">
@@ -29,7 +31,7 @@ if(isset($_SESSION['msg'])){
                 <input class="form-control" type="password" name="password" id="password" value="<?php if(isset($valorForm)){echo $valorForm['password'];} ?>" placeholder="Digite a Senha do usuário">
             </div>
             <div class="col-md-2 offset-5 mb-3">
-                <input class="btn btn-primary" type="submit" name="SendNewUser" value="Cadastrar">
+                <button class="btn btn-primary" type="submit" name="SendNewUser" value="Cadastrar">Cadastrar</button>
             </div>
         </div>
     </div>

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?=URLADM?>app/adms/assets/css/aw_all.min.css">
     <!--  Meu CSS - geral para o ADM ----------------------------------->
     <link rel="stylesheet" href="<?=URLADM?>app/adms/assets/css/adm.css">
+    <link rel="shortcut icon" href="<?=URLADM?>app/adms/assets/imgs/favicon.ico" type="image/x-icon">
     
 </head>
 <body>
