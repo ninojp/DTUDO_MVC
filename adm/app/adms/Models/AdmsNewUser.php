@@ -4,8 +4,8 @@ namespace App\adms\Models;
 
 use App\adms\Models\helper\AdmsConn;
 use App\adms\Models\helper\AdmsCreate;
+use App\adms\Models\helper\AdmsValEmail;
 use App\adms\Models\helper\AdmsValEmptyField;
-use PDO;
 
 /** Classe:AdmsNewUser, é filha(Herda) da classe:AdmsConn(abstrata responsável pela conexão) */
 class AdmsNewUser extends AdmsConn
@@ -41,25 +41,40 @@ class AdmsNewUser extends AdmsConn
 
         //verifica se o método:getResult() retorna true, se sim significa q deu tudo certo se não aprensenta o Erro
         if ($valEmptyField->getResult()) {
-
-            // Criptografar a senha
-            $this->data['password'] = password_hash($this->data['password'], PASSWORD_DEFAULT);
-            $this->data['user'] = $this->data['email'];
-            $this->data['created'] = date("Y-m-d H:i:s");
-            // var_dump($this->data);
-
-            $createUser = new AdmsCreate();
-            $createUser->exeCreate("adms_users", $this->data);
-
-            //verifica se existe o ultimo ID inserido
-            if($createUser->getResult()){
-                $_SESSION['msg'] = "<p class='alert alert-success'>Ok! Usuário cadastrado com sucesso</p>";
-                $this->result = true;
-            }else{
-                $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Não foi possível cadastrar o usuário</p>";
-                $this->result = false;
-            }
+            $this->valInput();
         } else {
+            $this->result = false;
+        }
+    }
+    private function valInput(): void
+    {
+        $valEmail = new AdmsValEmail();
+        $valEmail->validateEmail($this->data['email']);
+
+        if ($valEmail->getResult()) {
+            $this->add();
+        } else {
+            $this->result = false;
+        }
+    }
+
+    private function add(): void
+    {
+        // Criptografar a senha
+        $this->data['password'] = password_hash($this->data['password'], PASSWORD_DEFAULT);
+        $this->data['user'] = $this->data['email'];
+        $this->data['created'] = date("Y-m-d H:i:s");
+        // var_dump($this->data);
+
+        $createUser = new AdmsCreate();
+        $createUser->exeCreate("adms_users", $this->data);
+
+        //verifica se existe o ultimo ID inserido
+        if ($createUser->getResult()) {
+            $_SESSION['msg'] = "<p class='alert alert-success'>Ok! Usuário cadastrado com sucesso</p>";
+            $this->result = true;
+        } else {
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Não foi possível cadastrar o usuário</p>";
             $this->result = false;
         }
     }

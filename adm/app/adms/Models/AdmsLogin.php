@@ -2,6 +2,7 @@
 namespace App\adms\Models;
 
 use App\adms\Models\helper\AdmsConn;
+use App\adms\Models\helper\AdmsRead;
 use PDO;
 /** Classe:AdmsLogin, é filha(Herda) da classe:AdmsConn(abstrata responsável pela conexão) */
 class AdmsLogin extends AdmsConn
@@ -9,7 +10,7 @@ class AdmsLogin extends AdmsConn
     private array|null $data;
     private object $conn;
     //atributo com o resultado da query ao DB, table adms_users
-    private $resultDB;
+    private $resultBd;
     private $result;
 
     /** ===========================================================================================
@@ -28,43 +29,60 @@ class AdmsLogin extends AdmsConn
         $this->data = $data;
         // var_dump($this->data);
 
-        //instanciar o método:connectDb() da classe:AdmsConn()pai como abtract e cria o objeto:$connect
-        $this->conn = $this->connectDb();
-        // var_dump($conn);
-        $query_val_login = "SELECT id,name,user,nickname,email,password,image FROM adms_users WHERE user=:users LIMIT 1";
-        $result_val_login = $this->conn->prepare($query_val_login);
-        $result_val_login->bindParam(':users',$this->data['user'], PDO::PARAM_STR);
-        $result_val_login->execute();
+        $viewUser = new \App\adms\Models\helper\AdmsRead();
+        // Retorna TODAS as colunas da TABELA
+        // $viewUser->exeRead("adms_users", "WHERE user =:user LIMIT :limit", "user={$this->data['user']}&limit=1");
 
-        $this->resultDB = $result_val_login->fetch();
-        if($this->resultDB){
-            // var_dump($this->resultDB);
+        //Retorna somente as colunas indicadas
+        $viewUser->fullRead("SELECT id, name, nickname, password, image FROM adms_users WHERE user=:user LIMIT :limit", "user={$this->data['user']}&limit=1");
+
+        $this->resultBd = $viewUser->getResult();
+        if($this->resultBd){
+            var_dump($this->resultBd);
             $this->valPassword();
         }else{
-            // $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! Usuário ou Senha incorreta<p>";
             $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! Usuário não encontrado<p>";
             $this->result = false;
-            // echo $_SESSION['msg'];
-        } 
-        // instanciar a classe quando ERA public
-        // $connect = new AdmsConn();
-        // $conn = $connect->connectDb();
-        // var_dump($conn);
+        }
+
+
+
+        //instanciar o método:connectDb() da classe:AdmsConn()pai como abtract e cria o objeto:$connect
+        // $this->conn = $this->connectDb();
+        // // var_dump($conn);
+        // $query_val_login = "SELECT id, name, nickname, email, password, image FROM adms_users WHERE user=:user LIMIT 1";
+        // $result_val_login = $this->conn->prepare($query_val_login);
+        // $result_val_login->bindParam(':user',$this->data['user'], PDO::PARAM_STR);
+        // $result_val_login->execute();
+
+        // $this->resultBd = $result_val_login->fetch();
+        // if($this->resultBd){
+        //     // var_dump($this->resultDB);
+        //     $this->valPassword();
+        // }else{
+        //     // $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! Usuário ou Senha incorreta<p>";
+        //     $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! Usuário não encontrado<p>";
+        //     $this->result = false;
+        //     // echo $_SESSION['msg'];
+        // } 
+        // // instanciar a classe quando ERA public
+        // // $connect = new AdmsConn();
+        // // $conn = $connect->connectDb();
+        // // var_dump($conn);
     }
     /** ===========================================================================================
      * @return void  */
     private function valPassword()
     {   
         //verifica se o password q está no atributo:$data e o mesmo do atributo:$resultDB
-        if(password_verify($this->data['password'], $this->resultDB['password'])){
+        if(password_verify($this->data['password'], $this->resultBd[0]['password'])){
             // $_SESSION['msg'] = "<p class='alert alert-success'>Login realizado com sucesso<p>";
             //coloca na constante global:$_SESSION os seguiuntes valores
-            $_SESSION['user_id'] = $this->resultDB['id'];
-            $_SESSION['user_name'] = $this->resultDB['name'];
-            $_SESSION['user_user'] = $this->resultDB['user'];
-            $_SESSION['user_nickname'] = $this->resultDB['nickname'];
-            $_SESSION['user_email'] = $this->resultDB['email'];
-            $_SESSION['user_image'] = $this->resultDB['image'];
+            $_SESSION['user_id'] = $this->resultBd[0]['id'];
+            $_SESSION['user_name'] = $this->resultBd[0]['name'];
+            $_SESSION['user_nickname'] = $this->resultBd[0]['nickname'];
+            $_SESSION['user_email'] = $this->resultBd[0]['email'];
+            $_SESSION['user_image'] = $this->resultBd[0]['image'];
             $this->result = true;
             // echo $_SESSION['msg'];
         }else{
