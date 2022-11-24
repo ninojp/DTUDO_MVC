@@ -1,14 +1,9 @@
 <?php
 namespace App\adms\Models;
-
-use App\adms\Models\helper\AdmsConn;
-use App\adms\Models\helper\AdmsRead;
-use PDO;
 /** Classe:AdmsLogin, é filha(Herda) da classe:AdmsConn(abstrata responsável pela conexão) */
-class AdmsLogin extends AdmsConn
+class AdmsLogin
 {
     private array|null $data;
-    private object $conn;
     //atributo com o resultado da query ao DB, table adms_users
     private $resultBd;
     private $result;
@@ -34,7 +29,7 @@ class AdmsLogin extends AdmsConn
         // $viewUser->exeRead("adms_users", "WHERE user =:user LIMIT :limit", "user={$this->data['user']}&limit=1");
 
         //Retorna somente as colunas indicadas
-        $viewUser->fullRead("SELECT id, name, nickname, password, image FROM adms_users WHERE user=:user LIMIT :limit", "user={$this->data['user']}&limit=1");
+        $viewUser->fullRead("SELECT id, name, nickname, email, password, image FROM adms_users WHERE user=:user LIMIT :limit", "user={$this->data['user']}&limit=1");
 
         $this->resultBd = $viewUser->getResult();
         if($this->resultBd){
@@ -44,8 +39,6 @@ class AdmsLogin extends AdmsConn
             $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! Usuário não encontrado<p>";
             $this->result = false;
         }
-
-
 
         //instanciar o método:connectDb() da classe:AdmsConn()pai como abtract e cria o objeto:$connect
         // $this->conn = $this->connectDb();

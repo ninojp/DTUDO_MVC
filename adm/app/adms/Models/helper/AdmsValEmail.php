@@ -1,7 +1,7 @@
 <?php
 namespace App\adms\Models\helper;
 
-/**  */
+/** Classe genérica para fazer a validação de Email */
 class AdmsValEmail
 {
     private string $email;

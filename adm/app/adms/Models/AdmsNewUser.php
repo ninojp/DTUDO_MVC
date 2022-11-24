@@ -2,18 +2,14 @@
 
 namespace App\adms\Models;
 
-use App\adms\Models\helper\AdmsConn;
 use App\adms\Models\helper\AdmsCreate;
 use App\adms\Models\helper\AdmsValEmail;
 use App\adms\Models\helper\AdmsValEmptyField;
 
 /** Classe:AdmsNewUser, é filha(Herda) da classe:AdmsConn(abstrata responsável pela conexão) */
-class AdmsNewUser extends AdmsConn
+class AdmsNewUser
 {
     private array|null $data;
-    private object $conn;
-    //atributo com o resultado da query ao DB, table adms_users
-    private $resultDB;
     private $result;
 
     /** ============================================================================================
@@ -46,6 +42,9 @@ class AdmsNewUser extends AdmsConn
             $this->result = false;
         }
     }
+    /** ============================================================================================
+     *
+     * @return void  */
     private function valInput(): void
     {
         $valEmail = new AdmsValEmail();
@@ -57,7 +56,9 @@ class AdmsNewUser extends AdmsConn
             $this->result = false;
         }
     }
-
+    /** ===========================================================================================
+     *
+     * @return void */
     private function add(): void
     {
         // Criptografar a senha
@@ -78,6 +79,7 @@ class AdmsNewUser extends AdmsConn
             $this->result = false;
         }
     }
+    
     /* ==========================================================================================
      * @param array|null $data
      * @return void   

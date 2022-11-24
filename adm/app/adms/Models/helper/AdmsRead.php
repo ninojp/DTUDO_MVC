@@ -21,9 +21,6 @@ class AdmsRead extends AdmsConn
 
     public function exeRead(string $table, string|null $terms = null, string|null $parseString = null): void
     {
-        // var_dump($table);
-        // var_dump($terms);
-        // var_dump($parseString);
         if (!empty($parseString)) {
             parse_str($parseString, $this->values);
             // var_dump($this->values);
