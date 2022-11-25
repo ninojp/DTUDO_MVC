@@ -28,13 +28,10 @@ class AdmsNewUser
         //atribui o parametro:$data para o atributo:$this->data
         $this->data = $data;
         // var_dump($this->data);
-
         //instancia a classe:AdmsValEmptyField e cria o objeto:$valEmptyField
         $valEmptyField = new AdmsValEmptyField();
-
         //usa o objeto:$valEmptyField para instanciar o método:valField() para validar os dados dentro do atributo:$this->data
         $valEmptyField->valField($this->data);
-
         //verifica se o método:getResult() retorna true, se sim significa q deu tudo certo se não aprensenta o Erro
         if ($valEmptyField->getResult()) {
             $this->valInput();
@@ -47,10 +44,19 @@ class AdmsNewUser
      * @return void  */
     private function valInput(): void
     {
-        $valEmail = new AdmsValEmail();
+        //instancia a classe para Validar o email
+        $valEmail = new \App\adms\Models\helper\AdmsValEmail();
         $valEmail->validateEmail($this->data['email']);
 
-        if ($valEmail->getResult()) {
+        //instancia a classe para Validar se o email já existe no banco de dados
+        $valEmailSingle = new \App\adms\Models\helper\AdmsValEmailSingle();
+        $valEmailSingle->validateEmailSingle($this->data['email']);
+
+        //instancia a classe para Validar a senha
+        $valPassword = new \App\adms\Models\helper\AdmsValPassword();
+        $valPassword->validatePassword($this->data['password']);
+
+        if(($valEmail->getResult()) and ($valEmailSingle->getResult()) and ($valPassword->getResult())){
             $this->add();
         } else {
             $this->result = false;
@@ -67,7 +73,7 @@ class AdmsNewUser
         $this->data['created'] = date("Y-m-d H:i:s");
         // var_dump($this->data);
 
-        $createUser = new AdmsCreate();
+        $createUser = new \App\adms\Models\helper\AdmsCreate();
         $createUser->exeCreate("adms_users", $this->data);
 
         //verifica se existe o ultimo ID inserido

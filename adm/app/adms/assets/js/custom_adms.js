@@ -26,6 +26,26 @@ if (formNewUser) {
             document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo SENHA!</p>";
             return;
         }
+        // Verificar se o campo senha possui 6 caracteres
+        if (password.length < 6) {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha deve ter no minímo 6 caracteres!</p>";
+            return;
+        }
+        // Verificar se o campo senha não possui numeros repetidos
+        // PARA APRENDER MAIS SOBRE EXPRESSÕES REGULARES
+        //https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Regular_Expressions
+        if (password.match(/([1-9]+)\1{1,}/)) {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha Não pode conter números repetidos!</p>";
+            return;
+        }
+        // Verificar se o campo senha possui Letras
+        if (!password.match(/[A-Za-z]/)) {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha deve ter no minímo uma letra!</p>";
+            return;
+        }
     });
 }
 
