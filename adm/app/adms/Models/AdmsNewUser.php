@@ -56,7 +56,12 @@ class AdmsNewUser
         $valPassword = new \App\adms\Models\helper\AdmsValPassword();
         $valPassword->validatePassword($this->data['password']);
 
-        if(($valEmail->getResult()) and ($valEmailSingle->getResult()) and ($valPassword->getResult())){
+        //instancia a classe para validadr se o usuário já existe no DB
+        $valUserSingleLogin = new \App\adms\Models\helper\AdmsValUserSingleLogin();
+        //no caso o parametro é EMAIL, pois foi utilizado para cadastrar o NOME do USER
+        $valUserSingleLogin->validateUserSingleLogin($this->data['email']);
+
+        if (($valEmail->getResult()) and ($valEmailSingle->getResult()) and ($valPassword->getResult()) and ($valUserSingleLogin->getResult())) {
             $this->add();
         } else {
             $this->result = false;
@@ -78,14 +83,23 @@ class AdmsNewUser
 
         //verifica se existe o ultimo ID inserido
         if ($createUser->getResult()) {
-            $_SESSION['msg'] = "<p class='alert alert-success'>Ok! Usuário cadastrado com sucesso</p>";
-            $this->result = true;
+            // $_SESSION['msg'] = "<p class='alert alert-success'>Ok! Usuário cadastrado com sucesso</p>";
+            // $this->result = true;
+            $this->sendEmail();
         } else {
             $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Não foi possível cadastrar o usuário</p>";
             $this->result = false;
         }
     }
-    
+    private function sendEmail(): void
+    {
+        $sendEmail = new \App\adms\Models\helper\AdmsSendEmail();
+        $sendEmail->sendEmail();
+
+        $_SESSION['msg'] = "<p class='alert alert-success'>Ok! Usuário cadastrado com sucesso</p>";
+        $this->result = false;
+    }
+
     /* ==========================================================================================
      * @param array|null $data
      * @return void   
