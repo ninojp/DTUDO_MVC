@@ -4,20 +4,24 @@ namespace App\adms\Models;
 class AdmsLogin
 {
     private array|null $data;
-    //atributo com o resultado da query ao DB, table adms_users
+    // Atributo q recebe o resultado da query ao DB, table adms_users
     private $resultBd;
+    // Recebe true quando executar o processo com sucesso e false quando houver erro
     private $result;
 
     /** ===========================================================================================
+     * Método q atribui ao atributo o valor true ou false 
      * @return void  */
     function getResult()
     {
         return $this->result;
     }
     /** ==========================================================================================
-     * @param array|null $data
-     * @return void */
-    //este método recebe os PARAMETROS:$data e depois atribui para o atributo:$this->data
+     * @param array|null - recebe os PARAMETROS:$data e depois atribui para o atributo:$this->data
+     * @return void 
+     * Este método recupera as informações do usuário no banco de dados:$viewUser->fullRead
+     * Quando encontrar o usuário no DB, instancia o método:$this->valPassword(), para validadar
+     * a senha, retornando true se não encontrar retorna false */
     public function login(array $data=null)
     {
         //atribui o parametro:$data para o atributo:$this->data
@@ -29,7 +33,8 @@ class AdmsLogin
         // $viewUser->exeRead("adms_users", "WHERE user =:user LIMIT :limit", "user={$this->data['user']}&limit=1");
 
         //Retorna somente as colunas indicadas
-        $viewUser->fullRead("SELECT id, name, nickname, email, password, image FROM adms_users WHERE user=:user LIMIT :limit", "user={$this->data['user']}&limit=1");
+        // Faz a verificação:WHERE atravéz do USER OR EMAIL
+        $viewUser->fullRead("SELECT id, name, nickname, email, password, image FROM adms_users WHERE user=:user OR email =:email LIMIT :limit", "user={$this->data['user']}&email={$this->data['user']}&limit=1");
 
         $this->resultBd = $viewUser->getResult();
         if($this->resultBd){
