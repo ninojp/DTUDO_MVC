@@ -27,23 +27,70 @@ class AdmsLogin
         //atribui o parametro:$data para o atributo:$this->data
         $this->data = $data;
         // var_dump($this->data);
-
         $viewUser = new \App\adms\Models\helper\AdmsRead();
-        // Retorna TODAS as colunas da TABELA
-        // $viewUser->exeRead("adms_users", "WHERE user =:user LIMIT :limit", "user={$this->data['user']}&limit=1");
 
-        //Retorna somente as colunas indicadas
-        // Faz a verificação:WHERE atravéz do USER OR EMAIL
-        $viewUser->fullRead("SELECT id, name, nickname, email, password, image FROM adms_users WHERE user=:user OR email =:email LIMIT :limit", "user={$this->data['user']}&email={$this->data['user']}&limit=1");
+        //Retorna somente as colunas indicadas e Faz a verificação:WHERE através do USER OR EMAIL
+        $viewUser->fullRead("SELECT id, name, nickname, email, password, image, adms_sits_user_id FROM adms_users WHERE user =:user OR email =:email LIMIT :limit", "user={$this->data['user']}&email={$this->data['user']}&limit=1");
 
         $this->resultBd = $viewUser->getResult();
         if($this->resultBd){
             // var_dump($this->resultBd);
-            $this->valPassword();
+            $this->valEmailPerm();
         }else{
             $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! Usuário ou a senha incorreta!<p>";
             $this->result = false;
+        }        
+    }
+    private function valEmailPerm():void
+    {
+        if($this->resultBd[0]['adms_sits_user_id'] == 1) {
+            $this->valPassword();
+        }elseif($this->resultBd[0]['adms_sits_user_id'] == 3){
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Necessário confirmar o E-mail!<p>";
+            $this->result = false;
+        }elseif($this->resultBd[0]['adms_sits_user_id'] == 5){
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! E-mail Descadastrado(foi removido), entre em contato com a empresa!<p>";
+            $this->result = false;
+        }elseif($this->resultBd[0]['adms_sits_user_id'] == 2){
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! E-mail INATIVO, entre em contato com a empresa!<p>";
+            $this->result = false;
+        }else{
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! E-mail Spam!, entre em contato com a empresa!<p>";
+            $this->result = false;
         }
+    }
+    /** ===========================================================================================
+     * @return void  */
+    private function valPassword()
+    {   
+        //verifica se o password q está no atributo:$data e o mesmo do atributo:$resultDB
+        if(password_verify($this->data['password'], $this->resultBd[0]['password'])){
+            // $_SESSION['msg'] = "<p class='alert alert-success'>Login realizado com sucesso<p>";
+            //coloca na constante global:$_SESSION os seguiuntes valores
+            $_SESSION['user_id'] = $this->resultBd[0]['id'];
+            $_SESSION['user_name'] = $this->resultBd[0]['name'];
+            $_SESSION['user_nickname'] = $this->resultBd[0]['nickname'];
+            $_SESSION['user_email'] = $this->resultBd[0]['email'];
+            $_SESSION['user_image'] = $this->resultBd[0]['image'];
+            $this->result = true;
+            // echo $_SESSION['msg'];
+        }else{
+            // $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! Senha não incorreta<p>";
+            $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! Usuário ou Senha incorreta<p>";
+            $this->result = false;
+            // echo $_SESSION['msg'];
+        }
+    }
+    //=============================================================================================
+    // método LOGIN, feito no começo do projeto...
+    // public function login(array $data=null)
+    // {
+        //atribui o parametro:$data para o atributo:$this->data
+        // $this->data = $data;
+        // var_dump($this->data);
+        // $viewUser = new \App\adms\Models\helper\AdmsRead();
+        // Retorna TODAS as colunas da TABELA
+        // $viewUser->exeRead("adms_users", "WHERE user =:user LIMIT :limit", "user={$this->data['user']}&limit=1");
 
         //instanciar o método:connectDb() da classe:AdmsConn()pai como abtract e cria o objeto:$connect
         // $this->conn = $this->connectDb();
@@ -67,27 +114,5 @@ class AdmsLogin
         // // $connect = new AdmsConn();
         // // $conn = $connect->connectDb();
         // // var_dump($conn);
-    }
-    /** ===========================================================================================
-     * @return void  */
-    private function valPassword()
-    {   
-        //verifica se o password q está no atributo:$data e o mesmo do atributo:$resultDB
-        if(password_verify($this->data['password'], $this->resultBd[0]['password'])){
-            // $_SESSION['msg'] = "<p class='alert alert-success'>Login realizado com sucesso<p>";
-            //coloca na constante global:$_SESSION os seguiuntes valores
-            $_SESSION['user_id'] = $this->resultBd[0]['id'];
-            $_SESSION['user_name'] = $this->resultBd[0]['name'];
-            $_SESSION['user_nickname'] = $this->resultBd[0]['nickname'];
-            $_SESSION['user_email'] = $this->resultBd[0]['email'];
-            $_SESSION['user_image'] = $this->resultBd[0]['image'];
-            $this->result = true;
-            // echo $_SESSION['msg'];
-        }else{
-            $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! Senha não incorreta<p>";
-            // $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! Usuário ou Senha incorreta<p>";
-            $this->result = false;
-            // echo $_SESSION['msg'];
-        }
-    }
+    // }
 }
