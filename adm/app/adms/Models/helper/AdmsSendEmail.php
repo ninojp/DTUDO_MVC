@@ -40,20 +40,22 @@ class AdmsSendEmail
      * servidor para enviar e=mail /fake: https://mailtrap.io/signin 
      * @return void
      */
-    public function sendEmail(int $optionConfEmail):void
+    public function sendEmail(array $data, int $optionConfEmail):void
     {
         //atribui para o atributo:$this->optionConfEmail, o id recebido como parametro
         $this->optionConfEmail = $optionConfEmail;
-        //será enviado para o e-mail...(fake, no caso, MailTrap)
-        $this->data['toEmail'] = "meuemailparablog@gmail.com";
-        //Quem vai receber
-        $this->data['toName'] = "Edenilson";
-        //Assunto do email
-        $this->data['subject'] = "Confirmar o e-mail cadastro";
-        //conteúdo do e-mail, em HTML
-        $this->data['contentHtml'] = "Olá <b>Edenilson</b><br><p>Cadastro realizado com sucesso!</p>";
-        //conteúdo do e-mail, formato texto
-        $this->data['contentText'] = "Olá Edenilson \n\nCadastro realizado com sucesso!";
+        $this->data = $data;
+
+        // //será enviado para o e-mail...(fake, no caso, MailTrap)
+        // $this->data['toEmail'] = "meuemailparablog@gmail.com";
+        // //Quem vai receber
+        // $this->data['toName'] = "Edenilson";
+        // //Assunto do email
+        // $this->data['subject'] = "Confirmar o e-mail cadastro";
+        // //conteúdo do e-mail, em HTML
+        // $this->data['contentHtml'] = "Olá <b>Edenilson</b><br><p>Cadastro realizado com sucesso!</p>";
+        // //conteúdo do e-mail, formato texto
+        // $this->data['contentText'] = "Olá Edenilson \n\nCadastro realizado com sucesso!";
 
         //Instancio o método para enviar o email
         $this->infoPhpMailer();

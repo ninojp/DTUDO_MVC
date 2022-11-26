@@ -13,6 +13,10 @@ class AdmsNewUser
     private $result;
     /** @var string - Recebe o e-mail do remetente    */
     private string $fromEmail;
+    /** @var string - Recebe o primeiro nome(digitado) do usuário    */
+    private string $firstName;
+    /** @var array - Recebe os dados do conteúdo do e-mail     */
+    private array $emailData;
 
     /** ============================================================================================
      * Recebe o resultado da query e atribui para o atributo:$this->result
@@ -95,8 +99,11 @@ class AdmsNewUser
     }
     private function sendEmail(): void
     {
+        $this->contentEmailHtml();
+        $this->contentEmailText();
+        
         $sendEmail = new \App\adms\Models\helper\AdmsSendEmail();
-        $sendEmail->sendEmail(2);
+        $sendEmail->sendEmail($this->emailData, 2);
 
         //faz a notificação se conseguiu ou não enviar o email
         if($sendEmail->getResult()){
@@ -111,6 +118,31 @@ class AdmsNewUser
 
     }
 
+    private function contentEmailHtml():void
+    {
+        $name = explode(" ", $this->data['name']);
+        $this->firstName = $name[0];
+
+        $this->emailData['toEmail'] = $this->data['email'];
+        $this->emailData['toName'] = $this->data['name'];
+        $this->emailData['subject'] = "Confirme seu E-mail!";
+
+        $this->emailData['contentHtml'] = "Prezado Sr(a) {$this->firstName}.<br><br>";
+        $this->emailData['contentHtml'] .= "Agradecemos sua solicitação de cadastro em nosso site!.<br><br>";
+        $this->emailData['contentHtml'] .= "Para que possamos liberar seu cadastro em nosso sistema, solicitamos a confirmação do e-mail clicando no link abaixo:<br><br>";
+        $this->emailData['contentHtml'] .= "LINK<br><br>";
+        $this->emailData['contentHtml'] .= "Esta menssagem foi enviado a você pela empresa XXX.<br>Você nunca recebera nenhum e-mail solicitando qualquer informações cadastrais...<br><br>";
+    }
+
+    private function contentEmailText():void
+    {
+        
+        $this->emailData['contentText'] = "Prezado Sr(a) {$this->firstName}.\n\n";
+        $this->emailData['contentText'] .= "Agradecemos sua solicitação de cadastro em nosso site!.\n\n";
+        $this->emailData['contentText'] .= "Para que possamos liberar seu cadastro em nosso sistema, solicitamos a confirmação do e-mail clicando no link abaixo:\n\n";
+        $this->emailData['contentText'] .= "LINK\n\n";
+        $this->emailData['contentText'] .= "Esta menssagem foi enviado a você pela empresa XXX.\n Você nunca recebera nenhum e-mail solicitando qualquer informações cadastrais...\n\n";
+    }
     /* ==========================================================================================
      * @param array|null $data
      * @return void   
