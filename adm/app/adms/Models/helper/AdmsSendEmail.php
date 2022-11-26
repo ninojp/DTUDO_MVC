@@ -11,12 +11,17 @@ class AdmsSendEmail
 {
     /** @var array - Recebe as informações do conteúdo do e-mail     */
     private array $data;
+    // Atributo q recebe o resultado da query ao DB, table adms_confs_emails
+    private $resultBd;
     /** @var array - Receber as credenciais do e-mail    */
     private array $dataInfoEmail;
     /** @var boolean Retorna true quando executar o processo com sucesso e false quando houver erro */
     private bool $result;
     /** @var string - Recebe o e-mail do remetente    */
-    private string $fromEmail;
+    private string $fromEmail = EMAILADM;
+    /** @var integer - Recebe o id do email q será utilizado para enviar o e-mail     */
+    private int $optionConfEmail;
+
     /** ==============================================================================================
      * Este método serve para obter o resultado(true, false) dos métodos dentro da classe
      * @return boolean     */
@@ -24,22 +29,22 @@ class AdmsSendEmail
     {
         return $this->result;
     }
+    /** ============================================================================================
+     *  @return string - Retorna o e-mail do Remetente     */
+    function getFromEmail():string
+    {
+        return $this->fromEmail;
+    }
 
     /** =============================================================================================
      * servidor para enviar e=mail /fake: https://mailtrap.io/signin 
      * @return void
      */
-    public function sendEmail(): void
+    public function sendEmail(int $optionConfEmail):void
     {
-        $this->dataInfoEmail['host'] = "smtp.mailtrap.io";
-        $this->dataInfoEmail['fromEmail'] = "atendimento@nino.com.br";
-        $this->fromEmail = $this->dataInfoEmail['fromEmail'];
-        $this->dataInfoEmail['fromName'] = "NinoJP";
-        $this->dataInfoEmail['username'] = "7a93e10b371bff";
-        $this->dataInfoEmail['password'] = "a6af8d43cd686a";
-        //em alguns casos(PHPMailers) a porta é 587 - (2525, do site MailTrap)
-        $this->dataInfoEmail['port'] = 587;
-
+        //atribui para o atributo:$this->optionConfEmail, o id recebido como parametro
+        $this->optionConfEmail = $optionConfEmail;
+        //será enviado para o e-mail...(fake, no caso, MailTrap)
         $this->data['toEmail'] = "meuemailparablog@gmail.com";
         //Quem vai receber
         $this->data['toName'] = "Edenilson";
@@ -51,9 +56,36 @@ class AdmsSendEmail
         $this->data['contentText'] = "Olá Edenilson \n\nCadastro realizado com sucesso!";
 
         //Instancio o método para enviar o email
-        $this->sendEmailPhpMailer();
+        $this->infoPhpMailer();
     }
+    /** ==========================================================================================
+     * Método para buscar infomações na tabela:adms_confs_emails, para utilizar no envio do e-mail
+     * @return void    */
+    private function infoPhpMailer():void
+    {
+       $confEmail = new \App\adms\Models\helper\AdmsRead();
+       $confEmail->fullRead("SELECT name, email, host, username, password, smtpsecure, port FROM adms_confs_emails WHERE id =:id LIMIT :limit", "id={$this->optionConfEmail}&limit=1");
+       $this->resultBd = $confEmail->getResult();
+       if($this->resultBd){
+            // var_dump($this->resultBd);
+            $this->dataInfoEmail['host'] = $this->resultBd[0]['host'];
+            $this->dataInfoEmail['fromEmail'] = $this->resultBd[0]['email'];
+            $this->fromEmail = $this->dataInfoEmail['fromEmail'];
+            $this->dataInfoEmail['fromName'] = $this->resultBd[0]['name'];
+            $this->dataInfoEmail['username'] = $this->resultBd[0]['username'];
+            $this->dataInfoEmail['password'] = $this->resultBd[0]['password'];
+            $this->dataInfoEmail['smtpsecure'] = $this->resultBd[0]['smtpsecure'];
+            //em alguns casos(PHPMailers) a porta é 587 - (2525, do site MailTrap)
+            $this->dataInfoEmail['port'] = $this->resultBd[0]['port'];
 
+            $this->sendEmailPhpMailer();
+        }else{
+            $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! !<p>";
+            $this->result = false;
+        }
+    }
+    /** =========================================================================================
+     * @return void    */
     private function sendEmailPhpMailer(): void
     {
         //Instancia a classe:PHPMailer e cria o objeto:$mail, passando `true` para abilitar as (exceptions) - \vendor\phpmailer\phpmailer\src\PHPMailer
@@ -69,7 +101,7 @@ class AdmsSendEmail
             $mail->Username   = $this->dataInfoEmail['username'];    //SMTP username
             $mail->Password   = $this->dataInfoEmail['password'];    //SMTP password
             //neste caso, site https://mailtrap.io
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->SMTPSecure = $this->dataInfoEmail['smtpsecure'];
             // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;         //Enable implicit TLS encryption
             //TCP port to connect to; use 587 if you have set `SMTPSecure = HPMailer::ENCRYPTION_STARTTLS`
             // $mail->Port = 465;                                    

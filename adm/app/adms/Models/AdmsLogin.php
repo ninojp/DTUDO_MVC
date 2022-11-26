@@ -38,10 +38,10 @@ class AdmsLogin
 
         $this->resultBd = $viewUser->getResult();
         if($this->resultBd){
-            var_dump($this->resultBd);
+            // var_dump($this->resultBd);
             $this->valPassword();
         }else{
-            $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! Usuário não encontrado<p>";
+            $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! Usuário ou a senha incorreta!<p>";
             $this->result = false;
         }
 

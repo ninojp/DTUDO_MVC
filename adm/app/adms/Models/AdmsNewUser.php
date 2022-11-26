@@ -11,6 +11,8 @@ class AdmsNewUser
 {
     private array|null $data;
     private $result;
+    /** @var string - Recebe o e-mail do remetente    */
+    private string $fromEmail;
 
     /** ============================================================================================
      * Recebe o resultado da query e atribui para o atributo:$this->result
@@ -94,10 +96,19 @@ class AdmsNewUser
     private function sendEmail(): void
     {
         $sendEmail = new \App\adms\Models\helper\AdmsSendEmail();
-        $sendEmail->sendEmail();
+        $sendEmail->sendEmail(2);
 
-        $_SESSION['msg'] = "<p class='alert alert-success'>Ok! Usuário cadastrado com sucesso</p>";
-        $this->result = false;
+        //faz a notificação se conseguiu ou não enviar o email
+        if($sendEmail->getResult()){
+            $_SESSION['msg'] = "<p class='alert alert-success'>Ok! Usuário cadastrado com sucesso, acesse sua caixa de e-mail para confirmar o e-mail!</p>";
+            $this->result = true;
+        }else{
+            //instancia o método:getFromEmail(), para receber o email de quem está enviando
+            $this->fromEmail = $sendEmail->getFromEmail();
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Usuário cadastrado com sucesso. Mas houve um erro ao enviar o e-mail de confirmação, entre em contado com {$this->fromEmail}</p>";
+            $this->result = true;
+        }
+
     }
 
     /* ==========================================================================================
