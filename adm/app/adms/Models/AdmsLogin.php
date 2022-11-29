@@ -52,10 +52,10 @@ class AdmsLogin
             $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! E-mail Descadastrado(foi removido), entre em contato com a empresa!<p>";
             $this->result = false;
         }elseif($this->resultBd[0]['adms_sits_user_id'] == 2){
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! E-mail INATIVO, entre em contato com a empresa!<p>";
+            $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! E-mail INATIVO, entre em contato com a empresa!<p>";
             $this->result = false;
         }else{
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! E-mail Spam!, entre em contato com a empresa!<p>";
+            $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! E-mail Spam!, entre em contato com a empresa!<p>";
             $this->result = false;
         }
     }

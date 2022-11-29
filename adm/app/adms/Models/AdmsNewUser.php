@@ -9,7 +9,9 @@ use App\adms\Models\helper\AdmsValEmptyField;
 /** Classe:AdmsNewUser, é filha(Herda) da classe:AdmsConn(abstrata responsável pela conexão) */
 class AdmsNewUser
 {
+    //recebido como parametro através do método:create() e colocado neste atributo
     private array|null $data;
+    // Recebe do método:getResult() o valor:(true or false), q será atribuido aqui
     private $result;
     /** @var string - Recebe o e-mail do remetente    */
     private string $fromEmail;

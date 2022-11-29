@@ -95,7 +95,7 @@ class AdmsSendEmail
 
         try {
             //Server settings - SMTPDebug, serve para apresentar os DETALHES do envio do e-mail
-            // $mail->SMTPDebug = SMTP::DEBUG_SERVER;       //Enable verbose debug output
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;       //Enable verbose debug output
             $mail->CharSet = 'UTF-8';             //indicar q será utilizado caracteres comacentuação
             $mail->isSMTP();                                   //Send using SMTP
             $mail->Host = $this->dataInfoEmail['host'];        //Set the SMTP server to send through

@@ -66,7 +66,7 @@ class CarregarPgAdm
      * @return void    */
     private function pgPublic():void
     {
-        $this->listPgPublic = ["Login", "Erro", "Logout", "NewUser"];
+        $this->listPgPublic = ["Login", "Erro", "Logout", "NewUser", "ConfEmail", "NewConfEmail"];
         
         if(in_array($this->urlController, $this->listPgPublic)){
             // echo "Página Publica<br>";
