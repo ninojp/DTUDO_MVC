@@ -52,8 +52,8 @@ class AdmsConfEmail extends AdmsConn
     {
         $conf_email = null;
         $adms_sits_user_id = 1;
-        $query_ativar_user = "UPDATE adms_users SET conf_email=:conf_email, adms_sits_user_id=:adms_sits_user_id, modified=NOW() WHERE id=:id LIMIT 1";
-        $activate_email = $this->connectDb()->prepare($query_ativar_user);
+        $query_ativate_user = "UPDATE adms_users SET conf_email=:conf_email, adms_sits_user_id=:adms_sits_user_id, modified=NOW() WHERE id=:id LIMIT 1";
+        $activate_email = $this->connectDb()->prepare($query_ativate_user);
         $activate_email->bindParam(':conf_email', $conf_email);
         $activate_email->bindParam(':adms_sits_user_id', $adms_sits_user_id);
         $activate_email->bindParam(':id', $this->resultBd[0]['id']);

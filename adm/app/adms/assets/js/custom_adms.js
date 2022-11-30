@@ -48,7 +48,7 @@ if (formNewUser) {
         }
     });
 }
-
+//=================================================================================================
 const formLogin = document.getElementById("form-login");
 if (formLogin) {
     formLogin.addEventListener("submit", async (e) => {
@@ -66,6 +66,20 @@ if (formLogin) {
         if (password === "") {
             e.preventDefault();
             document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo SENHA!</p>";
+            return;
+        }
+    });
+}
+// ===============================================================================================
+const formNewConfEmail = document.getElementById("form-new-conf-email");
+if (formNewConfEmail) {
+    formNewConfEmail.addEventListener("submit", async(e) => {
+        //Receber o valor do campo EMAIL
+        var email = document.querySelector("#email").value;
+        // Verificar se o campo está vazio
+        if (email === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo EMAIL!</p>";
             return;
         }
     });

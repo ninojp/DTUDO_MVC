@@ -19,6 +19,7 @@ class NewConfEmail
     public function index():void
     {
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        // var_dump($this->dataForm);
         if(!empty($this->dataForm['SendNewConfEmail'])){
             unset($this->dataForm['SendNewConfEmail']);
 
