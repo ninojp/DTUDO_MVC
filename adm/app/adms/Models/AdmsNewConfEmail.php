@@ -65,9 +65,19 @@ class AdmsNewConfEmail extends AdmsConn
     {
         if ((empty($this->resultBd[0]['conf_email'])) or ($this->resultBd[0]['conf_email'] == NULL)) {
             $this->dataSave['conf_email'] = password_hash(date("Y-m-d H:i:s") . $this->resultBd[0]['id'], PASSWORD_DEFAULT);
+            // $this->dataSave['exemplo1'] = password_hash(date("Y-m-d H:i:s") . $this->resultBd[0]['id'], PASSWORD_DEFAULT);
+            // $this->dataSave['exemplo2'] = password_hash(date("Y-m-d H:i:s") . $this->resultBd[0]['id'], PASSWORD_DEFAULT);
 
-            $upConfEmail = new \App\adms\Models\helper\AdmsUpdate();
-            $upConfEmail->exeUpdate("adms_users", $this->dataSave, "id=:id", "id=1");
+            $upNewConfEmail = new \App\adms\Models\helper\AdmsUpdate();
+            $upNewConfEmail->exeUpdate("adms_users", $this->dataSave, "WHERE id=:id", "id={$this->resultBd[0]['id']}");
+
+            if($upNewConfEmail->getResult()){
+                $this->resultBd[0]['conf_email'] = $this->dataSave['conf_email'];
+                $this->sendEmail();
+            }else{
+                $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Link não enviado, tente novamente!</p>";
+                $this->result = false;
+            }
 
             //abaixo está codigo usado antes de criar a MODEL genérica, para fazer os Updates
         //     $query_activate_user = "UPDATE adms_users SET conf_email=:conf_email, modified=NOW() WHERE id=:id LIMIT :limit";
@@ -84,11 +94,11 @@ class AdmsNewConfEmail extends AdmsConn
         //         $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Link não enviado, tente novamente!</p>";
         //         $this->result = false;
         //     }
-            $this->result = false;
+            // $this->result = false;
         } else {
             // echo "Possui valor na coluna 'conf_email'<br>";
-            // $this->sendEmail();
-            $this->result = false;
+            $this->sendEmail();
+            // $this->result = false;
         }
     }
     /** ===========================================================================================
@@ -118,7 +128,7 @@ class AdmsNewConfEmail extends AdmsConn
         $this->firstName = $name[0];
 
         $this->emailData['toEmail'] = $this->data['email'];
-        $this->emailData['toName'] = $this->data['name'];
+        $this->emailData['toName'] = $this->resultBd[0]['name'];
         $this->emailData['subject'] = "Confirme seu E-mail!";
         $this->url = URLADM . "conf-email/index?key=" . $this->resultBd[0]['conf_email'];
 
