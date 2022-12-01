@@ -28,17 +28,17 @@ if(isset($_SESSION['msg'])){
                 <label class="form-label" for="password">Senha:</label>
                 <input class="form-control" type="password" name="password" id="password" value="<?php if(isset($valorForm)){echo $valorForm['password'];} ?>" placeholder="Digite a Senha do usuário">
             </div>
-            <div class="mb-3">
+            <div class="mb-4">
                 <button class="btn btn-primary" type="submit" name="SendLogin" value="Acessar">Acessar</button>
             </div>
         </div>
     </div>
 </form>
-<div class="m-5">
+<div class="m-3">
 <!-- Para direcionar para o endereço, URL:URLADM, nome da CONTROLLER:NewUser precisa ter um SEPARADOR entre os termos(espaço ou traço)e depois o nome do método usado:index(dentro da controller) -->
-    <a class="btn btn-info" href="<?=URLADM?>new-user/index">Cadastrar Usuário</a>
+    <a class="btn btn-info me-3" href="<?=URLADM?>new-user/index">Cadastrar Usuário</a>
+    <a class="btn btn-outline-primary" href="<?=URLADM?>recover-password/index">Recuperar Senha!</a>
 </div>
-
-<br><br>
+<br>
 Usuário: cesar@celke.com.br<br>
 Senha: 123456a<br>

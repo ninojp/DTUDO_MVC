@@ -9,7 +9,7 @@ use Core\ConfigView;
 class NewConfEmail
 {
     /** Apartir do PHP 8, posso definir a TIPAGEM de varios tipos para o mesmo atributo, usando o PIPE|
-     * @var array|string|null - Define que o atributo:$data pode receber(da view) os dados(parametros) de diversos tipos, q devem ser enviados novamente para serem exibidos pela view */
+    * @var array|string|null - Define que o atributo:$data pode receber(da view) os dados(parametros) de diversos tipos, q devem ser enviados novamente para serem exibidos pela view */
     private array|string|null $data = [];
     //Recebe os dados do formulario
     private array|null $dataForm;

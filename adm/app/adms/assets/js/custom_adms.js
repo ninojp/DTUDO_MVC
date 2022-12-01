@@ -84,3 +84,17 @@ if (formNewConfEmail) {
         }
     });
 }
+// ===============================================================================================
+// const formRecoverPass = document.getElementById("form-recover-pass");
+// if (formRecoverPass) {
+//     formRecoverPass.addEventListener("submit", async(e) => {
+//         //Receber o valor do campo EMAIL
+//         var email = document.querySelector("#email").value;
+//         // Verificar se o campo está vazio
+//         if (email === "") {
+//             e.preventDefault();
+//             document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo EMAIL!</p>";
+//             return;
+//         }
+//     });
+// }

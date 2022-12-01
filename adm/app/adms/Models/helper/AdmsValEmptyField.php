@@ -27,7 +27,7 @@ class AdmsValEmptyField
         $this->data = array_map('trim', $this->data);
         //verificar se veio algun campo vazio do formulario
         if(in_array('', $this->data)){
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Nécessário prencher todos os campos<br>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! É Necessário prencher todos os campos<br>";
             $this->result = false;
         }else{
             $this->result = true;
