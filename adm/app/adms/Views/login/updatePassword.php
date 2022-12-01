@@ -12,7 +12,7 @@ if(isset($_SESSION['msg'])){
 }
 ?>
 <span id="msg"></span>
-<form action="" method="POST" id="form-login">
+<form action="" method="POST" id="form-update-pass">
     <div class="row m-5">
         <div class="col-5 m-5">
             <div class="mb-3">

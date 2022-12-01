@@ -1,4 +1,11 @@
 // alert("Carregou o arquivo JS!");
+// ===============================================================================================
+//Calcular a foça da senha
+function passwordStrength(){
+    var password = document.getElementById('password').value;
+    console.log(password);
+}
+// ================================================================================================
 const formNewUser = document.getElementById("form-new-user");
 if (formNewUser) {
     formNewUser.addEventListener("submit", async (e) => {
