@@ -13,9 +13,9 @@ class Erro
      * e enviar os dados para a view, através do método:loadView() - @return void */
     public function index():void
     {
-        echo "adms/Controller/Erro.php: <h1> Página(controller) de ERRO!</h1>";
+        // echo "adms/Controller/Erro.php: <h1> Página(controller) de ERRO!</h1>";
 
-        $this->data = "<p class='alert alert-danger'>Página não encontrada</p>";
+        $this->data = "<h1 class='alert alert-danger'>Página não encontrada</h1>";
         // $this->data = [];
 
         //instancia a classe, cria o objeto e passa o parametro:$this->data

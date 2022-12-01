@@ -22,8 +22,10 @@ class RecoverPassword
             $recoverPass->recoverPassword($this->dataForm);
 
             if($recoverPass->getResult()){
-                $this->data['form'] = $this->dataForm;
+                $urlRedirect = URLADM."login/index";
+                header("Location: $urlRedirect");
             }else{
+                $this->data['form'] = $this->dataForm;
                 $this->viewRecoverPass();
             }
         }else{

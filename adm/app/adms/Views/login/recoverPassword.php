@@ -19,7 +19,7 @@ if(isset($_SESSION['msg'])){
         <div class="col-12 m-5">
             <div class="col-md-4 offset-md-4 mb-3">
                 <label class="form-label" for="email">Email:</label>
-                <input class="form-control" type="email" name="email" id="email" value="<?php if(isset($valorForm)){echo $valorForm['email'];} ?>" placeholder="Digite o seu Email" >required
+                <input class="form-control" type="email" name="email" id="email" value="<?php if(isset($valorForm)){echo $valorForm['email'];} ?>" placeholder="Digite o seu Email" required>
             </div>
             <div class="col-md-2 offset-5 mb-3">
                 <button class="btn btn-primary" type="submit" name="SendRecoverPass" value="Recuperar">Recuperar</button>

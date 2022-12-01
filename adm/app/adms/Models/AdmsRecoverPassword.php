@@ -110,7 +110,7 @@ class AdmsRecoverPassword
 
         $this->emailData['contentHtml'] = "Prezado Sr(a) {$this->firstName}.<br><br>";
         $this->emailData['contentHtml'] .= "Você Solicitou a alteração de sua senha!.<br><br>";
-        $this->emailData['contentHtml'] .= "Para continuar o processo de recuperação se sua senha, Clique no Link abaixo ou copie e cole o mesmo na barra de enredereço de seu navegador<br><br>";
+        $this->emailData['contentHtml'] .= "Para continuar o processo de recuperação de sua senha, Clique no Link abaixo ou copie e cole o mesmo na barra de endereço de seu navegador<br><br>";
         $this->emailData['contentHtml'] .= "<a href='".$this->url."'>".$this->url."</a><br><br>";
         $this->emailData['contentHtml'] .= "Se você não solicitou essa alteração, nenhuma ação é necessára. Sua senha permanecerá a mesma até que você ative este codigo<br><br>";
     }
@@ -121,7 +121,7 @@ class AdmsRecoverPassword
     {
         $this->emailData['contentText'] = "Prezado Sr(a) {$this->firstName}.\n\n";
         $this->emailData['contentText'] .= "Você Solicitou a alteração de sua senha!.\n\n";
-        $this->emailData['contentText'] .= "Para continuar o processo de recuperação se sua senha, Clique no Link abaixo ou copie e cole o mesmo na barra de enredereço de seu navegador.\n\n";
+        $this->emailData['contentText'] .= "Para continuar o processo de recuperação de sua senha, Clique no Link abaixo ou copie e cole o mesmo na barra de endereço de seu navegador.\n\n";
         $this->emailData['contentText'] .= $this->url . "\n\n ";
         $this->emailData['contentText'] .= "Se você não solicitou essa alteração, nenhuma ação é necessára. Sua senha permanecerá a mesma até que você ative este codigo.\n\n";
     }
