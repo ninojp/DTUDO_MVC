@@ -4,6 +4,36 @@
 function passwordStrength(){
     var password = document.getElementById('password').value;
     console.log(password);
+    var strength = 0;
+    if ((password.length >= 6) && (password.length <= 7)){
+        strength += 10;
+    } else if (password.length > 7){
+        strength += 25;
+    }
+    if ((password.length >= 6) && (password.match(/[a-z]+/))){
+        strength += 10;
+    }
+    if ((password.length >= 7) && (password.match(/[A-Z]+/))){
+        strength += 20;
+    }
+    if ((password.length >= 8 ) && (password.match(/[@#$%;!*]+/))){
+        strength += 25;
+    }
+    if (password.match(/([1-9]+)\1{1,}/)){
+        strength -= 25;
+    }
+    console.log("Força da senha: "+strength);
+
+    viewStrength(strength);
+}
+
+// ================================================================================================
+function viewStrength(strength){
+    // Imprimir a força da senha
+    if(strength < 30){
+        document.getElementById("msgViewStrength").innerHTML = "<p class='alert alert-danger'>Senha Fraca</p>";
+    }
+     
 }
 // ================================================================================================
 const formNewUser = document.getElementById("form-new-user");

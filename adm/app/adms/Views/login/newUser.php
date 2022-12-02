@@ -29,7 +29,8 @@ if(isset($_SESSION['msg'])){
             </div>
             <div class="col-md-4 offset-md-4 mb-3">
                 <label class="form-label" for="password">Senha:</label>
-                <input class="form-control" type="password" name="password" id="password" onkeyup="passwordStrength()" value="<?php if(isset($valorForm)){echo $valorForm['password'];} ?>" placeholder="Digite a Senha do usuário" required>
+                <input class="form-control" type="password" name="password" id="password" onkeyup="passwordStrength()" value="<?php if(isset($valorForm)){echo $valorForm['password'];} ?>" placeholder="Digite a Senha do usuário" required><br>
+                <span id="msgViewStrength"></span>
             </div>
             <div class="col-md-2 offset-5 mb-3">
                 <button class="btn btn-primary" type="submit" name="SendNewUser" value="Cadastrar">Cadastrar</button>
