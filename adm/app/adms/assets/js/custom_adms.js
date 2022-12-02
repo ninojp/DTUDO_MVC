@@ -3,7 +3,6 @@
 //Calcular a foça da senha
 function passwordStrength(){
     var password = document.getElementById('password').value;
-    console.log(password);
     var strength = 0;
     if ((password.length >= 6) && (password.length <= 7)){
         strength += 10;
@@ -22,8 +21,6 @@ function passwordStrength(){
     if (password.match(/([1-9]+)\1{1,}/)){
         strength -= 25;
     }
-    console.log("Força da senha: "+strength);
-
     viewStrength(strength);
 }
 
@@ -32,6 +29,14 @@ function viewStrength(strength){
     // Imprimir a força da senha
     if(strength < 30){
         document.getElementById("msgViewStrength").innerHTML = "<p class='alert alert-danger'>Senha Fraca</p>";
+    } else if ((strength >= 30) && (strength < 50)){
+        document.getElementById("msgViewStrength").innerHTML = "<p class='alert alert-warning'>Senha Média</p>";
+    } else if ((strength >= 50) && (strength < 70)){
+        document.getElementById("msgViewStrength").innerHTML = "<p class='alert alert-primary'>Senha Boa</p>";
+    } else if (strength >= 70){
+        document.getElementById("msgViewStrength").innerHTML = "<p class='alert alert-success'>Senha Forte</p>";
+    } else {
+        document.getElementById("msgViewStrength").innerHTML = "";
     }
      
 }
@@ -131,6 +136,20 @@ if (formRecoverPass) {
         if (email === "") {
             e.preventDefault();
             document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo EMAIL!</p>";
+            return;
+        }
+    });
+}
+// ===============================================================================================
+const formUpdatePass = document.getElementById("form-update-pass");
+if (formUpdatePass) {
+    formUpdatePass.addEventListener("submit", async(e) => {
+        //Receber o valor do campo Senha
+        var senha = document.querySelector("#password").value;
+        // Verificar se o campo está vazio
+        if (senha === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>Erro! Necessário preencher o campo Senha!</p>";
             return;
         }
     });

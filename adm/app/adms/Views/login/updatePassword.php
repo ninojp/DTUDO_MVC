@@ -17,7 +17,8 @@ if(isset($_SESSION['msg'])){
         <div class="col-5 m-5">
             <div class="mb-3">
                 <label class="form-label" for="password">Senha Nova:</label>
-                <input class="form-control" type="password" name="password" id="password" value="<?php if(isset($valorForm)){echo $valorForm['password'];} ?>" placeholder="Digite a Nova Senha do usuário">
+                <input class="form-control" type="password" name="password" id="password" autocomplete="on" onkeyup="passwordStrength()" value="<?php if(isset($valorForm)){echo $valorForm['password'];} ?>" placeholder="Digite a Nova Senha do usuário" required><br>
+                <span id="msgViewStrength"></span>
             </div>
             <div class="mb-4">
                 <button class="btn btn-primary" type="submit" name="SendUpPass" value="Salvar">Salvar</button>

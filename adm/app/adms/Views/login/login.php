@@ -22,11 +22,11 @@ if(isset($_SESSION['msg'])){
         <div class="col-5 m-5">
             <div class="mb-3">
                 <label class="form-label" for="user">Usuário:</label>
-                <input class="form-control" type="text" name="user" id="user" value="<?php if(isset($valorForm)){echo $valorForm['user'];} ?>" placeholder="Digite o usuário">
+                <input class="form-control" type="text" name="user" id="user" value="<?php if(isset($valorForm)){echo $valorForm['user'];} ?>" placeholder="Digite o usuário" required>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="password">Senha:</label>
-                <input class="form-control" type="password" name="password" id="password" value="<?php if(isset($valorForm)){echo $valorForm['password'];} ?>" placeholder="Digite a Senha do usuário">
+                <input class="form-control" type="password" name="password" autocomplete="on" id="password" value="<?php if(isset($valorForm)){echo $valorForm['password'];} ?>" placeholder="Digite a Senha do usuário" required>
             </div>
             <div class="mb-4">
                 <button class="btn btn-primary" type="submit" name="SendLogin" value="Acessar">Acessar</button>
