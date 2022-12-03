@@ -80,7 +80,7 @@ class CarregarPgAdm
      * Instacia o método para verificar se foi feito o login e e confere se a url a ser carregada está na lista de paginas Privadas  -  @return void    */
     private function pgPrivate():void
     {
-        $this->listPgPrivate = ["Dashboard", "Users"];
+        $this->listPgPrivate = ["Dashboard", "ListUsers", "ViewUsers"];
         if(in_array($this->urlController, $this->listPgPrivate)){
             // $this->classLoad = "\\App\\adms\\Controllers\\".$this->urlController;
             $this->verifyLogin();

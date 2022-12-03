@@ -64,7 +64,7 @@ class AdmsRecoverPassword
     private function valConfEmail(): void
     {
             $this->dataSave['recover_password'] = password_hash(date("Y-m-d H:i:s") . $this->resultBd[0]['id'], PASSWORD_DEFAULT);
-           
+            $this->dataSave['modified'] = date("Y-m-d H:i:s");
 
             $upNewConfEmail = new \App\adms\Models\helper\AdmsUpdate();
             $upNewConfEmail->exeUpdate("adms_users", $this->dataSave, "WHERE id=:id", "id={$this->resultBd[0]['id']}");

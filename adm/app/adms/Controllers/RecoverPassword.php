@@ -38,6 +38,6 @@ class RecoverPassword
     private function viewRecoverPass():void
     {
        $loadView = new ConfigView("adms/Views/login/recoverPassword", $this->data);
-       $loadView->loadView();
+       $loadView->loadViewLogin();
     }
 }

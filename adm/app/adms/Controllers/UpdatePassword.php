@@ -70,6 +70,6 @@ class UpdatePassword
         // instancia a classe, cria o objeto e passa o parametro:$this->data
         $loadView = new \Core\ConfigView("adms/Views/login/updatePassword", $this->data);
         // Instancia o método:loadView() da classe:ConfigView
-        $loadView->loadView();
+        $loadView->loadViewLogin();
     }
 }

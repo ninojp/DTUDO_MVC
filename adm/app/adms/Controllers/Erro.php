@@ -21,7 +21,7 @@ class Erro
         //instancia a classe, cria o objeto e passa o parametro:$this->data
         $loadView = new ConfigView("adms/Views/erro/erro",$this->data);
         //Instancia o método:loadView() da classe:ConfigView
-        $loadView->loadView();
+        $loadView->loadViewLogin();
 
     }
 }

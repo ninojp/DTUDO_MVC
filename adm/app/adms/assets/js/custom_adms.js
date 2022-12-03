@@ -1,4 +1,8 @@
-// alert("Carregou o arquivo JS!");
+// ===============================================================================================
+// Permitir o retorno(voltar) no navegador, após erro no formulário;
+if (window.history.replaceState){
+    window.history.replaceState(null, null, window.location.href);
+}
 // ===============================================================================================
 //Calcular a foça da senha
 function passwordStrength(){
@@ -23,7 +27,6 @@ function passwordStrength(){
     }
     viewStrength(strength);
 }
-
 // ================================================================================================
 function viewStrength(strength){
     // Imprimir a força da senha
@@ -38,7 +41,6 @@ function viewStrength(strength){
     } else {
         document.getElementById("msgViewStrength").innerHTML = "";
     }
-     
 }
 // ================================================================================================
 const formNewUser = document.getElementById("form-new-user");

@@ -47,6 +47,6 @@ class NewUser
         //Instancio a classe:ConfigView() e crio o objeto:$loadView
         $loadView = new ConfigView("adms/Views/login/newUser", $this->data);
         //Instancia o método:loadView() da classe:ConfigView
-        $loadView->loadView();
+        $loadView->loadViewLogin();
     }
 }

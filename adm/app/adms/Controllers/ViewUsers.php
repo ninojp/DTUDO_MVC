@@ -13,8 +13,7 @@ class ViewUsers
      * e enviar os dados para a view, através do método:loadView() - @return void */
     public function index():void
     {
-        echo "adms/Controller/ViewUsers.php: <h1> Página(controller) de ViewUsers</h1>";
-
+        // echo "adms/Controller/ViewUsers.php: <h1> Página(controller) de ViewUsers</h1>";
         $this->data = [];
         
         //instancia a classe, cria o objeto e passa o parametro:$this->data, recebido da VIEW
