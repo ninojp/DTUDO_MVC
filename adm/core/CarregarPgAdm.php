@@ -50,15 +50,16 @@ class CarregarPgAdm
         }
     }
     /** ============================================================================================
-     *
+     * Verificar se existe o método e carregar a página(controller)
      * @return void    */
     private function loadMetodo():void
     {
         $classLoad = new $this->classLoad();
         if(method_exists($classLoad, $this->urlMetodo)){
-            $classLoad->{$this->urlMetodo}();
+            //passando a parametro recebido no atributo:$this->urlParameter
+            $classLoad->{$this->urlMetodo}($this->urlParameter);
         }else{
-            die("Erro - 004! Tente Novamente ou entre em contato com: ".EMAILADM);
+            die("Erro - 004! Por favor Tente Novamente ou entre em contato com: ".EMAILADM);
         }
     }
     /** ===========================================================================================

@@ -19,8 +19,6 @@ class ListUsers
         }else{
             $this->data['listUsers'] = [];
         }
-        
-        
         //instancia a classe, cria o objeto e passa o parametro:$this->data, recebido da VIEW
         $loadView = new ConfigView("adms/Views/users/listUsers",$this->data);
         //Instancia o método:loadView() da classe:ConfigView
