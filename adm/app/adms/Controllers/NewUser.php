@@ -13,8 +13,10 @@ class NewUser
     //Recebe os dados do formulario
     private array|null $dataForm;
     /** ===================================================================================
-     * Método GENÉRICO q instancia a classe:ConfigView() para carregar a View da pagina, 
-     * e enviar os dados para a view, através do método:loadView() - @return void */
+    * Método GENÉRICO q instancia a classe:ConfigView() para carregar a View da pagina, 
+     * e enviar os dados para a view, através do método:loadView()
+     * Quando o usuário clicar no botão cadastrar do formulário da view novo usuário. Acessa o IF e instancia a classe:AdmsNewUser responsável em cadastrar o usuário no DB.
+     * Usuário cadastrado com sucesso, redireciona para a página de login, senão, instância a classe responsável em carregar a View e enviar os dados para view.  - @return void */
     public function index(): void
     {
         // echo "adms/Controller/NewUser.php: <h1> Página(controller) Novo usuário</h1>";

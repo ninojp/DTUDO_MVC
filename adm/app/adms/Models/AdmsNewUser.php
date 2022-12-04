@@ -23,16 +23,17 @@ class AdmsNewUser
     private array $emailData;
 
     /** ============================================================================================
-     * Recebe o resultado da query e atribui para o atributo:$this->result
-     * @return void     */
+     * Recebe o resultado da query e atribui para o atributo:$this->result, Retorna true quando executado com sucesso e false quando houver erro  -  @return void     */
     function getResult()
     {
         return $this->result;
     }
     /** ==========================================================================================
-     * @param array|null $data
-     * @return void    */
-    // este método recebe os PARAMETROS:$data e depois atribui para o atributo:$this->data
+     * Este método recebe os PARAMETROS:$data e depois atribui para o atributo:$this->data
+     * Recebe os valores do fomulário.   -  @param array|null $data
+     * Instância o Helper:AdmsValEmptyField para verificar se todos os campos foram preenchidos
+     * Instância o método:valInput para validar os dados dos campos. 
+     * Retorna false quando algun campo está vazio  -  @return void    */
     public function create(array $data = null)
     {
         //atribui o parametro:$data para o atributo:$this->data
@@ -50,8 +51,12 @@ class AdmsNewUser
         }
     }
     /** ============================================================================================
-     *
-     * @return void  */
+     * Instânciar o Helper:AdmsValEmail para verificar se o e-mail é válido
+     * Instânciar o Helper:AdmsValEmailSingle para verificar se o e-mail não está cadastrado no DB, não permitido cadastro com e-mail duplicado.
+     * Instânciar o Helper:validatePassword para validar a senha
+     * Instânciar o Helper:validateUserSingleLogin para verificar se o usuário não está cadastrado no DB, não permitido cadastro duplicado
+     * Instânciar o Método:add quando não houver nenhum erro de preenchimento
+     * Retorna flase quando houver algun erro  -  @return void  */
     private function valInput(): void
     {
         //instancia a classe para Validar o email
@@ -78,8 +83,8 @@ class AdmsNewUser
         }
     }
     /** ===========================================================================================
-     *
-     * @return void */
+     * Cadastrar usuário no DB  - @return void
+     * Retorna true quando cadastrar com sucesso e false quando não cadastrar   */
     private function add(): void
     {
         // Criptografar a senha
@@ -102,6 +107,8 @@ class AdmsNewUser
             $this->result = false;
         }
     }
+    /** =============================================================================================
+     * Médoto responsável por enviar o e-mail    -  @return void     */
     private function sendEmail(): void
     {
         $this->contentEmailHtml();
@@ -120,9 +127,10 @@ class AdmsNewUser
             $_SESSION['msg'] = "<p class='alert alert-warning'>Usuário cadastrado com sucesso. Mas houve um erro ao enviar o e-mail de confirmação, entre em contado com {$this->fromEmail}</p>";
             $this->result = true;
         }
-
     }
-
+    /** =============================================================================================
+     * Método para criação do conteúdo HTML do e-mail
+     * @return void     */
     private function contentEmailHtml():void
     {
         $name = explode(" ", $this->data['name']);
@@ -139,7 +147,9 @@ class AdmsNewUser
         $this->emailData['contentHtml'] .= "<a href='{$this->url}'>{$this->url}</a><br><br>";
         $this->emailData['contentHtml'] .= "Esta menssagem foi enviado a você pela empresa XXX.<br>Você nunca recebera nenhum e-mail solicitando qualquer informações cadastrais...<br><br>";
     }
-
+    /** =============================================================================================
+     * Método para criação do conteúdo TXT do e-mail
+     * @return void     */
     private function contentEmailText():void
     {
         $this->emailData['contentText'] = "Prezado Sr(a) {$this->firstName}.\n\n";
@@ -149,9 +159,8 @@ class AdmsNewUser
         $this->emailData['contentText'] .= "Esta menssagem foi enviado a você pela empresa XXX.\n Você nunca recebera nenhum e-mail solicitando qualquer informações cadastrais...\n\n";
     }
     /* ==========================================================================================
-     * @param array|null $data
-     * @return void   
-    // este método recebe os PARAMETROS:$data e depois atribui para o atributo:$this->data
+     * USADO DURANTE O COMEÇO DO DESENVOLVIMENTO DO PROJETO NAS AULAS
+     * este método recebe os PARAMETROS:$data e depois atribui para o atributo:$this->data
     public function create(array $data = null)
     {
         //atribui o parametro:$data para o atributo:$this->data
