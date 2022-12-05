@@ -16,6 +16,7 @@ foreach($this->data['listUsers'] as $user){
     echo "ID: $id <br>";
     echo "Nome: $name<br>";
     echo "E-Mail: $email<br>";
-    echo "<a href='".URLADM."view-users/index/$id'>Visualizar</a><br><hr>";
+    echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."view-users/index/$id'> Visualizar </a> ";
+    echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-users/index/$id'> Editar </a><br><hr>";
 }
 

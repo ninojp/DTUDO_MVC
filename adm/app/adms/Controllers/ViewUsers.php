@@ -9,7 +9,7 @@ class ViewUsers
     /** Apartir do PHP 8, posso definir a TIPAGEM de varios tipos para o mesmo atributo, usando o PIPE|
      * @var array|string|null - Define que o atributo:$data pode receber(da view) os dados(parametros) de diversos tipos, q devem ser enviados novamente para serem exibidos pela view */
     private array|string|null $data;
-    /** @var integer|string|null - Recebe o ID do registro    */
+    /** @var integer|string|null - Recebe o ID(do usuário) do registro    */
     private int|string|null $id;
     /** ===================================================================================
      * Método GENÉRICO q instancia a classe:ConfigView() para carregar a View da pagina, 
