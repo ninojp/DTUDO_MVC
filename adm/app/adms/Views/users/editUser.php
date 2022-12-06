@@ -29,19 +29,19 @@ if(isset($_SESSION['msg'])){
 
             <div class="col-md-4 offset-md-4 mb-3">
                 <label class="form-label" for="name">Nome:</label>
-                <input class="form-control" type="text" name="name" id="name" value="<?php if(isset($valorForm['name'])){echo $valorForm['name'];} ?>" placeholder="Digite o nome Completo" >
+                <input class="form-control" type="text" name="name" id="name" value="<?php if(isset($valorForm['name'])){echo $valorForm['name'];} ?>" placeholder="Digite o nome Completo" required>
             </div>
             <div class="col-md-4 offset-md-4 mb-3">
                 <label class="form-label" for="nickname">Apelido:</label>
-                <input class="form-control" type="text" name="nickname" id="nickname" value="<?php if(isset($valorForm['nickname'])){echo $valorForm['nickname'];} ?>" placeholder="Digite um Apelido(nickname)" >
+                <input class="form-control" type="text" name="nickname" id="nickname" value="<?php if(isset($valorForm['nickname'])){echo $valorForm['nickname'];} ?>" placeholder="Digite um Apelido(nickname)" required>
             </div>
             <div class="col-md-4 offset-md-4 mb-3">
                 <label class="form-label" for="email">Email:</label>
-                <input class="form-control" type="text" name="email" id="email" value="<?php if(isset($valorForm['email'])){echo $valorForm['email'];} ?>" placeholder="Digite o Email" >
+                <input class="form-control" type="email" name="email" id="email" value="<?php if(isset($valorForm['email'])){echo $valorForm['email'];} ?>" placeholder="Digite o Email" required>
             </div>
             <div class="col-md-4 offset-md-4 mb-3">
                 <label class="form-label" for="user">Usuário:</label>
-                <input class="form-control" type="text" name="user" id="user" value="<?php if(isset($valorForm['user'])){echo $valorForm['user'];} ?>" placeholder="Digite o usuário para acessar o administrativo" >
+                <input class="form-control" type="text" name="user" id="user" value="<?php if(isset($valorForm['user'])){echo $valorForm['user'];} ?>" placeholder="Digite o usuário para acessar o administrativo" required>
             </div>
             <div class="col-md-2 offset-5 mb-3">
                 <button class="btn btn-primary" type="submit" name="SendEditUser" value="Salvar">Salvar</button>
