@@ -20,7 +20,9 @@ class EditUsers
      * Usuário cadastrado com sucesso, redireciona para a página de listar Registros, senão, instância a classe responsável em carregar a View e enviar os dados para view.  - @return void */
     public function index(int|string|null $id = null): void
     {
-        if (!empty($id)) {
+        $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        // var_dump($this->dataForm);
+        if ((!empty($id)) and (empty($this->dataForm['SendEditUser']))) {
             $this->id = (int) $id;
             // var_dump($this->id);
             $viewUser = new \App\adms\Models\AdmsEditUsers();
@@ -36,9 +38,10 @@ class EditUsers
                 header("Location: $urlRedirect");
             }
         } else {
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! (necessário enviar o ID)Usuário não encontrado!</p>";
-            $urlRedirect = URLADM . "list-users/index";
-            header("Location: $urlRedirect");
+            // $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! (necessário enviar o ID)Usuário não encontrado!</p>";
+            // $urlRedirect = URLADM . "list-users/index";
+            // header("Location: $urlRedirect");
+            $this->editUser();
         }
     }
     /** =============================================================================================
@@ -50,5 +53,24 @@ class EditUsers
         $loadView = new ConfigView("adms/Views/users/editUser", $this->data);
         //Instancia o método:loadView() da classe:ConfigView
         $loadView->loadView();
+    }
+    private function editUser():void
+    {
+        if(!empty($this->dataForm['SendEditUser'])){
+            unset($this->dataForm['SendEditUser']);
+            $editUser = new \App\adms\Models\AdmsEditUsers();
+            $editUser->update($this->dataForm);
+            if($editUser->getResult()){
+                $urlRedirect = URLADM . "view-users/index/".$this->dataForm['id'];
+                header("Location: $urlRedirect");
+            }else{
+                $this->data['form'] = $this->dataForm;
+                $this->viewEditUser();
+            }
+        } else {
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! (necessário enviar o ID)Usuário não encontrado!</p>";
+            $urlRedirect = URLADM . "list-users/index";
+            header("Location: $urlRedirect");
+        }
     }
 }

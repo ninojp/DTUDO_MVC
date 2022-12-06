@@ -38,9 +38,6 @@ if(isset($_SESSION['msg'])){
         </div>
     </div>
 </form>
-<!-- <div class="m-5"> -->
-    <!-- Para direcionar para o endereço, URL:URLADM, nome da CONTROLLER:NewUser precisa ter um SEPARADOR entre os termos(espaço ou traço)e depois o nome do método usado:index(dentro da controller) -->
-    <a class="offset-md-6 btn btn-info" href="<?=URLADM?>">Clique aqui</a> Para acessar
-<!-- </div> -->
+
 
 

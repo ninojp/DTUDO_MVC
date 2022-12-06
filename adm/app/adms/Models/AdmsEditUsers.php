@@ -12,6 +12,9 @@ class AdmsEditUsers
     private array|null $resultBd;
     /** @var integer|string|null - Recebe o ID do registro    */
     private int|string|null $id;
+    /** Recebe as indomações do formulário
+     * @var array|null     */
+    private array|null $data;
 
     /** ============================================================================================
      * Retorna TRUE se executar o processo com sucesso, FALSE quando houver erro e atribui para o atributo:$this->result    -  @return void     */
@@ -41,6 +44,54 @@ class AdmsEditUsers
             $this->result = true;
         }else{
             $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Usuário não encontrado!<p>";
+            $this->result = false;
+        }
+    }
+    public function update(array $data = null):void
+    {
+        $this->data = $data;
+        // var_dump($this->data);
+        //instancia a classe:AdmsValEmptyField e cria o objeto:$valEmptyField
+        $valEmptyField = new \App\adms\Models\helper\AdmsValEmptyField();
+        //usa o objeto:$valEmptyField para instanciar o método:valField() para validar os dados dentro do atributo:$this->data
+        $valEmptyField->valField($this->data);
+        //verifica se o método:getResult() retorna true, se sim significa q deu tudo certo se não aprensenta o Erro
+        if ($valEmptyField->getResult()) {
+            $this->valInput();
+            // $this->result = true;
+        } else {
+            $this->result = false;
+        }
+    }
+    /** ============================================================================================
+     * Instânciar o Helper:AdmsValEmail para verificar se o e-mail é válido
+     * Instânciar o Helper:AdmsValEmailSingle para verificar se o e-mail não está cadastrado no DB, não permitido cadastro com e-mail duplicado.
+     * Instânciar o Helper:validatePassword para validar a senha
+     * Instânciar o Helper:validateUserSingleLogin para verificar se o usuário não está cadastrado no DB, não permitido cadastro duplicado
+     * Instânciar o Método:add quando não houver nenhum erro de preenchimento
+     * Retorna flase quando houver algun erro  -  @return void  */
+    private function valInput(): void
+    {
+        //instancia a classe para Validar o email
+        $valEmail = new \App\adms\Models\helper\AdmsValEmail();
+        $valEmail->validateEmail($this->data['email']);
+
+        if ($valEmail->getResult()) {
+            $this->edit();
+        } else {
+            $this->result = false;
+        }
+    }
+    private function edit():void
+    {
+        $this->data['modified'] = date("Y-m-d H:i:s");
+        $upUser = new \App\adms\Models\helper\AdmsUpdate();
+        $upUser->exeUpdate("adms_users", $this->data, "WHERE id=:id", "id={$this->data['id']}");
+        if($upUser->getResult()){
+            $_SESSION['msg'] = "<p class='alert alert-success'>Ok! Usuário Editado com sucesso</p>";
+            $this->result = true;
+        }else{
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Não foi possível Editar o usuário</p>";
             $this->result = false;
         }
     }

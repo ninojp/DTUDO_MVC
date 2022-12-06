@@ -3,6 +3,7 @@ echo "Views/users/Pagina(viewUser.php) <h1>Listar Usuários</h1>";
 // var_dump($this->data);
 // var_dump($this->data['listUsers']);
 
+
 echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."add-users/index'>Cadastrar</a><br><br>";
 if(isset($_SESSION['msg'])){
     echo $_SESSION['msg'];
