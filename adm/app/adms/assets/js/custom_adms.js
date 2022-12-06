@@ -215,3 +215,34 @@ if (formAddUser) {
         }
     });
 }
+// ================================================================================================
+// VALIDAÇÃO DO FORMULÁRIO DA VIEW:addUser
+const formEditUser = document.getElementById("form-edit-user");
+if (formEditUser) {
+    formEditUser.addEventListener("submit", async (e) => {
+        //Receber o valor do campo NAME
+        var name = document.querySelector("#name").value;
+        // Verificar se o campo está vazio
+        if (name === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo NOME! (validação JS)</p>";
+            return;
+        }
+        //Receber o valor do campo EMAIL
+        var email = document.querySelector("#email").value;
+        // Verificar se o campo está vazio
+        if (email === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo EMAIL! (validação JS)</p>";
+            return;
+        }
+        //Receber o valor do campo USUÁRIO
+        var user = document.querySelector("#user").value;
+        // Verificar se o campo está vazio
+        if (user === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Usuário! (validação JS)</p>";
+            return;
+        }
+    });
+}

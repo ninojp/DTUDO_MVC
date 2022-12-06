@@ -19,18 +19,19 @@ if(isset($_SESSION['msg'])){
     <div class="row m-5">
         <div class="col-12 m-5">
             <div class="col-md-4 offset-md-4 mb-3">
-                <label class="form-label" for="name">Nome:</label>
+                <label class="form-label" for="name">Nome:<span style="color:#f00;">*</span></label>
                 <input class="form-control" type="text" name="name" id="name" value="<?php if(isset($valorForm)){echo $valorForm['name'];} ?>" placeholder="Digite o nome Completo"
                 required>
             </div>
             <div class="col-md-4 offset-md-4 mb-3">
-                <label class="form-label" for="email">Email:</label>
+                <label class="form-label" for="email">Email:<span style="color:#f00;">*</span></label>
                 <input class="form-control" type="email" name="email" id="email" value="<?php if(isset($valorForm)){echo $valorForm['email'];} ?>" placeholder="Digite o Email" required>
             </div>
             <div class="col-md-4 offset-md-4 mb-3">
-                <label class="form-label" for="password">Senha:</label>
+                <label class="form-label" for="password">Senha:<span style="color:#f00;">*</span></label>
                 <input class="form-control" type="password" autocomplete="on" name="password" id="password" onkeyup="passwordStrength()" value="<?php if(isset($valorForm)){echo $valorForm['password'];} ?>" placeholder="Digite a Senha do usuário" required><br>
                 <span id="msgViewStrength"></span>
+                <span style="color:#f00;">* Campo obrigatório</span><br>
             </div>
             <div class="col-md-2 offset-5 mb-3">
                 <button class="btn btn-primary" type="submit" name="SendNewUser" value="Cadastrar">Cadastrar</button>
