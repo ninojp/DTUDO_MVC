@@ -8,7 +8,8 @@ if(isset($_SESSION['msg'])){
 echo "<h1>Detalhes do Usuário</h1>";
 echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."list-users/index'> Listar </a> ";
 if(!empty($this->data['viewUsers'])){
-    echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-users/index/".$this->data['viewUsers'][0]['id']."'> Editar </a><br><hr>";
+    echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-users/index/".$this->data['viewUsers'][0]['id']."'> Editar </a>";
+    echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-users-password/index/".$this->data['viewUsers'][0]['id']."'> Editar Senha </a><br><hr>";
 }
 if(!empty($this->data['viewUsers'])){
     // var_dump($this->data['viewUsers'][0]);

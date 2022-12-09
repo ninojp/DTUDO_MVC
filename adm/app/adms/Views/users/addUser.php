@@ -29,7 +29,7 @@ if(isset($_SESSION['msg'])){
             </div>
             <div class="col-md-4 offset-md-4 mb-3">
                 <label class="form-label" for="password">Senha:<span style="color:#f00;">*</span></label>
-                <input class="form-control" type="password" autocomplete="on" name="password" id="password" onkeyup="passwordStrength()" value="<?php if(isset($valorForm['password'])){echo $valorForm['password'];} ?>" placeholder="Digite a Senha do usuário" required><br>
+                <input class="form-control" type="password" name="password" id="password" onkeyup="passwordStrength()" autocomplete="on" value="<?php if(isset($valorForm['password'])){echo $valorForm['password'];} ?>" placeholder="Digite a Senha do usuário" required><br>
                 <span id="msgViewStrength"></span>
                 <span style="color:#f00;">* Campo obrigatório</span><br>
             </div>
