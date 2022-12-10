@@ -12,9 +12,10 @@ class AdmsEditUsers
     private array|null $resultBd;
     /** @var integer|string|null - Recebe o ID do registro    */
     private int|string|null $id;
-    /** Recebe as indomações do formulário
-     * @var array|null     */
+    /** @var array|null - Recebe as informações do formulário     */
     private array|null $data;
+    /** @var array|null - Recebe os campos que devem ser retirados da validação   */
+    private array|null $dataExitVal;
 
     /** ============================================================================================
      * Retorna TRUE se executar o processo com sucesso, FALSE quando houver erro e atribui para o atributo:$this->result    -  @return void     */
@@ -51,7 +52,10 @@ class AdmsEditUsers
     {
         $this->data = $data;
         // var_dump($this->data);
-        $this->dataExitval['nickname'] = $this->data['nickname'];
+        //o codigo abaixo é apenas para retirar um campo da VALIDAÇÃO
+        //atribui o valor que está no campo NICKNAME para o atributo:$dataExitVal
+        $this->dataExitVal['nickname'] = $this->data['nickname'];
+        //Destroi o valor que está no atributo:$this->data['nickname']
         unset($this->data['nickname']);
 
         //instancia a classe:AdmsValEmptyField e cria o objeto:$valEmptyField
@@ -98,6 +102,7 @@ class AdmsEditUsers
     private function edit():void
     {
         $this->data['modified'] = date("Y-m-d H:i:s");
+        //Atribui NOVAMENTE(recupera) o valor q está no atributo:$this->dataExitval['nickname'] e coloca no atributo:$this->data['nickname'] para ser inserido no DB
         $this->data['nickname'] = $this->dataExitval['nickname'];
         $upUser = new \App\adms\Models\helper\AdmsUpdate();
         $upUser->exeUpdate("adms_users", $this->data, "WHERE id=:id", "id={$this->data['id']}");
