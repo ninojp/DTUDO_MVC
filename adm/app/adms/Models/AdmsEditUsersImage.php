@@ -20,6 +20,8 @@ class AdmsEditUsersImage
     private string $directory;
     /** @var string - Recebe o endereço da imagem que deve ser excluida   */
     private string $delImg;
+    /** @var string - Recebe o slug/nome da imagem   */
+    private string $nameImg;
 
     /** ============================================================================================
      * Retorna TRUE se executar o processo com sucesso, FALSE quando houver erro e atribui para o atributo:$this->result    -  @return void     */
@@ -99,8 +101,15 @@ class AdmsEditUsersImage
             $this->result = false;
         }
     }
+    /** ===========================================================================================
+     * @return void     */
     private function upload():void
     {
+        //instancia a classe responsável por alterar o NOME da imagem
+        $slugImg = new \App\adms\Models\helper\AdmsSlug();
+        $this->nameImg = $slugImg->slug($this->dataImagem['name']);
+        // var_dump($this->nameImg);
+
         //Diretório onde ficaram as imagens do usuário(criada dinamicamente com o ID do usuário)
         $this->directory = "app/adms/assets/imgs/users/".$this->data['id']."/";
         // Se Não existir um arquivo ou diretório com este nome:$this->directory
@@ -108,7 +117,7 @@ class AdmsEditUsersImage
             //Função:mkdir para criar o diretório, com as seguintes PERMISSÕES 0755(o default é 0777)
             mkdir($this->directory, 0755);
         }
-        if(move_uploaded_file($this->dataImagem['tmp_name'], $this->directory . $this->dataImagem['name'])){
+        if(move_uploaded_file($this->dataImagem['tmp_name'], $this->directory . $this->nameImg)){
             $this->edit();
             // $this->result = false;
         } else {
@@ -116,11 +125,11 @@ class AdmsEditUsersImage
             $this->result = false;
         }
     }
-    /** ===============================================================================================
+    /** =============================================================================================
     * @return void     */
     private function edit():void
     {
-        $this->data['image'] = $this->dataImagem['name'];
+        $this->data['image'] = $this->nameImg;
         $this->data['modified'] = date("Y-m-d H:i:s");
 
         $upUser = new \App\adms\Models\helper\AdmsUpdate();
@@ -132,16 +141,17 @@ class AdmsEditUsersImage
             $this->result = false;
         }
     }
+    /** =========================================================================================
+     * @return void     */
     private function deleteImage():void
     {
-        if(((!empty($this->resultBd[0]['image'])) or ($this->resultBd[0]['image'] != null)) and ($this->resultBd[0]['image'] != $this->data['image'])){
+        if(((!empty($this->resultBd[0]['image'])) or ($this->resultBd[0]['image'] != null)) and ($this->resultBd[0]['image'] != $this->nameImg)){
             $this->delImg = "app/adms/assets/imgs/users/".$this->data['id']."/".$this->resultBd[0]['image'];
             if(file_exists($this->delImg)){
             unlink($this->delImg);
             }
         }
-        
         $_SESSION['msg'] = "<p class='alert alert-success'>Ok! Imagem Editada com sucesso! </p>";
-            $this->result = true;
+        $this->result = true;
     }
 }
