@@ -89,11 +89,13 @@ class AdmsEditUsersImage
      * Retorna false quando houver algun erro  -  @return void  */
     private function valInput(): void
     {
-        if($this->viewUsers($this->data['id'])){
+        $valExtImg = new \App\adms\Models\helper\AdmsValExtImg();
+        $valExtImg->validateExtImg($this->dataImagem['type']);
+
+        if(($this->viewUsers($this->data['id'])) and ($valExtImg->getResult())){
             $this->result = false;
             $this->upload();
         } else {
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! (ID)Usuário não encontrado</p>";
             $this->result = false;
         }
     }
@@ -140,6 +142,6 @@ class AdmsEditUsersImage
         }
         
         $_SESSION['msg'] = "<p class='alert alert-success'>Ok! Imagem Editada com sucesso! </p>";
-            $this->result = false;
+            $this->result = true;
     }
 }

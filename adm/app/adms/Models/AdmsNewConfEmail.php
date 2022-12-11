@@ -77,7 +77,7 @@ class AdmsNewConfEmail extends AdmsConn
             if($upNewConfEmail->getResult()){
                 $this->resultBd[0]['conf_email'] = $this->dataSave['conf_email'];
                 $this->sendEmail();
-            }else{
+            } else {
                 $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Link não enviado, tente novamente!</p>";
                 $this->result = false;
             }

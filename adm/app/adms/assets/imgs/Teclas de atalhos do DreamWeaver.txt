@@ -1,0 +1,554 @@
+Atalhos Dreamweaver
+BY : ADMINISTRADOR
+
+É provado que quem usa os atalhos economiza de 30 a 40% de tempo. Nesse mudo de alta produtividade cada segundo faz a diferença. O Ideias seleciona os principais atalhos para indiferente o seu grau de conhecimento na área de HTML/ CSS “Dreamweaver”, você possa desempenhar com agilidade e presteza qualquer tipo de trabalho.
+
+Atalhos Padrão Para o Dreamweaver
+
+Comandos de menu
+
+Arquivo        
+
+Novo… Ctrl+N
+
+Abrir…  Ctrl+O
+
+Abrir na moldura…         Ctrl+Shift+O
+
+Fechar  Ctrl+W
+
+Salvar    Ctrl+S
+
+Salvar como…   Ctrl+Shift+S
+
+Imprimir o código…        Ctrl+P
+
+Visualizar no navegador
+
+Navegador Primário…   F12
+
+Navegador Secundário…             Ctrl+F12
+
+Verificar a página 
+
+Verificar os links              Shift+F8
+
+Validar o markup…         Shift+F6
+
+Editar
+
+Desfazer             Ctrl+Z,Alt+BkSp
+
+Refazer                Ctrl+Y,Ctrl+Shift+Z
+
+Recortar              Ctrl+X,Shift+Del
+
+Copiar   Ctrl+C,Ctrl+Ins
+
+Colar     Ctrl+V,Shift+Ins
+
+Copiar o HTML  Ctrl+Shift+C
+
+Colar o HTML     Ctrl+Shift+V
+
+Selecionar tudo               Ctrl+A
+
+Selecionar a tag-mãe     Ctrl+8
+
+Selecionar a tag-filha     Ctrl+9
+
+Localizar e substituir…  Ctrl+F
+
+Localizar o próximo        F3
+
+Ir para a linha    Ctrl+G
+
+Mostrar as dicas do código         Ctrl+Space
+
+Recuar o código               Ctrl+Shift+7
+
+Remover o recuo do código       Ctrl+Shift+6
+
+Ajustar as chaves            Ctrl+,
+
+Alternar o ponto de interrupção              Ctrl+Alt+B
+
+Preferências…  Ctrl+U
+
+Exibir
+
+Alternar as visualizações              Ctrl+-
+
+Atualizar a visualização do projeto          F5
+
+Depuração pelo servidor             Ctrl+Shift+G
+
+Live Data             Ctrl+Shift+R
+
+Conteúdo do HEAD        Ctrl+Shift+W
+
+Visualização de tabelas  
+
+Visualização padrão       Ctrl+Shift+F6
+
+Visualização de layout   Ctrl+F6
+
+Auxílios visuais     
+
+Ocultar todos    Ctrl+Shift+I
+
+Réguas        
+
+Mostrar               Ctrl+Alt+R
+
+Grade                       
+
+Mostrar a grade               Ctrl+Alt+G
+
+Encaixar na grade            Ctrl+Alt+Shift+G
+
+Plug-ins       
+
+Executar              Ctrl+Alt+P
+
+Parar     Ctrl+Alt+X
+
+Executar todos Ctrl+Alt+Shift+P
+
+Parar todos        Ctrl+Alt+Shift+X
+
+Mostrar os painéis          F4
+
+Inserir           
+
+Tag…     Ctrl+E
+
+Imagem               Ctrl+Alt+I
+
+Mídia 
+
+Flash     Ctrl+Alt+F
+
+Shockwave        Ctrl+Alt+D
+
+Tabela  Ctrl+Alt+T
+
+Objetos de modelos        
+
+Região editável                Ctrl+Alt+V
+
+Objetos de formulário     
+
+Âncora com nome          Ctrl+Alt+A
+
+Caracteres especiais      
+
+Quebra de linha               Shift+Return
+
+Espaço não-separável   Ctrl+Shift+Space
+
+Modificar     
+
+Propriedades da página…           Ctrl+J
+
+Propriedades da seleção             Ctrl+Shift+J
+
+Quick Tag Editor               Ctrl+T
+
+Criar link…          Ctrl+L
+
+Remover o link Ctrl+Shift+L
+
+Tabela          
+
+Selecionar a tabela         Ctrl+A
+
+Mesclar as células           Ctrl+Alt+M
+
+Dividir a célula…              Ctrl+Alt+S
+
+Inserir linha        Ctrl+M
+
+Inserir coluna    Ctrl+Shift+A
+
+Excluir a linha    Ctrl+Shift+M
+
+Excluir a coluna Ctrl+Shift+5
+
+Aumentar a extensão da coluna              Ctrl+Shift+9
+
+Diminuir a extensão da coluna  Ctrl+Shift+8
+
+Alinhar         
+
+Esquerda            Ctrl+Shift+1
+
+Direita  Ctrl+Shift+3
+
+Superior              Ctrl+Shift+4
+
+Inferior                Ctrl+Shift+6
+
+Tornar as larguras iguais               Ctrl+Shift+7
+
+Tornar as alturas iguais Ctrl+Shift+9
+
+Biblioteca    
+
+Adicionar objeto à biblioteca     Ctrl+Shift+B
+
+Linha de tempo     
+
+Adicionar objeto à linha de tempo          Ctrl+Alt+Shift+T
+
+Adicionar quadro primário          F6
+
+Texto
+
+Recuo   Ctrl+Alt+9
+
+Remover o recuo            Ctrl+Alt+8
+
+Formato do parágrafo     
+
+Nenhum             Ctrl+0
+
+Parágrafo            Ctrl+Shift+P
+
+Cabeçalho 1       Ctrl+1
+
+Cabeçalho 2       Ctrl+2
+
+Cabeçalho 3       Ctrl+3
+
+Cabeçalho 4       Ctrl+4
+
+Cabeçalho 5       Ctrl+5
+
+Cabeçalho 6       Ctrl+6
+
+Alinhar         
+
+À esquerda        Ctrl+Alt+Shift+L
+
+No centro           Ctrl+Alt+Shift+C
+
+À direita              Ctrl+Alt+Shift+R
+
+Justificar              Ctrl+Alt+Shift+J
+
+Estilo
+
+Negrito                Ctrl+B
+
+Itálico    Ctrl+I
+
+Estilos CSS
+
+Editar a folha de estilos…            Ctrl+Shift+E
+
+Verificar a ortografia      Shift+F7
+
+Comandos  
+
+Iniciar a gravação             Ctrl+Shift+X
+
+Site    
+
+Arquivos do site              F8
+
+Mapa do site     Alt+F8
+
+Obter    Ctrl+Shift+D
+
+Retirar  Ctrl+Alt+Shift+D
+
+Colocar Ctrl+Shift+U
+
+Devolver             Ctrl+Alt+Shift+U
+
+Janela          
+
+Inserir   Ctrl+F2
+
+Propriedades    Ctrl+F3
+
+Respostas           Alt+F1
+
+Estilos CSS          Shift+F11
+
+Estilos HTML      Ctrl+F11
+
+Comportamentos           Shift+F3
+
+Inspetor de tags              F9
+
+Trechos               Shift+F9
+
+Referência         Shift+F1
+
+Bancos de dados             Ctrl+Shift+F10
+
+Ligações              Ctrl+F10
+
+Comportamentos de servidor   Ctrl+F9
+
+Componentes  Ctrl+F7
+
+Site        F8
+
+Propriedades    F11
+
+Resultados 
+
+Buscar  Ctrl+Shift+F
+
+Validação            Ctrl+Shift+F7
+
+Verificação do navegador de destino    Ctrl+Shift+F8
+
+Verificador de links        Ctrl+Shift+F9
+
+Relatórios do site            Ctrl+Shift+F11
+
+Registro de FTP                Ctrl+Shift+F12
+
+Depuração pelo servidor             Ctrl+Shift+F5
+
+Outros          
+
+Inspetor de código         F10
+
+Molduras            Shift+F2
+
+Histórico              Shift+F10
+
+Camadas             F2
+
+Sitespring           F7
+
+Linhas de tempo             Alt+F9
+
+Mostrar os painéis          F4
+
+Ajuda
+
+Como utilizar o Dreamweaver   F1
+
+Como utilizar ColdFusion             Ctrl+F1
+
+Referência         Shift+F1
+
+ 
+
+Painel Site
+
+Arquivo        
+
+Novo arquivo    Ctrl+Shift+N
+
+Nova pasta         Ctrl+Alt+Shift+N
+
+Renomear          F2
+
+Excluir   Del
+
+Visualizar no navegador
+
+Editar a lista de navegadores…
+
+Verificar os links              Shift+F8
+
+Sair        Ctrl+Q
+
+Editar
+
+Recortar              Ctrl+X
+
+Copiar   Ctrl+C
+
+Colar     Ctrl+V
+
+Duplicar               Ctrl+D
+
+Selecionar tudo               Ctrl+A
+
+Exibir
+
+Atualizar              F5
+
+Mostrar/ocultar o link   Ctrl+Shift+Y
+
+Exibir como raiz                Ctrl+Shift+R
+
+Mostrar os títulos das páginas   Ctrl+      Shift+T
+
+Arquivos do site              F8
+
+Mapa do site     Alt+F8
+
+Site    
+
+Desconectar      Ctrl+Alt+Shift+F5
+
+Obter    Ctrl+Shift+D
+
+Retirar  Ctrl+Alt+Shift+D
+
+Colocar Ctrl+Shift+U
+
+Devolver             Ctrl+Alt+Shift+U
+
+Encobrindo
+
+Verificar os links no site inteiro Ctrl+F8
+
+Vincular ao novo arquivo…         Ctrl+Shift+N
+
+Vincular a um arquivo existente…          Ctrl+Shift+K
+
+Alterar o link…  Ctrl+L
+
+Remover o link Ctrl+Shift+L
+
+ 
+
+Edição de código
+
+Selecionar a tag-mãe     Ctrl+8
+
+Ajustar as chaves            Ctrl+,
+
+Selecionar tudo               Ctrl+A
+
+Negrito                Ctrl+B
+
+Itálico    Ctrl+I
+
+Copiar   Ctrl+C,Ctrl+Ins
+
+Localizar e substituir      Ctrl+F
+
+Localizar o próximo        F3
+
+Colar     Ctrl+V,Shift+Ins
+
+Recortar              Ctrl+X,Shift+Del
+
+Refazer                Ctrl+Y
+
+Desfazer             Ctrl+Z
+
+Alternar para o documento        Ctrl+-
+
+Alternar o ponto de interrupção              Ctrl+Alt+B
+
+Imprimir o código            Ctrl+P
+
+Excluir a palavra à esquerda       Ctrl+BkSp
+
+Excluir a palavra à direita             Ctrl+Del
+
+Selecionar a linha acima               Shift+Up
+
+Selecionar a linha abaixo             Shift+Down
+
+Selecionar o caractere da esquerda       Shift+Left
+
+Selecionar o caractere da direita              Shift+Right
+
+Selecionar a página acima           Shift+PgUp
+
+Selecionar a página abaixo          Shift+PgDn
+
+Mover a palavra para a esquerda            Ctrl+Left
+
+Mover a palavra para a direita   Ctrl+Right
+
+Selecionar a palavra à esquerda               Ctrl+Shift+Left
+
+Selecionar a palavra à direita     Ctrl+Shift+Right
+
+Ir para o início da linha  Home
+
+Ir para o fim da linha      End
+
+Selecionar até o início da linha  Shift+Home
+
+Selecionar até o fim da linha      Shift+End
+
+Ir para o início do arquivo            Ctrl+Home
+
+Ir para o fim do arquivo                Ctrl+End
+
+Selecionar até o início do arquivo            Ctrl+Shift+Home
+
+Selecionar até o fim do arquivo                Ctrl+Shift+End
+
+Trechos               Shift+F9
+
+ 
+
+Edição de documentos
+
+Sair do aplicativo             Alt+F4
+
+Ir para a próxima palavra             Ctrl+Right
+
+Ir para a palavra anterior             Ctrl+Left
+
+Ir para o parágrafo anterior        Ctrl+Up
+
+Ir para o próximo parágrafo       Ctrl+Down
+
+Selecionar até a próxima palavra             Ctrl+Shift+Right
+
+Selecionar desde a palavra anterior       Ctrl+Shift+Left
+
+Selecionar desde o parágrafo anterior  Ctrl+Shift+Up
+
+Selecionar até o próximo parágrafo       Ctrl+Shift+Down
+
+Fechar a janela Ctrl+F4
+
+Editar a tag         Ctrl+F5
+
+Adiar a atualização da tabela      Ctrl+Space
+
+Novo na mesma janela Ctrl+Shift+N
+
+Visualizar no navegador primário            F12
+
+Visualizar no navegador secundário       Shift+F12,Ctrl+F12
+
+Depurar no navegador primário               Alt+F12
+
+Depurar no navegador secundário         Ctrl+Alt+F12
+
+Sair do parágrafo             Ctrl+Return
+
+Modo Live Data               Ctrl+R
+
+Imprimir o código            Ctrl+P
+
+Próximo documento     Ctrl+Tab
+
+Documento anterior      Ctrl+Shift+Tab
+
+ 
+
+Janela do site
+
+Fechar a janela Ctrl+F4
+
+Sair do aplicativo             Alt+F4
+
+Abrir      Return
+
+Visualizar no navegador primário            F12
+
+Visualizar no navegador secundário       Ctrl+F12
+
+Abrir a janela HTML        F10
+
+Cancelar o FTP  Esc
