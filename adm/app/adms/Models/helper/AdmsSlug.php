@@ -10,7 +10,7 @@ class AdmsSlug
     private array $format;
 
     /** =========================================================================================
-     * @return void     */
+     * @return string|null     */
     function slug(string $text):string|null
     {
         $this->text = $text;

@@ -103,7 +103,7 @@ class AdmsEditUsersImage
     }
     /** ===========================================================================================
      * @return void     */
-    private function upload():void
+    private function upload()
     {
         //instancia a classe responsável por alterar o NOME da imagem
         $slugImg = new \App\adms\Models\helper\AdmsSlug();
@@ -112,18 +112,28 @@ class AdmsEditUsersImage
 
         //Diretório onde ficaram as imagens do usuário(criada dinamicamente com o ID do usuário)
         $this->directory = "app/adms/assets/imgs/users/".$this->data['id']."/";
-        // Se Não existir um arquivo ou diretório com este nome:$this->directory
-        if((!file_exists($this->directory)) and (!is_dir($this->directory))){
-            //Função:mkdir para criar o diretório, com as seguintes PERMISSÕES 0755(o default é 0777)
-            mkdir($this->directory, 0755);
-        }
-        if(move_uploaded_file($this->dataImagem['tmp_name'], $this->directory . $this->nameImg)){
+        
+        $uploadImg = new \App\adms\Models\helper\AdmsUpload();
+        $uploadImg->upload($this->directory, $this->dataImagem['tmp_name'], $this->nameImg);
+
+        if($uploadImg->getResult()){
             $this->edit();
-            // $this->result = false;
         } else {
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Upload da imagem não realizado com sucesso!</p>";
             $this->result = false;
         }
+        
+        // // Se Não existir um arquivo ou diretório com este nome:$this->directory
+        // if((!file_exists($this->directory)) and (!is_dir($this->directory))){
+        //     //Função:mkdir para criar o diretório, com as seguintes PERMISSÕES 0755(o default é 0777)
+        //     mkdir($this->directory, 0755);
+        // }
+        // if(move_uploaded_file($this->dataImagem['tmp_name'], $this->directory . $this->nameImg)){
+        //     $this->edit();
+        //     // $this->result = false;
+        // } else {
+        //     $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Upload da imagem não realizado com sucesso!</p>";
+        //     $this->result = false;
+        // }
     }
     /** =============================================================================================
     * @return void     */
