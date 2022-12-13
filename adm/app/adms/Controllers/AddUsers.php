@@ -38,9 +38,14 @@ class AddUsers
         }
     } 
 
-    
+    /** ============================================================================================
+     * @return void     */
     private function viewAddUser():void
     {
+        $listSelect = new \App\adms\Models\AdmsAddUsers();
+        $this->data['select'] = $listSelect->listSelect();
+        // var_dump($this->data);
+
         //Instancio a classe:ConfigView() e crio o objeto:$loadView
         $loadView = new ConfigView("adms/Views/users/addUser", $this->data);
         //Instancia o método:loadView() da classe:ConfigView

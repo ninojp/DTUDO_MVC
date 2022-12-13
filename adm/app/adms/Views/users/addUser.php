@@ -16,20 +16,46 @@ if(isset($_SESSION['msg'])){
     <div class="row m-5">
         <div class="col-12 m-5">
             <div class="col-md-4 offset-md-4 mb-3">
+            <?php $name="";
+            if(isset($valorForm['name'])){
+                $name = $valorForm['name'];} ?>
                 <label class="form-label" for="name">Nome:<span style="color:#f00;">*</span></label>
-                <input class="form-control" type="text" name="name" id="name" value="<?php if(isset($valorForm['name'])){echo $valorForm['name'];} ?>" placeholder="Digite o nome Completo" required>
+                <input class="form-control" type="text" name="name" id="name" value="<?php echo $name; ?>" placeholder="Digite o nome Completo" required>
             </div>
             <div class="col-md-4 offset-md-4 mb-3">
+            <?php $email="";
+            if(isset($valorForm['email'])) {
+                $email=$valorForm['email'];} ?>
                 <label class="form-label" for="email">Email:<span style="color:#f00;">*</span></label>
-                <input class="form-control" type="email" name="email" id="email" value="<?php if(isset($valorForm['email'])){echo $valorForm['email'];} ?>" placeholder="Digite o Email" required>
+                <input class="form-control" type="email" name="email" id="email" value="<?=$email;?>" placeholder="Digite o Email" required>
             </div>
             <div class="col-md-4 offset-md-4 mb-3">
+            <?php $user="";
+            if(isset($valorForm['user'])) {
+                $user = $valorForm['user'];} ?>
                 <label class="form-label" for="user">Usuário:<span style="color:#f00;">*</span></label>
-                <input class="form-control" type="text" name="user" id="user" value="<?php if(isset($valorForm['user'])){echo $valorForm['user'];} ?>" placeholder="Digite o usuário para acessar o administrativo" required>
+                <input class="form-control" type="text" name="user" id="user" value="<?php echo $user; ?>" placeholder="Digite o usuário para acessar o administrativo" required>
             </div>
             <div class="col-md-4 offset-md-4 mb-3">
+                <label class="form-label" for="adms_sits_user_id">Situação:<span style="color:#f00;">*</span></label>
+                <select name="adms_sits_user_id" id="adms_sits_user_id">
+                    <option value="">Selecione</option>
+                    <?php foreach($this->data['select']['sit'] as $sit){
+                        extract($sit);
+                        if((isset($valorForm['adms_sits_user_id'])) and ($valorForm['adms_sits_user_id'] == $id_sit)){
+                            echo "<option value='$id_sit' selected>$name_sit</option>";
+                        } else {
+                            echo "<option value='$id_sit'>$name_sit</option>";
+                        }
+                    } ?>
+                </select>
+            </div>
+            <div class="col-md-4 offset-md-4 mb-3">
+            <?php $password ="";
+            if(isset($valorForm['password'])) {
+                $password = $valorForm['password'];} ?>
                 <label class="form-label" for="password">Senha:<span style="color:#f00;">*</span></label>
-                <input class="form-control" type="password" name="password" id="password" onkeyup="passwordStrength()" autocomplete="on" value="<?php if(isset($valorForm['password'])){echo $valorForm['password'];} ?>" placeholder="Digite a Senha do usuário" required><br>
+                <input class="form-control" type="password" name="password" id="password" onkeyup="passwordStrength()" autocomplete="on" value="<?= $password; ?>" placeholder="Digite a Senha do usuário" required><br>
                 <span id="msgViewStrength"></span>
                 <span style="color:#f00;">* Campo obrigatório</span><br>
             </div>

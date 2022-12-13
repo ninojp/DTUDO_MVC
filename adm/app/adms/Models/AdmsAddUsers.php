@@ -12,10 +12,13 @@ class AdmsAddUsers
     //recebido como parametro através do método:create() e colocado neste atributo
     private array|null $data;
     // Recebe do método:getResult() o valor:(true or false), q será atribuido aqui
-    private $result;
+    private bool $result;
+
+    private array $listRegistryAdd;
+
     /** ============================================================================================
      * Recebe o resultado da query e atribui para o atributo:$this->result, Retorna true quando executado com sucesso e false quando houver erro  -  @return void     */
-    function getResult()
+    function getResult():bool
     {
         return $this->result;
     }
@@ -95,5 +98,18 @@ class AdmsAddUsers
             $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Não foi possível cadastrar o usuário</p>";
             $this->result = false;
         }
+    }
+    /** ===========================================================================================
+     * @return array     */
+    public function listSelect():array
+    {
+        $list = new \App\adms\Models\helper\AdmsRead();
+        $list->fullRead("SELECT id id_sit, name name_sit FROM adms_sits_users ORDER BY name ASC");
+        $registry['sit'] = $list->getResult();
+
+        $this->listRegistryAdd = ['sit' => $registry['sit']];
+        // var_dump($this->listRegistryAdd);
+
+        return $this->listRegistryAdd;
     }
 }
