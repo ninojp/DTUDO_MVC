@@ -49,11 +49,17 @@ class EditUsers
      * @return void     */
     private function viewEditUser(): void
     {
+        $listSelect = new \App\adms\Models\AdmsEditUsers();
+        $this->data['select'] = $listSelect->listSelect();
+        // var_dump($this->data);
+
         //Instancio a classe:ConfigView() e crio o objeto:$loadView
         $loadView = new ConfigView("adms/Views/users/editUser", $this->data);
         //Instancia o método:loadView() da classe:ConfigView
         $loadView->loadView();
     }
+    /** =============================================================================================
+     * @return void     */
     private function editUser():void
     {
         if(!empty($this->dataForm['SendEditUser'])){

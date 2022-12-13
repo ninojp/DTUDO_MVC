@@ -10,7 +10,8 @@ echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."list-users/
 if(!empty($this->data['viewUsers'])){
     echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-users/index/".$this->data['viewUsers'][0]['id']."'> Editar Usuário</a>";
     echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-users-password/index/".$this->data['viewUsers'][0]['id']."'> Editar Senha </a>";
-    echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-users-image/index/".$this->data['viewUsers'][0]['id']."'> Editar Imagem</a><br><hr>";
+    echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-users-image/index/".$this->data['viewUsers'][0]['id']."'> Editar Imagem</a>";
+    echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."delete-users/index/".$this->data['viewUsers'][0]['id']."'> Apagar Usuário</a><br><hr>";
 }
 if(!empty($this->data['viewUsers'])){
     // var_dump($this->data['viewUsers'][0]);

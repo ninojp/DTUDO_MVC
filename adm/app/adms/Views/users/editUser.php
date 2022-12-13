@@ -42,10 +42,24 @@ if(isset($_SESSION['msg'])){
             <div class="col-md-4 offset-md-4 mb-3">
                 <label class="form-label" for="user">Usuário:<span style="color:#f00;">*</span></label>
                 <input class="form-control" type="text" name="user" id="user" value="<?php if(isset($valorForm['user'])){echo $valorForm['user'];} ?>" placeholder="Digite o usuário para acessar o administrativo" required>
-                <span style="color:#f00;">* Campo obrigatório</span><br>
             </div>
-            <div class="col-md-2 offset-5 mb-3">
-                <button class="btn btn-primary" type="submit" name="SendEditUser" value="Salvar">Salvar</button>
+            <div class="col-md-4 offset-md-4 mb-3">
+                <label class="form-label" for="adms_sits_user_id">Situação:<span style="color:#f00;">*</span></label>
+                <select name="adms_sits_user_id" id="adms_sits_user_id">
+                    <option value="">Selecione</option>
+                    <?php foreach($this->data['select']['sit'] as $sit){
+                        extract($sit);
+                        if((isset($valorForm['adms_sits_user_id'])) and ($valorForm['adms_sits_user_id'] == $id_sit)){
+                            echo "<option value='$id_sit' selected>$name_sit</option>";
+                        } else {
+                            echo "<option value='$id_sit'>$name_sit</option>";
+                        }
+                    } ?>
+                </select>
+            </div>
+            <div class="col-md-4 offset-4 mb-3 text-center">
+                <button class="btn btn-primary" type="submit" name="SendEditUser" value="Salvar">Salvar</button><br>
+                <span style="color:#f00;">* Campo obrigatório</span>
             </div>
         </div>
     </div>

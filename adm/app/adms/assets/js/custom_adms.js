@@ -185,6 +185,14 @@ if (formAddUser) {
             document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Usuário! (validação JS)</p>";
             return;
         }
+        //Validar o valor do campo SITUAÇÃO do USUÁRIO
+        var adms_sits_user_id = document.querySelector("#adms_sits_user_id").value;
+        // Verificar se o campo está vazio
+        if (adms_sits_user_id === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Situação! (validação JS)</p>";
+            return;
+        }
         //Receber o valor do campo PASSWORD
         var password = document.querySelector("#password").value;
         // Verificar se o campo está vazio
@@ -216,11 +224,11 @@ if (formAddUser) {
     });
 }
 // ================================================================================================
-// VALIDAÇÃO DO FORMULÁRIO DA VIEW:addUser
+// VALIDAÇÃO DO FORMULÁRIO DA VIEW:editUser
 const formEditUser = document.getElementById("form-edit-user");
 if (formEditUser) {
     formEditUser.addEventListener("submit", async (e) => {
-        //Receber o valor do campo NAME
+        //Validar o valor do campo NAME
         var name = document.querySelector("#name").value;
         // Verificar se o campo está vazio
         if (name === "") {
@@ -228,7 +236,7 @@ if (formEditUser) {
             document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo NOME! (validação JS)</p>";
             return;
         }
-        //Receber o valor do campo EMAIL
+        //Validar o valor do campo EMAIL
         var email = document.querySelector("#email").value;
         // Verificar se o campo está vazio
         if (email === "") {
@@ -236,12 +244,20 @@ if (formEditUser) {
             document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo EMAIL! (validação JS)</p>";
             return;
         }
-        //Receber o valor do campo USUÁRIO
+        //Validar o valor do campo USUÁRIO
         var user = document.querySelector("#user").value;
         // Verificar se o campo está vazio
         if (user === "") {
             e.preventDefault();
             document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Usuário! (validação JS)</p>";
+            return;
+        }
+        //Validar o valor do campo SITUAÇÃO do USUÁRIO
+        var adms_sits_user_id = document.querySelector("#adms_sits_user_id").value;
+        // Verificar se o campo está vazio
+        if (adms_sits_user_id === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Situação! (validação JS)</p>";
             return;
         }
     });

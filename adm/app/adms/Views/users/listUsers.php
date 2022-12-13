@@ -1,10 +1,10 @@
 <?php
-echo "Views/users/Pagina(viewUser.php) <h1>Listar Usuários</h1>";
+echo "Views/users/Pagina(listUsers.php) <h1>Listar Usuários</h1>";
 // var_dump($this->data);
 // var_dump($this->data['listUsers']);
 
 
-echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."add-users/index'>Cadastrar</a><br><br>";
+echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."add-users/index'>Cadastrar Usuário</a><br><hr>";
 if(isset($_SESSION['msg'])){
     echo $_SESSION['msg'];
     unset($_SESSION['msg']);
@@ -17,7 +17,8 @@ foreach($this->data['listUsers'] as $user){
     echo "ID: $id <br>";
     echo "Nome: $name<br>";
     echo "E-Mail: $email<br>";
-    echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."view-users/index/$id'> Visualizar </a> ";
-    echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-users/index/$id'> Editar </a><br><hr>";
+    echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."view-users/index/$id'> Visualizar </a>";
+    echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-users/index/$id'> Editar </a>";
+    echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."delete-users/index/$id'> Apagar </a><br><hr>";
 }
 

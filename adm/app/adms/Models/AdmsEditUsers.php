@@ -37,7 +37,7 @@ class AdmsEditUsers
         $this->id = $id;
 
         $viewUsers = new \App\adms\Models\helper\AdmsRead();
-        $viewUsers->fullRead("SELECT id, name, nickname, email, user FROM adms_users WHERE id=:id LIMIT :limit", "id={$this->id}&limit=1");
+        $viewUsers->fullRead("SELECT id, name, nickname, email, user, adms_sits_user_id FROM adms_users WHERE id=:id LIMIT :limit", "id={$this->id}&limit=1");
 
         $this->resultBd = $viewUsers->getResult();
         if($this->resultBd){
@@ -113,5 +113,18 @@ class AdmsEditUsers
             $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Não foi possível Editar o usuário</p>";
             $this->result = false;
         }
+    }
+    /** ===========================================================================================
+     * @return array     */
+    public function listSelect():array
+    {
+        $list = new \App\adms\Models\helper\AdmsRead();
+        $list->fullRead("SELECT id id_sit, name name_sit FROM adms_sits_users ORDER BY name ASC");
+        $registry['sit'] = $list->getResult();
+
+        $this->listRegistryAdd = ['sit' => $registry['sit']];
+        // var_dump($this->listRegistryAdd);
+
+        return $this->listRegistryAdd;
     }
 }
