@@ -29,7 +29,7 @@ if(isset($_SESSION['msg'])){
             <input class="form-control" type="hidden" name="id" id="id" value="<?php if(isset($valorForm['id'])){echo $valorForm['id'];} ?>">
 
             <div class="col-md-6 offset-md-2 mb-3">
-                <label class="form-label" for="image">Imagem:<span style="color:#f00;">*</span></label>
+                <label class="form-label" for="image">Imagem:(300x300px)<span style="color:#f00;">*</span></label>
                 <input class="form-control" type="file" name="new_image" id="new_image">
                 <span style="color:#f00;">* Campo obrigatório</span><br>
             </div>

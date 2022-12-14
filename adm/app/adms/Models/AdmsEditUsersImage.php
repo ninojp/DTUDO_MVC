@@ -113,10 +113,13 @@ class AdmsEditUsersImage
         //Diretório onde ficaram as imagens do usuário(criada dinamicamente com o ID do usuário)
         $this->directory = "app/adms/assets/imgs/users/".$this->data['id']."/";
         
-        $uploadImg = new \App\adms\Models\helper\AdmsUpload();
-        $uploadImg->upload($this->directory, $this->dataImagem['tmp_name'], $this->nameImg);
+        // $uploadImg = new \App\adms\Models\helper\AdmsUpload();
+        // $uploadImg->upload($this->directory, $this->dataImagem['tmp_name'], $this->nameImg);
 
-        if($uploadImg->getResult()){
+        $uploadImgRes = new \App\adms\Models\helper\AdmsUploadImgRes();
+        $uploadImgRes->upload($this->dataImagem, $this->directory, $this->nameImg, 300, 300);
+
+        if($uploadImgRes->getResult()){
             $this->edit();
         } else {
             $this->result = false;
