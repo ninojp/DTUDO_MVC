@@ -16,6 +16,11 @@ if(!empty($this->data['viewUsers'])){
 if(!empty($this->data['viewUsers'])){
     // var_dump($this->data['viewUsers'][0]);
     extract($this->data['viewUsers'][0]);
+    if ((!empty($image)) and (file_exists("app/adms/assets/imgs/users/$id/$image"))) {
+        echo "<img src='" . URLADM . "app/adms/assets/imgs/users/$id/$image' width='200' height='200'><br><br>";
+    } else {
+        echo "<img src='" . URLADM . "app/adms/assets/imgs/users/Logo_Dtudo_2022-300p.png' width='300' height='100'><br><br>";
+    }
     echo "ID: $id <br>";
     echo "Nome: $name_usr <br>";
     echo "E-mail: $email <br>";
