@@ -297,3 +297,35 @@ if (formEditUserPass) {
         }
     });
 }
+// ================================================================================================
+// VALIDAÇÃO DO FORMULÁRIO DA VIEW:editUser
+const formEditProfile = document.getElementById("form-edit-profile");
+if (formEditProfile) {
+    formEditProfile.addEventListener("submit", async (e) => {
+        //Validar o valor do campo NAME
+        var name = document.querySelector("#name").value;
+        // Verificar se o campo está vazio
+        if (name === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo NOME! (validação JS)</p>";
+            return;
+        }
+        //Validar o valor do campo EMAIL
+        var email = document.querySelector("#email").value;
+        // Verificar se o campo está vazio
+        if (email === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo EMAIL! (validação JS)</p>";
+            return;
+        }
+        //Validar o valor do campo USUÁRIO
+        var user = document.querySelector("#user").value;
+        // Verificar se o campo está vazio
+        if (user === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Usuário! (validação JS)</p>";
+            return;
+        }
+    });
+}
+
