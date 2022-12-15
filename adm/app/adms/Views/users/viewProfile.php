@@ -4,10 +4,9 @@
 echo "<h1>Perfil</h1>";
 
 if (!empty($this->data['viewProfile'])) {
-    echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-profile/index'> Editar Usuário</a><hr>";
-    // echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-users-password/index/".$this->data['viewProfile'][0]['id']."'> Editar Senha </a>";
-    // echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-users-image/index/".$this->data['viewProfile'][0]['id']."'> Editar Imagem</a>";
-    // echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."delete-users/index/".$this->data['viewProfile'][0]['id']."'> Apagar Usuário</a><br><hr>";
+    echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-profile/index'> Editar </a>";
+    echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-profile-password/index'> Editar Senha</a><hr>";
+    
 }
 if (isset($_SESSION['msg'])) {
     echo $_SESSION['msg'];

@@ -32,7 +32,7 @@ class AdmsEditUsersImage
     /** ============================================================================================
      * Retorna os detalhes do registro
      * @return void     */
-    function getResultBd():array|bool
+    function getResultBd():array|null
     {
         return $this->resultBd;
     }

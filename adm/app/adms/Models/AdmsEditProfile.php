@@ -98,7 +98,7 @@ class AdmsEditProfile
      * @return void     */
     private function edit():void
     {
-        var_dump($this->data);
+        // var_dump($this->data);
         $this->data['modified'] = date("Y-m-d H:i:s");
         //Atribui NOVAMENTE(recupera) o valor q está no atributo:$this->dataExitval['nickname'] e coloca no atributo:$this->data['nickname'] para ser inserido no DB
         $this->data['nickname'] = $this->dataExitVal['nickname'];

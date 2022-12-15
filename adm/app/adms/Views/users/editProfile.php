@@ -12,17 +12,16 @@ if(isset($this->data['form'][0])){
 ?>
 <h1 class="text-center mt-5">Editar Perfil</h1>
 <?php
-// if(isset($valorForm['id'])){
-//     echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."view-users/index/".$valorForm['id']."'> Visualizar </a><br><hr>";
-// }
+echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."view-profile/index'>Perfil</a>";
+
 if(isset($_SESSION['msg'])){
     echo $_SESSION['msg'];
     unset($_SESSION['msg']);
 } ?>
 <span id="msg"></span>
 <form action="" method="POST" id="form-edit-profile">
-    <div class="row m-5">
-        <div class="col-12 m-5">
+    <div class="row m-3">
+        <div class="col-12">
             <div class="col-md-4 offset-md-4 mb-3">
                 <label class="form-label" for="name">Nome:<span style="color:#f00;">*</span></label>
                 <input class="form-control" type="text" name="name" id="name" value="<?php if(isset($valorForm['name'])){echo $valorForm['name'];} ?>" placeholder="Digite o nome Completo" required>
