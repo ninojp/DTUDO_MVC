@@ -1,27 +1,13 @@
 <?php
-
 namespace App\adms\Models;
 
-
-/** Classe:AdmsViewUsers, Editar a Imagem do usuário no banco de dados */
-class AdmsEditUsersImage
+/** Classe:AdmsViewUsers, Editar Imagem do perfil do usuário */
+class AdmsEditProfileImage
 {
     // Recebe do método:getResult() o valor:(true or false), q será atribuido aqui
     private bool $result = false;
-    /** @var array - Recebe os dados do conteúdo do e-mail     */
+    /** @var array - Recebe os registros do banco de dados    */
     private array|null $resultBd;
-    /** @var integer|string|null - Recebe o ID do registro    */
-    private int|string|null $id;
-    /** @var array|null - Recebe as informações do formulário     */
-    private array|null $data;
-    /** @var array|null - Recebe os dados da imagem   */
-    private array|null $dataImagem;
-    /** @var string - Recebe o endereço de upload da imagem    */
-    private string $directory;
-    /** @var string - Recebe o endereço da imagem que deve ser excluida   */
-    private string $delImg;
-    /** @var string - Recebe o slug/nome da imagem   */
-    private string $nameImg;
 
     /** ============================================================================================
      * Retorna TRUE se executar o processo com sucesso, FALSE quando houver erro e atribui para o atributo:$this->result    -  @return void     */
@@ -38,12 +24,10 @@ class AdmsEditUsersImage
     }
     /** ============================================================================================
     */
-    public function viewUsers(int $id):bool
+    public function viewProfile():bool
     {
-        $this->id = $id;
-
         $viewUsers = new \App\adms\Models\helper\AdmsRead();
-        $viewUsers->fullRead("SELECT id, image FROM adms_users WHERE id=:id LIMIT :limit", "id={$this->id}&limit=1");
+        $viewUsers->fullRead("SELECT id, image FROM adms_users WHERE id =:id LIMIT :limit", "id=".$_SESSION['user_id']."&limit=1");
 
         $this->resultBd = $viewUsers->getResult();
         if($this->resultBd){
@@ -51,12 +35,12 @@ class AdmsEditUsersImage
             $this->result = true;
             return true;
         }else{
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Usuário não encontrado!<p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Perfil não encontrado!<p>";
             $this->result = false;
             return false;
         }
     }
-    /** ===========================================================================================
+     /** ===========================================================================================
      * @param array|null $data
      * @return void    */
     public function update(array $data = null):void
@@ -79,7 +63,7 @@ class AdmsEditUsersImage
                 // $this->result = false;
                 $this->valInput();
             } else {
-                $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Necessário selecionar uma imagem</p>";
+                $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Necessário selecionar uma imagem2</p>";
                 $this->result = false;
             }
         } else {
@@ -87,20 +71,21 @@ class AdmsEditUsersImage
         }
     }
     /** ============================================================================================
-     * Verificar se existe o usuário com o id recebido
+     * Verificar se existe o usuário com o id Logado
      * Retorna false quando houver algun erro  -  @return void  */
     private function valInput(): void
     {
         $valExtImg = new \App\adms\Models\helper\AdmsValExtImg();
         $valExtImg->validateExtImg($this->dataImagem['type']);
 
-        if(($this->viewUsers($this->data['id'])) and ($valExtImg->getResult())){
+        if(($this->viewProfile()) and ($valExtImg->getResult())){
             // $this->result = false;
             $this->upload();
         } else {
             $this->result = false;
         }
     }
+
     /** ===========================================================================================
      * @return void     */
     private function upload()
@@ -111,10 +96,7 @@ class AdmsEditUsersImage
         // var_dump($this->nameImg);
 
         //Diretório onde ficaram as imagens do usuário(criada dinamicamente com o ID do usuário)
-        $this->directory = "app/adms/assets/imgs/users/".$this->data['id']."/";
-        
-        // $uploadImg = new \App\adms\Models\helper\AdmsUpload();
-        // $uploadImg->upload($this->directory, $this->dataImagem['tmp_name'], $this->nameImg);
+        $this->directory = "app/adms/assets/imgs/users/".$_SESSION['user_id']."/";
 
         $uploadImgRes = new \App\adms\Models\helper\AdmsUploadImgRes();
         $uploadImgRes->upload($this->dataImagem, $this->directory, $this->nameImg, 300, 300);
@@ -124,19 +106,6 @@ class AdmsEditUsersImage
         } else {
             $this->result = false;
         }
-        
-        // // Se Não existir um arquivo ou diretório com este nome:$this->directory
-        // if((!file_exists($this->directory)) and (!is_dir($this->directory))){
-        //     //Função:mkdir para criar o diretório, com as seguintes PERMISSÕES 0755(o default é 0777)
-        //     mkdir($this->directory, 0755);
-        // }
-        // if(move_uploaded_file($this->dataImagem['tmp_name'], $this->directory . $this->nameImg)){
-        //     $this->edit();
-        //     // $this->result = false;
-        // } else {
-        //     $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Upload da imagem não realizado com sucesso!</p>";
-        //     $this->result = false;
-        // }
     }
     /** =============================================================================================
     * @return void     */
@@ -146,21 +115,21 @@ class AdmsEditUsersImage
         $this->data['modified'] = date("Y-m-d H:i:s");
 
         $upUser = new \App\adms\Models\helper\AdmsUpdate();
-        $upUser->exeUpdate("adms_users", $this->data, "WHERE id=:id", "id={$this->data['id']}");
+        $upUser->exeUpdate("adms_users", $this->data, "WHERE id=:id", "id=".$_SESSION['user_id']);
         if($upUser->getResult()){
+            $_SESSION['user_image'] = $this->nameImg;
             $this->deleteImage();
         } else {
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Não foi possível Editar o usuário</p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Imagem Não Editada com sucesso</p>";
             $this->result = false;
         }
     }
     /** =========================================================================================
-     * Substitui a imagem anterior pela imagem atual
      * @return void     */
     private function deleteImage():void
     {
         if(((!empty($this->resultBd[0]['image'])) or ($this->resultBd[0]['image'] != null)) and ($this->resultBd[0]['image'] != $this->nameImg)){
-            $this->delImg = "app/adms/assets/imgs/users/".$this->data['id']."/".$this->resultBd[0]['image'];
+            $this->delImg = "app/adms/assets/imgs/users/".$_SESSION['user_id']."/".$this->resultBd[0]['image'];
             if(file_exists($this->delImg)){
             unlink($this->delImg);
             }
