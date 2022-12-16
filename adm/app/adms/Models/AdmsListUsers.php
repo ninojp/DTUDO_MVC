@@ -35,7 +35,7 @@ class AdmsListUsers
             // var_dump($this->resultBd);
             $this->result = true;
         }else{
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Nenhum usuário encontrado!<p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Nenhum usuário encontrado!</p>";
             $this->result = false;
         }
     }
