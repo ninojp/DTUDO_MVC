@@ -1,7 +1,7 @@
 <?php
 // echo "adms/Controller/NewUser.php: <h1> Página(controller) Novo usuário</h1>";
 namespace App\adms\controllers;
-
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 use Core\ConfigView;
 
 /** Classe da controller da pagina Editar imagem do usuário */
@@ -25,7 +25,7 @@ class EditUsersImage
         if ((!empty($id)) and (empty($this->dataForm['SendEditUserImage']))) {
             $this->id = (int) $id;
             // var_dump($this->id);
-            $viewUser = new \App\adms\Models\AdmsEditUsers();
+            $viewUser = new \App\adms\Models\AdmsEditUsersImage();
             $viewUser->viewUsers($this->id);
             //verifica se a query obteve resultado(true, false)
             if($viewUser->getResult()){

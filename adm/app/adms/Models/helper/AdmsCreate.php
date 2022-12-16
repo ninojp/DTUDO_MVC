@@ -1,9 +1,7 @@
 <?php
-
 namespace App\adms\Models\helper;
-
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 use PDOException;
-
 /**  */
 class AdmsCreate extends AdmsConn
 {
@@ -14,11 +12,16 @@ class AdmsCreate extends AdmsConn
     private string $query;
     private object $conn;
 
+    /** ==============================================================================================
+     * @return string     */
     function getResult(): string
     {
         return $this->result;
     }
-
+    /** ==============================================================================================
+     * @param string $table
+     * @param array $data
+     * @return void     */
     function exeCreate(string $table, array $data): void
     {
         $this->table = $table;
@@ -26,9 +29,9 @@ class AdmsCreate extends AdmsConn
         // var_dump($this->table);
         // var_dump($this->data);
         $this->exeReplaceValues();
-        
     }
-
+    /** ==============================================================================================
+     * @return void     */
     private function exeReplaceValues()
     {
         //converte todas as chaves(keys) do array em uma string
@@ -42,7 +45,8 @@ class AdmsCreate extends AdmsConn
         // var_dump($this->query);
         $this->exeInstruction();
     }
-
+    /** ==============================================================================================
+     * @return void     */
     private function exeInstruction(): void
     {
         $this->connection();
@@ -55,13 +59,13 @@ class AdmsCreate extends AdmsConn
             $this->result = null;
         }
     }
-
+    /** ==============================================================================================
+     * @return void     */
     private function connection():void
     {
         //faz conexão com o DB
         $this->conn = $this->connectDb();
         //prepara a query e atribui para o atributo:$this->insert
         $this->insert = $this->conn->prepare($this->query);
-
     }
 }

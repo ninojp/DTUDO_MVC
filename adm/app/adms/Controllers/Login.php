@@ -1,7 +1,13 @@
 <?php
-
 namespace App\adms\controllers;
-
+//verifica se está definido a constante(defida na index), se não estiver
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){
+    // Redireciona para a pagina escolhida
+    // header("Location: /");
+    header("Location: https://localhost/dtudo/public/");
+    // Ou termina a execução e exibe a mensagem de erro
+    die("Erro! Página não encontrada<br>");
+}
 use App\adms\Models\AdmsLogin;
 use Core\ConfigView;
 

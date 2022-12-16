@@ -1,4 +1,5 @@
 <?php
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 echo "Views/users/Pagina(listUsers.php) <h1>Listar Usuários</h1>";
 // var_dump($this->data);
 // var_dump($this->data['listUsers']);

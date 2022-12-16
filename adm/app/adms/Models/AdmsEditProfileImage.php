@@ -1,6 +1,6 @@
 <?php
 namespace App\adms\Models;
-
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 /** Classe:AdmsViewUsers, Editar Imagem do perfil do usuário */
 class AdmsEditProfileImage
 {
@@ -63,7 +63,7 @@ class AdmsEditProfileImage
                 // $this->result = false;
                 $this->valInput();
             } else {
-                $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Necessário selecionar uma imagem2</p>";
+                $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Necessário selecionar uma imagem</p>";
                 $this->result = false;
             }
         } else {

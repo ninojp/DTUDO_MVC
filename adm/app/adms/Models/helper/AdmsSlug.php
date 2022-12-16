@@ -1,6 +1,6 @@
 <?php
 namespace App\adms\Models\helper;
-
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 /** Classe genérica para converter o SLUG (otimizar ou modificar o nome) */
 class AdmsSlug
 {

@@ -1,7 +1,6 @@
 <?php
 namespace App\adms\Models\helper;
-
-
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 /** Classe genérica para REDIMENSIONAR imagem */
 class AdmsUploadImgRes
 {
@@ -14,6 +13,8 @@ class AdmsUploadImgRes
     private bool $result;
     private $imgResize;
 
+    /** ==============================================================================================
+     * @return boolean     */
     function getResult():bool
     {
         return $this->result;
@@ -112,6 +113,8 @@ class AdmsUploadImgRes
         }
 
     }
+    /** ==============================================================================================
+     * @return void     */
     private function redImg():void
     {
         //obter a largura da imgem

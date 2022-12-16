@@ -1,6 +1,6 @@
 <?php
 namespace App\adms\Models\helper;
-
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 use PDO;
 use PDOException;
 //a classe abstract não pode ser instanciada só pode ser herdada

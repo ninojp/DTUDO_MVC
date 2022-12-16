@@ -1,4 +1,5 @@
 <?php
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 // echo "Views/login/login.php <h1> Pagina(view) para fazer o login</h1>";
 // Manter os dados no formulário     
 if(isset($this->data['form'])){

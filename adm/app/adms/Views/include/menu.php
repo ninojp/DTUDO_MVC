@@ -1,3 +1,5 @@
+<?php
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); } ?>
 <div class="container">
     <div class="row text-center"><hr>
         <div class="col-3">

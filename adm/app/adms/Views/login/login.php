@@ -1,12 +1,20 @@
 <?php
-        // echo "Views/login/login.php <h1> Pagina(view) para fazer o login</h1>";
-        
-    if(isset($this->data['form'])){
-        // var_dump($this->data['form']);
-        $valorForm = $this->data['form'];
-    }
-    //Criptografar a senha
-    // echo password_hash("123456a", PASSWORD_DEFAULT);
+//verifica se está definido a constante(defida na index), se não estiver
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){
+    // Redireciona para a pagina escolhida
+    // header("Location: /");
+    header("Location: https://localhost/dtudo/public/");
+    // Ou termina a execução e exibe a mensagem de erro
+    die("Erro! Página não encontrada<br>");
+}
+// echo "Views/login/login.php <h1> Pagina(view) para fazer o login</h1>";
+    
+if(isset($this->data['form'])){
+    // var_dump($this->data['form']);
+    $valorForm = $this->data['form'];
+}
+//Criptografar a senha
+// echo password_hash("123456a", PASSWORD_DEFAULT);
 ?>
 <h1 class="text-center mt-5">Fazer o Login</h1>
 <?php
@@ -19,7 +27,7 @@ if(isset($_SESSION['msg'])){
 <span id="msg"></span>
 <form action="" method="POST" id="form-login">
     <div class="row justify-content-center">
-        <div class="col-6 m-5">
+        <div class="col-6 m-2">
             <div class="mb-3">
                 <label class="form-label" for="user">Usuário:<span style="color:#f00;">*</span></label>
                 <input class="form-control" type="text" name="user" id="user" value="<?php if(isset($valorForm)){echo $valorForm['user'];} ?>" placeholder="Digite o usuário" required>

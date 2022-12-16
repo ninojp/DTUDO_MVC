@@ -12,3 +12,10 @@ RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
 
 # index.php?url=users/index&id=2&sit=2
 # https://localhost/DTUDO_MVC/adm/view-users/index?id=2&sit=2
+# https://localhost/DTUDO_MVC/adm/app/adms/Views/dashboard/dashboard.php
+
+# Quando houver o erro 403, redirecionar o usuario
+ErrorDocument 403 https://localhost/dtudo/public/
+
+# Bloquear a opcao de listar os arquivos do diretorio
+Options -Indexes

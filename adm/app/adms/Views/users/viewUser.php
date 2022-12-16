@@ -1,4 +1,5 @@
 <?php
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 // echo "Views/users/viewUser.php <h1> Pagina(view) para vizualizar os usuários</h1>";
 // var_dump($this->data);
 if(isset($_SESSION['msg'])){

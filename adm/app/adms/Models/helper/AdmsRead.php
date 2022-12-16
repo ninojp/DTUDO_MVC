@@ -1,10 +1,8 @@
 <?php
-
 namespace App\adms\Models\helper;
-
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 use PDO;
 use PDOException;
-
 /** Classe genérica para selecionar registros no banco de dados */
 class AdmsRead extends AdmsConn
 {
@@ -14,11 +12,17 @@ class AdmsRead extends AdmsConn
     private object $query;
     private object $conn;
 
+    /** ==============================================================================================
+     * @return array|null     */
     function getResult(): array|null
     {
         return $this->result;
     }
-
+    /** ==============================================================================================
+     * @param string $table
+     * @param string|null|null $terms
+     * @param string|null|null $parseString
+     * @return void     */
     public function exeRead(string $table, string|null $terms = null, string|null $parseString = null): void
     {
         if (!empty($parseString)) {
@@ -29,7 +33,10 @@ class AdmsRead extends AdmsConn
         // var_dump($this->select);
         $this->exeInstruction();
     }
-
+    /** ==============================================================================================
+     * @param string $query
+     * @param string|null|null $parseString
+     * @return void     */
     public function fullRead(string $query, string|null $parseString=null):void
     {
         $this->select = $query;
@@ -39,7 +46,8 @@ class AdmsRead extends AdmsConn
         }
         $this->exeInstruction();
     }
-
+    /** ==============================================================================================
+     * @return void     */
     private function exeInstruction(): void
     {
         $this->connection();
@@ -51,13 +59,16 @@ class AdmsRead extends AdmsConn
             $this->result = null;
         }
     }
+    /** ==============================================================================================
+     * @return void     */
     private function connection()
     {
         $this->conn = $this->connectDb();
         $this->query = $this->conn->prepare($this->select);
         $this->query->setFetchMode(PDO::FETCH_ASSOC);
     }
-
+    /** ==============================================================================================
+     * @return void     */
     private function exeParameter(): void
     {
         if ($this->values) {

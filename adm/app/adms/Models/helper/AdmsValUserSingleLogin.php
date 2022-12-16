@@ -1,6 +1,6 @@
 <?php
 namespace App\adms\Models\helper;
-
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 /** Classe genérica para validar o usuário único, somente um cadastro pode utilizar o usuário */
 class AdmsValUserSingleLogin
 {
@@ -50,7 +50,6 @@ class AdmsValUserSingleLogin
             $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! Este email já está cadastrado!</p>";
             $this->result = false;
         }
-
     }
 
 }

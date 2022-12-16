@@ -1,6 +1,6 @@
 <?php
 namespace Core;
-
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 /** Verificar se existe a classe e Carregar a CONTROLLER
  * @author Nino JP <meu.sem@gmail.com>  */
 class CarregarPgAdm
@@ -18,7 +18,6 @@ class CarregarPgAdm
     /** @var array - $listPgPrivate: Recebe a lista das paginas privadas(acessadas com login) */
     private array $listPgPrivate;
 
-
     /** ==============================================================================================
      * @param string|null $urlController
      * @param string|null $urlMetodo
@@ -34,7 +33,6 @@ class CarregarPgAdm
         // var_dump($this->urlParameter);
         //apenas para testes
         // unset($_SESSION['user_id']);
-        
         $this->pgPublic();
 
         if(class_exists($this->classLoad)){
@@ -77,7 +75,7 @@ class CarregarPgAdm
             $this->pgPrivate();
         }
     }
-    /** ===============================================================================================
+    /** ============================================================================================
      * Instacia o método para verificar se foi feito o login e e confere se a url a ser carregada está na lista de paginas Privadas  -  @return void    */
     private function pgPrivate():void
     {

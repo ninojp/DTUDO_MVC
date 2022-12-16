@@ -1,4 +1,5 @@
 <?php
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 // echo "Views/login/login.php <h1> Pagina(view) para fazer o login</h1>";
 // Manter os dados no formulário     
 if(isset($this->data['form'])){
@@ -22,8 +23,8 @@ if(isset($_SESSION['msg'])){
 } ?>
 <span id="msg"></span>
 <form action="" method="POST" id="form-edit-user-pass">
-    <div class="row m-5">
-        <div class="col-12 m-5">
+    <div class="row m-2">
+        <div class="col-12 m-2">
             <!-- input oculto pra enviar o id, via post -->
             <input class="form-control" type="hidden" name="id" id="id" value="<?php if(isset($valorForm['id'])){echo $valorForm['id'];} ?>">
 

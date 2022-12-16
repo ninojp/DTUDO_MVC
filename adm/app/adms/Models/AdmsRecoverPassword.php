@@ -1,11 +1,9 @@
 <?php
-
 namespace App\adms\Models;
-
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 use App\adms\Models\helper\AdmsRead;
 use App\adms\Models\helper\AdmsSendEmail;
 use App\adms\Models\helper\AdmsValEmptyField;
-
 /** Solicitar novo link para cadastrar uma nova senha */
 class AdmsRecoverPassword
 {

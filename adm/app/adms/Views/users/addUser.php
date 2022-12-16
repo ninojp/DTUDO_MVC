@@ -1,4 +1,5 @@
 <?php
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 // echo "Views/login/login.php <h1> Pagina(view) para fazer o login</h1>";
 // Manter os dados no formulário     
 if(isset($this->data['form'])){
@@ -7,14 +8,15 @@ if(isset($this->data['form'])){
 } ?>
 <h1 class="text-center mt-5">Cadastrar Usuário</h1>
 <?php
+echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."list-users/index'> Listar </a> ";
 if(isset($_SESSION['msg'])){
     echo $_SESSION['msg'];
     unset($_SESSION['msg']);
 } ?>
 <span id="msg"></span>
 <form action="" method="POST" id="form-add-user">
-    <div class="row m-5">
-        <div class="col-12 m-5">
+    <div class="row m-2">
+        <div class="col-12 m-2">
             <div class="col-md-4 offset-md-4 mb-3">
             <?php $name="";
             if(isset($valorForm['name'])){

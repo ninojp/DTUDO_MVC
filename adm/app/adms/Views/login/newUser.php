@@ -1,12 +1,13 @@
 <?php
-        // echo "Views/login/login.php <h1> Pagina(view) para fazer o login</h1>";
-        
-    if(isset($this->data['form'])){
-        // var_dump($this->data['form']);
-        $valorForm = $this->data['form'];
-    }
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
+    // echo "Views/login/login.php <h1> Pagina(view) para fazer o login</h1>";
+    
+if(isset($this->data['form'])){
+    // var_dump($this->data['form']);
+    $valorForm = $this->data['form'];
+}
 ?>
-<h1 class="text-center mt-5">Cadastrar Novo Usuário</h1>
+<h1 class="text-center mt-3">Cadastrar Novo Usuário</h1>
 <?php
 if(isset($_SESSION['msg'])){
     echo $_SESSION['msg'];
@@ -16,8 +17,8 @@ if(isset($_SESSION['msg'])){
 
 <span id="msg"></span>
 <form action="" method="POST" id="form-new-user">
-    <div class="row m-5">
-        <div class="col-12 m-5">
+    <div class="row m-2">
+        <div class="col-12 m-2">
             <div class="col-md-4 offset-md-4 mb-3">
                 <label class="form-label" for="name">Nome:<span style="color:#f00;">*</span></label>
                 <input class="form-control" type="text" name="name" id="name" value="<?php if(isset($valorForm)){echo $valorForm['name'];} ?>" placeholder="Digite o nome Completo"

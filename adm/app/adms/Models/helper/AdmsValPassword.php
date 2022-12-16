@@ -1,6 +1,6 @@
 <?php
 namespace App\adms\Models\helper;
-
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 /** Classe genérica para fazer a validação da SENHA via PHP */
 class AdmsValPassword
 {
@@ -16,7 +16,9 @@ class AdmsValPassword
     {
         return $this->result;
     }
-
+    /** =============================================================================================
+     * @param string $password
+     * @return void     */
     public function validatePassword(string $password):void
     {
         //Atribui o parametro $password para o atributo:$this->password, para poder utilizado fora do escopo do método:validatePassword(), como atributo pode ser usado em qualquer lugar na classe 
@@ -34,7 +36,8 @@ class AdmsValPassword
             }
         }
     }
-
+    /** ==============================================================================================
+     * @return void     */
     private function valExtensPassword():void
     {
         if(strlen($this->password) < 6){
@@ -44,7 +47,8 @@ class AdmsValPassword
             $this->valValuePassword();
         }
     }
-
+    /** ==============================================================================================
+     * @return void     */
     private function valValuePassword():void
     {
         if(preg_match('/^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9-@#$%;!*]{6,}$/',$this->password)){

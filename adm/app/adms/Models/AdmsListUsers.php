@@ -1,8 +1,6 @@
 <?php
-
 namespace App\adms\Models;
-
-
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 /** Classe:AdmsListUsers, deve receber os dados(do DB) dos usuários para listar */
 class AdmsListUsers
 {

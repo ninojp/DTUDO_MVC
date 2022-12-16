@@ -89,6 +89,9 @@ if (formNewUser) {
             e.preventDefault();
             document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha deve ter no minímo uma letra! (validação JS)</p>";
             return;
+        } else {
+            document.getElementById("msg").innerHTML = "<p></p>";
+            return;
         }
     });
 }
@@ -111,6 +114,9 @@ if (formLogin) {
             e.preventDefault();
             document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo SENHA! (validação JS)</p>";
             return;
+        } else {
+            document.getElementById("msg").innerHTML = "<p></p>";
+            return;
         }
     });
 }
@@ -124,6 +130,9 @@ if (formNewConfEmail) {
         if (email === "") {
             e.preventDefault();
             document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo EMAIL! (validação JS)</p>";
+            return;
+        } else {
+            document.getElementById("msg").innerHTML = "<p></p>";
             return;
         }
     });
@@ -139,6 +148,9 @@ if (formRecoverPass) {
             e.preventDefault();
             document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo EMAIL! (validação JS)</p>";
             return;
+        } else {
+            document.getElementById("msg").innerHTML = "<p></p>";
+            return;
         }
     });
 }
@@ -152,6 +164,9 @@ if (formUpdatePass) {
         if (senha === "") {
             e.preventDefault();
             document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>Erro! Necessário preencher o campo Senha! (validação JS)</p>";
+            return;
+        } else {
+            document.getElementById("msg").innerHTML = "<p></p>";
             return;
         }
     });
@@ -220,6 +235,9 @@ if (formAddUser) {
             e.preventDefault();
             document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha deve ter no minímo uma letra!</p>";
             return;
+        } else {
+            document.getElementById("msg").innerHTML = "<p></p>";
+            return;
         }
     });
 }
@@ -259,6 +277,9 @@ if (formEditUser) {
             e.preventDefault();
             document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Situação! (validação JS)</p>";
             return;
+        } else {
+            document.getElementById("msg").innerHTML = "<p></p>";
+            return;
         }
     });
 }
@@ -294,6 +315,9 @@ if (formEditUserPass) {
             e.preventDefault();
             document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha deve ter no minímo uma letra! (validação JS)</p>";
             return;
+        } else {
+            document.getElementById("msg").innerHTML = "<p></p>";
+            return;
         }
     });
 }
@@ -325,7 +349,116 @@ if (formEditProfile) {
             e.preventDefault();
             document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Usuário! (validação JS)</p>";
             return;
+        } else {
+            document.getElementById("msg").innerHTML = "<p></p>";
+            return;
         }
     });
+}
+// ================================================================================================
+const formEditProfPass = document.getElementById("form-edit-prof-pass");
+if (formEditProfPass) {
+    formEditProfPass.addEventListener("submit", async (e) => {
+        
+        //Receber o valor do campo PASSWORD
+        var password = document.querySelector("#password").value;
+        // Verificar se o campo está vazio
+        if (password === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo SENHA! (validação JS)</p>";
+            return;
+        }
+        // Verificar se o campo senha possui 6 caracteres
+        if (password.length < 6) {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha deve ter no minímo 6 caracteres! (validação JS)</p>";
+            return;
+        }
+        // Verificar se o campo senha não possui numeros repetidos
+        // PARA APRENDER MAIS SOBRE EXPRESSÕES REGULARES
+        //https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Regular_Expressions
+        if (password.match(/([1-9]+)\1{1,}/)) {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha Não pode conter números repetidos! (validação JS)</p>";
+            return;
+        }
+        // Verificar se o campo senha possui Letras
+        if (!password.match(/[A-Za-z]/)) {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha deve ter no minímo uma letra! (validação JS)</p>";
+            return;
+        } else {
+            document.getElementById("msg").innerHTML = "<p></p>";
+            return;
+        }
+    });
+}
+// ================================================================================================
+// VALIDAÇÃO DO FORMULÁRIO DA VIEW:editUserImage
+const formEditUserImg = document.getElementById("form-edit-user-img");
+if (formEditUserImg) {
+    formEditUserImg.addEventListener("submit", async (e) => {
+        //Validar o valor do campo IMAGE
+        var new_image = document.querySelector("#new_image").value;
+        // Verificar se o campo está vazio
+        if (new_image === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário Selecionar uma imagem(user)! (validação JS)</p>";
+            return;
+        } else {
+        document.getElementById("msg").innerHTML = "<p></p>";
+        return;
+    }
+    });
+}
+
+// ================================================================================================
+// VALIDAÇÃO DO FORMULÁRIO DA VIEW:editProfileImage
+const formEditProfImg = document.getElementById("form-edit-prof-img");
+if (formEditProfImg) {
+    formEditProfImg.addEventListener("submit", async (e) => {
+        //Validar o valor do campo IMAGE
+        var new_image = document.querySelector("#new_image").value;
+        // Verificar se o campo está vazio
+        if (new_image === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário Selecionar uma imagem! (validação JS)</p>";
+            return;
+        } else {
+        document.getElementById("msg").innerHTML = "<p></p>";
+        return;
+    }
+    });
+}
+/** ================================================================================================
+ * Validar o Tipo da IMAGEM (JPG ou PNG)
+ * @returns  */
+function inputFileValImg(){
+    var new_image = document.querySelector("#new_image");
+
+    var filePath = new_image.value;
+    var allowedExtension = /(\.jpg|\.jpeg|\.png)$/i;
+    
+    if(!allowedExtension.exec(filePath)){
+        new_image.value = '';
+        document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário Selecionar uma imagem JPG ou PNG! (validação JS)</p>";
+        return;
+    } else {
+        previewImage(new_image);
+        document.getElementById("msg").innerHTML = "<p></p>";
+        return;
+    }
+}
+function previewImage(new_image){
+    if((new_image.files) && (new_image.files[0])){
+        // FileReader() - ler o conteúdo do arquivo
+        var reader = new FileReader();
+        //onload - dispar um evento quando qualquer elemento tenha sido carregado
+        reader.onload = function(e){
+            document.getElementById('preview-img').innerHTML = "<img src='"+ e.target.result +"' alt='Imagem' style='width: 200px;'>";
+        }
+    }
+    //readAsDataURL - Retorna os dados do formato blob como uma URL de dados - blob representa um arquivo
+    reader.readAsDataURL(new_image.files[0]);
 }
 

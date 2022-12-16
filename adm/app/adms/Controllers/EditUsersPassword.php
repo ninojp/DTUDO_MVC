@@ -1,7 +1,7 @@
 <?php
 // echo "adms/Controller/NewUser.php: <h1> Página(controller) Novo usuário</h1>";
 namespace App\adms\controllers;
-
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 use Core\ConfigView;
 
 /** Classe da controller da pagina de editar senha do usuário */

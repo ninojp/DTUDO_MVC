@@ -1,6 +1,6 @@
 <?php
 namespace Core;
-
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 // use App\adms\controllers\Login;
 // use App\adms\controllers\Users;
 /** Recebe a URL e manipula - Carregar a CONTROLLER

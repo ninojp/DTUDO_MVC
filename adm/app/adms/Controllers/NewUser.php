@@ -1,7 +1,6 @@
 <?php
-
 namespace App\adms\controllers;
-
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 use App\adms\Models\AdmsNewUser;
 use Core\ConfigView;
 

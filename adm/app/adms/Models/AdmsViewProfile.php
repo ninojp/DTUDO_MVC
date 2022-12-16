@@ -1,8 +1,6 @@
 <?php
-
 namespace App\adms\Models;
-
-
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 /** Classe:AdmsViewUsers, Visualizar o perfil do usuário */
 class AdmsViewProfile
 {

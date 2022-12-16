@@ -1,9 +1,8 @@
 <?php
 namespace App\adms\Models\helper;
-
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 use PDO;
 use PDOException;
-
 /** Classe genérica para APAGAR registro no banco de dados */
 class AdmsDelete extends AdmsConn
 {

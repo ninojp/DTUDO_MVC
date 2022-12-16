@@ -1,3 +1,5 @@
+<?php
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); } ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -10,6 +12,5 @@
     <!--  Meu CSS - geral para o ADM ----------------------------------->
     <link rel="stylesheet" href="<?=URLADM?>app/adms/assets/css/adm.css">
     <link rel="shortcut icon" href="<?=URLADM?>app/adms/assets/imgs/favicon.ico" type="image/x-icon">
-    
 </head>
 <body>

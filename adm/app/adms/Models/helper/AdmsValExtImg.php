@@ -1,7 +1,6 @@
 <?php
-
 namespace App\adms\Models\helper;
-
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 /** Classe genérica para fazer a validação de mimeType(tipo de arquivo, extensão) */
 class AdmsValExtImg
 {

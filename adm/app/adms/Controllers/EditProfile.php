@@ -1,6 +1,6 @@
 <?php
 namespace App\adms\controllers;
-
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 use Core\ConfigView;
 
 /** Classe da controller da pagina de editar perfil */

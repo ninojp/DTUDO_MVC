@@ -1,6 +1,6 @@
 <?php
 namespace App\adms\Models;
-
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 /** Classe:AdmsDeleteUsers, Apagar o usuário no banco de dados */
 class AdmsDeleteUsers
 {

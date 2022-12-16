@@ -1,11 +1,8 @@
 <?php
-
 namespace App\adms\Models;
-
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 use App\adms\Models\helper\AdmsConn;
 use PDO;
-
-
 /** Confirmar o cadastro do usuário, alterando a situação no banco de dados */
 class AdmsConfEmail extends AdmsConn
 {
@@ -50,6 +47,8 @@ class AdmsConfEmail extends AdmsConn
             $this->result = false;
         }
     }
+    /** ==============================================================================================
+     * @return void     */
     private function updateSitUser(): void
     {
         $this->dataSave['conf_email'] = null;
@@ -68,7 +67,6 @@ class AdmsConfEmail extends AdmsConn
             $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Necessário confirmar o E-mail, Solicite um novo:<a href='".URLADM."new-conf-email/index'> link aqui!</a><p>";
             $this->result = false;
         }
-
         // $query_ativate_user = "UPDATE adms_users SET conf_email=:conf_email, adms_sits_user_id=:adms_sits_user_id, modified=NOW() WHERE id=:id LIMIT 1";
         // $activate_email = $this->connectDb()->prepare($query_ativate_user);
         // $activate_email->bindParam(':conf_email', $conf_email);

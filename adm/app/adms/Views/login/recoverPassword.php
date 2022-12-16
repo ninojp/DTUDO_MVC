@@ -1,9 +1,9 @@
 <?php
-        
-    if(isset($this->data['form'])){
-        // var_dump($this->data['form']);
-        $valorForm = $this->data['form'];
-    }
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }    
+if(isset($this->data['form'])){
+    // var_dump($this->data['form']);
+    $valorForm = $this->data['form'];
+}
 ?>
 <h1 class="text-center mt-5">Recuperar Senha</h1>
 <?php
@@ -15,8 +15,8 @@ if(isset($_SESSION['msg'])){
 
 <span id="msg"></span>
 <form action="" method="POST" id="form-recover-pass">
-    <div class="row m-5">
-        <div class="col-12 m-5">
+    <div class="row m-2">
+        <div class="col-12 m-2">
             <div class="col-md-4 offset-md-4 mb-3">
                 <label class="form-label" for="email">Email:</label>
                 <input class="form-control" type="email" name="email" id="email" value="<?php if(isset($valorForm)){echo $valorForm['email'];} ?>" placeholder="Digite o seu Email" required>

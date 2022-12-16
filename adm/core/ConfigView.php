@@ -1,6 +1,6 @@
 <?php
 namespace Core;
-
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 /** Classe:ConfigView que contém os métodos para carregar as paginas(view) pré definidas no método,
 * E mais a VIEW que estiver recebendo via parametro pelo método:__construct */
 class ConfigView

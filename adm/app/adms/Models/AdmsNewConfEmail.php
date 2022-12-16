@@ -1,13 +1,10 @@
 <?php
-
 namespace App\adms\Models;
-
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 use App\adms\Models\helper\AdmsConn;
 use App\adms\Models\helper\AdmsRead;
 use App\adms\Models\helper\AdmsSendEmail;
 use PDO;
-
-
 /** Solicitar novo link confirmar o e-mail */
 class AdmsNewConfEmail extends AdmsConn
 {
@@ -123,7 +120,6 @@ class AdmsNewConfEmail extends AdmsConn
         }
     }
     /** ==========================================================================================
-     *
      * @return void     */
     private function emailHtml(): void
     {

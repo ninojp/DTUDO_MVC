@@ -1,7 +1,6 @@
 <?php
-
 namespace App\adms\Models;
-
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 /** Confirmar a chave atualizar senha. Cadastrar nova senha */
 class AdmsUpdatePassword
 {
@@ -58,7 +57,8 @@ class AdmsUpdatePassword
             $this->result = false;
         }
     }
-
+    /** ==============================================================================================
+     * @return void     */
     private function valInput():void
     {
         $valPasword = new \App\adms\Models\helper\AdmsValPassword(); 
@@ -73,7 +73,8 @@ class AdmsUpdatePassword
             $this->result = false;
         }
     }
-
+    /** =============================================================================================
+     * @return void     */
     private function updatePassword():void
     {
         $this->dataSave['recover_password'] = null;

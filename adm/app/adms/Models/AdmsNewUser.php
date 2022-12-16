@@ -1,11 +1,9 @@
 <?php
-
 namespace App\adms\Models;
-
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 use App\adms\Models\helper\AdmsCreate;
 use App\adms\Models\helper\AdmsValEmail;
 use App\adms\Models\helper\AdmsValEmptyField;
-
 /** Classe:AdmsNewUser, é filha(Herda) da classe:AdmsConn(abstrata responsável pela conexão) */
 class AdmsNewUser
 {

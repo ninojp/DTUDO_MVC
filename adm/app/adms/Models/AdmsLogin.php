@@ -1,5 +1,13 @@
 <?php
 namespace App\adms\Models;
+//verifica se está definido a constante(defida na index), se não estiver
+if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){
+    // Redireciona para a pagina escolhida
+    // header("Location: /");
+    header("Location: https://localhost/dtudo/public/");
+    // Ou termina a execução e exibe a mensagem de erro
+    die("Erro! Página não encontrada<br>");
+}
 /** Classe:AdmsLogin, é filha(Herda) da classe:AdmsConn(abstrata responsável pela conexão) */
 class AdmsLogin
 {
@@ -41,6 +49,8 @@ class AdmsLogin
             $this->result = false;
         }        
     }
+    /** ==============================================================================================
+     * @return void     */
     private function valEmailPerm():void
     {
         if($this->resultBd[0]['adms_sits_user_id'] == 1) {
