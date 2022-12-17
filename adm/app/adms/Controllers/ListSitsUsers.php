@@ -21,7 +21,7 @@ class ListSitsUsers
        } else {
             $this->data['listSitsUsers'] = [];
        }
-       $viewSitsUsers = new \Core\ConfigView("adms/Views/sitsUsers/listSitsUsers", $this->data);
-       $viewSitsUsers->loadView();
+       $loadSitsUsers = new \Core\ConfigView("adms/Views/sitsUsers/listSitsUsers", $this->data);
+       $loadSitsUsers->loadView();
     }
 }
