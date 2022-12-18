@@ -461,4 +461,29 @@ function previewImage(new_image){
     //readAsDataURL - Retorna os dados do formato blob como uma URL de dados - blob representa um arquivo
     reader.readAsDataURL(new_image.files[0]);
 }
-
+// ===============================================================================================
+// validar os campos do formulário de adicionar nova situação de usuário
+const formAddSitsUsers = document.getElementById("form-add-sit-user");
+if (formAddSitsUsers) {
+    formAddSitsUsers.addEventListener("submit", async(e) => {
+        //Receber o valor do campo Nova Situação
+        var nameSits = document.querySelector("#name").value;
+        // Verificar se o campo está vazio
+        if (nameSits === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Nova situação! (validação JS)</p>";
+            return;
+        } 
+        //Validar o valor do campo SITUAÇÃO do USUÁRIO
+        var admsSitsCor = document.querySelector("#adms_color_id").value;
+        // Verificar se o campo está vazio
+        if (admsSitsCor === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário Selecionar uma Cor para a Situação! (validação JS)</p>";
+            return;
+        } else {
+            document.getElementById("msg").innerHTML = "<p></p>";
+            return;
+        }
+    });
+}
