@@ -28,7 +28,11 @@ class AdmsListUsers
     public function listUsers():void
     {
         $listUsers = new \App\adms\Models\helper\AdmsRead();
-        $listUsers->fullRead("SELECT id, name, email, adms_sits_user_id FROM adms_users ORDER BY id DESC");
+        //INNER JOIN, é obrigátorio(para retornar o registro) q a chave EXTRANGEIRA:adms_sits_user_id exista na tabela outra tabela, a qual está se fazendo o inner join(adms_sits_users)
+        $listUsers->fullRead("SELECT usr.id, usr.name AS name_usr, usr.email, usr.adms_sits_user_id, sit.name AS name_sit, col.name AS name_col, col.color FROM adms_users AS usr 
+        INNER JOIN adms_sits_users AS sit ON sit.id=usr.adms_sits_user_id 
+        INNER JOIN adms_colors AS col ON sit.adms_color_id=col.id
+        ORDER BY usr.id DESC");
 
         $this->resultBd = $listUsers->getResult();
         if($this->resultBd){

@@ -16,9 +16,10 @@ foreach($this->data['listUsers'] as $user){
     // posso otimizar com o EXTRACT, para usar a CHAVE do array, como uma variável 
     extract($user);
     echo "ID: $id <br>";
-    echo "Nome: $name<br>";
+    echo "Nome: $name_usr<br>";
     echo "E-Mail: $email<br>";
-    echo "Situação: $adms_sits_user_id<br>";
+    echo "Situação e id: $name_sit (id: $adms_sits_user_id)<br>";
+    echo "Cor da Situação: <span style='background-color:$color;'> $name_col</span><br>";
 
     echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."view-users/index/$id'> Visualizar </a>";
     echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-users/index/$id'> Editar </a>";
