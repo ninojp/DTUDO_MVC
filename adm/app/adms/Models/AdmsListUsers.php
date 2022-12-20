@@ -28,7 +28,7 @@ class AdmsListUsers
     public function listUsers():void
     {
         $listUsers = new \App\adms\Models\helper\AdmsRead();
-        $listUsers->fullRead("SELECT id, name, email FROM adms_users ORDER BY id DESC");
+        $listUsers->fullRead("SELECT id, name, email, adms_sits_user_id FROM adms_users ORDER BY id DESC");
 
         $this->resultBd = $listUsers->getResult();
         if($this->resultBd){
