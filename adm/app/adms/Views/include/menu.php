@@ -8,11 +8,14 @@ if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://lo
         <div class="col-2">
             <a class="btn btn-sm btn-primary" href="<?=URLADM?>list-users/index">Usuários</a>
         </div>
-        <div class="col-3">
-            <a class="btn btn-sm btn-primary" href="<?=URLADM?>view-profile/index">Perfil do Usuários</a>
+        <div class="col-2">
+            <a class="btn btn-sm btn-primary" href="<?=URLADM?>view-profile/index">Perfil</a>
         </div>
-        <div class="col-3">
-            <a class="btn btn-sm btn-primary" href="<?=URLADM?>list-sits-users/index">Lista Situações</a>
+        <div class="col-2">
+            <a class="btn btn-sm btn-primary" href="<?=URLADM?>list-sits-users/index">Situações</a>
+        </div>
+        <div class="col-2">
+            <a class="btn btn-sm btn-primary" href="<?=URLADM?>list-colors/index">Cores</a>
         </div>
         <div class="col-2">
             <a class="btn btn-sm btn-primary" href="<?=URLADM?>logout/index">Sair</a>
