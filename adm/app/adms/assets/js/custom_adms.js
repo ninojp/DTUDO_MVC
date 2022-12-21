@@ -487,3 +487,29 @@ if (formAddSitsUsers) {
         }
     });
 }
+// ===============================================================================================
+// validar os campos do formulário de adicionar nova situação de usuário
+const formAddColors = document.getElementById("form-add-colors");
+if (formAddColors) {
+    formAddColors.addEventListener("submit", async(e) => {
+        //Receber o valor do campo Nova Situação
+        var nameColors = document.querySelector("#name").value;
+        // Verificar se o campo está vazio
+        if (nameColors === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Nome da Cor! (validação JS)</p>";
+            return;
+        } 
+        //Validar o valor do campo SITUAÇÃO do USUÁRIO
+        var codColors = document.querySelector("#color").value;
+        // Verificar se o campo está vazio
+        if (codColors === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário Digitar o Código uma Cor! (validação JS)</p>";
+            return;
+        } else {
+            document.getElementById("msg").innerHTML = "<p></p>";
+            return;
+        }
+    });
+}

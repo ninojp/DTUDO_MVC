@@ -52,7 +52,7 @@ if(isset($_SESSION['msg'])){
                 </select>
             </div>
             <div class="col-md-2 offset-5 mb-3">
-                <button class="btn btn-primary" type="submit" name="SendEditSitUser" value="Cadastrar">Editar</button>
+                <button class="btn btn-primary" type="submit" name="SendEditSitUser" value="Editar">Editar</button>
             </div>
         </div>
     </div>
