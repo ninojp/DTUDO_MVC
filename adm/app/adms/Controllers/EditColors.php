@@ -1,8 +1,8 @@
 <?php
 namespace App\adms\controllers;
 if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
-    // echo "adms/Controller/EditSitsUsers.php: <h1> Página(controller) Editar Situação</h1>";
-
+// echo "adms/Controller/EditColors.php: <h1> Página(controller) Editar Cor</h1>";
+/** Classe(Controlles) para editar uma Cor existente*/
 class EditColors
 {
     //Envia os dados a serem editados no formulário da view
@@ -16,57 +16,53 @@ class EditColors
     {
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         // var_dump($this->dataForm);
-        if ((!empty($id)) and (empty($this->dataForm['SendEditSitUser']))) {
+        if ((!empty($id)) and (empty($this->dataForm['SendEditColors']))) {
             $this->id = (int) $id;
             // var_dump($this->id);
-            $atualSitsUsers = new \App\adms\Models\AdmsEditSitsUsers();
-            $atualSitsUsers->viewSitsUsers($this->id);
-            if($atualSitsUsers->getResult()){
+            $atualColors = new \App\adms\Models\AdmsEditColors();
+            $atualColors->viewColorsBd($this->id);
+            if($atualColors->getResult()){
                 //pega o resultado da query q está dentro de:getResultBd() e atribui para o atributo $data com a POSIÇÃO [FORM}
-                $this->data['form'] = $atualSitsUsers->getResultBd();
+                $this->data['form'] = $atualColors->getResultBd();
                 // var_dump($this->data['form']);
-                $this->viewEditSitsUser();
+                $this->viewEditColors();
             }else{
-                $urlRedirect = URLADM . "list-sits-users/index";
+                $urlRedirect = URLADM . "list-colors/index";
                 header("Location: $urlRedirect");
             }
         } else {
-            $this->editSitsUser();
+            $this->editColors();
         }
         
     }
     /** =============================================================================================
      * Instânciar a classe responsável em carregar a view e enviar os dados para a view
      * @return void     */
-    private function viewEditSitsUser(): void
+    private function viewEditColors(): void
     {
-        $listSelect = new \App\adms\Models\AdmsEditSitsUsers();
-        $this->data['selectCor'] = $listSelect->listSelectCor();
-        // var_dump($this->data);
-
         //Instancio a classe:ConfigView() e crio o objeto:$loadView
-        $loadView = new \Core\ConfigView("adms/Views/sitsUsers/editSitsUsers", $this->data);
+        $loadView = new \Core\ConfigView("adms/Views/colors/editColors", $this->data);
         //Instancia o método:loadView() da classe:ConfigView
         $loadView->loadView();
     }
     /** =============================================================================================
      * @return void     */
-    private function editSitsUser():void
+    private function editColors():void
     {
-        if(!empty($this->dataForm['SendEditSitUser'])){
-            unset($this->dataForm['SendEditSitUser']);
-            $editUser = new \App\adms\Models\AdmsEditSitsUsers();
-            $editUser->updateSits($this->dataForm);
-            if($editUser->getResult()){
-                $urlRedirect = URLADM . "view-sits-users/index/".$this->dataForm['id'];
+        if(!empty($this->dataForm['SendEditColors'])){
+            unset($this->dataForm['SendEditColors']);
+            $editColors = new \App\adms\Models\AdmsEditColors();
+            $editColors->updateColors($this->dataForm);
+            if($editColors->getResult()){
+                $urlRedirect = URLADM . "view-colors/index/".$this->dataForm['id'];
                 header("Location: $urlRedirect");
             }else{
                 $this->data['form'] = $this->dataForm;
-                $this->viewEditSitsUser();
+                $this->viewEditColors();
             }
         } else {
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! (necessário ID)Situação não encontrado!</p>";
-            $urlRedirect = URLADM . "list-sits-users/index";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! (necessário ID)Cor não encontrado!</p>";
+            $urlRedirect = URLADM . "list-colors/index";
             header("Location: $urlRedirect");
         }
     }

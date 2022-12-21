@@ -39,10 +39,10 @@ class AdmsAddColors
     private function valInputColors():void
     {
         //validação de nome unico, para não haver outro com mesmo nome
-        $valSitsSingle = new \App\adms\Models\helper\AdmsValColorsSingle();
-        $valSitsSingle->validateColorsSingle($this->data['name']);
+        $valColorsSingle = new \App\adms\Models\helper\AdmsValColorsSingle();
+        $valColorsSingle->validateColorsSingle($this->data['name']);
 
-        if($valSitsSingle->getResult()){
+        if($valColorsSingle->getResult()){
             $this->addColors();
         } else {
             $this->result = false;

@@ -30,11 +30,11 @@ if(isset($_SESSION['msg'])){
     <div class="row m-2">
         <div class="col-12 m-2">
             <!-- input oculto pra enviar o id, via post -->
-            <input class="form-control" type="hidden" name="id" id="id" value="<?php if(isset($valorForm['id'])){echo $valorForm['id'];} ?>">
+            <input class="form-control" type="hidden" name="id" id="id" value="<?php if(isset($valorForm['id'])){echo $valorForm['id'];} ?>" required>
 
             <div class="col-md-4 offset-md-4 mb-3">
                 <label class="form-label" for="name">Editar Nome Cor:<span style="color:#f00;">*</span></label>
-                <input class="form-control" type="text" name="name" id="name" value="<?php if(isset($valorForm['name'])){echo $valorForm['name'];} ?>" required>
+                <input class="form-control" type="text" name="name" id="name" value="<?php if(isset($valorForm['name'])){echo $valorForm['name'];}?>" required>
             </div>
             
             <div class="col-md-4 offset-md-4 mb-3">

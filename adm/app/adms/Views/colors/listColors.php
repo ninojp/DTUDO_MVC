@@ -9,9 +9,9 @@ if(isset($_SESSION['msg'])){
     unset($_SESSION['msg']);
 }
 
-foreach($this->data['listColors'] as $color){
-    // var_dump($color);
-    extract($color);
+foreach($this->data['listColors'] as $colorList){
+    // var_dump($colorList);
+    extract($colorList);
     echo "ID: $id<br>";
     echo "Nome da Cor: <span style='background-color:$color;color:#fff;'> $name</span><br><br>";
     echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."view-colors/index/$id'> Visualizar </a>";
