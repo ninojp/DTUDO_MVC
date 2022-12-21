@@ -18,3 +18,5 @@ foreach($this->data['listSitsUsers'] as $listSits){
     echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-sits-users/index/$id'> Editar </a>";
     echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."delete-sits-users/index/$id'> Apagar </a><br><hr>";
 }
+//imprime os links de paginação
+echo $this->data['pagination'];

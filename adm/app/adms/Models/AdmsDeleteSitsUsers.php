@@ -69,6 +69,5 @@ class AdmsDeleteSitsUsers
         } else {
             return true;
         }
-
     }
 }
