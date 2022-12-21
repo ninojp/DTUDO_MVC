@@ -58,23 +58,8 @@ class AdmsEditColors
         $valEmptyField->valField($this->data);
         //verifica se o método:getResult() retorna true, se sim significa q deu tudo certo se não aprensenta o Erro
         if ($valEmptyField->getResult()) {
-            $this->valInputColors();
-            // $this->result = false;
-        } else {
-            $this->result = false;
-        }
-    }
-      /** ===========================================================================================
-     * Método para validadar se já existe uma car com o mesmo nome
-     * @return void     */
-    private function valInputColors():void
-    {
-        //validação de nome unico, para não haver outro com mesmo nome
-        $valColorsSingle = new \App\adms\Models\helper\AdmsValColorsSingle();
-        $valColorsSingle->validateColorsSingle($this->data['name']);
-
-        if($valColorsSingle->getResult()){
             $this->editColors();
+            // $this->result = false;
         } else {
             $this->result = false;
         }
