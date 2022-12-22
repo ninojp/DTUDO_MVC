@@ -16,7 +16,8 @@ if(isset($this->data['form'][0])){
 echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."list-email-confs/index'> Listar </a> ";
 if(isset($valorForm['id'])){
     echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."view-email-confs/index/".$valorForm['id']."'> Visualizar </a>";
-    echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-email-confs-pass/index/".$valorForm['id']."'> Editar senha </a><br><hr>";
+    echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-email-confs-pass/index/".$valorForm['id']."'> Editar senha </a>";
+    echo "<a class='btn btn-sm btn-outline-danger ms-4' href='".URLADM."delete-email-confs/index/".$valorForm['id']."' onclick='return confirm(\"Tem certeza que deseja excluir o registro?\")'> Apagar </a><br><hr>";
 }
 if(isset($_SESSION['msg'])){
     echo $_SESSION['msg'];

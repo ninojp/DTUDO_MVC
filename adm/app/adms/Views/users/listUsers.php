@@ -23,7 +23,11 @@ foreach($this->data['listUsers'] as $user){
 
     echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."view-users/index/$id'> Visualizar </a>";
     echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-users/index/$id'> Editar </a>";
-    echo "<a class='btn btn-sm btn-outline-danger ms-4' href='".URLADM."delete-users/index/$id'> Apagar </a><br><hr>";
+    echo "<a class='btn btn-sm btn-outline-danger ms-4' href='".URLADM."delete-users/index/$id' onclick='return confirm(\"Tem certeza que deseja excluir o registro?\")'> Apagar </a><br><hr>";
+    /* ?>
+    <!-- Outra forma de usar o alerta de confirmação, o resultado é o mesmo -->
+    <a class='btn btn-sm btn-outline-danger ms-4' href="<?=URLADM.'delete-users/index/'.$id; ?>" onclick="return confirm('Tem certeza que deseja excluir o registro?')"> Apagar </a><br><hr>
+    <?php */
 }
 //imprime os links de paginação
 echo $this->data['pagination'];

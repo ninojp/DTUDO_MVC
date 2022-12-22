@@ -31,7 +31,7 @@ class AdmsViewEmailConfs
         $this->id = $id;
 
         $ViewEmailConfs = new \App\adms\Models\helper\AdmsRead();
-        $ViewEmailConfs->fullRead("SELECT id, title, name, email, host, username, password, smtpsecure, port, created, modified FROM adms_confs_emails WHERE id=:id LIMIT :limit", "id={$this->id}&limit=1");
+        $ViewEmailConfs->fullRead("SELECT id, title, name, email, host, username, smtpsecure, port, created, modified FROM adms_confs_emails WHERE id=:id LIMIT :limit", "id={$this->id}&limit=1");
 
         $this->resultBd = $ViewEmailConfs->getResult();
         if($this->resultBd){

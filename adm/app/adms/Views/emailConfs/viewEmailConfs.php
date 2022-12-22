@@ -18,7 +18,6 @@ if(!empty($this->data['viewEmailConf'])){
     echo "Titulo: $title <br>";
     echo "Host: $host <br>";
     echo "Username: $username <br>";
-    echo "Password: $password <br>";
     echo "smtpsecure: $smtpsecure<br>";
     echo "port: $port<br>";
     echo "Created: ".date('d/m/Y H:i:s', strtotime($created))."<br>";
@@ -26,5 +25,5 @@ if(!empty($this->data['viewEmailConf'])){
     echo "<br><br>";
     echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-email-confs/index/$id'> Editar</a>";
     echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-email-confs-pass/index/$id'> Editar Senha </a>";
-    echo "<a class='btn btn-sm btn-outline-danger ms-4' href='".URLADM."delete-email-confs/index/$id'> Apagar </a><br><hr>";
+    echo "<a class='btn btn-sm btn-outline-danger ms-4' href='".URLADM."delete-email-confs/index/$id' onclick='return confirm(\"Tem certeza que deseja excluir o registro?\")'> Apagar </a><br><hr>";
 }

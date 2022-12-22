@@ -12,7 +12,7 @@ if(!empty($this->data['viewUsers'])){
     echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-users/index/".$this->data['viewUsers'][0]['id']."'> Editar Usuário</a>";
     echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-users-password/index/".$this->data['viewUsers'][0]['id']."'> Editar Senha </a>";
     echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-users-image/index/".$this->data['viewUsers'][0]['id']."'> Editar Imagem</a>";
-    echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."delete-users/index/".$this->data['viewUsers'][0]['id']."'> Apagar Usuário</a><br><hr>";
+    echo "<a class='btn btn-sm btn-outline-danger ms-4' href='".URLADM."delete-users/index/".$this->data['viewUsers'][0]['id']."' onclick='return confirm(\"Tem certeza que deseja excluir o registro?\")'> Apagar Usuário</a><br><hr>";
 }
 if(!empty($this->data['viewUsers'])){
     // var_dump($this->data['viewUsers'][0]);

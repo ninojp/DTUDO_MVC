@@ -24,5 +24,5 @@ if(!empty($this->data['viewColors'])){
     }
     echo "<br>";
     echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-colors/index/$id'> Editar </a>";
-    echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."delete-colors/index/$id'> Apagar </a><br><hr>";
+    echo "<a class='btn btn-sm btn-outline-danger ms-4' href='".URLADM."delete-colors/index/$id' onclick='return confirm(\"Tem certeza que deseja excluir o registro?\")'> Apagar </a><br><hr>";
 }

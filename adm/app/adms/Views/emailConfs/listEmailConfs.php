@@ -22,7 +22,7 @@ foreach($this->data['listEmails'] as $emails){
 
     echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."view-email-confs/index/$id'> Visualizar </a>";
     echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-email-confs/index/$id'> Editar </a>";
-    echo "<a class='btn btn-sm btn-outline-danger ms-4' href='".URLADM."delete-email-confs/index/$id'> Apagar </a><br><hr>";
+    echo "<a class='btn btn-sm btn-outline-danger ms-4' href='".URLADM."delete-email-confs/index/$id' onclick='return confirm(\"Tem certeza que deseja excluir o registro?\")'> Apagar </a><br><hr>";
 }
 //imprime os links de paginação
 echo $this->data['pagination'];
