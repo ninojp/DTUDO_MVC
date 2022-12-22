@@ -13,7 +13,7 @@ foreach($this->data['listSitsUsers'] as $listSits){
     // var_dump($listSits);
     extract($listSits);
     echo "ID: $id<br>";
-    echo "Situação e Cor: <span style='background-color:$color;color:#fff;'> $sitsname</span><br><br>";
+    echo "Situação e Cor: <span style='color:$color;'> $sitsname</span><br><br>";
     echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."view-sits-users/index/$id'> Visualizar </a>";
     echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-sits-users/index/$id'> Editar </a>";
     echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."delete-sits-users/index/$id'> Apagar </a><br><hr>";
