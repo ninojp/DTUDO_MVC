@@ -16,9 +16,9 @@ abstract class Config
 
         //credenciais do DB
         define('HOST','localhost');
-        define('USER','root');
-        define('PASS','');
-        define('DBNAME','celke_adm');
+        define('USER','NinoJP');
+        define('PASS','3RtsEpuR21!@');
+        define('DBNAME','adms_celke');
         define('PORT',3306);
     }
 }

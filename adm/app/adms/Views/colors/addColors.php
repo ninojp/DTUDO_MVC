@@ -30,7 +30,7 @@ if(isset($_SESSION['msg'])){
                 if(isset($valorForm['color'])){
                     $color = $valorForm['color'];} ?>
                     <label class="form-label" for="color">Cor (Hexadecimal):<span style="color:#f00;">*</span></label>
-                    <input class="form-control" type="text" name="color" id="color" value="<?php echo $color; ?>" placeholder="Código da Cor" required>
+                    <input class="form-control" type="color" name="color" id="color" value="<?php echo $color; ?>" placeholder="Código da Cor" required>
             </div>
             <div class="col-md-2 offset-5 mb-3">
                 <button class="btn btn-primary" type="submit" name="SendAddColors" value="Cadastrar">Cadastrar</button>
