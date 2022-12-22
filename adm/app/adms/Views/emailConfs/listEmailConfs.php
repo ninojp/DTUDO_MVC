@@ -14,6 +14,7 @@ foreach($this->data['listEmails'] as $emails){
     // posso otimizar com o EXTRACT, para usar a CHAVE do array, como uma variável 
     extract($emails);
     echo "ID: $id <br>";
+    echo "E-mail: $email<br>";
     echo "Titulo: $title<br>";
     echo "Name: $name<br>";
     echo "Host: $host<br>";
