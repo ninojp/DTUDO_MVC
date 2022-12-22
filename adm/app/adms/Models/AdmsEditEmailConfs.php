@@ -107,7 +107,7 @@ class AdmsEditEmailConfs
         $this->data['smtpsecure'] = $this->dataExitVal['smtpsecure'];
         $this->data['port'] = $this->dataExitVal['port'];
         // var_dump($this->data);
-        // $this->result = false;TESTE
+        // $this->result = false;
 
         $upUser = new \App\adms\Models\helper\AdmsUpdate();
         $upUser->exeUpdate("adms_confs_emails", $this->data, "WHERE id=:id", "id={$this->data['id']}");

@@ -7,7 +7,8 @@ if(isset($_SESSION['msg'])){
     unset($_SESSION['msg']);
 }
 echo "<h1>Detalhes da Configuração do E-mail</h1>";
-echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."list-email-confs/index'> Listar </a><br><hr> ";
+echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."list-email-confs/index'> Listar </a>";
+echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."add-email-confs/index'>Cadastrar E-mail</a><br><hr>";
 if(!empty($this->data['viewEmailConf'])){
     // var_dump($this->data['viewEmailConf']);
     extract($this->data['viewEmailConf'][0]);
