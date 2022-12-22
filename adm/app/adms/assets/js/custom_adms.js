@@ -31,13 +31,13 @@ function passwordStrength(){
 function viewStrength(strength){
     // Imprimir a força da senha
     if(strength < 30){
-        document.getElementById("msgViewStrength").innerHTML = "<p class='alert alert-danger'>Senha Fraca</p>";
+        document.getElementById("msgViewStrength").innerHTML = "<p class='alert alert-danger'>Senha Fraca(JS)</p>";
     } else if ((strength >= 30) && (strength < 50)){
-        document.getElementById("msgViewStrength").innerHTML = "<p class='alert alert-warning'>Senha Média</p>";
+        document.getElementById("msgViewStrength").innerHTML = "<p class='alert alert-warning'>Senha Média(JS)</p>";
     } else if ((strength >= 50) && (strength < 70)){
-        document.getElementById("msgViewStrength").innerHTML = "<p class='alert alert-primary'>Senha Boa</p>";
+        document.getElementById("msgViewStrength").innerHTML = "<p class='alert alert-primary'>Senha Boa(JS)</p>";
     } else if (strength >= 70){
-        document.getElementById("msgViewStrength").innerHTML = "<p class='alert alert-success'>Senha Forte</p>";
+        document.getElementById("msgViewStrength").innerHTML = "<p class='alert alert-success'>Senha Forte(JS)</p>";
     } else {
         document.getElementById("msgViewStrength").innerHTML = "";
     }
@@ -51,7 +51,7 @@ if (formNewUser) {
         // Verificar se o campo está vazio
         if (name === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo NOME! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo NOME! (JS)</p>";
             return;
         }
         //Receber o valor do campo EMAIL
@@ -59,7 +59,7 @@ if (formNewUser) {
         // Verificar se o campo está vazio
         if (email === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo EMAIL! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo EMAIL! (JS)</p>";
             return;
         }
         //Receber o valor do campo PASSWORD
@@ -67,13 +67,13 @@ if (formNewUser) {
         // Verificar se o campo está vazio
         if (password === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo SENHA! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo SENHA! (JS)</p>";
             return;
         }
         // Verificar se o campo senha possui 6 caracteres
         if (password.length < 6) {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha deve ter no minímo 6 caracteres! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha deve ter no minímo 6 caracteres! (JS)</p>";
             return;
         }
         // Verificar se o campo senha não possui numeros repetidos
@@ -81,13 +81,13 @@ if (formNewUser) {
         //https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Regular_Expressions
         if (password.match(/([1-9]+)\1{1,}/)) {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha Não pode conter números repetidos! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha Não pode conter números repetidos! (JS)</p>";
             return;
         }
         // Verificar se o campo senha possui Letras
         if (!password.match(/[A-Za-z]/)) {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha deve ter no minímo uma letra! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha deve ter no minímo uma letra! (JS)</p>";
             return;
         } else {
             document.getElementById("msg").innerHTML = "<p></p>";
@@ -104,7 +104,7 @@ if (formLogin) {
         // Verificar se o campo está vazio
         if (user === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo USUÁRIO! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo USUÁRIO! (JS)</p>";
             return;
         }
         //Receber o valor do campo PASSWORD
@@ -112,7 +112,7 @@ if (formLogin) {
         // Verificar se o campo está vazio
         if (password === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo SENHA! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo SENHA! (JS)</p>";
             return;
         } else {
             document.getElementById("msg").innerHTML = "<p></p>";
@@ -129,7 +129,7 @@ if (formNewConfEmail) {
         // Verificar se o campo está vazio
         if (email === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo EMAIL! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo EMAIL! (JS)</p>";
             return;
         } else {
             document.getElementById("msg").innerHTML = "<p></p>";
@@ -146,7 +146,7 @@ if (formRecoverPass) {
         // Verificar se o campo está vazio
         if (email === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo EMAIL! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo EMAIL! (JS)</p>";
             return;
         } else {
             document.getElementById("msg").innerHTML = "<p></p>";
@@ -163,7 +163,7 @@ if (formUpdatePass) {
         // Verificar se o campo está vazio
         if (senha === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>Erro! Necessário preencher o campo Senha! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>Erro! Necessário preencher o campo Senha! (JS)</p>";
             return;
         } else {
             document.getElementById("msg").innerHTML = "<p></p>";
@@ -181,7 +181,7 @@ if (formAddUser) {
         // Verificar se o campo está vazio
         if (name === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo NOME! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo NOME! (JS)</p>";
             return;
         }
         //Receber o valor do campo EMAIL
@@ -189,7 +189,7 @@ if (formAddUser) {
         // Verificar se o campo está vazio
         if (email === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo EMAIL! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo EMAIL! (JS)</p>";
             return;
         }
         //Receber o valor do campo USUÁRIO
@@ -197,7 +197,7 @@ if (formAddUser) {
         // Verificar se o campo está vazio
         if (user === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Usuário! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Usuário! (JS)</p>";
             return;
         }
         //Validar o valor do campo SITUAÇÃO do USUÁRIO
@@ -205,7 +205,7 @@ if (formAddUser) {
         // Verificar se o campo está vazio
         if (adms_sits_user_id === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Situação! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Situação! (JS)</p>";
             return;
         }
         //Receber o valor do campo PASSWORD
@@ -213,13 +213,13 @@ if (formAddUser) {
         // Verificar se o campo está vazio
         if (password === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo SENHA! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo SENHA! (JS)</p>";
             return;
         }
         // Verificar se o campo senha possui 6 caracteres
         if (password.length < 6) {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha deve ter no minímo 6 caracteres! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha deve ter no minímo 6 caracteres! (JS)</p>";
             return;
         }
         // Verificar se o campo senha não possui numeros repetidos
@@ -227,13 +227,13 @@ if (formAddUser) {
         //https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Regular_Expressions
         if (password.match(/([1-9]+)\1{1,}/)) {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha Não pode conter números repetidos!</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha Não pode conter números repetidos!(JS)</p>";
             return;
         }
         // Verificar se o campo senha possui Letras
         if (!password.match(/[A-Za-z]/)) {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha deve ter no minímo uma letra!</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha deve ter no minímo uma letra!(JS)</p>";
             return;
         } else {
             document.getElementById("msg").innerHTML = "<p></p>";
@@ -251,7 +251,7 @@ if (formEditUser) {
         // Verificar se o campo está vazio
         if (name === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo NOME! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo NOME! (JS)</p>";
             return;
         }
         //Validar o valor do campo EMAIL
@@ -259,7 +259,7 @@ if (formEditUser) {
         // Verificar se o campo está vazio
         if (email === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo EMAIL! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo EMAIL! (JS)</p>";
             return;
         }
         //Validar o valor do campo USUÁRIO
@@ -267,7 +267,7 @@ if (formEditUser) {
         // Verificar se o campo está vazio
         if (user === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Usuário! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Usuário! (JS)</p>";
             return;
         }
         //Validar o valor do campo SITUAÇÃO do USUÁRIO
@@ -275,7 +275,7 @@ if (formEditUser) {
         // Verificar se o campo está vazio
         if (adms_sits_user_id === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Situação! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Situação! (JS)</p>";
             return;
         } else {
             document.getElementById("msg").innerHTML = "<p></p>";
@@ -293,13 +293,13 @@ if (formEditUserPass) {
         // Verificar se o campo está vazio
         if (password === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo SENHA! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo SENHA! (JS)</p>";
             return;
         }
         // Verificar se o campo senha possui 6 caracteres
         if (password.length < 6) {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha deve ter no minímo 6 caracteres! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha deve ter no minímo 6 caracteres! (JS)</p>";
             return;
         }
         // Verificar se o campo senha não possui numeros repetidos
@@ -307,13 +307,13 @@ if (formEditUserPass) {
         //https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Regular_Expressions
         if (password.match(/([1-9]+)\1{1,}/)) {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha Não pode conter números repetidos! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha Não pode conter números repetidos! (JS)</p>";
             return;
         }
         // Verificar se o campo senha possui Letras
         if (!password.match(/[A-Za-z]/)) {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha deve ter no minímo uma letra! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha deve ter no minímo uma letra! (JS)</p>";
             return;
         } else {
             document.getElementById("msg").innerHTML = "<p></p>";
@@ -331,7 +331,7 @@ if (formEditProfile) {
         // Verificar se o campo está vazio
         if (name === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo NOME! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo NOME! (JS)</p>";
             return;
         }
         //Validar o valor do campo EMAIL
@@ -339,7 +339,7 @@ if (formEditProfile) {
         // Verificar se o campo está vazio
         if (email === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo EMAIL! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo EMAIL! (JS)</p>";
             return;
         }
         //Validar o valor do campo USUÁRIO
@@ -347,7 +347,7 @@ if (formEditProfile) {
         // Verificar se o campo está vazio
         if (user === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Usuário! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Usuário! (JS)</p>";
             return;
         } else {
             document.getElementById("msg").innerHTML = "<p></p>";
@@ -365,13 +365,13 @@ if (formEditProfPass) {
         // Verificar se o campo está vazio
         if (password === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo SENHA! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo SENHA! (JS)</p>";
             return;
         }
         // Verificar se o campo senha possui 6 caracteres
         if (password.length < 6) {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha deve ter no minímo 6 caracteres! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha deve ter no minímo 6 caracteres! (JS)</p>";
             return;
         }
         // Verificar se o campo senha não possui numeros repetidos
@@ -379,13 +379,13 @@ if (formEditProfPass) {
         //https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Regular_Expressions
         if (password.match(/([1-9]+)\1{1,}/)) {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha Não pode conter números repetidos! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha Não pode conter números repetidos! (JS)</p>";
             return;
         }
         // Verificar se o campo senha possui Letras
         if (!password.match(/[A-Za-z]/)) {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha deve ter no minímo uma letra! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha deve ter no minímo uma letra! (JS)</p>";
             return;
         } else {
             document.getElementById("msg").innerHTML = "<p></p>";
@@ -394,7 +394,7 @@ if (formEditProfPass) {
     });
 }
 // ================================================================================================
-// VALIDAÇÃO DO FORMULÁRIO DA VIEW:editUserImage
+// Validação DO FORMULÁRIO DA VIEW:editUserImage
 const formEditUserImg = document.getElementById("form-edit-user-img");
 if (formEditUserImg) {
     formEditUserImg.addEventListener("submit", async (e) => {
@@ -403,7 +403,7 @@ if (formEditUserImg) {
         // Verificar se o campo está vazio
         if (new_image === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário Selecionar uma imagem(user)! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário Selecionar uma imagem(user)! (JS)</p>";
             return;
         } else {
         document.getElementById("msg").innerHTML = "<p></p>";
@@ -422,7 +422,7 @@ if (formEditProfImg) {
         // Verificar se o campo está vazio
         if (new_image === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário Selecionar uma imagem! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário Selecionar uma imagem! (JS)</p>";
             return;
         } else {
         document.getElementById("msg").innerHTML = "<p></p>";
@@ -441,7 +441,7 @@ function inputFileValImg(){
     
     if(!allowedExtension.exec(filePath)){
         new_image.value = '';
-        document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário Selecionar uma imagem JPG ou PNG! (validação JS)</p>";
+        document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário Selecionar uma imagem JPG ou PNG! (JS)</p>";
         return;
     } else {
         previewImage(new_image);
@@ -471,7 +471,7 @@ if (formAddSitsUsers) {
         // Verificar se o campo está vazio
         if (nameSits === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Nova situação! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Nova situação! (JS)</p>";
             return;
         } 
         //Validar o valor do campo SITUAÇÃO do USUÁRIO
@@ -479,7 +479,7 @@ if (formAddSitsUsers) {
         // Verificar se o campo está vazio
         if (admsSitsCor === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário Selecionar uma Cor para a Situação! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário Selecionar uma Cor para a Situação! (JS)</p>";
             return;
         } else {
             document.getElementById("msg").innerHTML = "<p></p>";
@@ -497,7 +497,7 @@ if (formAddColors) {
         // Verificar se o campo está vazio
         if (nameColors === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Nome da Cor! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Nome da Cor! (JS)</p>";
             return;
         } 
         //Validar o valor do campo SITUAÇÃO do USUÁRIO
@@ -505,7 +505,7 @@ if (formAddColors) {
         // Verificar se o campo está vazio
         if (codColors === "") {
             e.preventDefault();
-            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário Digitar o Código uma Cor! (validação JS)</p>";
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário Digitar o Código uma Cor! (JS)</p>";
             return;
         } else {
             document.getElementById("msg").innerHTML = "<p></p>";
@@ -513,3 +513,93 @@ if (formAddColors) {
         }
     });
 }
+// ================================================================================================
+// VALIDAÇÃO DO FORMULÁRIO DA VIEW DE EDIÇÃO DE CONFIGURAÇÕES DE E-MAIL: editEmailConf 
+const editEmailConf = document.getElementById("form-edit-email-confs");
+if (editEmailConf) {
+    editEmailConf.addEventListener("submit", async (e) => {
+        //Validar o valor do campo EMAIL
+        var email = document.querySelector("#email").value;
+        // Verificar se o campo está vazio
+        if (email === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo EMAIL! (JS)</p>";
+            return;
+        }
+        //Validar contém valor no campo Titulo do e-mail
+        var name = document.querySelector("#title").value;
+        // Verificar se o campo está vazio
+        if (name === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Titulo! (JS)</p>";
+            return;
+        }
+        //Validar se contém valor do campo NAME
+        var name = document.querySelector("#name").value;
+        // Verificar se o campo está vazio
+        if (name === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo NOME! (JS)</p>";
+            return;
+        }
+        //Validar se contém valor do campo HOST
+        var user = document.querySelector("#host").value;
+        // Verificar se o campo está vazio
+        if (user === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo HOST! (JS)</p>";
+            return;
+        }
+        //Validar se contém valor do campo USERNAME
+        var user = document.querySelector("#username").value;
+        // Verificar se o campo está vazio
+        if (user === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo USERNAME! (JS)</p>";
+            return;
+        } else {
+            document.getElementById("msg").innerHTML = "<p></p>";
+            return;
+        }
+    });
+}
+// ================================================================================================
+// Validação do formulário da view de Edição do E-mail de configuração: editEmailConfsPass
+const formEditEmailConfsPass = document.getElementById("form-edit-email-confs-pass");
+if (formEditEmailConfsPass) {
+    formEditEmailConfsPass.addEventListener("submit", async (e) => {
+        
+        //Receber o valor do campo PASSWORD
+        var password = document.querySelector("#password").value;
+        // Verificar se o campo está vazio
+        if (password === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo SENHA! (JS)</p>";
+            return;
+        }
+        // Verificar se o campo senha possui 6 caracteres
+        if (password.length < 6) {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha deve ter no minímo 6 caracteres! (JS)</p>";
+            return;
+        }
+        // Verificar se o campo senha não possui numeros repetidos
+        // PARA APRENDER MAIS SOBRE EXPRESSÕES REGULARES
+        //https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Regular_Expressions
+        if (password.match(/([1-9]+)\1{1,}/)) {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha Não pode conter números repetidos! (JS)</p>";
+            return;
+        }
+        // Verificar se o campo senha possui Letras
+        if (!password.match(/[A-Za-z]/)) {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-warning'>A Senha deve ter no minímo uma letra! (JS)</p>";
+            return;
+        } else {
+            document.getElementById("msg").innerHTML = "<p></p>";
+            return;
+        }
+    });
+}
+

@@ -29,23 +29,23 @@ class AdmsEditEmailConfsPass
     }
     /** ============================================================================================
     */
-    public function viewUsers(int $id):void
+    public function viewAtualEmailPass(int $id):void
     {
         $this->id = $id;
 
-        $viewUsers = new \App\adms\Models\helper\AdmsRead();
-        $viewUsers->fullRead("SELECT id FROM adms_users WHERE id=:id LIMIT :limit", "id={$this->id}&limit=1");
+        $viewAtualEmailPass = new \App\adms\Models\helper\AdmsRead();
+        $viewAtualEmailPass->fullRead("SELECT id FROM adms_confs_emails WHERE id=:id LIMIT :limit", "id={$this->id}&limit=1");
 
-        $this->resultBd = $viewUsers->getResult();
+        $this->resultBd = $viewAtualEmailPass->getResult();
         if($this->resultBd){
             // var_dump($this->resultBd);
             $this->result = true;
         }else{
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Usuário não encontrado!<p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Registro(e-mail) não encontrado!<p>";
             $this->result = false;
         }
     }
-    public function update(array $data = null):void
+    public function updateEmailPass(array $data = null):void
     {
         $this->data = $data;
         // var_dump($this->data);
@@ -85,13 +85,13 @@ class AdmsEditEmailConfsPass
         $this->data['password'] = password_hash($this->data['password'], PASSWORD_DEFAULT);
         $this->data['modified'] = date("Y-m-d H:i:s");
 
-        $upUser = new \App\adms\Models\helper\AdmsUpdate();
-        $upUser->exeUpdate("adms_users", $this->data, "WHERE id=:id", "id={$this->data['id']}");
-        if($upUser->getResult()){
-            $_SESSION['msg'] = "<p class='alert alert-success'>Ok! A Senha do usuário Editado com sucesso</p>";
+        $upEmailConfs = new \App\adms\Models\helper\AdmsUpdate();
+        $upEmailConfs->exeUpdate("adms_confs_emails", $this->data, "WHERE id=:id", "id={$this->data['id']}");
+        if($upEmailConfs->getResult()){
+            $_SESSION['msg'] = "<p class='alert alert-success'>Ok! A Senha do E-mail Editado com sucesso</p>";
             $this->result = true;
         }else{
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Não foi possível Editar a Senha do usuário</p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Não foi possível Editar a Senha do E-mail</p>";
             $this->result = false;
         }
     }

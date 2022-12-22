@@ -1,6 +1,6 @@
 <?php
 if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
-// echo "Views/login/login.php <h1> Pagina(view) para fazer o login</h1>";
+// echo "Views/login/editEmailConfsPass.php <h1> Pagina(view) Editar a senha do E-mail</h1>";
 // Manter os dados no formulário     
 if(isset($this->data['form'])){
     $valorForm = $this->data['form'];
@@ -9,20 +9,20 @@ if(isset($this->data['form'])){
 if(isset($this->data['form'][0])){
     $valorForm = $this->data['form'][0];
 } 
-// var_dump($this->data['form'][0]);
+// var_dump($valorForm);
 ?>
-<h1 class="text-center mt-5">Editar Senha do Usuário</h1>
+<h1 class="text-center mt-5">Editar Senha do E-mail</h1>
 <?php
-echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."list-users/index'> Listar </a> ";
+echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."list-email-confs/index'> Listar </a> ";
 if(isset($valorForm['id'])){
-    echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."view-users/index/".$valorForm['id']."'> Visualizar </a><br><hr>";
+    echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."view-email-confs/index/".$valorForm['id']."'> Visualizar </a><br><hr>";
 }
 if(isset($_SESSION['msg'])){
     echo $_SESSION['msg'];
     unset($_SESSION['msg']);
 } ?>
 <span id="msg"></span>
-<form action="" method="POST" id="form-edit-user-pass">
+<form action="" method="POST" id="form-edit-email-confs-pass">
     <div class="row m-2">
         <div class="col-12 m-2">
             <!-- input oculto pra enviar o id, via post -->
@@ -30,11 +30,11 @@ if(isset($_SESSION['msg'])){
 
             <div class="col-md-4 offset-md-4 mb-3">
                 <label class="form-label" for="password">Editar Senha<span style="color:#f00;">*</span></label>
-                <input class="form-control" type="password" name="password" id="password" onkeyup="passwordStrength()" autocomplete="on" value="<?php if(isset($valorForm['password'])){echo $valorForm['password'];} ?>" placeholder="Digite uma nova senha" required><br>
+                <input class="form-control" type="password" name="password" id="password" onkeyup="passwordStrength()" autocomplete="on" value="<?php if(isset($valorForm['password'])){echo $valorForm['password'];} ?>" placeholder="Digite uma nova senha"> required<br>
                 <span id="msgViewStrength"></span>
                 <span style="color:#f00;">* Campo obrigatório</span><br>
             <div class="col-md-2 offset-5 mb-3">
-                <button class="btn btn-primary" type="submit" name="SendEditUserPass" value="Salvar">Salvar</button>
+                <button class="btn btn-primary" type="submit" name="SendEditEmailPass" value="Salvar">Salvar</button>
             </div>
         </div>
     </div>
