@@ -49,11 +49,11 @@ class AdmsListEmailConfs
         $this->page = (int) $page ? $page : 1;
         // var_dump($this->page);
         //instância a classe:AdmsPagination, cria o objeto:$pagination 
-        $pagination = new \App\adms\Models\helper\AdmsPagination(URLADM.'list-users/index');
+        $pagination = new \App\adms\Models\helper\AdmsPagination(URLADM.'list-email-confs/index');
         //instância o método para fazer a paginação
         $pagination->condition($this->page, $this->limitResult);
         //cria a query, buscar quantidade total de registros da tabela:adms_users
-        $pagination->pagination("SELECT COUNT(usr.id) AS num_result FROM adms_users AS usr");
+        $pagination->pagination("SELECT COUNT(id) AS num_result FROM adms_confs_emails");
         //recebe o resultado do método:getResult() e atribui para:$this->resultPg
         $this->resultPg = $pagination->getResult();
         // var_dump($this->resultPg);
