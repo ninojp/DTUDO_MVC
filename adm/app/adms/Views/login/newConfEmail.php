@@ -9,17 +9,20 @@ if(isset($this->data['form'])){
         <div class="title">
             <span>Novo Link de Confirmação</span>
         </div>
-<!-- Verifica se existir mensagem na $global[posição]: $_SESSION['msg'], exibe, depois destroi -->
-<?php if(isset($_SESSION['msg'])){
-    echo $_SESSION['msg'];
-    unset($_SESSION['msg']); } ?>
-<!-- Local onde vai exibir a mensagem: $_SESSION['msg'] -->
-<span id="msg"></span>
         <form class="form-login" action="" method="POST" id="form-new-conf-email">
+            <div class="row">
+                <p>Solicitar um novo link para confirmação do seu e-mail (e-mail usado no cadastro)</p>
+            </div>
             <div class="row">
                 <i class="fa-solid fa-envelope"></i>
                 <input class="form-control" type="email" name="email" id="email" value="<?php if(isset($valorForm)){echo $valorForm['email'];} ?>" placeholder="Digite o seu Email" required>
             </div>
+                <!-- Verifica se existir mensagem na $global[posição]: $_SESSION['msg'], exibe, depois destroi -->
+                <?php if(isset($_SESSION['msg'])){
+                    echo $_SESSION['msg'];
+                    unset($_SESSION['msg']); } ?>
+                <!-- Local onde vai exibir a mensagem: $_SESSION['msg'] -->
+                <span id="msg"></span>
             <div class="row button">
                 <button class="btn btn-primary" type="submit" name="SendNewConfEmail" value="Enviar">Enviar</button>
             </div>

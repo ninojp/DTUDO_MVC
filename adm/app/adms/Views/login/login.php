@@ -19,12 +19,6 @@ if(isset($this->data['form'])){
         <div class="title">
             <span>Área Restrita</span>
         </div>
-<!-- Verifica se existir mensagem na $global[posição]: $_SESSION['msg'], exibe, depois destroi -->
-<?php if(isset($_SESSION['msg'])){
-    echo $_SESSION['msg'];
-    unset($_SESSION['msg']); } ?>
-<!-- Local onde vai exibir a mensagem: $_SESSION['msg'] -->
-<span id="msg"></span>
         <form class="form-login" action="" method="POST" id="form-login">
             <div class="row">
             <i class="fa-solid fa-envelope"></i>
@@ -35,6 +29,12 @@ if(isset($this->data['form'])){
                 <input class="form-control" type="password" name="password" autocomplete="on" id="password" value="<?php if(isset($valorForm)){echo $valorForm['password'];} ?>" placeholder="Digite a Senha do usuário" required><br>
                 <!-- <span style="color:#f00;">* Campo obrigatório</span><br> -->
             </div>
+                <!-- Verifica se existir mensagem na $global[posição]: $_SESSION['msg'], exibe, depois destroi -->
+                <?php if(isset($_SESSION['msg'])){
+                    echo $_SESSION['msg'];
+                    unset($_SESSION['msg']); } ?>
+                <!-- Local onde vai exibir a mensagem: $_SESSION['msg'] do JavaScript-->
+                <span id="msg"></span>
             <div class="row button">
                 <button class="btn btn-primary" type="submit" name="SendLogin" value="Acessar">Acessar</button>
             </div>
@@ -42,7 +42,6 @@ if(isset($this->data['form'])){
                 <!-- Para direcionar para o endereço, URL:URLADM, nome da CONTROLLER:NewUser precisa ter um SEPARADOR entre os termos(espaço ou traço)e depois o nome do método usado:index(dentro da controller) -->
                 <a class="btn btn-sm btn-outline-info me-4" href="<?=URLADM?>new-user/index">Cadastrar Usuário!</a>
                 <a class="btn btn-sm btn-outline-info" href="<?=URLADM?>recover-password/index">Recuperar Senha!</a>
-                <a class="btn btn-sm btn-outline-info" href="<?=URLADM?>new-conf-email/index">Novo E-mail confirmação!</a>
             </div>
         </form>
     </div><!-- Finalica a DIV:wrapper-login -->
