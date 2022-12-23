@@ -45,11 +45,11 @@ class ConfigView
         if(file_exists('app/'.$this->nameView.'.php')){
             // var_dump($this->data);
             //inclui o arquivo head.php com o cabeçalho html para todas as Paginas(Views)
-            include 'app/adms/Views/include/head.php';
+            include 'app/adms/Views/include/head_login.php';
             //se existir, inclui o arquivo(indicado pela controller)
             include 'app/'.$this->nameView.'.php';
             //inclui o arquivo footer.php com o rodapé html para todas as Paginas(Views)
-            include 'app/adms/Views/include/footer.php';
+            include 'app/adms/Views/include/footer_login.php';
         }else{
             //pode-se criar uma tabela com codigos de erros, para uso interno:Erro 501
             die("Erro - 005! Por Favor Tente Novamente ou entre em contato com: ".EMAILADM);

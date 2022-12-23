@@ -80,7 +80,7 @@ class AdmsSendEmail
 
             $this->sendEmailPhpMailer();
         }else{
-            $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! !<p>";
+            $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! !</p>";
             $this->result = false;
         }
     }

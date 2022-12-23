@@ -40,7 +40,7 @@ class AdmsEditColors
             // var_dump($this->resultBd);
             $this->result = true;
         }else{
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Cor não encontrada no DB!<p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Cor não encontrada no DB!</p>";
             $this->result = false;
         }
     }

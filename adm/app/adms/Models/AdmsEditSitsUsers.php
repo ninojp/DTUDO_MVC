@@ -42,7 +42,7 @@ class AdmsEditSitsUsers
             // var_dump($this->resultBd);
             $this->result = true;
         }else{
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Situação não encontrada!<p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Situação não encontrada!</p>";
             $this->result = false;
         }
     }

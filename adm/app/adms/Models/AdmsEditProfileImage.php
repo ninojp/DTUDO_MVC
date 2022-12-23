@@ -35,7 +35,7 @@ class AdmsEditProfileImage
             $this->result = true;
             return true;
         }else{
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Perfil não encontrado!<p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Perfil não encontrado!</p>";
             $this->result = false;
             return false;
         }

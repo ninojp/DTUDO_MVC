@@ -44,7 +44,7 @@ class AdmsViewSitsUsers
             $this->result = true;
             //se o atributo:$this->resultBd é false, atribui a frase na constante:$_SESSION['msg']
         } else {
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Situação não encontrada!<p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Situação não encontrada!</p>";
             $this->result = false;
         }
     }

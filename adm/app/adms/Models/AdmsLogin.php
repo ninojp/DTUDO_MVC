@@ -45,7 +45,7 @@ class AdmsLogin
             // var_dump($this->resultBd);
             $this->valEmailPerm();
         }else{
-            $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! Usuário ou a senha incorreta!<p>";
+            $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! Usuário ou a senha incorreta!</p>";
             $this->result = false;
         }        
     }
@@ -56,16 +56,16 @@ class AdmsLogin
         if($this->resultBd[0]['adms_sits_user_id'] == 1) {
             $this->valPassword();
         }elseif($this->resultBd[0]['adms_sits_user_id'] == 3){
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Necessário confirmar o E-mail, Solicite um novo:<a href='".URLADM."new-conf-email/index'> link aqui!</a><p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Necessário confirmar o E-mail, Solicite um novo:<a href='".URLADM."new-conf-email/index'> link aqui!</a></p>";
             $this->result = false;
         }elseif($this->resultBd[0]['adms_sits_user_id'] == 5){
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! E-mail Descadastrado(foi removido), entre em contato com a empresa!<p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! E-mail Descadastrado(foi removido), entre em contato com a empresa!</p>";
             $this->result = false;
         }elseif($this->resultBd[0]['adms_sits_user_id'] == 2){
-            $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! E-mail INATIVO, entre em contato com a empresa!<p>";
+            $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! E-mail INATIVO, entre em contato com a empresa!</p>";
             $this->result = false;
         }else{
-            $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! E-mail Spam!, entre em contato com a empresa!<p>";
+            $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! E-mail Spam!, entre em contato com a empresa!</p>";
             $this->result = false;
         }
     }
@@ -75,7 +75,7 @@ class AdmsLogin
     {   
         //verifica se o password q está no atributo:$data e o mesmo do atributo:$resultDB
         if(password_verify($this->data['password'], $this->resultBd[0]['password'])){
-            // $_SESSION['msg'] = "<p class='alert alert-success'>Login realizado com sucesso<p>";
+            // $_SESSION['msg'] = "<p class='alert alert-success'>Login realizado com sucesso</p>";
             //coloca na constante global:$_SESSION os seguiuntes valores
             $_SESSION['user_id'] = $this->resultBd[0]['id'];
             $_SESSION['user_name'] = $this->resultBd[0]['name'];
@@ -85,8 +85,8 @@ class AdmsLogin
             $this->result = true;
             // echo $_SESSION['msg'];
         }else{
-            // $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! Senha não incorreta<p>";
-            $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! Usuário ou Senha incorreta<p>";
+            // $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! Senha não incorreta</p>";
+            $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! Usuário ou Senha incorreta</p>";
             $this->result = false;
             // echo $_SESSION['msg'];
         }
@@ -115,8 +115,8 @@ class AdmsLogin
         //     // var_dump($this->resultDB);
         //     $this->valPassword();
         // }else{
-        //     // $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! Usuário ou Senha incorreta<p>";
-        //     $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! Usuário não encontrado<p>";
+        //     // $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! Usuário ou Senha incorreta</p>";
+        //     $_SESSION['msg'] = "<p class='alert alert-danger'>Erro! Usuário não encontrado</p>";
         //     $this->result = false;
         //     // echo $_SESSION['msg'];
         // } 

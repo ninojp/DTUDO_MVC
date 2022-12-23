@@ -42,7 +42,7 @@ class AdmsEditEmailConfs
             // var_dump($this->resultBd);
             $this->result = true;
         }else{
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Nenhum Registro(e-mail) encontrado!<p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Nenhum Registro(e-mail) encontrado!</p>";
             $this->result = false;
         }
     }
