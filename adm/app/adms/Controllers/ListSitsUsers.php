@@ -32,6 +32,9 @@ class ListSitsUsers
        } else {
             $this->data['listSitsUsers'] = [];
        }
+       // posição no array:$this->data['sidebarActive'], que define como ACTIVE no menu SIDEBAR
+       $this->data['sidebarActive'] = "list-sits-users";
+
        $loadSitsUsers = new \Core\ConfigView("adms/Views/sitsUsers/listSitsUsers", $this->data);
        $loadSitsUsers->loadView();
     }

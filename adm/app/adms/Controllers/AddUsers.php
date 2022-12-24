@@ -54,6 +54,8 @@ class AddUsers
         $this->data['select'] = $listSelect->listSelect();
         // var_dump($this->data);
 
+        // posição no array:$this->data['sidebarActive'], que define como ACTIVE no menu SIDEBAR
+        $this->data['sidebarActive'] = "list-users";
         //Instancio a classe:ConfigView() e crio o objeto:$loadView
         $loadView = new ConfigView("adms/Views/users/addUser", $this->data);
         //Instancia o método:loadView() da classe:ConfigView

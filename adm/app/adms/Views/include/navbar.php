@@ -49,7 +49,7 @@
                     </div>
                     <div class="item">
                         <a class="" href="<?=URLADM?>logout/index">
-                        <i class="fa-solid fa-person-walking-dashed-line-arrow-right"></i> Sair</a>
+                        <i class="fa-solid fa-right-from-bracket"></i> Sair</a>
                     </div>
                 </div>
             </div>

@@ -2,7 +2,6 @@
 namespace App\adms\controllers;
 if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 use Core\ConfigView;
-
 class Dashboard
 {
     /** Apartir do PHP 8, posso definir a TIPAGEM de varios tipos para o mesmo atributo, usando o PIPE|
@@ -14,9 +13,10 @@ class Dashboard
     public function index():void
     {
         // echo "adms/Controller/Dashboard.php: <h1> Página(controller) de Dashboard!</h1>";
-
-        $this->data = "Bem vindo ";
+        // $this->data = "Bem vindo ";
         // $this->data = [];
+        // posição no array:$this->data['sidebarActive'], que define como ACTIVE no menu SIDEBAR
+        $this->data['sidebarActive'] = "dashboard";
 
         //instancia a classe, cria o objeto e passa o parametro:$this->data
         $loadView = new ConfigView("adms/Views/dashboard/dashboard",$this->data);

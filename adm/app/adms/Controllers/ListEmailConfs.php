@@ -35,12 +35,13 @@ class ListEmailConfs
         }else{
             $this->data['listEmails'] = [];
         }
+        // posição no array:$this->data['sidebarActive'], que define como ACTIVE no menu SIDEBAR
+        $this->data['sidebarActive'] = "list-email-confs";
        
         //instancia a classe, cria o objeto e passa o parametro:$this->data, recebido da VIEW
         $loadView = new ConfigView("adms/Views/emailConfs/listEmailConfs",$this->data);
         //Instancia o método:loadView() da classe:ConfigView
         $loadView->loadView();
-        
     }
 
 }

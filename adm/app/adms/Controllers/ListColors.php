@@ -33,6 +33,9 @@ class ListColors
        } else {
             $this->data['listColors'] = [];
        }
+       // posição no array:$this->data['sidebarActive'], que define como ACTIVE no menu SIDEBAR
+       $this->data['sidebarActive'] = "list-colors";
+
        $loadlistColors = new \Core\ConfigView("adms/Views/colors/listColors", $this->data);
        $loadlistColors->loadView();
     }

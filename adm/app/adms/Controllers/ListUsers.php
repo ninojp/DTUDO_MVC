@@ -35,7 +35,9 @@ class ListUsers
         }else{
             $this->data['listUsers'] = [];
         }
-       
+        // posição no array:$this->data['sidebarActive'], que define como ACTIVE no menu SIDEBAR
+        $this->data['sidebarActive'] = "list-users";
+
         //instancia a classe, cria o objeto e passa o parametro:$this->data, recebido da VIEW
         $loadView = new ConfigView("adms/Views/users/listUsers",$this->data);
         //Instancia o método:loadView() da classe:ConfigView

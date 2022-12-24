@@ -29,8 +29,8 @@ let varBars = document.querySelector(".bars");
 varBars.addEventListener("click", () => {
     varSidebar.classList.contains("active") ? varSidebar.classList.remove("active") : varSidebar.classList.add("active");
 });
-//ALGO QUE ACHEI AGORA NO CODIGO DA AULA MAS NÃO HAVIA FEITO
-// window.matchMedia("(max-width: 768px)").matches ? VarSidebar.classList.remove("active") : VarSidebar.classList.add("active");
+// deixa o menu aberto for maior que 768px
+window.matchMedia("(max-width: 768px)").matches ? varSidebar.classList.remove("active") : varSidebar.classList.add("active");
 
 //====================================================================================================
 // INICIO do botão AÇÃO DropDrown do listar (vizualizar, editar, apagar) 
