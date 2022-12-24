@@ -76,7 +76,7 @@ class AdmsLogin
         //verifica se o password q está no atributo:$data e o mesmo do atributo:$resultDB
         if(password_verify($this->data['password'], $this->resultBd[0]['password'])){
             // $_SESSION['msg'] = "<p class='alert alert-success'>Login realizado com sucesso</p>";
-            //coloca na constante global:$_SESSION os seguiuntes valores
+            //coloca na constante global:$_SESSION os seguintes valores do usuário
             $_SESSION['user_id'] = $this->resultBd[0]['id'];
             $_SESSION['user_name'] = $this->resultBd[0]['name'];
             $_SESSION['user_nickname'] = $this->resultBd[0]['nickname'];

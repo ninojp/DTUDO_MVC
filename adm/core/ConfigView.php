@@ -25,6 +25,8 @@ class ConfigView
             // var_dump($this->data);
             //inclui o arquivo head.php com o cabeçalho html para todas as Paginas(Views)
             include 'app/adms/Views/include/head.php';
+            //inclui o arquivo com o NAVBAR
+            include 'app/adms/Views/include/navbar.php';
             //inclui o arquivo com o MENU
             include 'app/adms/Views/include/menu.php';
             //se existir, inclui o arquivo(indicado pela controller)

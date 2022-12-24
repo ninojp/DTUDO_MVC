@@ -39,7 +39,7 @@ class CarregarPgAdm
             $this->loadMetodo();
         }else{
             //abaixo pode ser usado o DIE ou a função RECURSIVA para chamar a pagina indica:CONTROLLER
-            die("Erro - 003! Tente Novamente ou entre em contato com: ".EMAILADM);
+            die("Erro - (loadPage())! Tente Novamente ou entre em contato: ".EMAILADM);
             // $this->urlController = $this->slugController(CONTROLLER);
             // $this->urlMetodo = $this->slugMetodo(METODO);
             // $this->urlParameter = "";
@@ -57,7 +57,7 @@ class CarregarPgAdm
             //passando a parametro recebido no atributo:$this->urlParameter
             $classLoad->{$this->urlMetodo}($this->urlParameter);
         }else{
-            die("Erro - 004! Por favor Tente Novamente ou entre em contato com: ".EMAILADM);
+            die("Erro - (loadMetodo())! Tente Novamente ou entre em contato: ".EMAILADM);
         }
     }
     /** ===========================================================================================
@@ -84,7 +84,7 @@ class CarregarPgAdm
             // $this->classLoad = "\\App\\adms\\Controllers\\".$this->urlController;
             $this->verifyLogin();
         }else{
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro: Página não encontrada!</p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (pgPrivate()): Página não encontrada!</p>";
             $urlRedirect = URLADM."login/index";
             header("Location: $urlRedirect");
         }
@@ -97,7 +97,7 @@ class CarregarPgAdm
         if((isset($_SESSION['user_id'])) and (isset($_SESSION['user_name'])) and (isset($_SESSION['user_email'])) ){
             $this->classLoad = "\\App\\adms\\Controllers\\".$this->urlController;
         }else{
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro: Para acessar a Página realize o login!</p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (verifyLogin()): Para acessar a Página realize o login!</p>";
             $urlRedirect = URLADM."login/index";
             header("Location: $urlRedirect"); 
         }

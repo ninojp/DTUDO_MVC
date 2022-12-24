@@ -96,6 +96,7 @@ body{
     border-radius: 50%;
 }/* Fim do NAVBAR do ADM */
 
+/* ================================================================================================= */
 /* INICIO dropdown do navbar */
 .dropdown_menu{
     display: none;
@@ -140,22 +141,26 @@ body{
     overflow: hidden;/* tudo q não couber na div será ocultado */
     padding-left: 5px;
 }
+.dropdown_menu li:hover .msg_text{
+    white-space: pre-wrap;/* colocado para exibir TODO o texto ao invés d quebrar a linha (quando passar o mouse) */
+}
+/* Menu DropDown do PERFIL do usuário ------------------------------------------------------------*/
 .dropdown_menu li:hover,
 .dropdown_menu .item:hover{
     background-color: #e5dcdc;
     border-radius: 5px;
 }
-.dropdown_menu li:hover .msg_text{
-    white-space: pre-wrap;/* colocado para exibir TODO o texto ao invés d quebrar a linha (quando passar o mouse) */
-}
-.dropdown_menu .item span{
-    margin-right: 10px;
+.dropdown_menu .item a{
+    padding-right: 10px;
+    text-decoration: none;
+    font-size: 1rem;
 }
 .dropdown_menu.setting{
     width: 150px;
 }
 /* FIM dropdown do navbar */
 
+/* =============================================================================================== */
 /* INICIO do MAIN da pagina ADM */
 .main_content{
     display: flex;
