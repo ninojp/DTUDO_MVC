@@ -1,0 +1,559 @@
+@charset "UTF-8";
+/* Google Fontes escolhidas
+font-family: 'Cinzel Decorative', cursive;
+font-family: 'Cutive Mono', monospace;
+font-family: 'Kalam', cursive;
+font-family: 'Ubuntu', sans-serif; */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+    text-decoration: none;
+}
+/* Variáveis GLOBAIs das CORES da Pagina */
+:root{
+    --gelo: rgba(235,238,246,1);
+    --gelo2: rgba(246,247,249,1);
+    --branco: #fff;
+    --transp: transparent;
+    --dark: rgba(55,54,54,1);
+    --preto: #000;
+    --preto20: rgba(0,0,0,0.2);
+    --preto40: rgba(0,0,0,0.4);
+    --preto60: rgba(0,0,0,0.6);
+    --preto80: rgba(0,0,0,0.8);
+    --azulClarinho: rgb(163, 198, 251);
+    --azulClaro: rgba(13,110,253,1);
+    --azulMedio: rgba(4,9,170,1);
+    --azulEscuro: rgba(5,35,57,1);
+    --azulScuro: rgba(1,13,21,1);
+    --gold: rgba(255,215,0,1);
+    --laranja: rgba(240,191,76,1);
+    --vermelho: rgba(172,2,2,1);
+    --verdeScuro: rgba(6,16,0,1);
+    --verdeEscuro: rgba(16,44,0,1);
+    --verdeClaro: rgba(27,74,0,1);
+}
+body{
+    min-height: 100vh;
+    background-color: var(--preto) !important;
+    color: var(--azulClaro);
+}
+/* INICIO do NAVBAR do ADM */
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--azulScuro);
+    color: var(--azulClaro);
+    box-shadow: 0px 0px 10px 0px var(--azulClaro);
+    padding: 5px 15px;
+    font-size: 17px;
+    top: 0;
+    z-index: 1;
+}
+.navbar .navbar_content{
+    display: flex;
+    align-items: center;
+}
+.navbar .bars{
+    margin: 0 20px 0 30px;
+    cursor: pointer;
+    font-size: 1.7em;
+}
+.notification{
+    margin-right: 20px;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+.logo{
+    height: 40px;
+}
+.notification,
+.avatar{
+    position: relative;
+    cursor: pointer;
+}
+.notification .number{
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--gelo);
+    color: var(--azulScuro);
+    font-size: 13px;
+    font-weight: bold;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    right: -10px;
+    top: -10px;
+}
+.avatar img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}/* Fim do NAVBAR do ADM */
+
+/* INICIO dropdown do navbar */
+.dropdown_menu{
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    box-shadow: 0px 4px 16px 0px var(--azulClaro);
+    background-color: var(--gelo);
+    color: var(--azulScuro);
+    width: 230px;
+    border-radius: 5px;
+}
+/* QUANDO A CLASSE É COLOCADA JUNTO A CLASSE ANTERIOR SEM ESPAÇO, indica q as DUAS classes PERTENCEM ao mesmo ELEMENTO */
+.dropdown_menu.active{
+    display: block;
+}
+.dropdown_content{
+    max-height: 400px;
+    overflow-y: auto;
+}
+.dropdown_menu li,
+.dropdown_menu .item{
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-bottom: 1px solid var(--azulClaro);
+    cursor: pointer;
+    font-size: 14px;
+}
+.dropdown_menu li img{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    flex-shrink: 0;
+    border-radius: 50%;
+}
+/* NESTE TEXTO FOI COLOCADO UMA QUEBRA AUTOMATICA DE LINHA */
+.dropdown_menu li .msg_text{
+    font-style: italic;
+    text-overflow: ellipsis;/* será colocado (...) no fim da linha */
+    white-space: nowrap;/* não vai quebrar a linha */
+    overflow: hidden;/* tudo q não couber na div será ocultado */
+    padding-left: 5px;
+}
+.dropdown_menu li:hover,
+.dropdown_menu .item:hover{
+    background-color: #e5dcdc;
+    border-radius: 5px;
+}
+.dropdown_menu li:hover .msg_text{
+    white-space: pre-wrap;/* colocado para exibir TODO o texto ao invés d quebrar a linha (quando passar o mouse) */
+}
+.dropdown_menu .item span{
+    margin-right: 10px;
+}
+.dropdown_menu.setting{
+    width: 150px;
+}
+/* FIM dropdown do navbar */
+
+/* INICIO do MAIN da pagina ADM */
+.main_content{
+    display: flex;
+}
+/* FIM do MAIN da pagina ADM */
+
+/* Inicio do SIDE-BAR */
+.main_content .sidebar{
+    position: sticky;
+    top: 60px;/*testar depois, ainda não muda nada */
+    height: calc(100vh - 100px);
+    width: 60px;
+    /* width: 250px; */
+    overflow: auto;/* para exibir a barra de rolagem se for necessário */
+    overflow-x: hidden;
+    flex-shrink: 0;
+    background-color: var(--azulScuro);
+    color: var(--azulClaro);
+    box-shadow: 4px 4px 4px 0px rgba(13, 110, 253, 0.3);
+    transition: 0.3s width ease-in-out;
+}
+@media (max-width: 768px) {
+    .main_content .sidebar{
+        width: 60px;
+        position: fixed;
+        z-index: 1;
+        width: 0;
+    }
+}
+.main_content .sidebar:hover,
+.main_content .sidebar.active{
+    width: 250px;
+}
+.sidebar .sidebar_nav{
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    font-size: 1em;
+    transition: 0.3s background ease;/* erro testar novamente*/
+    font-size: 16px;
+    padding: 15px 3px;
+}
+.sidebar a{
+    color: var(--azulClaro);
+}
+.sidebar a:hover{
+    background-color: var(--azulEscuro);
+    color: var(--azulClaro);
+}
+.sidebar .sidebar_nav.active{
+    background-color: var(--azulEscuro);
+    color: var(--azulClaro);
+}
+.sidebar .sidebar_nav.active::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 5px;
+    background-color: var(--branco);
+}
+.sidebar_nav .icon{
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+/* FIM do SIDE-BAR */
+
+/* Inicio do conteudo do ADM */
+.main_content .wrapper{
+    width: 100%;
+    padding: 15px;
+    background-color: var(--azulEscuro);
+}
+.main_content .row{
+    background-color: var(--branco);
+    border-radius: 6px;
+}
+.wrapper .row{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    flex-wrap: wrap;
+}
+
+/* Inicio do Dashboard */
+.row .box{
+    position: relative;
+    display: flex;
+    width: 23%;
+    height: 150px;
+    margin: 5px 1%;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+    flex-direction: column;
+    box-shadow: 0px 4px 16px 0px var(--azulClaro);
+}
+.row .box_first{
+    background-color: var(--azulEscuro);
+}
+.row .box_second{
+    background-color: var(--dark);
+}
+.row .box_third{
+    background-color: var(--verdeClaro);
+}
+.row .box_fourth{
+    background-color: var(--gold);
+}
+.box span{
+    margin: 5px 0;
+    font-size: 17px;
+    position: relative;
+}
+@media (max-width: 1024px) {
+    .row .box{
+        width: 48%;
+    }
+}
+@media (max-width: 768px) {
+    .row .box{
+        width: 98%;
+    }
+}
+/* FIM do Dashboard */
+
+/* INICIO do Listar */
+.row .top_list{
+    width: 100%;
+    overflow: hidden;
+}
+.top_list .title_content{
+    float: left;
+    color: var(--azulClaro);
+    padding: 10px 16px;
+    font-size: 17px;
+}
+.top_list .top_list_right{
+    padding: 10px 5px 5px 0;
+    float: right;
+}
+.table_list{
+    margin-top: 15px;
+    width: 100%;
+}
+.table_list .list_head .list_head_content{
+    background-color: var(--gelo);
+    color: var(--azulScuro);
+    padding: 10px;
+}
+.table_list .list_body .list_body_content{
+    background-color: var(--gelo2);
+    color: var(--azulEscuro);
+    padding: 8px;
+    text-align: center;
+}
+@media (max-width: 550px) {
+    .tb_sm_none,
+    .tb_md_none,
+    .tb_lg_none{
+        display: none;
+    }
+}
+@media (max-width: 790px) {
+    .tb_md_none,
+    .tb_lg_none{
+        display: none;
+    }
+}
+@media (max-width: 1024px) {
+    .tb_lg_none{
+        display: none;
+    }
+}
+@media (max-width: 1290px) {
+    .tb_xxl_none{
+        display: none;
+    }
+}
+/* Inicio da paginação */
+.content_pagination{
+    display: flex;
+    margin: 15px 0;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.pagination{
+    display: inline-block;
+    font-size: 17px;
+}
+.pagination a{
+    float: left;
+    color: var(--azulScuro);
+    text-decoration: none;
+    padding: 8px 14px;
+    transition: background-color .3s;
+}
+.pagination a.active{
+    background-color: var(--azulEscuro);
+    color: var(--branco);
+}
+.pagination a:hover:not(.active){
+    background-color: var(--gelo);
+}
+/* FIM da paginação */
+
+/* FIM do Listar */
+
+/* Inicio personalizar BOTÕES */
+.btn_primary{
+    background-color: var(--azulClaro);
+    color: var(--branco);
+    font-size: 15px;
+    padding: 5px 8px;
+    border: 1px solid var(--azulClaro);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+.btn_primary:hover{
+    background-color: var(--gelo2);
+    color: var(--azulClaro);
+}
+.btn_success{
+    background-color: var(--verdeClaro);
+    color: var(--branco);
+    font-size: 15px;
+    padding: 5px 8px;
+    border: 1px solid var(--verdeClaro);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+.btn_success:hover{
+    background-color: var(--gelo2);
+    color: var(--verdeClaro);
+}
+.btn_warning{
+    background-color: var(--laranja);
+    color: var(--branco);
+    font-size: 15px;
+    padding: 5px 8px;
+    border: 1px solid var(--laranja);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+.btn_warning:hover{
+    background-color: var(--gelo2);
+    color: var(--laranja);
+}
+.btn_danger{
+    background-color: var(--vermelho);
+    color: var(--branco);
+    font-size: 15px;
+    padding: 5px 8px;
+    border: 1px solid var(--vermelho);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+.btn_danger:hover{
+    background-color: var(--gelo2);
+    color: var(--vermelho);
+}
+.btn_info{
+    background-color: var(--azulMedio);
+    color: var(--branco);
+    font-size: 15px;
+    padding: 5px 8px;
+    border: 1px solid var(--azulMedio);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+.btn_info:hover{
+    background-color: var(--gelo2);
+    color: var(--azulMedio);
+}
+/* Botão DropDown */
+.drop_btn_action{
+    background-color: var(--azulMedio);
+    color: var(--branco);
+    font-size: 15px;
+    padding: 5px 8px;
+    border: 1px solid var(--azulMedio);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+.drop_btn_action:hover,
+.drop_btn_action:focus{
+    background-color: var(--gelo2);
+    color: var(--azulMedio);
+}
+.drop_action{
+    position: relative;
+    display: inline-block;
+}
+.drop_action_item{
+    display: none;
+    position: absolute;
+    right: 0px;
+    z-index: 1;
+    background-color: var(--branco);
+    min-width: 130px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px var(--preto40);
+}
+.drop_action_item a{
+    padding: 8px 12px 4px 12px;
+    text-decoration: none;
+    display: block;
+}
+.drop_action_item a:hover{
+    background-color: var(--gelo);
+}
+.drop_action_item.show_drop_action{
+    display: block;
+    border-radius: 7px;
+}
+/* FIM personalizar BOTÕES */
+
+/* INICIO do Formulário */
+.wrapper .content_form{
+    width: 100%;
+    padding: 1em;
+}
+.form_adm{
+    width: 100%;
+    position: relative;
+    margin: .5em auto 0 auto;
+}
+.row_input{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.1em 1.5em;
+    margin-bottom: 1.1em;
+}
+.title_input{
+    color: var(--azulScuro);
+    font-size: 1.1em;
+}
+input.input_form,
+textarea.input_form,
+select.input_form{
+    width: 100%;
+    padding: .5em .5em;
+    font-weight: 500;
+    border-radius: 5px;
+    border: 1.2px solid var(--azulClarinho);
+    margin-top: 5px;
+}
+textarea.input_form{
+    resize: none;
+}
+input.input_form:focus,
+textarea.input_form:focus,
+select.input_form:focus{
+    outline: none;
+    border: 1.5px solid var(--azulClaro);
+}
+/* FIM do Formulário */
+
+/* INICIO da pagina Visualizar */
+.content_adm{
+    width: 100%;
+    padding: 1em;
+    background-color: var(--gelo2);
+}
+.content_adm .view_det{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+    background-color: var(--gelo);
+}
+.view_det .view_det_title{
+    width: 4em;
+    color: var(--azulMedio);
+    font-size: 1em;
+    font-weight: 500;
+    margin: .3em .4em .3em .5em;
+}
+.view_det .view_det_info{
+    width: 100%;
+    padding: 3px 10px;
+}
+/* FIM da pagina Visualizar */
+
+/* FIM do conteudo ADM */
