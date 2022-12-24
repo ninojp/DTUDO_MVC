@@ -41,6 +41,9 @@ class ViewEmailConfs
      * método para carregar a VIEW - @return void     */
     private function loadViewEmailConfs():void
     {
+        // posição no array:$this->data['sidebarActive'], que define como ACTIVE no menu SIDEBAR
+        $this->data['sidebarActive'] = "list-email-confs";
+        
         //instancia a classe, cria o objeto e passa o parametro:$this->data, recebido da VIEW
         $loadView = new ConfigView("adms/Views/emailConfs/viewEmailConfs", $this->data);
         //Instancia o método:loadView() da classe:ConfigView

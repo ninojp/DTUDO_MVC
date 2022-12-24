@@ -38,6 +38,9 @@ class ViewColors
      * @return void     */
     private function loadViewColors()
     {
+        // posição no array:$this->data['sidebarActive'], que define como ACTIVE no menu SIDEBAR
+        $this->data['sidebarActive'] = "list-colors";
+
         $loadView = new \Core\ConfigView("adms/Views/colors/viewColors", $this->data);
         $loadView->loadView();
     }

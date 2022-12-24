@@ -50,7 +50,10 @@ class AddSitsUsers
         $listSelect = new \App\adms\Models\AdmsAddSitsUsers();
         $this->data['selectCor'] = $listSelect->listSelectCor();
 
-        $loadView = new \Core\ConfigView("adms/Views/sitsUsers/addSitUsers", $this->data);
+        // posição no array:$this->data['sidebarActive'], que define como ACTIVE no menu SIDEBAR
+        $this->data['sidebarActive'] = "list-sits-users";
+
+        $loadView = new \Core\ConfigView("adms/Views/sitsUsers/addSitsUsers", $this->data);
         $loadView->loadView();
     }
 }

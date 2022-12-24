@@ -43,10 +43,13 @@ class AddColors
             $this->loadViewAddColors();
         }
     }
-    /** =================================================================================================
+    /** ==============================================================================================
      * @return void     */
     private function loadViewAddColors():void
     {
+        // posição no array:$this->data['sidebarActive'], que define como ACTIVE no menu SIDEBAR
+        $this->data['sidebarActive'] = "list-colors";
+        
         //Cria o objeto:$loadViewAddColors e instância a classe:ConfigView() 
         $loadViewAddColors = new \Core\ConfigView("adms/Views/colors/addcolors", $this->data);
         //Instância o método:loadView(), para carregar a view e enviar os dados para a mesma

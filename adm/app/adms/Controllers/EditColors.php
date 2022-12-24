@@ -40,6 +40,9 @@ class EditColors
      * @return void     */
     private function viewEditColors(): void
     {
+        // posição no array:$this->data['sidebarActive'], que define como ACTIVE no menu SIDEBAR
+        $this->data['sidebarActive'] = "list-colors";
+
         //Instancio a classe:ConfigView() e crio o objeto:$loadView
         $loadView = new \Core\ConfigView("adms/Views/colors/editColors", $this->data);
         //Instancia o método:loadView() da classe:ConfigView

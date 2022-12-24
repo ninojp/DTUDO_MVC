@@ -37,6 +37,9 @@ class ViewSitsUsers
      * @return void     */
     private function loadViewSitsUsers()
     {
+        // posição no array:$this->data['sidebarActive'], que define como ACTIVE no menu SIDEBAR
+        $this->data['sidebarActive'] = "list-sits-users";
+
         $loadView = new \Core\ConfigView("adms/Views/sitsUsers/viewSitsUsers", $this->data);
         $loadView->loadView();
     }

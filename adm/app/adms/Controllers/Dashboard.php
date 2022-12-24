@@ -12,6 +12,15 @@ class Dashboard
      * e enviar os dados para a view, através do método:loadView() - @return void */
     public function index():void
     {
+        $countUsers = new \App\adms\Models\AdmsDashboard();
+        $countUsers->countUsers();
+        if($countUsers->getResult()){
+            // var_dump($countUsers->getResultBd());
+            $this->data['countUsers'] = $countUsers->getResultBd();
+        } else {
+            $this->data['countUsers'] = false;
+        }
+
         // echo "adms/Controller/Dashboard.php: <h1> Página(controller) de Dashboard!</h1>";
         // $this->data = "Bem vindo ";
         // $this->data = [];

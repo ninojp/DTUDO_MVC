@@ -46,6 +46,9 @@ class EditEmailConfsPass
      * @return void     */
     private function loadViewEditEmailPass(): void
     {
+        // posição no array:$this->data['sidebarActive'], que define como ACTIVE no menu SIDEBAR
+        $this->data['sidebarActive'] = "list-email-confs";
+        
         //Instancio a classe:ConfigView() e crio o objeto:$loadView
         $loadView = new ConfigView("adms/Views/emailConfs/editEmailConfsPass", $this->data);
         //Instancia o método:loadView() da classe:ConfigView
