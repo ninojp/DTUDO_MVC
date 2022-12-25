@@ -21,25 +21,24 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
                 <?php
                     if(!empty($this->data['countUsers'])){
                         echo $this->data['countUsers'][0]['qntUsers'];
-                    };
-                ?>
+                    };  ?>
             </span>
-            <span>Usuários</span>
+            <span>Usuários Cadastrados</span>
         </div>
         <div class="box box_second">
             <span class="fa-solid fa-truck-fast"></span>
             <span>43</span>
-            <span>Entregas</span>
+            <span>Entregas(exemplo)</span>
         </div>
         <div class="box box_third">
             <span class="fa-solid fa-circle-check"></span>
             <span>12</span>
-            <span>Completas</span>
+            <span>Completas(exemplo)</span>
         </div>
         <div class="box box_fourth">
             <span class="fa-solid fa-triangle-exclamation"></span>
             <span>3</span>
-            <span>Alertas</span>
+            <span>Alertas(exemplo)</span>
         </div>
     </div>
 </div>
