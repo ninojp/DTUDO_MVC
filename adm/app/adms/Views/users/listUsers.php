@@ -26,7 +26,7 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
 //     <?php 
 // } ?>
 
-<!-- Inicio do conteudo do ADM -->
+<!-- Inicio do conteudo LISTAR do ADM -->
 <div class="wrapper">
     <div class="row">
         <div class="top_list">
@@ -46,25 +46,23 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
                 <tr>
                     <th class="list_head_content">ID</th>
                     <th class="list_head_content">Nome</th>
+                    <!-- classe:tb_sm_none para OCULTAR o item em resolucão menores -->
                     <th class="list_head_content tb_sm_none">E-mail</th>
-                    <th class="list_head_content tb_sm_none">Situação</th>
+                    <th class="list_head_content tb_sm_none">Situação Cadastral</th>
                     <th class="list_head_content">Botões de Ações</th>
                 </tr>
             </thead>
             <tbody class="list_body">
-                <?php 
-                    foreach ($this->data['listUsers'] as $user) {
-                        // var_dump($user);
-                        extract($user);  ?>
+                <?php foreach ($this->data['listUsers'] as $user) { extract($user);  ?>
                 <tr>
                     <td class="list_body_content"><?=$id;?></td>
                     <td class="list_body_content"><?=$name_usr;?></td>
                     <td class="list_body_content tb_sm_none"><?=$email;?></td>
                     <td class="list_body_content tb_sm_none"><span style='color:<?=$color;?>'><?=$name_sit;?></span></td>
                     <td class="list_body_content">
-                        <?php echo "<a class='btn btn-sm btn-outline-primary' href='" . URLADM . "view-users/index/$id'><i class='fa-solid fa-eye'></i> Ver</a>"; 
-                        echo "<a class='btn btn-sm btn-warning' href='" . URLADM . "edit-users/index/$id'><i class='fa-solid fa-pen-to-square'></i>Editar </a>";
-                        echo "<a class='btn btn-sm btn-outline-danger' href='" . URLADM . "delete-users/index/$id' onclick='return confirm(\"Tem certeza que deseja excluir o registro?\")'><i class='fa-solid fa-trash-can'></i>Apagar </a>";
+                        <?php echo "<a class='btn btn-sm btn-outline-primary mx-1' href='".URLADM."view-users/index/$id'><i class='fa-solid fa-eye'></i> Ver</a>"; 
+                        echo "<a class='btn btn-sm btn-outline-warning mx-1' href='".URLADM."edit-users/index/$id'><i class='fa-solid fa-pen-to-square'></i> Editar</a>";
+                        echo "<a class='btn btn-sm btn-outline-danger mx-1' href='".URLADM."delete-users/index/$id' onclick='return confirm(\"Tem certeza que deseja excluir o registro?\")'><i class='fa-solid fa-trash-can'></i> Apagar</a>";
                         ?>
                     </td>
                 </tr>
@@ -89,9 +87,6 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
             </tbody>
         </table>
         <!-- Inicio da paginação -->
-        <?php
-            //imprime os links de paginação
-            echo $this->data['pagination'];
-        ?>
+        <?php echo $this->data['pagination']; ?>
     </div>
 </div>

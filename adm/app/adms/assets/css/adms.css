@@ -171,7 +171,7 @@ body{
 .main_content .sidebar{
     position: sticky;
     top: 60px;/*testar depois, ainda não muda nada */
-    height: calc(100vh - 100px);
+    height: calc(100vh - 120px);
     width: 60px;
     /* width: 250px; */
     overflow: auto;/* para exibir a barra de rolagem se for necessário */
@@ -192,7 +192,8 @@ body{
 }
 .main_content .sidebar:hover,
 .main_content .sidebar.active{
-    width: 250px;
+    /* width: 250px; */
+    width: fit-content;
 }
 .sidebar .sidebar_nav{
     display: flex;
@@ -319,6 +320,7 @@ body{
     background-color: var(--gelo);
     color: var(--azulScuro);
     padding: 10px;
+    text-align: center;
 }
 .table_list .list_body .list_body_content{
     background-color: var(--gelo2);
