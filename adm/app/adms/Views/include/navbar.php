@@ -38,11 +38,11 @@
                 }
                 ?>
                 <!-- <img src="imgs/TI_link.png" alt="foto do usuário" width=""> -->
-                <div class="dropdown_menu setting">
-                    <div class="item">
-                        <a class="" href="<?=URLADM?>view-profile/index">
-                        <i class="fa-solid fa-circle-user"></i> Perfil</a>
-                    </div>
+                <div class="dropdown_menu setting botao">
+                    <a class="botao item" href="<?=URLADM?>view-profile/index">    
+                        <div class="item botao">
+                            <i class="item botao fa-solid fa-circle-user"></i> Perfil
+                        </div></a>
                     <div class="item">
                         <a class="" href="<?=URLADM?>edit-profile/index">
                         <i class="fa-solid fa-gear"></i> Configurações</a>

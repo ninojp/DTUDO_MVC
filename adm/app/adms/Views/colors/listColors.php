@@ -26,14 +26,14 @@ if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://lo
     <div class="row">
         <div class="top_list">
             <span class="title_content">
-                <h2>Listar Usuários</h2>
+                <h2>Listar Cores</h2>
             </span>
             <!-- Mensagens de avisos -->
             <?php if (isset($_SESSION['msg'])) {
                         echo $_SESSION['msg'];
                         unset($_SESSION['msg']); }?>
             <div class="top_list_right">
-                <a class="btn btn-sm btn_success" href="<?= URLADM.'add-users/index';?>" type="button">Cadastrar</a>
+                <a class="btn btn-sm btn_success" href="<?= URLADM.'add-colors/index';?>" type="button">Cadastrar</a>
             </div>
         </div>
         <table class="table_list">

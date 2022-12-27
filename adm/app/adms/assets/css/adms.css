@@ -302,8 +302,9 @@ body{
     width: 100%;
     overflow: hidden;
 }
-.top_list .title_content{
-    float: left;
+.title_content{
+    align-self: center;
+    text-align: center;
     color: var(--azulClaro);
     padding: 10px 16px;
     font-size: 17px;
@@ -551,16 +552,36 @@ select.input_form:focus{
     background-color: var(--gelo);
 }
 .view_det .view_det_title{
-    width: 4em;
+    /* width: auto; */
     color: var(--azulMedio);
     font-size: 1em;
-    font-weight: 500;
+    font-weight: 600;
     margin: .3em .4em .3em .5em;
 }
 .view_det .view_det_info{
-    width: 100%;
+    font-size: 0.9em;
+    font-weight: 400;
     padding: 3px 10px;
+    
 }
 /* FIM da pagina Visualizar */
-
 /* FIM do conteudo ADM */
+
+/* Definições gerais da classe alert */
+.espaco_alert{
+    width: 100%;
+    justify-content: center;
+}
+.alert {
+    padding: 3px 10px;
+    width: max-content;
+    /* justify-self: center; */
+}
+/* so pra colocar o link da DIC como botâo */
+.botao a{
+    text-decoration: none;
+    background-color: #000;
+}
+a{
+    text-decoration: none;
+}

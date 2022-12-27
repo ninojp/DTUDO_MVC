@@ -33,14 +33,16 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
             <span class="title_content">
                 <h2>Listar Usuários</h2>
             </span>
-            <!-- Mensagens de avisos -->
-            <?php if (isset($_SESSION['msg'])) {
-                        echo $_SESSION['msg'];
-                        unset($_SESSION['msg']); }?>
             <div class="top_list_right">
                 <a class="btn btn-sm btn_success" href="<?= URLADM.'add-users/index';?>" type="button">Cadastrar</a>
             </div>
         </div>
+        <span class="espaco_alert"></span>
+            <!-- Mensagens de avisos -->
+            <?php if (isset($_SESSION['msg'])) {
+                    echo $_SESSION['msg'];
+                    unset($_SESSION['msg']); }?>
+        </span>
         <table class="table_list">
             <thead class="list_head">
                 <tr>

@@ -37,7 +37,7 @@ if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://lo
                         echo $_SESSION['msg'];
                         unset($_SESSION['msg']); }?>
             <div class="top_list_right">
-                <a class="btn btn-sm btn_success" href="<?= URLADM.'add-users/index';?>" type="button">Cadastrar</a>
+                <a class="btn btn-sm btn_success" href="<?= URLADM.'add-email-confs/';?>" type="button">Cadastrar</a>
             </div>
         </div>
         <table class="table_list">
