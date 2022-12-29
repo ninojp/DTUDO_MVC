@@ -27,28 +27,20 @@ if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://lo
 //     echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."edit-email-confs-pass/index/$id'> Editar Senha </a>";
 //     echo "<a class='btn btn-sm btn-outline-danger ms-4' href='".URLADM."delete-email-confs/index/$id' onclick='return confirm(\"Tem certeza que deseja excluir o registro?\")'> Apagar </a><br><hr>";
 // }?>
-
-
 <!-- Inicio do conteudo do Visualizar ADM -->
-<div class="wrapper">
-    <div class="row">
-            <?php if(!empty($this->data['viewEmailConf'])){
-                    // var_dump($this->data['viewUsers'][0]);
-                    extract($this->data['viewEmailConf'][0]); ?>
-            <div class="col-9 title_content">
-                <h2 class="text-center">Detalhes da Configuração do E-mail</h2>
-                <a class="btn btn-sm btn-outline-success mx-1" href="<?=URLADM;?>list-email-confs/index"><i class="fa-solid fa-rectangle-list"></i> Listar</a>
-                <a class="btn btn-sm btn-outline-warning mx-1" href="<?=URLADM;?>edit-email-confs/index/<?=$id;?>"><i class='fa-solid fa-pen-to-square'></i> Editar</a>
-                <a class="btn btn-sm btn-outline-info mx-1" href="<?=URLADM;?>edit-email-confs-pass/index/<?=$id;?>"><i class="fa-solid fa-unlock-keyhole"></i> Editar Senha</a>
-                <a class="btn btn-sm btn-outline-danger mx-1" href="<?=URLADM;?>delete-email-confs/index/<?=$id;?>" onclick="return confirm('Tem certeza que deseja excluir o registro?')"><i class='fa-solid fa-trash-can'></i> Apagar Usuário</a>
+<div class="wrapper_form">
+    <div class="row_form">
+        <div class="title_form">
+                <h2>Detalhes do E-mail</h2>
             </div>
-        <span class="espaco_alert"></span>
-        <!-- Mensagens de avisos -->
-        <?php if (isset($_SESSION['msg'])) {
+        <?php if (!empty($this->data['viewEmailConf'])) {
+            extract($this->data['viewEmailConf'][0]); 
+            if (isset($_SESSION['msg'])) { 
+            echo "<div id='msg' class='msg_alert'>";
             echo $_SESSION['msg'];
             unset($_SESSION['msg']);
-        } ?>
-        </span>
+            echo "</div>"; }
+        ?>
         <div class="content_adm">
             <div class="view_det">
                 <span class="view_det_title">ID:</span>
@@ -93,8 +85,14 @@ if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://lo
                 <span class="view_det_title">Modificado:</span>
                 <span class="view_det_info"><?=date('d/m/Y H:i:s', strtotime($modified)); ?></span>
             </div> <?php } ?>
-            <?php } ?>
         </div>
+        <div class="col-12 text-center p-4">
+            <a class="btn btn-sm btn-outline-success mx-1" href="<?=URLADM;?>list-email-confs/index"><i class="fa-solid fa-rectangle-list"></i> Listar</a>
+            <a class="btn btn-sm btn-outline-warning mx-1" href="<?=URLADM;?>edit-email-confs/index/<?=$id;?>"><i class='fa-solid fa-pen-to-square'></i> Editar</a>
+            <a class="btn btn-sm btn-outline-info mx-1" href="<?=URLADM;?>edit-email-confs-pass/index/<?=$id;?>"><i class="fa-solid fa-unlock-keyhole"></i> Editar Senha</a>
+            <a class="btn btn-sm btn-outline-danger mx-1" href="<?=URLADM;?>delete-email-confs/index/<?=$id;?>" onclick="return confirm('Tem certeza que deseja excluir o registro?')"><i class='fa-solid fa-trash-can'></i> Apagar</a>
+        </div>
+        <?php } ?>
     </div>
 </div>
 <!-- FIM do conteudo do ADM -->

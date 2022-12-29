@@ -22,6 +22,7 @@ if(isset($this->data['sidebarActive'])){
         <a href="<?=URLADM?>logout/index" class="sidebar_nav">
             <i class="icon fa-solid fa-right-from-bracket"></i><span>Sair</span></a>
     </div>
+
     <!-- FIM do SIDE-BAR -->
     
 <!-- <div class="container">

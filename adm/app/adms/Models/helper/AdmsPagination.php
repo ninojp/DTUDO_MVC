@@ -1,6 +1,10 @@
 <?php
+
 namespace App\adms\Models\helper;
-if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
+
+if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
+    header("Location: https://localhost/dtudo/public/");
+}
 
 /** Classe genérica para paginar os registros do DB */
 class AdmsPagination
@@ -19,13 +23,13 @@ class AdmsPagination
 
     /** =============================================================================================
      * @return void     */
-    public function getOffset():int
+    public function getOffset(): int
     {
         return $this->offset;
     }
     /** =============================================================================================
      * @return void     */
-    public function getResult():string|null
+    public function getResult(): string|null
     {
         return $this->result;
     }
@@ -42,7 +46,7 @@ class AdmsPagination
      * @param integer $page
      * @param integer $limitResult
      * @return void     */
-    public function condition(int $page, int $limitResult):void
+    public function condition(int $page, int $limitResult): void
     {
         $this->page = (int) $page ? $page : 1;
         $this->limitResult = (int) $limitResult;
@@ -57,7 +61,7 @@ class AdmsPagination
      * @param string $query
      * @param string|null|null $parseString
      * @return void     */
-    public function pagination(string $query, string|null $parseString = null):void
+    public function pagination(string $query, string|null $parseString = null): void
     {
         $this->query = (string) $query;
         $this->parseString = (string) $parseString;
@@ -70,12 +74,12 @@ class AdmsPagination
     }
     /** ==============================================================================================
      * @return void      */
-    private function pageInstruction():void
+    private function pageInstruction(): void
     {
         // var_dump($this->resultBd[0]['num_result']);
         $this->totalPages = (int) ceil($this->resultBd[0]['num_result'] / $this->limitResult);
         // var_dump($this->totalPages);
-        if($this->totalPages >= $this->page){
+        if ($this->totalPages >= $this->page) {
             $this->layoutPagination();
         } else {
             header("Location: {$this->link}");
@@ -83,24 +87,26 @@ class AdmsPagination
     }
     /** ==============================================================================================
      * @return void     */
-    private function layoutPagination():void
+    private function layoutPagination(): void
     {
-       $this->result = "<div class='content_pagination'><div class='pagination'>"; 
-
+        $this->result = "<div class='content_pagination'>";
+        $this->result .= "<div class='pagination'>";
         $this->result .= "<a href='{$this->link}{$this->var}'>Primeira</a>";
 
-        for($beforePage = $this->page - $this->maxLinks; $beforePage <= $this->page -1; $beforePage++){ if($beforePage >= 1) {
-            $this->result .= "<a href='{$this->link}/$beforePage{$this->var}'>$beforePage</a>"; }
+        for ($beforePage = $this->page - $this->maxLinks; $beforePage <= $this->page - 1; $beforePage++) {
+            if ($beforePage >= 1) {
+                $this->result .= "<a href='{$this->link}/$beforePage{$this->var}'>$beforePage</a>";
+            }
         }
         $this->result .= "<a href='#' class='active'> {$this->page}</a>";
 
-        for($afterPage = $this->page +1; $afterPage <= $this->page + $this->maxLinks; $afterPage++) {
-            if($afterPage <= $this->totalPages) {
+        for ($afterPage = $this->page + 1; $afterPage <= $this->page + $this->maxLinks; $afterPage++) {
+            if ($afterPage <= $this->totalPages) {
                 $this->result .= "<a href='{$this->link}/$afterPage{$this->var}'>$afterPage</a>";
             }
         }
         $this->result .= "<a href='{$this->link}/{$this->totalPages}{$this->var}'>Ultima</a>";
-        
-       $this->result .= "</div></div>"; 
+        $this->result .= "</div>";
+        $this->result .= "</div>";
     }
 }

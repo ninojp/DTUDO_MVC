@@ -18,3 +18,4 @@ if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://lo
     <link rel="shortcut icon" href="<?=URLADM;?>app/adms/assets/imgs/favicon.ico" type="image/x-icon">
 </head>
 <body>
+    <!-- <main class="main-content"> -->

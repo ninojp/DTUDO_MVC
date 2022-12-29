@@ -27,8 +27,8 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
 // } ?>
 
 <!-- Inicio do conteudo LISTAR do ADM -->
-<div class="wrapper-list">
-    <div class="row-list">
+<div class="wrapper_list">
+    <div class="row_list">
         <div class="top_list">
             <span class="title_content">
                 <h2 class="title_h2">Listar Usuários</h2>

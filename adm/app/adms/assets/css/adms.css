@@ -58,13 +58,15 @@ font-family: 'Ubuntu', sans-serif; */
     --danger-color-second: #f8d7da;
 }
 body{
-    min-height: 100vh;
+    /* min-height: 100vh; */
     background-color: var(--preto) !important;
     color: var(--azulClaro);
 }
 /* INICIO do NAVBAR do ADM */
 .navbar{
+    /* position: fixed; */
     display: flex;
+    width: 100%;
     align-items: center;
     justify-content: space-between;
     background-color: var(--azulScuro);
@@ -182,11 +184,21 @@ body{
 
 
 /* =============================================================================================== */
+/* Definições do MAIN da VIEW menu.php ***********************************************************/
+.main_content{
+    display: flex;
+    background-color: var(--azulScuro);
+    box-shadow: 0px 3px 5px 0px var(--azulClaro);
+}
+/* .main_content .row{
+    background-color: var(--branco);
+    border-radius: 6px;
+} */
 /* Definições do MENU LATERAL - SIDE-BAR *********************************************************/
-.main_content .sidebar{
+.sidebar{
     position: sticky;
     top: 60px;/*testar depois, ainda não muda nada */
-    height: calc(100vh - 120px);
+    height: calc(100vh - 100px);
     width: 60px;
     /* width: 250px; */
     overflow: auto;/* para exibir a barra de rolagem se for necessário */
@@ -198,15 +210,15 @@ body{
     transition: 0.3s width ease-in-out;
 }
 @media (max-width: 768px) {
-    .main_content .sidebar{
+    .sidebar{
         width: 60px;
         position: fixed;
         z-index: 1;
         width: 0;
     }
 }
-.main_content .sidebar:hover,
-.main_content .sidebar.active{
+.sidebar:hover,
+.sidebar.active{
     /* width: 250px; */
     width: fit-content;
 }
@@ -291,16 +303,6 @@ body{
     display: block;
     border-radius: 7px;
 }
-
-/* Definições do MAIN da VIEW menu.php ***********************************************************/
-.main_content{
-    display: flex;
-    background-color: var(--azulScuro);
-}
-.main_content .row{
-    background-color: var(--branco);
-    border-radius: 6px;
-}
 /* ============================================================================================ */
 /* Definições da VIEW Dashboard.php *****************************************************************/
 .box{
@@ -347,11 +349,11 @@ body{
 
 /* =============================================================================================== */
 /* Definições gerais do LAYOUT das VIEWs LISTAR ****************************************************/
-.wrapper-list{
+.wrapper_list{
     width: 100%;
     background-color: var(--azulEscuro);
 }
-.row-list{
+.row_list{
     display: flex;
     justify-content: space-between;
     background-color: var(--branco);
