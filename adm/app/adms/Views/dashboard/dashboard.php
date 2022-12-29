@@ -13,6 +13,8 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
 // echo "<a href='".URLADM."logout/index'>Sair</a><br>";
 ?>
 <!-- Inicio do conteudo do ADM -->
+<!-- <div class="container-adms"> -->
+
 <div class="wrapper">
     <div class="row">
         <div class="box box_first">
@@ -42,4 +44,5 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
         </div>
     </div>
 </div>
+<!-- </div> -->
 <!-- FIM do conteudo do ADM -->

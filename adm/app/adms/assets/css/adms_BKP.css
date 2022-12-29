@@ -64,7 +64,12 @@ body{
 }
 /* INICIO do NAVBAR do ADM */
 .navbar{
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 100;
     display: flex;
+    width: 100%;
     align-items: center;
     justify-content: space-between;
     background-color: var(--azulScuro);
@@ -72,8 +77,7 @@ body{
     box-shadow: 0px 0px 10px 0px var(--azulClaro);
     padding: 5px 15px;
     font-size: 17px;
-    top: 0;
-    z-index: 1;
+    
 }
 .navbar .navbar_content{
     display: flex;
@@ -116,9 +120,7 @@ body{
     width: 50px;
     height: 50px;
     border-radius: 50%;
-}/* Fim do NAVBAR do ADM */
-
-/* ================================================================================================= */
+}
 /* INICIO dropdown do navbar */
 .dropdown_menu{
     display: none;
@@ -126,7 +128,7 @@ body{
     right: 0;
     top: 100%;
     box-shadow: 0px 4px 16px 0px var(--azulClaro);
-    background-color: var(--gelo);
+    background-color: var(--azulEscuro);
     color: var(--azulScuro);
     width: 230px;
     border-radius: 5px;
@@ -169,7 +171,7 @@ body{
 /* Menu DropDown do PERFIL do usuário ------------------------------------------------------------*/
 .dropdown_menu li:hover,
 .dropdown_menu .item:hover{
-    background-color: #e5dcdc;
+    background-color: var(--azulEscuro);
     border-radius: 5px;
 }
 .dropdown_menu .item a{
@@ -181,21 +183,21 @@ body{
     width: 150px;
 }
 /* FIM dropdown do navbar */
-
-/* =============================================================================================== */
 /* INICIO do MAIN da pagina ADM */
 .main_content{
     display: flex;
 }
-/* FIM do MAIN da pagina ADM */
-
-/* Inicio do SIDE-BAR */
-.main_content .sidebar{
+/* ================================================================================================= */
+/* Inicio do SIDE-BAR MENU lateral*/
+.sidebar{
     position: sticky;
-    top: 60px;/*testar depois, ainda não muda nada */
+    /* position: fixed; */
+    top: 60px; /* testar depois, ainda não muda nada */
     height: calc(100vh - 120px);
-    width: 60px;
+    /* width: max-content; */
     /* width: 250px; */
+    /* z-index: 99; */
+    width: 60px;
     overflow: auto;/* para exibir a barra de rolagem se for necessário */
     overflow-x: hidden;
     flex-shrink: 0;
@@ -205,17 +207,17 @@ body{
     transition: 0.3s width ease-in-out;
 }
 @media (max-width: 768px) {
-    .main_content .sidebar{
-        width: 60px;
-        position: fixed;
-        z-index: 1;
-        width: 0;
+    .sidebar{
+    width: max-content;
+    position: fixed;
+    z-index: 1;
+    width: 0;
     }
 }
-.main_content .sidebar:hover,
-.main_content .sidebar.active{
+.sidebar:hover,
+.sidebar.active{
     /* width: 250px; */
-    width: fit-content;
+    width: max-content;
 }
 .sidebar .sidebar_nav{
     display: flex;
@@ -256,26 +258,71 @@ body{
     font-size: 22px;
     flex-shrink: 0;
 }
+/* Botão DropDown -----------------------------------------------------------------------------  */
+.drop_btn_action{
+    background-color: var(--azulMedio);
+    color: var(--branco);
+    font-size: 15px;
+    padding: 5px 8px;
+    border: 1px solid var(--azulMedio);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+.drop_btn_action:hover,
+.drop_btn_action:focus{
+    background-color: var(--gelo2);
+    color: var(--azulMedio);
+}
+.drop_action{
+    position: relative;
+    display: inline-block;
+}
+.drop_action_item{
+    display: none;
+    position: absolute;
+    right: 0px;
+    z-index: 1;
+    background-color: var(--branco);
+    min-width: 130px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px var(--preto40);
+}
+.drop_action_item a{
+    padding: 8px 12px 4px 12px;
+    text-decoration: none;
+    display: block;
+}
+.drop_action_item a:hover{
+    background-color: var(--gelo);
+}
+.drop_action_item.show_drop_action{
+    display: block;
+    border-radius: 7px;
+}
 /* FIM do SIDE-BAR */
 
-/* Inicio do conteudo do ADM */
-.main_content .wrapper{
-    width: 100%;
-    padding: 35px;
+/* =============================================================================================== */
+/* Definições gerais do container-adms *********************************************************/
+.container-adms {
     background-color: var(--azulEscuro);
-}
-.main_content .row{
-    background-color: var(--branco);
-    border-radius: 6px;
-}
-.wrapper .row{
+    width: 100%;
     display: flex;
-    justify-content: space-between;
-    padding: 5px;
-    flex-wrap: wrap;
+    justify-content: center;
+    /* flex-direction: row; */
+    /* padding: 30px 0px; */
+    /* padding-top: 60px;
+    padding-left: 300px; */
+    
+}
+.wrapper-adms {
+    background-color: var(--second-color);
+    width: 500px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 1);
 }
 
-/* Definições da VIEW Dashboard *****************************************************************/
+/* Inicio do Dashboard */
 .row .box{
     position: relative;
     display: flex;
@@ -319,8 +366,24 @@ body{
 }
 /* FIM do Dashboard */
 
-/* INICIO do Listar ****************************************************************************/
-.row .top_list{
+/* INICIO do Listar *****************************************************************************/
+.wrapper-list{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: var(--azulEscuro);
+}
+.wrapper-list .row-list{
+    display: flex;
+    border-radius: 6px;
+    padding: 5px;
+    margin: 30px 0px;
+    flex-wrap: wrap;
+    background-color: var(--gelo2);
+    width: max-content;
+    box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 1);
+}
+.top_list{
     width: 100%;
     overflow: hidden;
 }
@@ -339,14 +402,14 @@ body{
     margin-top: 15px;
     width: 100%;
 }
-.table_list .list_head .list_head_content{
-    background-color: var(--gelo);
+.list_head_content{
+    background-color: var(--gelo3);
     color: var(--azulScuro);
     padding: 10px;
     text-align: center;
 }
-.table_list .list_body .list_body_content{
-    background-color: var(--gelo2);
+.list_body_content{
+    background-color: var(--gelo);
     color: var(--azulEscuro);
     padding: 8px;
     text-align: center;
@@ -374,7 +437,7 @@ body{
         display: none;
     }
 }
-/* Inicio da paginação ******************************************************************************/
+/* Inicio da paginação ***************************************************************************/
 .content_pagination{
     display: flex;
     margin: 15px 0;
@@ -402,60 +465,51 @@ body{
 }
 /* FIM da paginação */
 
-/* Botão DropDown */
-.drop_btn_action{
-    background-color: var(--azulMedio);
-    color: var(--branco);
-    font-size: 15px;
-    padding: 5px 8px;
-    border: 1px solid var(--azulMedio);
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all .3s ease;
-}
-.drop_btn_action:hover,
-.drop_btn_action:focus{
-    background-color: var(--gelo2);
-    color: var(--azulMedio);
-}
-.drop_action{
-    position: relative;
-    display: inline-block;
-}
-.drop_action_item{
-    display: none;
-    position: absolute;
-    right: 0px;
-    z-index: 1;
-    background-color: var(--branco);
-    min-width: 130px;
-    overflow: auto;
-    box-shadow: 0px 8px 16px 0px var(--preto40);
-}
-.drop_action_item a{
-    padding: 8px 12px 4px 12px;
-    text-decoration: none;
-    display: block;
-}
-.drop_action_item a:hover{
+/* INICIO da pagina Visualizar ****************************************************************/
+.content_adm .view_det{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
     background-color: var(--gelo);
 }
-.drop_action_item.show_drop_action{
-    display: block;
-    border-radius: 7px;
+.view_det .view_det_title{
+    /* width: auto; */
+    color: var(--azulMedio);
+    font-size: 1em;
+    font-weight: 600;
+    margin: .3em .4em .3em .5em;
 }
-/* FIM personalizar BOTÕES */
+.view_det .view_det_info{
+    font-size: 0.9em;
+    font-weight: 400;
+    padding: 3px 10px;
+}
+/* FIM da pagina Visualizar */
 
-/* INICIO do Formulário */
-.wrapper .content_form{
-    width: 100%;
-    padding: 1em;
+
+/* Personalizar os FORMULÁRIOS ******************************************************************/
+.wrapper-adms .form-adms {
+    padding: 10px 35px;
 }
 .form_adm{
     width: 100%;
     position: relative;
     margin: .5em auto 0 auto;
 }
+/* Personalizar os TíTULOS dos forms */
+.wrapper-adms .title {
+    height: 90px;
+    background-color: var(--main-bg-color);
+    border-radius: 5px 5px 0 0;
+    color: var(--main-color);
+    font-size: 30px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
 .row_input{
     width: 100%;
     display: grid;
@@ -466,6 +520,52 @@ body{
 .title_input{
     color: var(--azulScuro);
     font-size: 1.1em;
+}
+/* Personalizar as ROWs do forms */
+.wrapper-adms .form-adms .row {
+    height: 45px;
+    margin-bottom: 15px;
+    position: relative;
+}
+/* Personalizar os INPUTs dos forms */
+.wrapper-adms .form-adms .row input {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    padding-left: 60px;
+    border-radius: 5px;
+    border: 1px solid var(--active-color);
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+/* Personalizar placeholder dos inputs dos forms*/
+.form-adms .row input::placeholder {
+    color: var(--third-color);
+}
+/* Personalizar ICONES dos inputs -------------------------------------------- */
+.wrapper-adms .form-adms .row i {
+    position: absolute;
+    width: 47px;
+    height: 100%;
+    color: var(--main-color);
+    font-size: 18px;
+    background-color: var(--second-bg-color);
+    border: 1px solid var(--active-color);
+    border-radius: 5px 0 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.wrapper-adms .form-adms .signup-link{
+    padding: 5px 20px;
+}
+.wrapper-adms .form-adms .signup-link a {
+    color: var(--main-bg-color);
+    text-decoration: none;
+    padding: 1px 4px;
+}
+.form-adms .signup-link a:hover {
+    color: var(--site-color);
 }
 input.input_form,
 textarea.input_form,
@@ -488,44 +588,20 @@ select.input_form:focus{
 }
 /* FIM do Formulário */
 
-/* INICIO da pagina Visualizar *********************************************************************/
-.content_adm{
+/* DIVs das menssagens de alerta *****************************************************************/
+.msg-alert{
     width: 100%;
-    padding: 1em;
-    background-color: var(--gelo2);
-}
-.content_adm .view_det{
     display: flex;
-    align-items: center;
-    margin-bottom: 1em;
-    background-color: var(--gelo);
-}
-.view_det .view_det_title{
-    /* width: auto; */
-    color: var(--azulMedio);
-    font-size: 1em;
-    font-weight: 600;
-    margin: .3em .4em .3em .5em;
-}
-.view_det .view_det_info{
-    font-size: 0.9em;
-    font-weight: 400;
-    padding: 3px 10px;
-    
-}
-
-/* Definições gerais da classe alert **************************************************************/
-.espaco_alert{
-    width: 100%;
+    /* min-height: 50px; */
     justify-content: center;
+    /* border:1px dotted #000; */
 }
-.alert {
-    padding: 3px 10px;
-    width: max-content;
-    /* justify-self: center; */
+.msg-alert p{
+    margin: 0px;
+    padding: 0px 10px;
 }
 
-/* Definições gerais dos BOTÕES *******************************************************************/
+/* Inicio personalizar BOTÕES ********************************************************************/
 .btn_primary{
     background-color: var(--azulClaro);
     color: var(--branco);
@@ -596,3 +672,4 @@ select.input_form:focus{
     background-color: var(--gelo2);
     color: var(--azulMedio);
 }
+

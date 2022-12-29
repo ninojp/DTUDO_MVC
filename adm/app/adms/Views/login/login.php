@@ -40,8 +40,8 @@ if(isset($this->data['form'])){
             </div>
             <div class="signup-link text-center">
                 <!-- Para direcionar para o endereço, URL:URLADM, nome da CONTROLLER:NewUser precisa ter um SEPARADOR entre os termos(espaço ou traço)e depois o nome do método usado:index(dentro da controller) -->
-                <a class="btn btn-sm btn-outline-info me-4" href="<?=URLADM?>new-user/index">Cadastrar Usuário!</a>
-                <a class="btn btn-sm btn-outline-info" href="<?=URLADM?>recover-password/index">Recuperar Senha!</a>
+                <a class="btn btn-sm btn-outline-primary me-4" href="<?=URLADM?>new-user/index">Cadastrar Usuário!</a>
+                <a class="btn btn-sm btn-outline-primary" href="<?=URLADM?>recover-password/index">Recuperar Senha!</a>
             </div>
         </form>
     </div><!-- Finalica a DIV:wrapper-login -->

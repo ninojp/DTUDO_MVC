@@ -20,8 +20,8 @@ if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://lo
 // echo $this->data['pagination']; ?>
 
 <!-- Inicio do conteudo LISTAR do ADM -->
-<div class="wrapper">
-    <div class="row">
+<div class="wrapper-list">
+    <div class="row-list">
         <div class="top_list">
             <span class="title_content">
                 <h2>Listar Situações do Usuário</h2>
