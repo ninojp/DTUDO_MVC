@@ -545,6 +545,35 @@ body{
     align-items: center;
     margin-top: 2rem;
 }
+/* DIV ROW dos formularios de edição *****************************************************/
+.row_edit{
+    height: 60px;
+    margin-top: 1rem;
+    position: relative;
+}
+.row_edit i{
+    position: absolute;
+    width: 47px;
+    height: 60%;
+    color: var(--main-color);
+    font-size: 18px;
+    background-color: var(--second-bg-color);
+    border: 1px solid var(--active-color);
+    border-radius: 5px 0 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.row_edit input{
+    height: 60%;
+    width: 100%;
+    outline: none;
+    padding-left: 60px;
+    border-radius: 5px;
+    border: 1px solid var(--active-color);
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
 /* não está sendo usado.................  */
 .title_input{
     color: var(--azulScuro);

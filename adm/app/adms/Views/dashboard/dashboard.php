@@ -15,8 +15,8 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
 <!-- Inicio do conteudo do ADM -->
 <!-- <div class="container-adms"> -->
 
-<div class="wrapper-list">
-    <div class="row-list">
+<div class="wrapper_list">
+    <div class="row_list">
         <div class="box box_first">
             <span class="class=icon fa-solid fa-users"></span>
             <span>
