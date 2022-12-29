@@ -31,19 +31,19 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
     <div class="row-list">
         <div class="top_list">
             <span class="title_content">
-                <h2>Listar Usuários</h2>
+                <h2 class="title_h2">Listar Usuários</h2>
             </span>
             <div class="top_list_right">
                 <a class="btn btn-sm btn_success" href="<?= URLADM.'add-users/index';?>" type="button">Cadastrar</a>
             </div>
+            <div class="msg_alert">
+                <!-- Mensagens de avisos -->
+                <?php if (isset($_SESSION['msg'])) {
+                        echo $_SESSION['msg'];
+                        unset($_SESSION['msg']); } ?>
+            </div>
         </div>
-        <span class="espaco_alert"></span>
-            <!-- Mensagens de avisos -->
-            <?php if (isset($_SESSION['msg'])) {
-                    echo $_SESSION['msg'];
-                    unset($_SESSION['msg']); }?>
-        </span>
-        <table class="table_list">
+        <table class="table table-striped table_list">
             <thead class="list_head">
                 <tr>
                     <th class="list_head_content">ID</th>

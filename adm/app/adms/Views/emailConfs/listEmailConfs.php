@@ -30,17 +30,19 @@ if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://lo
     <div class="row-list">
         <div class="top_list">
             <span class="title_content">
-                <h2>Listar Configurações de E-mail</h2>
+                <h2 class="title_h2">Listar Configurações de E-mail</h2>
             </span>
-            <!-- Mensagens de avisos -->
-            <?php if (isset($_SESSION['msg'])) {
-                        echo $_SESSION['msg'];
-                        unset($_SESSION['msg']); }?>
             <div class="top_list_right">
                 <a class="btn btn-sm btn_success" href="<?= URLADM.'add-email-confs/';?>" type="button">Cadastrar</a>
             </div>
+            <div class="msg_alert">
+                <!-- Mensagens de avisos -->
+                <?php if (isset($_SESSION['msg'])) {
+                            echo $_SESSION['msg'];
+                            unset($_SESSION['msg']); }?>
+            </div>
         </div>
-        <table class="table_list">
+        <table class="table table-striped table_list">
             <thead class="list_head">
                 <tr>
                     <th class="list_head_content">ID</th>

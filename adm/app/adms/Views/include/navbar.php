@@ -41,7 +41,7 @@
                 <div class="dropdown_menu setting">
                     <div class="item">
                         <a class="" href="<?=URLADM?>view-profile/index"> 
-                        <i class="item fa-solid fa-circle-user"></i> Perfil</a>
+                        <i class="fa-solid fa-circle-user"></i> Perfil</a>
                         </div>
                     <div class="item">
                         <a class="" href="<?=URLADM?>edit-profile/index">

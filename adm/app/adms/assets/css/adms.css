@@ -13,10 +13,10 @@ font-family: 'Ubuntu', sans-serif; */
 }
 /* Variáveis GLOBAIs das CORES da Pagina */
 :root{
+    --branco: #fff;
     --gelo: rgba(235,238,246,1);
     --gelo2: rgb(230, 231, 233);
     --gelo3: rgb(213, 212, 212);
-    --branco: #fff;
     --transp: transparent;
     --dark: rgba(55,54,54,1);
     --preto: #000;
@@ -116,9 +116,7 @@ body{
     width: 50px;
     height: 50px;
     border-radius: 50%;
-}/* Fim do NAVBAR do ADM */
-
-/* ================================================================================================= */
+}
 /* INICIO dropdown do navbar */
 .dropdown_menu{
     display: none;
@@ -182,14 +180,9 @@ body{
 }
 /* FIM dropdown do navbar */
 
-/* =============================================================================================== */
-/* INICIO do MAIN da pagina ADM */
-.main_content{
-    display: flex;
-}
-/* FIM do MAIN da pagina ADM */
 
-/* Inicio do SIDE-BAR */
+/* =============================================================================================== */
+/* Definições do MENU LATERAL - SIDE-BAR *********************************************************/
 .main_content .sidebar{
     position: sticky;
     top: 60px;/*testar depois, ainda não muda nada */
@@ -256,153 +249,7 @@ body{
     font-size: 22px;
     flex-shrink: 0;
 }
-/* FIM do SIDE-BAR */
-
-/* Inicio do conteudo do ADM */
-.main_content .wrapper{
-    width: 100%;
-    padding: 35px;
-    background-color: var(--azulEscuro);
-}
-.main_content .row{
-    background-color: var(--branco);
-    border-radius: 6px;
-}
-.wrapper .row{
-    display: flex;
-    justify-content: space-between;
-    padding: 5px;
-    flex-wrap: wrap;
-}
-
-/* Definições da VIEW Dashboard *****************************************************************/
-.row .box{
-    position: relative;
-    display: flex;
-    width: 23%;
-    height: 150px;
-    margin: 5px 1%;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    border-radius: 5px;
-    overflow: hidden;
-    flex-direction: column;
-    box-shadow: 0px 4px 16px 0px var(--azulClaro);
-}
-.row .box_first{
-    background-color: var(--azulEscuro);
-}
-.row .box_second{
-    background-color: var(--dark);
-}
-.row .box_third{
-    background-color: var(--verdeClaro);
-}
-.row .box_fourth{
-    background-color: var(--gold);
-}
-.box span{
-    margin: 5px 0;
-    font-size: 17px;
-    position: relative;
-}
-@media (max-width: 1024px) {
-    .row .box{
-        width: 48%;
-    }
-}
-@media (max-width: 768px) {
-    .row .box{
-        width: 98%;
-    }
-}
-/* FIM do Dashboard */
-
-/* INICIO do Listar ****************************************************************************/
-.row .top_list{
-    width: 100%;
-    overflow: hidden;
-}
-.title_content{
-    align-self: center;
-    text-align: center;
-    color: var(--azulClaro);
-    padding: 10px 16px;
-    font-size: 17px;
-}
-.top_list .top_list_right{
-    padding: 10px 5px 5px 0;
-    float: right;
-}
-.table_list{
-    margin-top: 15px;
-    width: 100%;
-}
-.table_list .list_head .list_head_content{
-    background-color: var(--gelo);
-    color: var(--azulScuro);
-    padding: 10px;
-    text-align: center;
-}
-.table_list .list_body .list_body_content{
-    background-color: var(--gelo2);
-    color: var(--azulEscuro);
-    padding: 8px;
-    text-align: center;
-}
-@media (max-width: 550px) {
-    .tb_sm_none,
-    .tb_md_none,
-    .tb_lg_none{
-        display: none;
-    }
-}
-@media (max-width: 790px) {
-    .tb_md_none,
-    .tb_lg_none{
-        display: none;
-    }
-}
-@media (max-width: 1024px) {
-    .tb_lg_none{
-        display: none;
-    }
-}
-@media (max-width: 1290px) {
-    .tb_xxl_none{
-        display: none;
-    }
-}
-/* Inicio da paginação ******************************************************************************/
-.content_pagination{
-    display: flex;
-    margin: 15px 0;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-}
-.pagination{
-    display: inline-block;
-    font-size: 17px;
-}
-.pagination a{
-    float: left;
-    color: var(--azulScuro);
-    text-decoration: none;
-    padding: 8px 14px;
-    transition: background-color .3s;
-}
-.pagination a.active{
-    background-color: var(--azulEscuro);
-    color: var(--branco);
-}
-.pagination a:hover:not(.active){
-    background-color: var(--gelo);
-}
-/* FIM da paginação */
-
-/* Botão DropDown */
+/* Botão DropDown *********************************************************************************/
 .drop_btn_action{
     background-color: var(--azulMedio);
     color: var(--branco);
@@ -444,25 +291,252 @@ body{
     display: block;
     border-radius: 7px;
 }
-/* FIM personalizar BOTÕES */
 
-/* INICIO do Formulário */
-.wrapper .content_form{
-    width: 100%;
-    padding: 1em;
+/* Definições do MAIN da VIEW menu.php ***********************************************************/
+.main_content{
+    display: flex;
+    background-color: var(--azulScuro);
 }
-.form_adm{
+.main_content .row{
+    background-color: var(--branco);
+    border-radius: 6px;
+}
+/* ============================================================================================ */
+/* Definições da VIEW Dashboard.php *****************************************************************/
+.box{
+    position: relative;
+    display: flex;
+    width: 23%;
+    height: 150px;
+    margin: 5px 1%;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+    flex-direction: column;
+    box-shadow: 0px 4px 6px 0px var(--preto);
+}
+.box_first{
+    background-color: var(--azulEscuro);
+}
+.box_second{
+    background-color: var(--dark);
+}
+.box_third{
+    background-color: var(--verdeClaro);
+}
+.box_fourth{
+    background-color: var(--gold);
+}
+.box span{
+    margin: 5px 0;
+    font-size: 17px;
+    position: relative;
+}
+@media (max-width: 1024px) {
+    .row .box{
+        width: 48%;
+    }
+}
+@media (max-width: 768px) {
+    .row .box{
+        width: 98%;
+    }
+}
+
+/* =============================================================================================== */
+/* Definições gerais do LAYOUT das VIEWs LISTAR ****************************************************/
+.wrapper-list{
+    width: 100%;
+    background-color: var(--azulEscuro);
+}
+.row-list{
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--branco);
+    padding: 20px;
+    margin: 35px;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    box-shadow: 1px 4px 16px 1px var(--preto);
+}
+/* INICIO do Listar ****************************************************************************/
+.top_list{
+    width: 100%;
+    overflow: hidden;
+}
+.title_content{
+    align-self: center;
+    text-align: center;
+    padding: 10px 16px;
+}
+.title_h2{
+    text-shadow: 0px 1px 3px #000;
+    color: var(--preto);
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+.top_list .top_list_right{
+    padding: 10px 5px 5px 0;
+    float: right;
+}
+/* Definições gerais das TABELAS *****************************************************************/
+.table_list{
+    margin-top: 15px;
+    width: 100%;
+    box-shadow: 0px 4px 6px 0px var(--preto);
+}
+.table_list .list_head{
+    padding: 10px;
+    text-align: center;
+    border: 1px solid var(--preto);
+}
+.table_list .list_head .list_head_content{
+    background-color: var(--gelo);
+    color: var(--azulScuro);
+    padding: 10px;
+    text-align: center;
+}
+.table_list .list_body{
+    /* background-color: var(--gelo2); */
+    /* color: var(--azulEscuro); */
+    padding: 8px;
+    text-align: center;
+}
+.table_list .list_body .list_body_content{
+    /* background-color: var(--gelo3); */
+    color: var(--azulEscuro);
+    padding: 8px;
+    text-align: center;
+}
+@media (max-width: 550px) {
+    .tb_sm_none,
+    .tb_md_none,
+    .tb_lg_none{
+        display: none;
+    }
+}
+@media (max-width: 790px) {
+    .tb_md_none,
+    .tb_lg_none{
+        display: none;
+    }
+}
+@media (max-width: 1024px) {
+    .tb_lg_none{
+        display: none;
+    }
+}
+@media (max-width: 1290px) {
+    .tb_xxl_none{
+        display: none;
+    }
+}
+
+/* INICIO do Formulário ****************************************************************************/
+/* Definições gerais do LAYOUT das VIEWs com Formulários ******************************************/
+.wrapper_form{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    padding: 35px;
+    /* margin: 35px; */
+    background-color: var(--azulEscuro);
+}
+.row_form{
+    display: flex;
+    justify-content: center;
+    width: 30rem;
+    background-color: var(--branco);
+    flex-wrap: wrap;
+    border-radius: 10px;
+    box-shadow: 1px 4px 16px 1px var(--preto);
+}
+.title_form{
+    width: 100%;
+    height: 90px;
+    background-color: var(--main-bg-color);
+    border-radius: 9px 9px 0 0;
+    color: var(--main-color);
+    font-size: 30px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.form_adms{
     width: 100%;
     position: relative;
+    padding: 20px;
     margin: .5em auto 0 auto;
 }
 .row_input{
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.1em 1.5em;
-    margin-bottom: 1.1em;
+    height: 40px;
+    margin-bottom: 15px;
+    position: relative;
 }
+.row_input i{
+    position: absolute;
+    width: 47px;
+    height: 100%;
+    color: var(--main-color);
+    font-size: 18px;
+    background-color: var(--second-bg-color);
+    border: 1px solid var(--active-color);
+    border-radius: 5px 0 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.row_input input{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    padding-left: 60px;
+    border-radius: 5px;
+    border: 1px solid var(--active-color);
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+.row_input input::placeholder{
+    color: var(--danger-color);
+    font-size: 0.9rem;
+}
+.select_input{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    position: relative;
+    border-radius: 5px;
+    border: 1px solid var(--active-color);
+}
+.select_input i{
+    position: absolute;
+    width: 47px;
+    height: 100%;
+    color: var(--main-color);
+    font-size: 18px;
+    background-color: var(--second-bg-color);
+    border: 1px solid var(--active-color);
+    border-radius: 5px 0 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.select_input .form_label{
+    color: var(--danger-color);
+    font-size: 0.8rem;
+    padding-right: 10px;
+}
+.span_obrigatorio{
+    color: var(--danger-color);
+    font-size: 0.8rem;
+}
+/* não está sendo usado.................  */
 .title_input{
     color: var(--azulScuro);
     font-size: 1.1em;
@@ -486,9 +560,8 @@ select.input_form:focus{
     outline: none;
     border: 1.5px solid var(--azulClaro);
 }
-/* FIM do Formulário */
-
-/* INICIO da pagina Visualizar *********************************************************************/
+/* ============================================================================================== */
+/* Definições das VIEWs Visualizar Detalhes *******************************************************/
 .content_adm{
     width: 100%;
     padding: 1em;
@@ -511,20 +584,37 @@ select.input_form:focus{
     font-size: 0.9em;
     font-weight: 400;
     padding: 3px 10px;
-    
 }
-
-/* Definições gerais da classe alert **************************************************************/
-.espaco_alert{
+/* ================================================================================================ */
+/* Inicio da paginação ******************************************************************************/
+.content_pagination{
+    display: flex;
+    margin: 15px 0;
     width: 100%;
+    align-items: center;
     justify-content: center;
 }
-.alert {
-    padding: 3px 10px;
-    width: max-content;
-    /* justify-self: center; */
+.pagination{
+    display: inline-block;
+    font-size: 17px;
 }
+.pagination a{
+    float: left;
+    color: var(--azulScuro);
+    text-decoration: none;
+    padding: 8px 14px;
+    transition: background-color .3s;
+}
+.pagination a.active{
+    background-color: var(--azulEscuro);
+    color: var(--branco);
+}
+.pagination a:hover:not(.active){
+    background-color: var(--gelo);
+}
+/* FIM da paginação */
 
+/* ============================================================================================== */
 /* Definições gerais dos BOTÕES *******************************************************************/
 .btn_primary{
     background-color: var(--azulClaro);
@@ -540,6 +630,9 @@ select.input_form:focus{
     background-color: var(--gelo2);
     color: var(--azulClaro);
 }
+.btn-success{
+    box-shadow: 0px 4px 6px 0px var(--preto);
+}
 .btn_success{
     background-color: var(--verdeClaro);
     color: var(--branco);
@@ -549,6 +642,8 @@ select.input_form:focus{
     border-radius: 4px;
     cursor: pointer;
     transition: all .3s ease;
+    box-shadow: 0px 4px 6px 0px var(--preto);
+    margin: 6px;
 }
 .btn_success:hover{
     background-color: var(--gelo2);
@@ -595,4 +690,16 @@ select.input_form:focus{
 .btn_info:hover{
     background-color: var(--gelo2);
     color: var(--azulMedio);
+}
+/* ============================================================================================== */
+/* Definições gerais da classe alert **************************************************************/
+.msg_alert{
+    width: 100%;
+    justify-content: center;
+
+}
+.msg_alert p{
+    padding: 0px 10px;
+    width: max-content;
+    margin-left: 50px;
 }
