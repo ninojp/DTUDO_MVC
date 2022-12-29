@@ -468,13 +468,14 @@ body{
 }
 .form_adms{
     width: 100%;
+    align-items: flex-start;
     position: relative;
     padding: 20px;
     margin: .5em auto 0 auto;
 }
 .row_input{
     height: 40px;
-    margin-bottom: 15px;
+    margin-top: 1.5rem;
     position: relative;
 }
 .row_input i{
@@ -509,7 +510,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 15px;
+    margin-top: 1.5rem;
     position: relative;
     border-radius: 5px;
     border: 1px solid var(--active-color);
@@ -529,12 +530,18 @@ body{
 }
 .select_input .form_label{
     color: var(--danger-color);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     padding-right: 10px;
 }
 .span_obrigatorio{
     color: var(--danger-color);
     font-size: 0.8rem;
+}
+.button_center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
 }
 /* não está sendo usado.................  */
 .title_input{
@@ -696,7 +703,7 @@ select.input_form:focus{
 .msg_alert{
     width: 100%;
     justify-content: center;
-
+    height: unset;
 }
 .msg_alert p{
     padding: 0px 10px;

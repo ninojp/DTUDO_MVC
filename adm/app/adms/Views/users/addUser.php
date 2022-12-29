@@ -8,25 +8,16 @@ if (isset($this->data['form'])) {
     // var_dump($this->data['form']);
     $valorForm = $this->data['form'];
 } ?>
-<!-- <h1 class="text-center mt-5">Cadastrar Usuário</h1> -->
-<!-- <?php
-        // echo "<a class='btn btn-sm btn-outline-primary ms-4' href='".URLADM."list-users/index'> Listar </a> ";
-        // if(isset($_SESSION['msg'])){
-        //     echo $_SESSION['msg'];
-        //     unset($_SESSION['msg']);
-        // } 
-        ?>
-<span id="msg"></span> -->
 <div class="wrapper_form">
     <div class="row_form">
         <div class="title_form">
             <h2>Cadastrar Novo Usuário</h2>
         </div>
-        <div id="msg" class="msg_alert">
-            <?php if (isset($_SESSION['msg'])) {
-                echo $_SESSION['msg'];
-                unset($_SESSION['msg']); } ?>
-        </div>
+        <?php if (isset($_SESSION['msg'])) { 
+            echo "<div id='msg' class='msg_alert'>";
+            echo $_SESSION['msg'];
+            unset($_SESSION['msg']);
+            echo "</div>"; } ?>
         <form class="form_adms" action="" method="POST" id="form-add-user">
             <div class="row_input">
                 <?php $name = "";
@@ -65,7 +56,6 @@ if (isset($this->data['form'])) {
                 <input class="form-control" type="password" name="password" id="password" onkeyup="passwordStrength()" autocomplete="on" value="<?= $password; ?>" placeholder="Digite a Senha(login) do usuário *" required>
             </div>
             <div class="msg_alert" id="msgViewStrength">
-                <!-- <span ></span> -->
             </div>
             <div class="row_input">
                 <i class="fa-solid fa-hand-pointer"></i>
@@ -79,17 +69,16 @@ if (isset($this->data['form'])) {
                                 echo "<option value='$id_sit' selected>$name_sit</option>";
                             } else {
                                 echo "<option value='$id_sit'>$name_sit</option>";
-                            }
-                        } ?>
+                            } } ?>
                     </select>
                 </div>
             </div>
-            <span class="span_obrigatorio" >* Campos obrigatórios</span><br>
-            <div class="button text-center mt-3">
-                <button class="btn btn-primary" type="submit" name="SendAddUser" value="Cadastrar">Cadastrar</button>
+            <span class="span_obrigatorio">* Campos obrigatórios</span><br>
+            <div class="button_center">
+                <button class="btn btn-primary" type="submit" name="SendAddUser" value="Cadastrar">Cadastrar Usuário</button>
             </div>
-            <div class="signup-link text-center mt-3">
-                <?= "<a class='btn btn-sm btn-outline-info' href='".URLADM."list-users/index'> Listar </a>"; ?>
+            <div class="button_center">
+                 <a class="btn btn-sm btn-outline-info" href="<?=URLADM;?>list-users/index"> Listar  Usuários </a>
             </div>
         </form>
     </div>
