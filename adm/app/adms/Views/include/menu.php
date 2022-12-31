@@ -4,37 +4,58 @@ if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://lo
 $sidebar_active = "";
 if(isset($this->data['sidebarActive'])){
     $sidebar_active = $this->data['sidebarActive'];
-} ?>
+} 
+// Criado para o menu DROPDOWN apenas
+
+?>
 <!-- Inicio do conteúdo da pagina ADM -->
 <main class="main_content">
     <!-- Inicio do SIDE-BAR -->
     <div class="sidebar">
-        <a href="<?=URLADM;?>dashboard/index" class="sidebar_nav <?php if($sidebar_active=="dashboard"){echo "active";}?>">
-            <i class="icon fa-solid fa-table-columns"></i><span>Dashboard</span></a>
-        <a href="<?=URLADM;?>list-users/index" class="sidebar_nav <?php if($sidebar_active=="list-users"){echo "active";}?>">
-            <i class="icon fa-solid fa-users"></i><span>Usuários</span></a>
-        <a href="<?=URLADM;?>list-sits-users/index" class="sidebar_nav <?php if($sidebar_active=="list-sits-users"){echo "active";}?>">
-            <i class="icon fa-brands fa-wpforms"></i><span>Situação Usuários</span></a>
-        <a href="<?=URLADM;?>list-email-confs/index" class="sidebar_nav <?php if($sidebar_active=="list-email-confs"){echo "active";}?>">
-            <i class="icon fa-solid fa-table-list"></i></i><span>Configurações E-mail</span></a>
-        <a href="<?=URLADM;?>list-colors/index" class="sidebar_nav <?php if($sidebar_active=="list-colors"){echo "active";}?>">
-            <i class="icon fa-solid fa-palette"></i><span>Cores</span></a>
-        <a href="<?=URLADM?>logout/index" class="sidebar_nav">
-            <i class="icon fa-solid fa-right-from-bracket"></i><span>Sair</span></a>
-    </div>
+        <?php $dashboard = "";
+            if($sidebar_active=="dashboard"){
+            $dashboard = "active";} ?>
+        <a href="<?=URLADM;?>dashboard/index" class="sidebar_nav <?= $dashboard;?>"><i class="icon fa-solid fa-table-columns"></i><span>Dashboard</span></a>
 
+        <?php $list_users = "";
+        $dropDown = "";
+        if($sidebar_active=="list-users"){
+            $list_users = "active";
+            $dropDown = "active"; } ?>
+        <a href="<?=URLADM;?>list-users/index" class="sidebar_nav <?=$list_users;?>"><i class="icon fa-solid fa-users"></i><span>Usuários</span></a>
+
+        <?php $sits_users = "";
+        if($sidebar_active=="list-sits-users"){
+            $sits_users = "active";
+            $dropDown = "active"; } ?>
+        <a href="<?=URLADM;?>list-sits-users/index" class="sidebar_nav <?=$sits_users;?>"><i class="icon fa-brands fa-wpforms"></i><span>Situação Usuários</span></a>
+
+        <?php $email_confs = "";
+        if($sidebar_active=="list-email-confs"){
+            $email_confs = "active";
+            $dropDown = "active";}?>
+        <a href="<?=URLADM;?>list-email-confs/index" class="sidebar_nav <?=$email_confs;?>"><i class="icon fa-solid fa-table-list"></i><span>Configurações E-mail</span></a>
+
+        <?php $list_colors = "";
+        if($sidebar_active=="list-colors"){
+            $list_colors = "active";
+            $dropDown = "active";}?>
+        <a href="<?=URLADM;?>list-colors/index" class="sidebar_nav <?=$list_colors;?>"><i class="icon fa-solid fa-palette"></i><span>Cores</span></a>
+
+        <a href="<?=URLADM?>logout/index" class="sidebar_nav"><i class="icon fa-solid fa-right-from-bracket"></i><span>Sair</span></a>
+
+        <!-- EXEMPLO: MENU DROPDOWN do Dashboard -->
+        <button class="dropdown-btn <?=$dropDown;?>">
+        <i class="icon fa-solid fa-chalkboard-user"></i><span>DropDown Dash</span><i class="fa-solid fa-caret-down"></i>
+            </button>
+            <div class="dropdown-container <?=$dropDown;?>">
+                <a href="<?=URLADM;?>list-users/index" class="sidebar-nav <?=$list_users;?>"><i class="icon fa-solid fa-users"></i><span> Listar Usuários</span></a>
+
+                <a href="<?=URLADM;?>list-sits-users/index" class="sidebar-nav <?php if($sidebar_active=="list-sits-users"){echo "active";}?>"><i class="icon fa-brands fa-wpforms"></i><span> Situações do usuário</span></a>
+
+                <a href="<?=URLADM;?>list-email-confs/index" class="sidebar-nav <?=$email_confs;?>"><i class="icon fa-solid fa-table-list"></i><span> E-Mail Configs</span></a>
+
+                <a href="<?=URLADM;?>list-colors/index" class="sidebar-nav <?=$list_colors;?>"><i class="icon fa-solid fa-palette"></i><span> Listar Cores</span></a>
+            </div>
+    </div>
     <!-- FIM do SIDE-BAR -->
-    
-<!-- <div class="container">
-    <div class="row text-center"><hr>
-        <a class="btn btn-sm btn-primary" href="<?=URLADM?>dashboard/index">Dashboard</a>
-        <a class="btn btn-sm btn-primary" href="<?=URLADM?>list-users/index">Usuários</a>
-        <a class="btn btn-sm btn-primary" href="<?=URLADM?>view-profile/index">Perfil</a>
-        <a class="btn btn-sm btn-primary" href="<?=URLADM?>list-email-confs/index">Config-Emails</a>
-        <a class="btn btn-sm btn-primary" href="<?=URLADM?>list-sits-users/index">Situações</a>
-        <a class="btn btn-sm btn-primary" href="<?=URLADM?>list-colors/index">Cores</a>
-        <a class="btn btn-sm btn-primary" href="<?=URLADM?>logout/index">Sair</a>
-    </div>
-</div> -->
-
-

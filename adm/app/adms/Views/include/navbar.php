@@ -4,7 +4,7 @@
         <div class="bars">
             <i class="fa-solid fa-bars"></i>
         </div>
-        <a href="index.php">
+        <a href="<?= URLADM; ?>">
             <img class="logo" src="<?= URLADM; ?>app/adms/assets/imgs/Logo-Dtudo_102x40.png" alt="Logo Dtudo"></a>
     </div>
     <div class="navbar_content">

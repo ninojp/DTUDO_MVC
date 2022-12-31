@@ -2,6 +2,11 @@
 if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
     header("Location: https://localhost/dtudo/public/");
 }
+// Manter os dados no formulário     
+if (isset($this->data['form'])) {
+    // var_dump($this->data['form']);
+    $valorForm = $this->data['form'];
+}
 // var_dump($this->data);
 // var_dump($this->data['listUsers']);
 // echo "<a class='btn btn-sm btn-outline-primary ms-4' href='" . URLADM . "add-users/index'>Cadastrar Usuário</a><br><hr>";
@@ -30,18 +35,47 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
 <div class="wrapper_list">
     <div class="row_list">
         <div class="top_list">
-            <span class="title_content">
+            <div class="title_content">
                 <h2 class="title_h2">Listar Usuários</h2>
-            </span>
-            <div class="top_list_right">
-                <a class="btn btn-sm btn_success" href="<?= URLADM.'add-users/index';?>" type="button">Cadastrar</a>
             </div>
-            <div class="msg_alert">
-                <!-- Mensagens de avisos -->
-                <?php if (isset($_SESSION['msg'])) {
-                        echo $_SESSION['msg'];
-                        unset($_SESSION['msg']); } ?>
+            <div class="div_row_msg_btn">
+                <div class="col-9 msg_alert">
+                    <!-- Mensagens de avisos -->
+                    <?php if (isset($_SESSION['msg'])) {
+                            echo $_SESSION['msg'];
+                            unset($_SESSION['msg']); } ?>
+                </div>
+                <div class="col-3 top_list_right">
+                    <a class="btn btn-sm btn_success" href="<?= URLADM.'add-users/index';?>" type="button">Cadastrar Usuário</a>
+                </div>
             </div>
+            <!-- DIV com o campo de pesquisa -->
+            <div class="div_row_form">
+                <form class="form_pesquisar" action="" name="form_pesquisar" method="POST">
+                    <div class="row_form_pesquisar">
+                        <div class="col-4">
+                            <?php $search_name = "";
+                            if (isset($valorForm['search_name'])) {
+                                $search_name = $valorForm['search_name'];
+                            } ?>
+                            <label class="">Nome: </label>
+                            <input type="text" name="search_name" id="seach_name" value="<?php echo $search_name; ?>" placeholder="Pesquisar pelo nome">
+                        </div>
+                        <div class="col-3">
+                            <button  class="btn btn-sm btn-outline-info" type="submit" name="SendSearchUser" value="Pesquisar">Pesquisar por nome ou e-mail</button>
+                        </div>
+                        <div class="col-4">
+                            <?php $search_email = "";
+                            if (isset($valorForm['search_email'])) {
+                                $search_email = $valorForm['search_email'];
+                            } ?>
+                            <label class="">E-mail: </label>
+                            <input type="text" name="search_email" id="seach_email" value="<?= $search_email; ?>" placeholder="Pesquisar pelo e-mail">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
         </div>
         <table class="table table-striped table_list">
             <thead class="list_head">

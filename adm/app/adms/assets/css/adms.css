@@ -65,6 +65,7 @@ body{
 /* INICIO do NAVBAR do ADM */
 .navbar{
     /* position: fixed; */
+    margin-top: 100px;
     display: flex;
     width: 100%;
     align-items: center;
@@ -235,10 +236,12 @@ body{
 }
 .sidebar a{
     color: var(--azulClaro);
+    text-decoration: none;
 }
 .sidebar a:hover{
     background-color: var(--azulEscuro);
     color: var(--azulClaro);
+    text-decoration: none;
 }
 .sidebar .sidebar_nav.active{
     background-color: var(--azulEscuro);
@@ -303,6 +306,50 @@ body{
     display: block;
     border-radius: 7px;
 }
+/* Inicio dropdown sidebar - COPIADO *************************************************************/
+.sidebar .dropdown-btn{
+    padding: 15px 0;
+    font-size: 16px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    width: 100%;
+    color: var(--main-color);
+}
+.sidebar .dropdown-btn span{
+    margin-right: 5px;
+}
+.sidebar .dropdown-btn:hover{
+    background-color: var(--second-bg-color);
+    color: var(--active-color);
+}
+.dropdown-btn .icon{
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+.sidebar .dropdown-btn.active{
+    background-color: var(--second-bg-color);
+    color: var(--active-color);
+}
+.sidebar .dropdown-container{
+    display: none;
+    background-color: var(--fourth-bg-color);
+}
+.sidebar .dropdown-container.active{
+    display: block !important;
+}
+.sidebar-nav{
+    display: block;
+    text-decoration: none;
+
+}
+/* Fim dropdown sidebar */
+
 /* ============================================================================================ */
 /* Definições da VIEW Dashboard.php *****************************************************************/
 .box{
@@ -337,12 +384,12 @@ body{
     position: relative;
 }
 @media (max-width: 1024px) {
-    .row .box{
+    .box{
         width: 48%;
     }
 }
 @media (max-width: 768px) {
-    .row .box{
+    .box{
         width: 98%;
     }
 }
@@ -363,7 +410,6 @@ body{
     border-radius: 10px;
     box-shadow: 1px 4px 16px 1px var(--preto);
 }
-/* INICIO do Listar ****************************************************************************/
 .top_list{
     width: 100%;
     overflow: hidden;
@@ -371,7 +417,7 @@ body{
 .title_content{
     align-self: center;
     text-align: center;
-    padding: 10px 16px;
+    padding: 0px 16px;
 }
 .title_h2{
     text-shadow: 0px 1px 3px #000;
@@ -379,13 +425,34 @@ body{
     font-size: 2.5rem;
     font-weight: 700;
 }
-.top_list .top_list_right{
-    padding: 10px 5px 5px 0;
-    float: right;
+/* Formulário de pesquisa das views listar **********************************************************/
+.div_row_form{
+    width: 100%;
+    display: flex;
+    margin: 20px 0px 5px 0px;
+}
+.form_pesquisar{
+    width: 100%;
+    display: flex;
+}
+.row_form_pesquisar{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.div_row_msg_btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.top_list_right{
+    padding: 0px;
+    text-align: center;
 }
 /* Definições gerais das TABELAS *****************************************************************/
 .table_list{
-    margin-top: 15px;
+    /* margin-top: 15px; */
     width: 100%;
     box-shadow: 0px 4px 6px 0px var(--preto);
 }
@@ -732,9 +799,8 @@ select.input_form:focus{
 /* ============================================================================================== */
 /* Definições gerais da classe alert **************************************************************/
 .msg_alert{
-    width: 100%;
+    /* width: 100%; */
     justify-content: center;
-    height: unset;
 }
 .msg_alert p{
     padding: 0px 10px;
