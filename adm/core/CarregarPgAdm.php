@@ -18,6 +18,12 @@ class CarregarPgAdm
     /** @var array - $listPgPrivate: Recebe a lista das paginas privadas(acessadas com login) */
     private array $listPgPrivate;
 
+    /** @var string - criei agora 02/01/23, pois estava apresentando erro... depois tenho q ver pq! */
+    private string $urlSlugController;
+
+    /** @var string - criei agora 02/01/23, pois estava apresentando erro... depois tenho q ver pq! */
+    private string $urlSlugMetodo;
+
     /** ==============================================================================================
      * @param string|null $urlController
      * @param string|null $urlMetodo
@@ -79,7 +85,7 @@ class CarregarPgAdm
      * Instacia o método para verificar se foi feito o login e e confere se a url a ser carregada está na lista de paginas Privadas  -  @return void    */
     private function pgPrivate():void
     {
-        $this->listPgPrivate = ["Dashboard", "ListUsers", "ViewUsers", "AddUsers", "EditUsers", "EditUsersPassword", "EditUsersImage", "DeleteUsers", "ViewProfile", "EditProfile", "EditProfilePassword", "EditProfileImage", "ListSitsUsers", "ViewSitsUsers", "AddSitsUsers", "EditSitsUsers", "DeleteSitsUsers", "ListColors", "ViewColors", "AddColors", "EditColors", "DeleteColors", "ListEmailConfs", "ViewEmailConfs", "EditEmailConfs", "EditEmailConfsPass", "AddEmailConfs", "DeleteEmailConfs"];
+        $this->listPgPrivate = ["Dashboard", "ListUsers", "ViewUsers", "AddUsers", "EditUsers", "EditUsersPassword", "EditUsersImage", "DeleteUsers", "ViewProfile", "EditProfile", "EditProfilePassword", "EditProfileImage", "ListSitsUsers", "ViewSitsUsers", "AddSitsUsers", "EditSitsUsers", "DeleteSitsUsers", "ListColors", "ViewColors", "AddColors", "EditColors", "DeleteColors", "ListEmailConfs", "ViewEmailConfs", "EditEmailConfs", "EditEmailConfsPass", "AddEmailConfs", "DeleteEmailConfs", "ListAccessNivels", "ViewAccessNivels", "AddAccessNivels", "EditAccessNivels", "DeleteAccessNivels"];
         if(in_array($this->urlController, $this->listPgPrivate)){
             // $this->classLoad = "\\App\\adms\\Controllers\\".$this->urlController;
             $this->verifyLogin();

@@ -15,6 +15,8 @@ class AdmsEditUsers
     /** @var array|null - Recebe os campos que devem ser retirados da validação   */
     private array|null $dataExitVal;
 
+    private array $listRegistryAdd;
+
     /** ============================================================================================
      * Retorna TRUE se executar o processo com sucesso, FALSE quando houver erro e atribui para o atributo:$this->result    -  @return void     */
     function getResult():bool

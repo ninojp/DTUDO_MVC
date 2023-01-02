@@ -3,7 +3,7 @@ namespace App\adms\controllers;
 if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 use Core\ConfigView;
 
-class ListUsers
+class ListAccessNivels
 {
     /** @var array|string|null - Define que o atributo:$data pode receber(da view) os dados(parametros) de diversos tipos, q devem ser enviados novamente para serem exibidos pela view */
     private array|string|null $data;
@@ -18,7 +18,7 @@ class ListUsers
     private string|null $searchName;
 
     /** @var string|null -  - Recebe o E-mail a ser pesquisado  */
-    private string|null $searchEmail;
+    private string|null $searchAccessNivels;
 
     /** ===========================================================================================
      * Método para listar Usuários
@@ -38,52 +38,52 @@ class ListUsers
         // var_dump($this->dataForm);
 
         $this->searchName = filter_input(INPUT_GET, 'search_name', FILTER_DEFAULT);
-        $this->searchEmail = filter_input(INPUT_GET, 'search_email', FILTER_DEFAULT);
+        $this->searchAccessNivels = filter_input(INPUT_GET, 'search_access_nivels', FILTER_DEFAULT);
         // var_dump($this->searchName);
         // var_dump($this->searchEmail);
 
-        $listUsers = new \App\adms\Models\AdmsListUsers();
+        $listAccessNivels = new \App\adms\Models\AdmsListAccessNivels();
 
         //verifica se foi clicado no botão de pesquisar, se foi executa o codigo abaixo
-        if(!empty($this->dataForm['SendSearchUser'])) {
+        if(!empty($this->dataForm['SendSearchAccessNivels'])) {
             //sempre quando clicar no pesquisar, redireciona para pagina 1
             $this->page = 1;
             
             //instância o método que fara a pesquisa e passa como parametro a pagina e os dados que estão nas posições do array:$this->dataForm['']
-            $listUsers->listSeachUsers($this->page, $this->dataForm['search_name'], $this->dataForm['search_email']);
+            $listAccessNivels->listSeachAccessesNivels($this->page, $this->dataForm['search_name'], $this->dataForm['search_access_nivels']);
             
             //para manter os dados no formulário, na view
             $this->data['form'] = $this->dataForm;
 
         // verifica se está recebendo via GET na url
-        } elseif((!empty($this->searchName)) or (!empty($this->searchEmail))) {
+        } elseif((!empty($this->searchName)) or (!empty($this->searchAccessNivels))) {
 
             //instância o método que fara a pesquisa e passa como parametro a pagina e os dados que estão nas posições do array:$this->dataForm['']
-            $listUsers->listSeachUsers($this->page, $this->searchName, $this->searchEmail);
+            $listAccessNivels->listSeachAccessesNivels($this->page, $this->searchName, $this->searchAccessNivels);
             
             //para manter os dados no formulário, na view
             $this->data['form']['search_name'] = $this->searchName;
-            $this->data['form']['search_email'] = $this->searchEmail;
+            $this->data['form']['search_access_nivels'] = $this->searchAccessNivels;
 
         //Se não foi clicado carrega os dados do listar normalmente
         } else {
             //envia para a models a pagina atual
-            $listUsers->listUsers($this->page);
+            $listAccessNivels->listAccessNivels($this->page);
         }
-        if($listUsers->getResult()){
-            $this->data['listUsers'] = $listUsers->getResultBd();
+        if($listAccessNivels->getResult()){
+            $this->data['listAccessNivels'] = $listAccessNivels->getResultBd();
             // var_dump($this->data['listUsers']);
             // PAGINAÇÃO - cria a POSIÇÃO:['pagination'] no array:$this->data
-            $this->data['pagination'] = $listUsers->getResultPg();
+            $this->data['pagination'] = $listAccessNivels->getResultPg();
         }else{
-            $this->data['listUsers'] = [];
+            $this->data['listAccessNivels'] = [];
             $this->data['pagination'] = "";
         }
         // posição no array:$this->data['sidebarActive'], que define como ACTIVE no menu SIDEBAR
-        $this->data['sidebarActive'] = "list-users";
+        $this->data['sidebarActive'] = "list-access-nivels";
 
         //instancia a classe, cria o objeto e passa o parametro:$this->data, recebido da VIEW
-        $loadView = new ConfigView("adms/Views/users/listUsers",$this->data);
+        $loadView = new ConfigView("adms/Views/accessNivels/listAccessNivels",$this->data);
         //Instancia o método:loadView() da classe:ConfigView
         $loadView->loadView();
     }

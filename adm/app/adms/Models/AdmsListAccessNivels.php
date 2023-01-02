@@ -6,7 +6,7 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
     header("Location: https://localhost/dtudo/public/");
 }
 /** Classe:AdmsListUsers, deve receber os dados(do DB) dos usuários para listar */
-class AdmsListUsers
+class AdmsListAccessNivels
 {
     // Recebe do método:getResult() o valor:(true or false), q será atribuido aqui
     private bool $result;
@@ -23,17 +23,17 @@ class AdmsListUsers
     /** @var string|null -  - Recebe a paginação  */
     private string|null $resultPg;
 
-    /** @var string|null -  - Recebe o nome a ser pesquisado  */
+    /** @var string|null -  - Recebe o nome do nivel a ser pesquisado  */
     private string|null $searchName;
 
-    /** @var string|null -  - Recebe o E-mail a ser pesquisado  */
-    private string|null $searchEmail;
+    /** @var string|null -  - Recebe o Nivel a ser pesquisado  */
+    private string|null $searchaccessesNivels;
 
     /** @var string|null - Recebe o nome a ser pesquisado, que pode conter caracteres antes e depois  */
     private string|null $searchNameValue;
 
-    /** @var string|null - Recebe o E-mail a ser pesquisado, que pode conter caracteres antes e depois  */
-    private string|null $searchEmailValue;
+    /** @var string|null - Recebe o Nivel a ser pesquisado, que pode conter caracteres antes e depois  */
+    private string|null $searchaccessesNivelsValue;
 
     /** ============================================================================================
      * Retorna true quando executar o processo com sucesso e false quando houver erro
@@ -56,9 +56,9 @@ class AdmsListUsers
         return $this->resultPg;
     }
     /** ============================================================================================
-     * Método para pesquisar usuários na tabela:adms_users e listar as informações na view
+     * Método para pesquisar Niveis de acesso na tabela:adms_access_levels e listar as informações na view
      * Recebe o parametro:$page para que seja feita a paginação do resultado    */
-    public function listUsers(int $page = null): void
+    public function listAccessNivels(int $page = null): void
     {
         //------------------------------ PAGINAÇÂO -------------------------------------------
         //Atribui o parametro recebido:$page para o atributo:$this->page
@@ -66,155 +66,145 @@ class AdmsListUsers
         $this->page = (int) $page ? $page : 1;
         // var_dump($this->page);
         //instância a classe:AdmsPagination, cria o objeto:$pagination 
-        $pagination = new \App\adms\Models\helper\AdmsPagination(URLADM . 'list-users/index');
+        $pagination = new \App\adms\Models\helper\AdmsPagination(URLADM . 'list-access-nivels/index');
         //instância o método para fazer a paginação
         $pagination->condition($this->page, $this->limitResult);
         //cria a query, buscar quantidade total de registros da tabela:adms_users
-        $pagination->pagination("SELECT COUNT(usr.id) AS num_result FROM adms_users AS usr");
+        $pagination->pagination("SELECT COUNT(id) AS num_result FROM adms_access_levels");
         //recebe o resultado do método:getResult() e atribui para:$this->resultPg
         $this->resultPg = $pagination->getResult();
         // var_dump($this->resultPg);
         //-------------------------------------------------------------------------------------
 
-        $listUsers = new \App\adms\Models\helper\AdmsRead();
+        $listAccessesNivels = new \App\adms\Models\helper\AdmsRead();
         //INNER JOIN, é obrigátorio(para retornar o registro) q a chave EXTRANGEIRA:adms_sits_user_id exista na tabela outra tabela, a qual está se fazendo o inner join(adms_sits_users)
-        $listUsers->fullRead("SELECT usr.id, usr.name AS name_usr, usr.email, usr.adms_sits_user_id, sit.name AS name_sit, col.name AS name_col, col.color FROM adms_users AS usr 
-        INNER JOIN adms_sits_users AS sit ON sit.id=usr.adms_sits_user_id 
-        INNER JOIN adms_colors AS col ON sit.adms_color_id=col.id
-        ORDER BY usr.id DESC LIMIT :limit OFFSET :offset", "limit={$this->limitResult}&offset={$pagination->getOffset()}");
+        $listAccessesNivels->fullRead("SELECT id, name, order_levels FROM adms_access_levels ORDER BY id ASC LIMIT :limit OFFSET :offset", "limit={$this->limitResult}&offset={$pagination->getOffset()}");
 
-        $this->resultBd = $listUsers->getResult();
+        $this->resultBd = $listAccessesNivels->getResult();
         if ($this->resultBd) {
             // var_dump($this->resultBd);
             $this->result = true;
         } else {
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Nenhum usuário encontrado!</p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Nenhum Nivel de Acesso encontrado!</p>";
             $this->result = false;
         }
     }
     /** ============================================================================================
-     * Método para pesquisar(formulario de pesquisa) usuários na tabela:adms_users e listar as informações na view
+     * Método para pesquisar(formulario de pesquisa) Niveis de acesso na tabela:adms_access_levels e listar as informações na view
      * Recebe o parametro:$page para que seja feita a paginação do resultado    */
-    public function listSeachUsers(int $page = null, string|null $search_name, string|null $search_email): void
+    public function listSeachAccessesNivels(int $page = null, string|null $search_name, string|null $accesses_Nivels): void
     {
         //atribui os parametros recebidos para os devidos atributos
         $this->page = (int) $page ? $page : 1;
         //usa o trim para retirar os espaços em branco
         $this->searchName = trim($search_name);
-        $this->searchEmail = trim($search_email);
+        $this->searchaccessesNivels = trim($accesses_Nivels);
         // var_dump($this->searchName);
         // var_dump($this->searchEmail);
 
         //define que a variavel q vai ser usada na query de pesquisa pode ter valores antes e depois
         $this->searchNameValue = "%" . $this->searchName . "%";
-        $this->searchEmailValue = "%" . $this->searchEmail . "%";
+        $this->searchaccessesNivelsValue = "%" . $this->searchaccessesNivels . "%";
         // var_dump($this->searchNameValue);
         // var_dump($this->searchEmailValue);
 
         //verifica se está recebendo os dois campos de pesquisa, nome e email
-        if ((!empty($this->searchName)) and (!empty($this->searchEmail))) {
-            $this->searchUserNameEmail();
+        if ((!empty($this->searchName)) and (!empty($this->searchaccessesNivels))) {
+            $this->searchAccessNameNivels();
             //verifica se está recebendo o NOME
-        } elseif ((!empty($this->searchName)) and (empty($this->searchEmail))) {
-            $this->searchUserName();
+        } elseif ((!empty($this->searchName)) and (empty($this->searchaccessesNivels))) {
+            $this->searchAccessName();
             //verifica se está recebendo o E-MAIL
-        } elseif ((empty($this->searchName)) and (!empty($this->searchEmail))) {
-            $this->searchUserEmail();
+        } elseif ((empty($this->searchName)) and (!empty($this->searchaccessesNivels))) {
+            $this->searchAccessNivels();
         } else {
-            $this->searchUserNameEmail();
+            $this->searchAccessNameNivels();
         }
     }
     /** ============================================================================================
-     * Método para pesquisar pelo NOME e E-Mail    */
-    public function searchUserNameEmail(): void
+     * Método para pesquisar pelo NOME do Nivel e o numero do nivel    */
+    public function searchAccessNameNivels(): void
     {
         //instância a classe:AdmsPagination, cria o objeto:$pagination 
-        $pagination = new \App\adms\Models\helper\AdmsPagination(URLADM . 'list-users/index', "?search_name={$this->searchName}&search_email={$this->searchEmail}");
+        $pagination = new \App\adms\Models\helper\AdmsPagination(URLADM . 'list-access-nivels/index', "?search_name={$this->searchName}&search_access_nivels={$this->searchaccessesNivels}");
         //instância o método para fazer a paginação
         $pagination->condition($this->page, $this->limitResult);
         //cria a query, buscar quantidade total de registros da tabela:adms_users
-        $pagination->pagination("SELECT COUNT(usr.id) AS num_result FROM adms_users AS usr WHERE name LIKE :search_name OR email LIKE :search_email", "search_name={$this->searchNameValue}&search_email={$this->searchEmailValue}");
+        $pagination->pagination("SELECT COUNT(id) AS num_result FROM adms_access_levels WHERE name LIKE :search_name OR order_levels LIKE :search_access_nivels", "search_name={$this->searchNameValue}&search_access_nivels={$this->searchaccessesNivelsValue}");
         //recebe o resultado do método:getResult() e atribui para:$this->resultPg
         $this->resultPg = $pagination->getResult();
         // var_dump($this->resultPg);
         //-------------------------------------------------------------------------------------
 
-        $listUsersNameEmail = new \App\adms\Models\helper\AdmsRead();
+        $listNivelsAccess = new \App\adms\Models\helper\AdmsRead();
         //INNER JOIN, é obrigátorio(para retornar o registro) q a chave EXTRANGEIRA:adms_sits_user_id exista na tabela outra tabela, a qual está se fazendo o inner join(adms_sits_users)
-        $listUsersNameEmail->fullRead(
-            "SELECT usr.id, usr.name AS name_usr, usr.email, usr.adms_sits_user_id, sit.name AS name_sit, col.name AS name_col, col.color FROM adms_users AS usr 
-        INNER JOIN adms_sits_users AS sit ON sit.id=usr.adms_sits_user_id 
-        INNER JOIN adms_colors AS col ON sit.adms_color_id=col.id 
-        WHERE usr.name LIKE :search_name OR usr.email LIKE :search_email
-        ORDER BY usr.id DESC LIMIT :limit OFFSET :offset",
-            "search_name={$this->searchNameValue}&search_email={$this->searchEmailValue}&limit={$this->limitResult}&offset={$pagination->getOffset()}"
-        );
+        $listNivelsAccess->fullRead("SELECT id, name, order_levels FROM adms_access_levels WHERE name LIKE :search_name OR order_levels LIKE :search_access_nivels ORDER BY id DESC LIMIT :limit OFFSET :offset",
+         "search_name={$this->searchNameValue}&search_access_nivels={$this->searchaccessesNivelsValue}&limit={$this->limitResult}&offset={$pagination->getOffset()}");
 
-        $this->resultBd = $listUsersNameEmail->getResult();
+        $this->resultBd = $listNivelsAccess->getResult();
         if ($this->resultBd) {
             // var_dump($this->resultBd);
             $this->result = true;
         } else {
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Nenhum usuário ou e-mail encontrado!</p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Nenhum Nivel de acesso encontrado!</p>";
             $this->result = false;
         }
     }
     /** ============================================================================================
-     * Método para pesquisar somente pelo NOME    */
-    public function searchUserName(): void
+     * Método para pesquisar somente pelo NOME do Nivel    */
+    public function searchAccessName(): void
     {
         //instância a classe:AdmsPagination, cria o objeto:$pagination 
-        $pagination = new \App\adms\Models\helper\AdmsPagination(URLADM . 'list-users/index', "?search_name={$this->searchName}&search_email={$this->searchEmail}");
+        $pagination = new \App\adms\Models\helper\AdmsPagination(URLADM . 'list-access-nivels/index', "?search_name={$this->searchName}&search_access_nivels={$this->searchaccessesNivels}");
         //instância o método para fazer a paginação
         $pagination->condition($this->page, $this->limitResult);
         //cria a query, buscar quantidade total de registros da tabela:adms_users
-        $pagination->pagination("SELECT COUNT(usr.id) AS num_result FROM adms_users AS usr WHERE name LIKE :search_name", "search_name={$this->searchNameValue}");
+        $pagination->pagination("SELECT COUNT(id) AS num_result FROM adms_access_levels WHERE name LIKE :search_name OR order_levels LIKE :search_access_nivels", "search_name={$this->searchNameValue}&search_access_nivels={$this->searchaccessesNivelsValue}");
         //recebe o resultado do método:getResult() e atribui para:$this->resultPg
         $this->resultPg = $pagination->getResult();
         // var_dump($this->resultPg);
         //-------------------------------------------------------------------------------------
 
-        $listUsersName = new \App\adms\Models\helper\AdmsRead();
+        $listNivelsName = new \App\adms\Models\helper\AdmsRead();
         //INNER JOIN, é obrigátorio(para retornar o registro) q a chave EXTRANGEIRA:adms_sits_user_id exista na tabela outra tabela, a qual está se fazendo o inner join(adms_sits_users)
-        $listUsersName->fullRead("SELECT usr.id, usr.name AS name_usr, usr.email, usr.adms_sits_user_id, sit.name AS name_sit, col.name AS name_col, col.color FROM adms_users AS usr 
-        INNER JOIN adms_sits_users AS sit ON sit.id=usr.adms_sits_user_id 
-        INNER JOIN adms_colors AS col ON sit.adms_color_id=col.id 
-        WHERE usr.name LIKE :search_name ORDER BY usr.id DESC LIMIT :limit OFFSET :offset", "search_name={$this->searchNameValue}&limit={$this->limitResult}&offset={$pagination->getOffset()}");
+        $listNivelsName->fullRead("SELECT id, name, order_levels FROM adms_access_levels WHERE name LIKE :search_name OR order_levels LIKE :search_access_nivels ORDER BY id DESC LIMIT :limit OFFSET :offset",
+        "search_name={$this->searchNameValue}&search_access_nivels={$this->searchaccessesNivelsValue}&limit={$this->limitResult}&offset={$pagination->getOffset()}");
 
-        $this->resultBd = $listUsersName->getResult();
+        $this->resultBd = $listNivelsName->getResult();
         if ($this->resultBd) {
             // var_dump($this->resultBd);
             $this->result = true;
         } else {
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Nenhum usuário encontrado!</p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Nenhum Nome de nivel encontrado!</p>";
             $this->result = false;
         }
     }
     /** ============================================================================================
      * Método para pesquisar somente pelo E-Mail    */
-    public function searchUserEmail(): void
+    public function searchAccessNivels(): void
     {
         //instância a classe:AdmsPagination, cria o objeto:$pagination 
-        $pagination = new \App\adms\Models\helper\AdmsPagination(URLADM . 'list-users/index', "?search_name={$this->searchName}&search_email={$this->searchEmail}");
+        $pagination = new \App\adms\Models\helper\AdmsPagination(URLADM . 'list-access-nivels/index', "?search_name={$this->searchName}&search_access_nivels={$this->searchaccessesNivels}");
         //instância o método para fazer a paginação
         $pagination->condition($this->page, $this->limitResult);
         //cria a query, buscar quantidade total de registros da tabela:adms_users
-        $pagination->pagination("SELECT COUNT(usr.id) AS num_result FROM adms_users AS usr WHERE email LIKE :search_email", "search_email={$this->searchEmailValue}");
+        $pagination->pagination("SELECT COUNT(aal.id) AS num_result FROM adms_access_levels AS aal WHERE aal.order_levels LIKE :search_access_nivels", "search_access_nivels={$this->searchaccessesNivelsValue}");
         //recebe o resultado do método:getResult() e atribui para:$this->resultPg
         $this->resultPg = $pagination->getResult();
         // var_dump($this->resultPg);
         //-------------------------------------------------------------------------------------
 
-        $listUsersEmail = new \App\adms\Models\helper\AdmsRead();
+        $listAccessNivels = new \App\adms\Models\helper\AdmsRead();
         //INNER JOIN, é obrigátorio(para retornar o registro) q a chave EXTRANGEIRA:adms_sits_user_id exista na tabela outra tabela, a qual está se fazendo o inner join(adms_sits_users)
-        $listUsersEmail->fullRead("SELECT usr.id, usr.name AS name_usr, usr.email, usr.adms_sits_user_id, sit.name AS name_sit, col.name AS name_col, col.color FROM adms_users AS usr INNER JOIN adms_sits_users AS sit ON sit.id=usr.adms_sits_user_id INNER JOIN adms_colors AS col ON sit.adms_color_id=col.id WHERE usr.email LIKE :search_email ORDER BY usr.id DESC LIMIT :limit OFFSET :offset", "search_email={$this->searchEmailValue}&limit={$this->limitResult}&offset={$pagination->getOffset()}");
+        $listAccessNivels->fullRead("SELECT aal.id, aal.name, aal.order_levels FROM adms_access_levels AS aal WHERE aal.name LIKE :search_name ORDER BY aal.id DESC LIMIT :limit OFFSET :offset",
+        "search_name={$this->searchNameValue}&limit={$this->limitResult}&offset={$pagination->getOffset()}");
 
-        $this->resultBd = $listUsersEmail->getResult();
+        $this->resultBd = $listAccessNivels->getResult();
         if ($this->resultBd) {
             // var_dump($this->resultBd);
             $this->result = true;
         } else {
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Nenhum usuário ou e-mail encontrado!</p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Nenhum Nivel de acesso encontrado!</p>";
             $this->result = false;
         }
     }

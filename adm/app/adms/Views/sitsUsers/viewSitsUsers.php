@@ -68,7 +68,7 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
         <div class="col-12 text-center p-4">
             <a class="btn btn-sm btn-outline-success mx-1" href="<?= URLADM; ?>list-sits-users/index"><i class="fa-solid fa-rectangle-list"></i> Listar</a>
             <a class="btn btn-sm btn-outline-warning mx-1" href="<?= URLADM; ?>edit-sits-users/index/<?= $id; ?>"><i class='fa-solid fa-pen-to-square'></i> Editar</a>
-            <a class="btn btn-sm btn-outline-danger mx-1" href="<?= URLADM; ?>delete-sits-users/index/index/<?= $id; ?>" onclick="return confirm('Tem certeza que deseja excluir o registro?')"><i class='fa-solid fa-trash-can'></i> Apagar</a>
+            <a class="btn btn-sm btn-outline-danger mx-1" href="<?= URLADM; ?>delete-sits-users/index/<?= $id; ?>" onclick="return confirm('Tem certeza que deseja excluir o registro?')"><i class='fa-solid fa-trash-can'></i> Apagar</a>
         </div>
         <?php } ?>
     </div>

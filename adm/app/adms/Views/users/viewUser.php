@@ -106,7 +106,7 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
         <div class="col-12 text-center p-4">
             <a class="btn btn-sm btn-outline-warning mx-2" href="<?= URLADM; ?>edit-users/index/<?= $id; ?>"><i class='fa-solid fa-pen-to-square'></i> Editar</a>
             <a class="btn btn-sm btn-outline-info mx-2" href="<?= URLADM; ?>edit-users-password/index/<?= $id; ?>"><i class="fa-solid fa-unlock-keyhole"></i> Editar Senha</a>
-            <a class="btn btn-sm btn-outline-danger mx-2" href="<?= URLADM; ?>delete-users/index/index/<?= $id; ?>" onclick="return confirm('Tem certeza que deseja excluir o registro?')"><i class='fa-solid fa-trash-can'></i> Apagar Usuário</a>
+            <a class="btn btn-sm btn-outline-danger mx-2" href="<?= URLADM; ?>delete-users/index/<?= $id; ?>" onclick="return confirm('Tem certeza que deseja excluir o registro?')"><i class='fa-solid fa-trash-can'></i> Apagar Usuário</a>
         </div>
         <?php } ?>
     </div>

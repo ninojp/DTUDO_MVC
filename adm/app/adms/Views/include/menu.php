@@ -30,6 +30,11 @@ if(isset($this->data['sidebarActive'])){
             $dropDown = "active"; } ?>
         <a href="<?=URLADM;?>list-sits-users/index" class="sidebar_nav <?=$sits_users;?>"><i class="icon fa-brands fa-wpforms"></i><span>Situação Usuários</span></a>
 
+        <?php $list_access_nivels = "";
+        if($sidebar_active=="list-access-nivels"){
+            $list_access_nivels = "active"; } ?>
+        <a href="<?=URLADM;?>list-access-nivels/index" class="sidebar_nav <?=$list_access_nivels;?>"><i class="icon fa-solid fa-key"></i><span>Niveis de Acesso</span></a>
+
         <?php $email_confs = "";
         if($sidebar_active=="list-email-confs"){
             $email_confs = "active";
@@ -38,15 +43,14 @@ if(isset($this->data['sidebarActive'])){
 
         <?php $list_colors = "";
         if($sidebar_active=="list-colors"){
-            $list_colors = "active";
-            $dropDown = "active";}?>
+            $list_colors = "active"; }?>
         <a href="<?=URLADM;?>list-colors/index" class="sidebar_nav <?=$list_colors;?>"><i class="icon fa-solid fa-palette"></i><span>Cores</span></a>
 
         <a href="<?=URLADM?>logout/index" class="sidebar_nav"><i class="icon fa-solid fa-right-from-bracket"></i><span>Sair</span></a>
 
         <!-- EXEMPLO: MENU DROPDOWN do Dashboard -->
         <button class="dropdown-btn <?=$dropDown;?>">
-        <i class="icon fa-solid fa-chalkboard-user"></i><span>DropDown Dash</span><i class="fa-solid fa-caret-down"></i>
+        <i class="icon fa-solid fa-chalkboard-user"></i>DropDown Users <i class="fa-solid fa-caret-down"></i>
             </button>
             <div class="dropdown-container <?=$dropDown;?>">
                 <a href="<?=URLADM;?>list-users/index" class="sidebar-nav <?=$list_users;?>"><i class="icon fa-solid fa-users"></i><span> Listar Usuários</span></a>
@@ -55,7 +59,6 @@ if(isset($this->data['sidebarActive'])){
 
                 <a href="<?=URLADM;?>list-email-confs/index" class="sidebar-nav <?=$email_confs;?>"><i class="icon fa-solid fa-table-list"></i><span> E-Mail Configs</span></a>
 
-                <a href="<?=URLADM;?>list-colors/index" class="sidebar-nav <?=$list_colors;?>"><i class="icon fa-solid fa-palette"></i><span> Listar Cores</span></a>
             </div>
     </div>
     <!-- FIM do SIDE-BAR -->
