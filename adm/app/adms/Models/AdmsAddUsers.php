@@ -17,6 +17,7 @@ class AdmsAddUsers
 {
     //recebido como parametro através do método:create() e colocado neste atributo
     private array|null $data;
+
     // Recebe do método:getResult() o valor:(true or false), q será atribuido aqui
     private bool $result;
 
@@ -109,11 +110,16 @@ class AdmsAddUsers
      * @return array     */
     public function listSelect():array
     {
+        //listar os dados da tabela:adms_sits_users para utilizar no select da view de adição de usuário
         $list = new \App\adms\Models\helper\AdmsRead();
         $list->fullRead("SELECT id id_sit, name name_sit FROM adms_sits_users ORDER BY name ASC");
         $registry['sit'] = $list->getResult();
 
-        $this->listRegistryAdd = ['sit' => $registry['sit']];
+        //listar o nivel de acesso da tabela:adms_access_levels para utilizar no select da view de adição de usuário, só pode adicionar usuários com NIVEL de ACESSO inferior aos dele
+        $list->fullRead("SELECT id id_lev, name name_lev FROM adms_access_levels WHERE order_levels >:order_levels ORDER BY name ASC", "order_levels=".$_SESSION['order_levels']);
+        $registry['lev'] = $list->getResult();
+
+        $this->listRegistryAdd = ['sit' => $registry['sit'], 'lev' =>$registry['lev']];
         // var_dump($this->listRegistryAdd);
 
         return $this->listRegistryAdd;

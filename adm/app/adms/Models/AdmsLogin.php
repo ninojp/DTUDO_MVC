@@ -6,7 +6,7 @@ if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){
     // header("Location: /");
     header("Location: https://localhost/dtudo/public/");
     // Ou termina a execução e exibe a mensagem de erro
-    die("Erro! Página não encontrada<br>");
+    // die("Erro! Página não encontrada<br>");
 }
 /** Classe:AdmsLogin, é filha(Herda) da classe:AdmsConn(abstrata responsável pela conexão) */
 class AdmsLogin
@@ -38,7 +38,7 @@ class AdmsLogin
         $viewUser = new \App\adms\Models\helper\AdmsRead();
 
         //Retorna somente as colunas indicadas e Faz a verificação:WHERE através do USER OR EMAIL
-        $viewUser->fullRead("SELECT id, name, nickname, email, password, image, adms_sits_user_id FROM adms_users WHERE user =:user OR email =:email LIMIT :limit", "user={$this->data['user']}&email={$this->data['user']}&limit=1");
+        $viewUser->fullRead("SELECT usr.id, usr.name, usr.nickname, usr.email, usr.password, usr.image, usr.adms_sits_user_id, usr.access_level_id, lev.order_levels FROM adms_users AS usr INNER JOIN adms_access_levels AS lev ON lev.id=usr.access_level_id WHERE usr.user =:user OR usr.email =:email LIMIT :limit", "user={$this->data['user']}&email={$this->data['user']}&limit=1");
 
         $this->resultBd = $viewUser->getResult();
         if($this->resultBd){
@@ -82,6 +82,8 @@ class AdmsLogin
             $_SESSION['user_nickname'] = $this->resultBd[0]['nickname'];
             $_SESSION['user_email'] = $this->resultBd[0]['email'];
             $_SESSION['user_image'] = $this->resultBd[0]['image'];
+            $_SESSION['access_level_id'] = $this->resultBd[0]['access_level_id'];
+            $_SESSION['order_levels'] = $this->resultBd[0]['order_levels'];
             $this->result = true;
             // echo $_SESSION['msg'];
         }else{

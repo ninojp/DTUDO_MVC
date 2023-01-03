@@ -805,5 +805,10 @@ select.input_form:focus{
 .msg_alert p{
     padding: 0px 10px;
     width: max-content;
+}
+/* Alerta específico para msg senha */
+.msg_alert_pass p{
+    padding: 0px 10px;
+    width: max-content;
     margin-left: 50px;
 }

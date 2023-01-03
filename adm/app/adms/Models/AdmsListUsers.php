@@ -70,7 +70,8 @@ class AdmsListUsers
         //instância o método para fazer a paginação
         $pagination->condition($this->page, $this->limitResult);
         //cria a query, buscar quantidade total de registros da tabela:adms_users
-        $pagination->pagination("SELECT COUNT(usr.id) AS num_result FROM adms_users AS usr");
+        $pagination->pagination("SELECT COUNT(usr.id) AS num_result FROM adms_users AS usr INNER JOIN adms_access_levels AS lev ON lev.id=access_level_id 
+        WHERE lev.order_levels >:order_levels", "order_levels=".$_SESSION['order_levels']);
         //recebe o resultado do método:getResult() e atribui para:$this->resultPg
         $this->resultPg = $pagination->getResult();
         // var_dump($this->resultPg);
@@ -78,10 +79,9 @@ class AdmsListUsers
 
         $listUsers = new \App\adms\Models\helper\AdmsRead();
         //INNER JOIN, é obrigátorio(para retornar o registro) q a chave EXTRANGEIRA:adms_sits_user_id exista na tabela outra tabela, a qual está se fazendo o inner join(adms_sits_users)
-        $listUsers->fullRead("SELECT usr.id, usr.name AS name_usr, usr.email, usr.adms_sits_user_id, sit.name AS name_sit, col.name AS name_col, col.color FROM adms_users AS usr 
-        INNER JOIN adms_sits_users AS sit ON sit.id=usr.adms_sits_user_id 
-        INNER JOIN adms_colors AS col ON sit.adms_color_id=col.id
-        ORDER BY usr.id DESC LIMIT :limit OFFSET :offset", "limit={$this->limitResult}&offset={$pagination->getOffset()}");
+        $listUsers->fullRead("SELECT usr.id, usr.name AS name_usr, usr.email, usr.adms_sits_user_id, sit.name AS name_sit, col.name AS name_col, col.color FROM adms_users AS usr INNER JOIN adms_sits_users AS sit ON sit.id=usr.adms_sits_user_id INNER JOIN adms_colors AS col ON sit.adms_color_id=col.id INNER JOIN adms_access_levels AS lev ON lev.id=access_level_id 
+        WHERE lev.order_levels >:order_levels
+        ORDER BY usr.id DESC LIMIT :limit OFFSET :offset", "order_levels=".$_SESSION['order_levels']."&limit={$this->limitResult}&offset={$pagination->getOffset()}");
 
         $this->resultBd = $listUsers->getResult();
         if ($this->resultBd) {
@@ -141,14 +141,8 @@ class AdmsListUsers
 
         $listUsersNameEmail = new \App\adms\Models\helper\AdmsRead();
         //INNER JOIN, é obrigátorio(para retornar o registro) q a chave EXTRANGEIRA:adms_sits_user_id exista na tabela outra tabela, a qual está se fazendo o inner join(adms_sits_users)
-        $listUsersNameEmail->fullRead(
-            "SELECT usr.id, usr.name AS name_usr, usr.email, usr.adms_sits_user_id, sit.name AS name_sit, col.name AS name_col, col.color FROM adms_users AS usr 
-        INNER JOIN adms_sits_users AS sit ON sit.id=usr.adms_sits_user_id 
-        INNER JOIN adms_colors AS col ON sit.adms_color_id=col.id 
-        WHERE usr.name LIKE :search_name OR usr.email LIKE :search_email
-        ORDER BY usr.id DESC LIMIT :limit OFFSET :offset",
-            "search_name={$this->searchNameValue}&search_email={$this->searchEmailValue}&limit={$this->limitResult}&offset={$pagination->getOffset()}"
-        );
+        $listUsersNameEmail->fullRead("SELECT usr.id, usr.name AS name_usr, usr.email, usr.adms_sits_user_id, sit.name AS name_sit, col.name AS name_col, col.color FROM adms_users AS usr INNER JOIN adms_sits_users AS sit ON sit.id=usr.adms_sits_user_id INNER JOIN adms_colors AS col ON sit.adms_color_id=col.id WHERE usr.name LIKE :search_name OR usr.email LIKE :search_email ORDER BY usr.id DESC LIMIT :limit OFFSET :offset",
+            "search_name={$this->searchNameValue}&search_email={$this->searchEmailValue}&limit={$this->limitResult}&offset={$pagination->getOffset()}" );
 
         $this->resultBd = $listUsersNameEmail->getResult();
         if ($this->resultBd) {

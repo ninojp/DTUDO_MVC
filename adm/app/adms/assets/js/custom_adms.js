@@ -208,6 +208,14 @@ if (formAddUser) {
             document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Situação! (JS)</p>";
             return;
         }
+        //Validar o valor do campo NIVEL de Acesso do USUÁRIO
+        var access_level_id = document.querySelector("#access_level_id").value;
+        // Verificar se o campo está vazio
+        if (access_level_id === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário preencher o campo Nivel de Acesso! (JS)</p>";
+            return;
+        }
         //Receber o valor do campo PASSWORD
         var password = document.querySelector("#password").value;
         // Verificar se o campo está vazio

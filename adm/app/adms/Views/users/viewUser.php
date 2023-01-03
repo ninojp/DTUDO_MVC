@@ -88,6 +88,12 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
                 <span class="view_det_title">Situação Usuário:</span>
                 <span class="view_det_info"><span style='color:<?= $color_col; ?>'><?= $name_sit; ?></span></span>
             </div>
+            <?php if (!empty($name_lev)) { ?>
+                <div class="view_det">
+                    <span class="view_det_title">Nivel de Acesso:</span>
+                    <!-- Link para OUTRA VIEW:view-access-nivels, passando o id da mesma   -->
+                    <span class="view_det_info"><?php echo "<a href='" . URLADM . "view-access-nivels/index/$id_lev'>" .$name_lev. "</a>"; ?></span>
+            </div><?php } ?>
             <?php if (!empty($image)) { ?>
                 <div class="view_det">
                     <span class="view_det_title">Imagem name:</span>

@@ -67,8 +67,23 @@ if(isset($this->data['form'][0])){
                                 echo "<option value='$id_sit' selected>$name_sit</option>";
                             } else {
                                 echo "<option value='$id_sit'>$name_sit</option>";
-                            }
-                        } ?>
+                            } } ?>
+                    </select>
+                </div>
+            </div>
+            <div class="row_input">
+                <i class="fa-solid fa-hand-pointer"></i>
+                <div class="select_input">
+                    <label class="mx-3" for="access_level_id">Nivel de Acesso:</label>
+                    <select name="access_level_id" id="access_level_id">
+                        <option value="">Selecione</option>
+                        <?php foreach($this->data['select']['lev'] as $lev){
+                            extract($lev);
+                            if((isset($valorForm['access_level_id'])) and ($valorForm['access_level_id'] == $id_lev)){
+                                echo "<option value='$id_lev' selected>$name_lev</option>";
+                            } else {
+                                echo "<option value='$id_lev'>$name_lev</option>";
+                            } } ?>
                     </select>
                 </div>
             </div>

@@ -64,7 +64,7 @@ class AdmsDeleteAccessNivels
         $checkStatusUsed = new \App\adms\Models\helper\AdmsRead();
         $checkStatusUsed->fullRead("SELECT id FROM adms_users WHERE access_level_id =:access_level_id LIMIT :limit", "access_level_id={$this->id}&limit=1",);
         if($checkStatusUsed->getResult()){
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! O Nivel de Acesso não pode ser apagada, pois existe uma Situação há utilizando!</p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! O Nivel de Acesso não pode ser apagada, pois existe um usuário o utilizando!</p>";
             return false;
         } else {
             return true;

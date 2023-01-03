@@ -37,7 +37,7 @@ class AdmsEditUsers
         $this->id = $id;
 
         $viewUsers = new \App\adms\Models\helper\AdmsRead();
-        $viewUsers->fullRead("SELECT id, name, nickname, email, user, adms_sits_user_id FROM adms_users WHERE id=:id LIMIT :limit", "id={$this->id}&limit=1");
+        $viewUsers->fullRead("SELECT id, name, nickname, email, user, adms_sits_user_id, access_level_id FROM adms_users WHERE id=:id LIMIT :limit", "id={$this->id}&limit=1");
 
         $this->resultBd = $viewUsers->getResult();
         if($this->resultBd){
@@ -135,7 +135,11 @@ class AdmsEditUsers
         $list->fullRead("SELECT id id_sit, name name_sit FROM adms_sits_users ORDER BY name ASC");
         $registry['sit'] = $list->getResult();
 
-        $this->listRegistryAdd = ['sit' => $registry['sit']];
+        //listar o nivel de acesso da tabela:adms_access_levels para utilizar no select da view de adição de usuário, só pode adicionar usuários com NIVEL de ACESSO inferior aos dele
+        $list->fullRead("SELECT id id_lev, name name_lev FROM adms_access_levels WHERE order_levels >:order_levels ORDER BY name ASC", "order_levels=".$_SESSION['order_levels']);
+        $registry['lev'] = $list->getResult();
+
+        $this->listRegistryAdd = ['sit' => $registry['sit'], 'lev' => $registry['lev']];
         // var_dump($this->listRegistryAdd);
 
         return $this->listRegistryAdd;

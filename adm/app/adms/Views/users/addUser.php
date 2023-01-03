@@ -14,10 +14,11 @@ if (isset($this->data['form'])) {
             <h2>Cadastrar Novo Usuário</h2>
         </div>
         <?php if (isset($_SESSION['msg'])) { 
-            echo "<div id='msg' class='msg_alert'>";
+            echo "<div class='msg_alert'>";
             echo $_SESSION['msg'];
             unset($_SESSION['msg']);
             echo "</div>"; } ?>
+        <div class="msg_alert" id='msg'></div>
         <form class="form_adms" action="" method="POST" id="form-add-user">
             <div class="row_input">
                 <?php $name = "";
@@ -55,13 +56,13 @@ if (isset($this->data['form'])) {
                 <i class="fa-solid fa-lock"></i>
                 <input class="form-control" type="password" name="password" id="password" onkeyup="passwordStrength()" autocomplete="on" value="<?= $password; ?>" placeholder="Digite a Senha(login) do usuário *" required>
             </div>
-            <div class="msg_alert" id="msgViewStrength">
+            <div class="msg_alert_pass" id="msgViewStrength">
             </div>
             <div class="row_input">
                 <i class="fa-solid fa-hand-pointer"></i>
                 <div class="select_input">
                     <label class="form_label" for="adms_sits_user_id">Selecione a Situação:<span style="color:#f00;">*</span></label>
-                    <select name="adms_sits_user_id" id="adms_sits_user_id"  required>
+                    <select name="adms_sits_user_id" id="adms_sits_user_id" required>
                         <option value="">Selecione</option>
                         <?php foreach ($this->data['select']['sit'] as $sit) {
                             extract($sit);
@@ -69,6 +70,22 @@ if (isset($this->data['form'])) {
                                 echo "<option value='$id_sit' selected>$name_sit</option>";
                             } else {
                                 echo "<option value='$id_sit'>$name_sit</option>";
+                            } } ?>
+                    </select>
+                </div>
+            </div>
+            <div class="row_input">
+                <i class="fa-solid fa-hand-pointer"></i>
+                <div class="select_input">
+                    <label class="form_label" for="access_level_id">Nivel de Acesso:<span style="color:#f00;">*</span></label>
+                    <select name="access_level_id" id="access_level_id" required>
+                        <option value="">Selecione</option>
+                        <?php foreach ($this->data['select']['lev'] as $lev) {
+                            extract($lev);
+                            if ((isset($valorForm['access_level_id'])) and ($valorForm['access_level_id'] == $id_lev)) {
+                                echo "<option value='$id_lev' selected>$name_lev</option>";
+                            } else {
+                                echo "<option value='$id_lev'>$name_lev</option>";
                             } } ?>
                     </select>
                 </div>
