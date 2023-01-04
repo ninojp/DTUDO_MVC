@@ -11,6 +11,7 @@ class AdmsOrderAccessNivels
     private array|null $resultBd;
     private array|null $resultBdPrev;
     private int|string|null $id;
+    private $data;
 
     /** ==========================================================================================
      * @return boolean         */
@@ -25,6 +26,7 @@ class AdmsOrderAccessNivels
         return $this->resultBd;
     }
     /** ==========================================================================================
+     * Recebe como parametro o id, através do mesmo verifica o nivel de acesso atual:order_levels, se for maior, o coloca no atributo:$resultBd para instanciar o método:viewPrevAccessNivels()
      * @param integer $id -  @return void      */
     public function orderAccessNivels(int $id): void
     {
@@ -39,7 +41,7 @@ class AdmsOrderAccessNivels
         $this->resultBd = $atualAccessNivels->getResult();
         //verifica se atributo:$this->resultBd é true, se for atribui o true para o atributo:$this->result
         if ($this->resultBd) {
-            var_dump($this->resultBd);
+            // var_dump($this->resultBd);
             $this->viewPrevAccessNivels();
             //se o atributo:$this->resultBd é false, atribui a frase na constante:$_SESSION['msg']
         } else {
@@ -47,6 +49,9 @@ class AdmsOrderAccessNivels
             $this->result = false;
         }
     }
+    /** =============================================================================================
+     * Método para recuper a Ordem de acesso do nivel  superior(nivel acima do atual)
+     * @return void     */
     private function viewPrevAccessNivels():void
     {
         $prevAccessNivels = new \App\adms\Models\helper\AdmsRead();
@@ -54,11 +59,49 @@ class AdmsOrderAccessNivels
 
         $this->resultBdPrev = $prevAccessNivels->getResult();
         if($this->resultBdPrev){
-            var_dump($this->resultBdPrev);
-            $this->result = true;
+            // var_dump($this->resultBdPrev);
+            $this->editMoveDown();
+            // $this->result = true;
         } else {
             $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Nivel de Acesso não encontrada!</p>";
             $this->result = false;
         }
+    }
+    /** =============================================================================================
+     * @return void     */
+    private function editMoveDown(): void
+    {
+        $this->data['order_levels'] = $this->resultBd[0]['order_levels'];
+        $this->data['modified'] = date("Y-m-d H:i:s");
+        // var_dump($this->data);
+
+        $moveDown = new \App\adms\Models\helper\AdmsUpdate();
+        $moveDown->exeUpdate("adms_access_levels", $this->data, "WHERE id=:id", "id={$this->resultBdPrev[0]['id']}");
+
+        if($moveDown->getResult()){
+            $this->result = true;
+            $this->editMoveUp();
+        } else {
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Ordem do Nivel de Acesso editado com sucesso!</p>";
+            $this->result = false;
+        }
+    }
+    private function editMoveUp():void
+    {
+        $this->data['order_levels'] = $this->resultBdPrev[0]['order_levels'];
+        $this->data['modified'] = date("Y-m-d H:i:s");
+        // var_dump($this->data);
+
+        $moveUp = new \App\adms\Models\helper\AdmsUpdate();
+        $moveUp->exeUpdate("adms_access_levels", $this->data, "WHERE id=:id", "id={$this->resultBd[0]['id']}");
+
+        if($moveUp->getResult()){
+            $_SESSION['msg'] = "<p class='alert alert-success'>Ok! Ordem do Nivel de Acesso editado com sucesso!</p>";
+            $this->result = true;
+        } else {
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Ordem do Nivel de Acesso Não editado com sucesso!</p>";
+            $this->result = false;
+        }
+
     }
 }

@@ -9,8 +9,8 @@ class OrderAccessNivels
 
     /** =============================================================================================
      * Alterar a ordem do Nivel de acesso
-     * @param integer|string|null|null $id
-     * @return void     */
+     * Recebe como parametro o id que será usado na pesquisa das informações no DB e instância a Models:AdmsOrderAccessNivels(), Após editado retorna MSG e redireciona para o listar Niveis 
+     * @param integer|string|null|null $id,  @return void     */
     public function index(int|string|null $id = null):void
     {
         //verifica se existe um ID, se existir prossegue
@@ -23,10 +23,10 @@ class OrderAccessNivels
             $viewAccessNivels->orderAccessNivels($this->id);
             //usa o objeto para instanciar o método:getResult() e verificar se o mesmo é true
             if($viewAccessNivels->getResult()){
-                //se for, usa o objeto para instânciar o método:getResultBd() e atribuir o resultado do mesmo para uma nova posição no array do atributo:$this->data
-                // $this->data['viewColors'] = $viewAccessNivels->getResultBd();
+                // se for true, redireciona para o listar niveis e apresenta a MSG
                 // var_dump($viewAccessNivels->getResultBd());
-
+                $urlRedirect = URLADM."list-access-nivels/index";
+                header("Location: $urlRedirect");
             } else {
                 $urlRedirect = URLADM."list-access-nivels/index";
                 header("Location: $urlRedirect");
