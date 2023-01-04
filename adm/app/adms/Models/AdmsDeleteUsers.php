@@ -52,7 +52,7 @@ class AdmsDeleteUsers
     private function viewUsers():bool
     {
         $viewUsers = new \App\adms\Models\helper\AdmsRead();
-        $viewUsers->fullRead("SELECT id, image FROM adms_users WHERE id=:id LIMIT :limit", "id={$this->id}&limit=1");
+        $viewUsers->fullRead("SELECT usr.id, usr.image FROM adms_users AS usr INNER JOIN adms_access_levels AS lev ON lev.id=usr.access_level_id WHERE usr.id=:id AND lev.order_levels >:order_levels LIMIT :limit", "id={$this->id}&order_levels=".$_SESSION['order_levels']."&limit=1");
 
         $this->resultBd = $viewUsers->getResult();
         if($this->resultBd){

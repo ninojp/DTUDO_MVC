@@ -36,7 +36,7 @@ class AdmsEditAccessNivels
         $this->id = $id;
 
         $viewEditAccessNivels = new \App\adms\Models\helper\AdmsRead();
-        $viewEditAccessNivels->fullRead("SELECT id, name, order_levels FROM adms_access_levels WHERE id=:id LIMIT :limit", "id={$this->id}&limit=1");
+        $viewEditAccessNivels->fullRead("SELECT id, name, order_levels FROM adms_access_levels WHERE id=:id AND order_levels > :order_levels LIMIT :limit", "id={$this->id}&order_levels=".$_SESSION['order_levels']."&limit=1");
 
         $this->resultBd = $viewEditAccessNivels->getResult();
         if($this->resultBd){

@@ -45,7 +45,7 @@ class AdmsDeleteAccessNivels
     private function viewAtualAccessNivels():bool
     {
         $viewAtualAccessNivels = new \App\adms\Models\helper\AdmsRead();
-        $viewAtualAccessNivels->fullRead("SELECT id FROM adms_access_levels WHERE id=:id LIMIT :limit", "id={$this->id}&limit=1");
+        $viewAtualAccessNivels->fullRead("SELECT id FROM adms_access_levels WHERE id=:id AND order_levels >:order_levels LIMIT :limit", "id={$this->id}&order_levels=".$_SESSION['order_levels']."&limit=1");
 
         $this->resultBd = $viewAtualAccessNivels->getResult();
         if($this->resultBd){
