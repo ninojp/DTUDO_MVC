@@ -26,44 +26,44 @@ class AdmsOrderTypesPgs
         return $this->resultBd;
     }
     /** ==========================================================================================
-     * Recebe como parametro o id, através do mesmo verifica o nivel de acesso atual:order_type_pg, se for maior, o coloca no atributo:$resultBd para instanciar o método:viewPrevAccessNivels()
+     * Recebe como parametro o id, através do mesmo verifica o nivel de acesso atual:order_type_pg, se for maior, o coloca no atributo:$resultBd para instanciar o método:viewPrevTypePg()
      * @param integer $id -  @return void      */
-    public function orderTypes(int $id): void
+    public function orderTypesPgs(int $id): void
     {
         //atribui o id recebido como parametro no atributo:$this->id
         $this->id = (int) $id;
-        //instância a classe:AdmsRead() e cria o objeto:$viewSitsUsers
-        $atualAccessNivels = new \App\adms\Models\helper\AdmsRead();
+        //instância a classe:AdmsRead() e cria o objeto:$atualTypesPgs
+        $atualTypesPgs = new \App\adms\Models\helper\AdmsRead();
         //usa o objeto para instânciar o método:fullRead(), passando a query desejada
-        $atualAccessNivels->fullRead("SELECT id, order_levels FROM adms_access_levels WHERE id=:id AND order_levels > :order_levels LIMIT :limit", "id={$this->id}&order_levels=".$_SESSION['order_levels']."&limit=1");
+        $atualTypesPgs->fullRead("SELECT id, order_type_pg FROM adms_types_pgs WHERE id=:id LIMIT :limit", "id={$this->id}&limit=1");
         //usa o objeto para instânciar o método:getResult() e atribui o seu valor no atributo:$this->resultBd
 
-        $this->resultBd = $atualAccessNivels->getResult();
+        $this->resultBd = $atualTypesPgs->getResult();
         //verifica se atributo:$this->resultBd é true, se for atribui o true para o atributo:$this->result
         if ($this->resultBd) {
             // var_dump($this->resultBd);
-            $this->viewPrevAccessNivels();
+            $this->viewPrevOrderTypePg();
             //se o atributo:$this->resultBd é false, atribui a frase na constante:$_SESSION['msg']
         } else {
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Nivel de Acesso não encontrada!</p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Tipo de Página não encontrada!</p>";
             $this->result = false;
         }
     }
     /** =============================================================================================
      * Método para recuper a Ordem de acesso do nivel  superior(nivel acima do atual)
      * @return void     */
-    private function viewPrevAccessNivels():void
+    private function viewPrevOrderTypePg():void
     {
-        $prevAccessNivels = new \App\adms\Models\helper\AdmsRead();
-        $prevAccessNivels->fullRead("SELECT id, order_levels FROM adms_access_levels WHERE order_levels <:order_levels AND order_levels >:order_levels_user ORDER BY order_levels DESC LIMIT :limit", "order_levels={$this->resultBd[0]['order_levels']}&order_levels_user=".$_SESSION['order_levels']."&limit=1");
+        $prevOrderType = new \App\adms\Models\helper\AdmsRead();
+        $prevOrderType->fullRead("SELECT id, order_type_pg FROM adms_types_pgs WHERE order_type_pg <:order_type_pg ORDER BY order_type_pg DESC LIMIT :limit", "order_type_pg={$this->resultBd[0]['order_type_pg']}&limit=1");
 
-        $this->resultBdPrev = $prevAccessNivels->getResult();
+        $this->resultBdPrev = $prevOrderType->getResult();
         if($this->resultBdPrev){
             // var_dump($this->resultBdPrev);
             $this->editMoveDown();
             // $this->result = true;
         } else {
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Nivel de Acesso não encontrada!</p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Tipo de página não encontrada!</p>";
             $this->result = false;
         }
     }
@@ -71,12 +71,12 @@ class AdmsOrderTypesPgs
      * @return void     */
     private function editMoveDown(): void
     {
-        $this->data['order_levels'] = $this->resultBd[0]['order_levels'];
+        $this->data['order_type_pg'] = $this->resultBd[0]['order_type_pg'];
         $this->data['modified'] = date("Y-m-d H:i:s");
         // var_dump($this->data);
 
         $moveDown = new \App\adms\Models\helper\AdmsUpdate();
-        $moveDown->exeUpdate("adms_access_levels", $this->data, "WHERE id=:id", "id={$this->resultBdPrev[0]['id']}");
+        $moveDown->exeUpdate("adms_types_pgs", $this->data, "WHERE id=:id", "id={$this->resultBdPrev[0]['id']}");
 
         if($moveDown->getResult()){
             $this->result = true;
@@ -86,20 +86,22 @@ class AdmsOrderTypesPgs
             $this->result = false;
         }
     }
+    /** ============================================================================================
+     * @return void     */
     private function editMoveUp():void
     {
-        $this->data['order_levels'] = $this->resultBdPrev[0]['order_levels'];
+        $this->data['order_type_pg'] = $this->resultBdPrev[0]['order_type_pg'];
         $this->data['modified'] = date("Y-m-d H:i:s");
         // var_dump($this->data);
 
         $moveUp = new \App\adms\Models\helper\AdmsUpdate();
-        $moveUp->exeUpdate("adms_access_levels", $this->data, "WHERE id=:id", "id={$this->resultBd[0]['id']}");
+        $moveUp->exeUpdate("adms_types_pgs", $this->data, "WHERE id=:id", "id={$this->resultBd[0]['id']}");
 
         if($moveUp->getResult()){
-            $_SESSION['msg'] = "<p class='alert alert-success'>Ok! Ordem do Nivel de Acesso editado com sucesso!</p>";
+            $_SESSION['msg'] = "<p class='alert alert-success'>Ok! Ordem do tipo de página editado com sucesso!</p>";
             $this->result = true;
         } else {
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Ordem do Nivel de Acesso Não editado com sucesso!</p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Ordem do tipo de página Não editado com sucesso!</p>";
             $this->result = false;
         }
 

@@ -25,7 +25,7 @@ class OrderTypesPgs
             //Instância a classe:AdmsViewSitsUsers() e cria um objeto:$resultSitsUsers
             $viewOrderTypesPgs = new \App\adms\Models\AdmsOrderTypesPgs();
             //usa o objeto para instânciar o método:viewSitsUsers(), que faz a consulta com o id 
-            $viewOrderTypesPgs->orderAccessNivels($this->id);
+            $viewOrderTypesPgs->orderTypesPgs($this->id);
             //usa o objeto para instanciar o método:getResult() e verificar se o mesmo é true
             if($viewOrderTypesPgs->getResult()){
                 // se for true, redireciona para o listar niveis e apresenta a MSG

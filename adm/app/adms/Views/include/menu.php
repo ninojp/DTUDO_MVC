@@ -40,11 +40,16 @@ if(isset($this->data['sidebarActive'])){
             $types_pgs = "active"; } ?>
         <a href="<?=URLADM;?>list-types-pgs/index" class="sidebar_nav <?=$types_pgs;?>"><i class="icon fa-brands fa-wpforms"></i><span>Tipos de Paginas</span></a>
 
+        <?php $sits_pgs = "";
+        if($sidebar_active=="list-sits-pgs"){
+            $sits_pgs = "active"; } ?>
+        <a href="<?=URLADM;?>list-sits-pgs/index" class="sidebar_nav <?=$sits_pgs;?>"><i class="icon fa-solid fa-rectangle-list"></i><span>Situações da Pagina</span></a>
+
         <?php $email_confs = "";
         if($sidebar_active=="list-email-confs"){
             $email_confs = "active";
             $dropDown = "active";}?>
-        <a href="<?=URLADM;?>list-email-confs/index" class="sidebar_nav <?=$email_confs;?>"><i class="icon fa-solid fa-table-list"></i><span>Configurações E-mail</span></a>
+        <a href="<?=URLADM;?>list-email-confs/index" class="sidebar_nav <?=$email_confs;?>"><i class="icon fa-solid fa-list"></i><span>Configurações E-mail</span></a>
 
         <?php $list_colors = "";
         if($sidebar_active=="list-colors"){

@@ -194,7 +194,7 @@ class AdmsListTypesPgs
 
         $listUsersEmail = new \App\adms\Models\helper\AdmsRead();
         //INNER JOIN, é obrigátorio(para retornar o registro) q a chave EXTRANGEIRA:adms_sits_user_id exista na tabela outra tabela, a qual está se fazendo o inner join(adms_sits_users)
-        $listUsersEmail->fullRead("SELECT atp.id, atp.type, atp.name, atp.order_type_pg FROM adms_types_pgs AS atp WHERE atp.type LIKE :search_type ORDER BY atp.id DESC LIMIT :limit OFFSET :offset", "search_type={$this->searchTypesPgsValue}&limit={$this->limitResult}&offset={$pagination->getOffset()}");
+        $listUsersEmail->fullRead("SELECT atp.id, atp.type, atp.name, atp.order_type_pg FROM adms_types_pgs AS atp WHERE atp.type LIKE :search_type ORDER BY atp.order_type_pg ASC LIMIT :limit OFFSET :offset", "search_type={$this->searchTypesPgsValue}&limit={$this->limitResult}&offset={$pagination->getOffset()}");
 
         $this->resultBd = $listUsersEmail->getResult();
         if ($this->resultBd) {
