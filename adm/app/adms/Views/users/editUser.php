@@ -31,6 +31,7 @@ if(isset($this->data['form'][0])){
             echo $_SESSION['msg'];
             unset($_SESSION['msg']);
             echo "</div>"; } ?>
+        <div id='msg' class='msg_alert'></div>
         <form class="form_adms" action="" method="POST" id="form-edit-user">
             <!-- input oculto pra enviar o id, via post -->
             <input class="form-control" type="hidden" name="id" id="id" value="<?php if(isset($valorForm['id'])){echo $valorForm['id'];} ?>">
