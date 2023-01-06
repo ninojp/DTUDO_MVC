@@ -61,10 +61,10 @@ class AdmsDeleteTypesPgs
      * @return void     */
     private function checkStatusUsed():bool
     {
-        $viewUserSits = new \App\adms\Models\helper\AdmsRead();
-        $viewUserSits->fullRead("SELECT id FROM adms_pages WHERE adms_types_pgs_id  =:adms_types_pgs_id LIMIT :limit", "adms_types_pgs_id={$this->id}&limit=1",);
-        if($viewUserSits->getResult()){
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! (ID)Typo não pode ser apagada, pois existe um usuário hà utilizando!</p>";
+        $checkStatusUsed = new \App\adms\Models\helper\AdmsRead();
+        $checkStatusUsed->fullRead("SELECT id FROM adms_pages WHERE adms_types_pgs_id  =:adms_types_pgs_id LIMIT :limit", "adms_types_pgs_id={$this->id}&limit=1",);
+        if($checkStatusUsed->getResult()){
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! (ID)Tipo da pagina não pode ser apagada, pois existe um registro o utilizando!</p>";
             return false;
         } else {
             return true;

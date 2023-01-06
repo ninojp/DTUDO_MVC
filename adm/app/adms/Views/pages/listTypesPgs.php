@@ -71,7 +71,9 @@ if (isset($this->data['form'])) {
                     <td class="list_body_content"><?=$name;?></td>
                     <td class="list_body_content tb_sm_none"><?=$order_type_pg;?></td>
                     <td class="list_body_content">
-                        <?php echo "<a class='btn btn-sm btn-outline-primary mx-1' href='".URLADM."view-types-pgs/index/$id'><i class='fa-solid fa-eye'></i> Ver</a>"; 
+                        <?php 
+                        // echo "<a class='btn btn-sm btn-outline-primary mx-1' href='".URLADM."order-types-pgs/index/$id?pag=".$this->data['pag']."'><i class='fa-solid fa-arrow-up-short-wide'></i> Ordem</a>";
+                        echo "<a class='btn btn-sm btn-outline-primary mx-1' href='".URLADM."view-types-pgs/index/$id'><i class='fa-solid fa-eye'></i> Ver</a>"; 
                         echo "<a class='btn btn-sm btn-outline-warning mx-1' href='".URLADM."edit-types-pgs/index/$id'><i class='fa-solid fa-pen-to-square'></i> Editar</a>";
                         echo "<a class='btn btn-sm btn-outline-danger mx-1' href='".URLADM."delete-types-pgs/index/$id' onclick='return confirm(\"Tem certeza que deseja excluir o registro?\")'><i class='fa-solid fa-trash-can'></i> Apagar</a>";
                         ?>
