@@ -8,11 +8,9 @@ if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){
     // Ou termina a execução e exibe a mensagem de erro
     die("Erro! Página não encontrada<br>");
 }
-use App\adms\Models\helper\AdmsCreate;
-use App\adms\Models\helper\AdmsValEmail;
 use App\adms\Models\helper\AdmsValEmptyField;
 
-/** Classe:AdmsNewUser, é filha(Herda) da classe:AdmsConn(abstrata responsável pela conexão) */
+/** Classe:AdmsAddUsers para realizar a adição de novos usuário  */
 class AdmsAddUsers
 {
     //recebido como parametro através do método:create() e colocado neste atributo

@@ -28,12 +28,17 @@ if(isset($this->data['sidebarActive'])){
         if($sidebar_active=="list-sits-users"){
             $sits_users = "active";
             $dropDown = "active"; } ?>
-        <a href="<?=URLADM;?>list-sits-users/index" class="sidebar_nav <?=$sits_users;?>"><i class="icon fa-brands fa-wpforms"></i><span>Situação Usuários</span></a>
+        <a href="<?=URLADM;?>list-sits-users/index" class="sidebar_nav <?=$sits_users;?>"><i class="icon fa-solid fa-users-line"></i><span>Situação Usuários</span></a>
 
         <?php $list_access_nivels = "";
         if($sidebar_active=="list-access-nivels"){
             $list_access_nivels = "active"; } ?>
         <a href="<?=URLADM;?>list-access-nivels/index" class="sidebar_nav <?=$list_access_nivels;?>"><i class="icon fa-solid fa-key"></i><span>Niveis de Acesso</span></a>
+
+        <?php $types_pgs = "";
+        if($sidebar_active=="list-types-pgs"){
+            $types_pgs = "active"; } ?>
+        <a href="<?=URLADM;?>list-types-pgs/index" class="sidebar_nav <?=$types_pgs;?>"><i class="icon fa-brands fa-wpforms"></i><span>Tipos de Paginas</span></a>
 
         <?php $email_confs = "";
         if($sidebar_active=="list-email-confs"){
@@ -51,7 +56,7 @@ if(isset($this->data['sidebarActive'])){
         <!-- EXEMPLO: MENU DROPDOWN do Dashboard -->
         <button class="dropdown-btn <?=$dropDown;?>">
         <i class="icon fa-solid fa-chalkboard-user"></i>DropDown Users <i class="fa-solid fa-caret-down"></i>
-            </button>
+        </button>
             <div class="dropdown-container <?=$dropDown;?>">
                 <a href="<?=URLADM;?>list-users/index" class="sidebar-nav <?=$list_users;?>"><i class="icon fa-solid fa-users"></i><span> Listar Usuários</span></a>
 
