@@ -76,16 +76,21 @@ class AdmsPagination
      * @return void      */
     private function pageInstruction(): void
     {
-        // var_dump($this->resultBd[0]['num_result']);
-        $this->totalPages = (int) ceil($this->resultBd[0]['num_result'] / $this->limitResult);
-        // var_dump($this->totalPages);
-        if ($this->totalPages >= $this->page) {
-            $this->layoutPagination();
+        // (if)para resolver o erro de paginação quando não existe dados na tabela
+        if(!$this->resultBd[0]['num_result'] == 0 ){
+            // var_dump($this->resultBd[0]['num_result']);
+            $this->totalPages = (int) ceil($this->resultBd[0]['num_result'] / $this->limitResult);
+            // var_dump($this->totalPages);
+            if ($this->totalPages >= $this->page) {
+                $this->layoutPagination();
+            } else {
+                header("Location: {$this->link}");
+            }
         } else {
-            header("Location: {$this->link}");
+            $this->result = 0;
         }
     }
-    /** ==============================================================================================
+    /** =========================================================================================
      * @return void     */
     private function layoutPagination(): void
     {

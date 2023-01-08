@@ -31,14 +31,14 @@ if (isset($this->data['form'])) {
                 if (isset($valorForm['controller'])) {
                     $controller = $valorForm['controller']; } ?>
                 <i class="fa-solid fa-file-signature"></i>
-                <input class="form-control" type="text" name="controller" id="controller" value="<?php echo $controller; ?>" placeholder="Digite o nome Controller *" required>
+                <input class="form-control" type="text" name="controller" id="controller" value="<?php echo $controller; ?>" placeholder="Digite o nome Classe(controllers) *" required>
             </div>
             <div class="row_input">
                 <?php $metodo = "";
                 if (isset($valorForm['metodo'])) {
                     $metodo = $valorForm['metodo']; } ?>
                 <i class="fa-solid fa-file-signature"></i>
-                <input class="form-control" type="text" name="metodo" id="metodo" value="<?php echo $metodo; ?>" placeholder="Digite o nome do Método *" required>
+                <input class="form-control" type="text" name="metodo" id="metodo" value="<?php echo $metodo; ?>" placeholder="Digite o nome do Método(principal) *" required>
             </div>
             <div class="row_input">
                 <?php $menu_controller = "";
@@ -59,7 +59,7 @@ if (isset($this->data['form'])) {
                 if (isset($valorForm['publish'])) {
                     $publish = $valorForm['publish']; } ?>
                 <i class="fa-solid fa-file-signature"></i>
-                <input class="form-control" type="text" name="publish" id="publish" value="<?php echo $publish; ?>" placeholder="Digite o Numero do publish *" required>
+                <input class="form-control" type="text" name="publish" id="publish" value="<?php echo $publish; ?>" placeholder="Página Publica ou Privada(arrumar) *" required>
             </div>
             <div class="row_input">
                 <?php $obs = "";
