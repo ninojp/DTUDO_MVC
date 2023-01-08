@@ -35,6 +35,11 @@ if(isset($this->data['sidebarActive'])){
             $list_access_nivels = "active"; } ?>
         <a href="<?=URLADM;?>list-access-nivels/index" class="sidebar_nav <?=$list_access_nivels;?>"><i class="icon fa-solid fa-key"></i><span>Niveis de Acesso</span></a>
 
+        <?php $list_pages = "";
+        if($sidebar_active=="list-pages"){
+            $list_pages = "active"; } ?>
+        <a href="<?=URLADM;?>list-pages/index" class="sidebar_nav <?=$list_pages;?>"><i class="icon fa-regular fa-file-lines"></i><span>Listar Páginas</span></a>
+
         <?php $types_pgs = "";
         if($sidebar_active=="list-types-pgs"){
             $types_pgs = "active"; } ?>
