@@ -33,7 +33,7 @@ class AdmsViewPages
         $this->id = $id;
 
         $viewPages = new \App\adms\Models\helper\AdmsRead();
-        $viewPages->fullRead("SELECT id, controller, metodo, menu_controller, menu_metodo, name_page, publish, icon, obs, adms_sits_pgs_id, adms_types_pgs_id, adms_groups_pgs_id, created, modified FROM adms_pages WHERE id=:id LIMIT :limit", "id={$this->id}&limit=1");
+        $viewPages->fullRead("SELECT pgs.id, pgs.controller, pgs.metodo, pgs.menu_controller, pgs.menu_metodo, pgs.name_page, pgs.publish, pgs.icon, pgs.obs, pgs.adms_sits_pgs_id, pgs.adms_types_pgs_id, pgs.adms_groups_pgs_id, pgs.created, pgs.modified, asp.name AS name_asp, atp.type AS type_atp, agp.name AS name_agp FROM adms_pages AS pgs INNER JOIN adms_sits_pgs AS asp ON asp.id=pgs.adms_sits_pgs_id INNER JOIN adms_types_pgs AS atp ON atp.id=pgs.adms_types_pgs_id INNER JOIN adms_groups_pgs AS agp ON agp.id=pgs.adms_groups_pgs_id  WHERE pgs.id=:id LIMIT :limit", "id={$this->id}&limit=1");
 
         $this->resultBd = $viewPages->getResult();
         if($this->resultBd){

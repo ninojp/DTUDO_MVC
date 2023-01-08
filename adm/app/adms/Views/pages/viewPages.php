@@ -22,6 +22,10 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
                 <span class="view_det_info"><?= $id; ?></span>
             </div>
             <div class="view_det">
+                <span class="view_det_title">Nome da Página:</span>
+                <span class="view_det_info"><?= $name_page; ?></span>
+            </div>
+            <div class="view_det">
                 <span class="view_det_title">Controller:</span>
                 <span class="view_det_info"><?= $controller; ?></span>
             </div>
@@ -38,24 +42,20 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
                 <span class="view_det_info"><?= $menu_metodo; ?></span>
             </div>
             <div class="view_det">
-                <span class="view_det_title">Nome da Página:</span>
-                <span class="view_det_info"><?= $name_page; ?></span>
-            </div>
-            <div class="view_det">
                 <span class="view_det_title">publish:</span>
                 <span class="view_det_info"><?= $publish; ?></span>
             </div>
             <div class="view_det">
                 <span class="view_det_title">adms_sits_pgs_id:</span>
-                <span class="view_det_info"><?= $adms_sits_pgs_id; ?></span>
+                <span class="view_det_info"><?= $name_asp; ?></span>
             </div>
             <div class="view_det">
                 <span class="view_det_title">adms_types_pgs_id:</span>
-                <span class="view_det_info"><?= $adms_types_pgs_id; ?></span>
+                <span class="view_det_info"><?= $type_atp; ?></span>
             </div>
             <div class="view_det">
                 <span class="view_det_title">adms_groups_pgs_id:</span>
-                <span class="view_det_info"><?= $adms_groups_pgs_id; ?></span>
+                <span class="view_det_info"><?= $name_agp; ?></span>
             </div>
             <?php if (!empty($obs)) { ?>
                 <div class="view_det">
