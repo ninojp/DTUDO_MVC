@@ -801,6 +801,7 @@ select.input_form:focus{
 .msg_alert{
     /* width: 100%; */
     justify-content: center;
+    /* align-items: center; */
 }
 .msg_alert p{
     padding: 0px 10px;

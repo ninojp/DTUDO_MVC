@@ -38,12 +38,17 @@ if(isset($this->data['sidebarActive'])){
         <?php $types_pgs = "";
         if($sidebar_active=="list-types-pgs"){
             $types_pgs = "active"; } ?>
-        <a href="<?=URLADM;?>list-types-pgs/index" class="sidebar_nav <?=$types_pgs;?>"><i class="icon fa-brands fa-wpforms"></i><span>Tipos de Paginas</span></a>
+        <a href="<?=URLADM;?>list-types-pgs/index" class="sidebar_nav <?=$types_pgs;?>"><i class="icon fa-brands fa-wpforms"></i><span>Tipos de Páginas</span></a>
 
         <?php $sits_pgs = "";
         if($sidebar_active=="list-sits-pgs"){
             $sits_pgs = "active"; } ?>
-        <a href="<?=URLADM;?>list-sits-pgs/index" class="sidebar_nav <?=$sits_pgs;?>"><i class="icon fa-solid fa-rectangle-list"></i><span>Situações da Pagina</span></a>
+        <a href="<?=URLADM;?>list-sits-pgs/index" class="sidebar_nav <?=$sits_pgs;?>"><i class="icon fa-solid fa-rectangle-list"></i><span>Situações da Página</span></a>
+        
+        <?php $groups_pgs = "";
+        if($sidebar_active=="list-groups-pgs"){
+            $groups_pgs = "active"; } ?>
+        <a href="<?=URLADM;?>list-groups-pgs/index" class="sidebar_nav <?=$groups_pgs;?>"><i class="icon fa-solid fa-layer-group"></i><span>Grupos de Páginas</span></a>
 
         <?php $email_confs = "";
         if($sidebar_active=="list-email-confs"){
