@@ -30,9 +30,9 @@ if(isset($this->data['form'][0])){
                 <input class="form-control" type="text" name="name_page" id="name_page" value="<?php if(isset($valorForm['name_page'])){echo $valorForm['name_page'];} ?>" placeholder="Digite o nome Completo" required>
             </div>
             <div class="row_edit">
-                <label class="" for="controller">Controller:</label>
+                <label class="" for="controller">Classe(controller):</label>
                 <i class="fa-solid fa-file-signature"></i>
-                <input class="form-control" type="text" name="controller" id="controller" value="<?php if(isset($valorForm['controller'])){echo $valorForm['controller'];} ?>" placeholder="Digite o nome da controller)">
+                <input class="form-control" type="text" name="controller" id="controller" value="<?php if(isset($valorForm['controller'])){echo $valorForm['controller'];} ?>" placeholder="Digite o nome da Classe(controller)">
             </div>
             <div class="row_edit">
                 <label class="" for="metodo">Método:</label>
@@ -40,19 +40,14 @@ if(isset($this->data['form'][0])){
                 <input class="form-control" type="text" name="metodo" id="metodo" value="<?php if(isset($valorForm['metodo'])){echo $valorForm['metodo'];} ?>" placeholder="Digite o nome do método">
             </div>
             <div class="row_edit">
-                <label class="" for="menu_controller">menu_controller:</label>
+                <label class="" for="menu_controller">Classe(menu_controller):</label>
                 <i class="fa-solid fa-file-signature"></i>
-                <input class="form-control" type="text" name="menu_controller" id="menu_controller" value="<?php if(isset($valorForm['menu_controller'])){echo $valorForm['menu_controller'];} ?>" placeholder="Digite o menu_controller">
+                <input class="form-control" type="text" name="menu_controller" id="menu_controller" value="<?php if(isset($valorForm['menu_controller'])){echo $valorForm['menu_controller'];} ?>" placeholder="Digite o Classe(menu_controller)">
             </div>
             <div class="row_edit">
                 <label class="" for="menu_metodo">menu_metodo:</label>
                 <i class="fa-solid fa-file-signature"></i>
                 <input class="form-control" type="text" name="menu_metodo" id="menu_metodo" value="<?php if(isset($valorForm['menu_metodo'])){echo $valorForm['menu_metodo'];} ?>" placeholder="Digite o menu_metodo">
-            </div>
-            <div class="row_edit">
-                <label class="" for="publish">publish:</label>
-                <i class="fa-solid fa-file-signature"></i>
-                <input class="form-control" type="text" name="publish" id="publish" value="<?php if(isset($valorForm['publish'])){echo $valorForm['publish'];} ?>" placeholder="Digite o publish">
             </div>
             <div class="row_edit">
                 <label class="" for="publish">Observações:</label>
@@ -63,6 +58,29 @@ if(isset($this->data['form'][0])){
                 <label class="" for="icon">Tag do icon:</label>
                 <i class="fa-solid fa-file-signature"></i>
                 <input class="form-control" type="text" name="icon" id="icon" value="<?php if(isset($valorForm['icon'])){echo $valorForm['icon'];} ?>" placeholder="Digite a tag icon">
+            </div>
+            <div class="row_input">
+            <i class="fa-solid fa-hand-pointer"></i>
+                <div class="select_input">
+                    <label class="mx-3">Página Pública:</label>
+                    <select name="publish" id="publish" class="" required>
+                        <?php
+                        if (isset($valorForm['publish']) and $valorForm['publish'] == 1) {
+                            echo "<option value=''>Selecione</option>";
+                            echo "<option value='1' selected>Sim</option>";
+                            echo "<option value='2'>Não</option>";
+                        } elseif (isset($valorForm['publish']) and $valorForm['publish'] == 2) {
+                            echo "<option value=''>Selecione</option>";
+                            echo "<option value='1'>Sim</option>";
+                            echo "<option value='2' selected>Não</option>";
+                        } else {
+                            echo "<option value='' selected>Selecione</option>";
+                            echo "<option value='1'>Sim</option>";
+                            echo "<option value='2'>Não</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
             </div>
             <div class="row_input">
                 <i class="fa-solid fa-hand-pointer"></i>

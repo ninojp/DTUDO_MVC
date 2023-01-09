@@ -55,13 +55,6 @@ if (isset($this->data['form'])) {
                 <input class="form-control" type="text" name="menu_metodo" id="menu_metodo" value="<?php echo $menu_metodo; ?>" placeholder="Digite o nome menu_metodo *" required>
             </div>
             <div class="row_input">
-                <?php $publish = "";
-                if (isset($valorForm['publish'])) {
-                    $publish = $valorForm['publish']; } ?>
-                <i class="fa-solid fa-file-signature"></i>
-                <input class="form-control" type="text" name="publish" id="publish" value="<?php echo $publish; ?>" placeholder="Página Publica ou Privada(arrumar) *" required>
-            </div>
-            <div class="row_input">
                 <?php $obs = "";
                 if (isset($valorForm['obs'])) {
                     $obs = $valorForm['obs']; } ?>
@@ -75,11 +68,33 @@ if (isset($this->data['form'])) {
                 <i class="fa-solid fa-file-signature"></i>
                 <input class="form-control" type="text" name="icon" id="icon" value="<?php echo $icon; ?>" placeholder="Digite a Tag para inserir o icon">
             </div>
-            
+            <div class="row_input">
+            <i class="fa-solid fa-hand-pointer"></i>
+                <div class="select_input">
+                    <label class="mx-3">Página Pública:<span class="text-danger">*</span></label>
+                    <select name="publish" id="publish" class="" required>
+                        <?php
+                        if (isset($valorForm['publish']) and $valorForm['publish'] == 1) {
+                            echo "<option value=''>Selecione</option>";
+                            echo "<option value='1' selected>Sim</option>";
+                            echo "<option value='2'>Não</option>";
+                        } elseif (isset($valorForm['publish']) and $valorForm['publish'] == 2) {
+                            echo "<option value=''>Selecione</option>";
+                            echo "<option value='1'>Sim</option>";
+                            echo "<option value='2' selected>Não</option>";
+                        } else {
+                            echo "<option value='' selected>Selecione</option>";
+                            echo "<option value='1'>Sim</option>";
+                            echo "<option value='2'>Não</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+            </div>
             <div class="row_input">
                 <i class="fa-solid fa-hand-pointer"></i>
                 <div class="select_input">
-                    <label class="mx-3" for="adms_sits_pgs_id">Situação da Pagina: </label>
+                    <label class="mx-3" for="adms_sits_pgs_id">Situação da Pagina:<span class="text-danger">*</span></label>
                     <select name="adms_sits_pgs_id" id="adms_sits_pgs_id">
                         <option value="">Selecione</option>
                         <?php foreach($this->data['select']['sit'] as $sit){
@@ -95,7 +110,7 @@ if (isset($this->data['form'])) {
             <div class="row_input">
                 <i class="fa-solid fa-hand-pointer"></i>
                 <div class="select_input">
-                    <label class="mx-3" for="adms_types_pgs_id">Tipo da Página:</label>
+                    <label class="mx-3" for="adms_types_pgs_id">Tipo da Página:<span class="text-danger">*</span></label>
                     <select name="adms_types_pgs_id" id="adms_types_pgs_id">
                         <option value="">Selecione</option>
                         <?php foreach($this->data['select']['atp'] as $atp){
@@ -111,7 +126,7 @@ if (isset($this->data['form'])) {
             <div class="row_input">
                 <i class="fa-solid fa-hand-pointer"></i>
                 <div class="select_input">
-                    <label class="mx-3" for="adms_groups_pgs_id">Grupo de Página:</label>
+                    <label class="mx-3" for="adms_groups_pgs_id">Grupo de Página:<span class="text-danger">*</span></label>
                     <select name="adms_groups_pgs_id" id="adms_groups_pgs_id">
                         <option value="">Selecione</option>
                         <?php foreach($this->data['select']['agp'] as $agp){

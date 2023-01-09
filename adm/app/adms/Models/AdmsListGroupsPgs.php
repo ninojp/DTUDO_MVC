@@ -14,7 +14,7 @@ class AdmsListGroupsPgs
     private int $page;
 
     /** @var integer - Recebe a quantidade de registros que deve retornar do DB    */
-    private int $limitResult = 3;
+    private int $limitResult = 8;
 
     /** @var string|null -  - Recebe a paginação  */
     private string|null $resultPg;
@@ -61,7 +61,7 @@ class AdmsListGroupsPgs
         //-------------------------------------------------------------------------------------
 
         $listSitUsers = new \App\adms\Models\helper\AdmsRead();
-        $listSitUsers->fullRead("SELECT sits.id, sits.name, sits.order_group_pg FROM adms_groups_pgs AS sits ORDER BY sits.id DESC LIMIT :limit OFFSET :offset", "limit={$this->limitResult}&offset={$pagination->getOffset()}");
+        $listSitUsers->fullRead("SELECT sits.id, sits.name, sits.order_group_pg FROM adms_groups_pgs AS sits ORDER BY sits.id ASC LIMIT :limit OFFSET :offset", "limit={$this->limitResult}&offset={$pagination->getOffset()}");
 
         $this->resultBd = $listSitUsers->getResult();
 
