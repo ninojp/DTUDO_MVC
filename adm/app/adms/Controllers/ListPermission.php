@@ -13,6 +13,9 @@ class ListPermission
 
     /** @var string|integer|null - Recebe o numero da pagina atual   */
     private string|int|null $page;
+    
+    /** @var string|integer|null - Recebe o id do nivel de acesso  */
+    private string|int|null $level;
 
     /** @var string|null -  - Recebe o nome a ser pesquisado  */
     private string|null $searchName;
@@ -28,6 +31,10 @@ class ListPermission
      * @return void   */
     public function index(string|int|null $page = null)
     {
+        //recebe da view:listAccessNivels, o nivel de acesso(level), via url
+        $this->level = filter_input(INPUT_GET, 'level', FILTER_SANITIZE_NUMBER_INT);
+        // var_dump($this->level);
+
         //Atribui o parametro recebido:$page para o atributo:$this->page
         //converte para inteiro e verifica se possui valor, se não atribui o valor 1
         $this->page = (int) $page ? $page : 1;
@@ -37,55 +44,37 @@ class ListPermission
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         // var_dump($this->dataForm);
 
-        $this->searchName = filter_input(INPUT_GET, 'search_name', FILTER_DEFAULT);
-        $this->searchEmail = filter_input(INPUT_GET, 'search_email', FILTER_DEFAULT);
-        // var_dump($this->searchName);
-        // var_dump($this->searchEmail);
-
-        $listUsers = new \App\adms\Models\AdmsListUsers();
-
-        //verifica se foi clicado no botão de pesquisar, se foi executa o codigo abaixo
-        if(!empty($this->dataForm['SendSearchUser'])) {
-            //sempre quando clicar no pesquisar, redireciona para pagina 1
-            $this->page = 1;
-            
-            //instância o método que fara a pesquisa e passa como parametro a pagina e os dados que estão nas posições do array:$this->dataForm['']
-            $listUsers->listSeachUsers($this->page, $this->dataForm['search_name'], $this->dataForm['search_email']);
-            
-            //para manter os dados no formulário, na view
-            $this->data['form'] = $this->dataForm;
-
-        // verifica se está recebendo via GET na url
-        } elseif((!empty($this->searchName)) or (!empty($this->searchEmail))) {
-
-            //instância o método que fara a pesquisa e passa como parametro a pagina e os dados que estão nas posições do array:$this->dataForm['']
-            $listUsers->listSeachUsers($this->page, $this->searchName, $this->searchEmail);
-            
-            //para manter os dados no formulário, na view
-            $this->data['form']['search_name'] = $this->searchName;
-            $this->data['form']['search_email'] = $this->searchEmail;
-
-        //Se não foi clicado carrega os dados do listar normalmente
-        } else {
-            //envia para a models a pagina atual
-            $listUsers->listUsers($this->page);
-        }
-        if($listUsers->getResult()){
-            $this->data['listUsers'] = $listUsers->getResultBd();
-            // var_dump($this->data['listUsers']);
+        $listPermission = new \App\adms\Models\AdmsListPermission();
+        
+        //envia para a models a pagina atual e o nivel de acesso
+        $listPermission->listPermission($this->page, $this->level);
+        
+        if($listPermission->getResult()){
+            $this->data['listPermission'] = $listPermission->getResultBd();
+            // var_dump($this->data['listPermission']);
+            $this->data['viewAccessLevel'] = $listPermission->getResultBdLevel();
+            // var_dump($this->data['viewAccessLevel']);
             // PAGINAÇÃO - cria a POSIÇÃO:['pagination'] no array:$this->data
-            $this->data['pagination'] = $listUsers->getResultPg();
+            $this->data['pagination'] = $listPermission->getResultPg();
+            $this->loadViewPermission();
         }else{
-            $this->data['listUsers'] = [];
-            $this->data['pagination'] = "";
+            // $this->data['listPermission'] = [];
+            // $this->data['pagination'] = null;
+            $urlRedirect = URLADM."list-access-nivels/index";
+            header("Location: $urlRedirect");
         }
+        
+    }
+    /** ======================================================================================
+     * método para carregar a VIEW - @return void     */
+    private function loadViewPermission():void
+    {
         // posição no array:$this->data['sidebarActive'], que define como ACTIVE no menu SIDEBAR
-        $this->data['sidebarActive'] = "list-users";
+        $this->data['sidebarActive'] = "list-access-nivels";
 
         //instancia a classe, cria o objeto e passa o parametro:$this->data, recebido da VIEW
-        $loadView = new ConfigView("adms/Views/users/listUsers",$this->data);
+        $loadView = new ConfigView("adms/Views/permission/listPermission",$this->data);
         //Instancia o método:loadView() da classe:ConfigView
         $loadView->loadView();
     }
-
 }

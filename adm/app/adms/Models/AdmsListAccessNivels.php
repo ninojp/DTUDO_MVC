@@ -78,7 +78,7 @@ class AdmsListAccessNivels
 
         $listAccessesNivels = new \App\adms\Models\helper\AdmsRead();
         //INNER JOIN, é obrigátorio(para retornar o registro) q a chave EXTRANGEIRA:adms_sits_user_id exista na tabela outra tabela, a qual está se fazendo o inner join(adms_sits_users)
-        $listAccessesNivels->fullRead("SELECT id, name, order_levels FROM adms_access_levels WHERE id > :order_levels ORDER BY order_levels ASC LIMIT :limit OFFSET :offset", "order_levels=".$_SESSION['order_levels']."&limit={$this->limitResult}&offset={$pagination->getOffset()}");
+        $listAccessesNivels->fullRead("SELECT id, name, order_levels FROM adms_access_levels WHERE order_levels > :order_levels ORDER BY order_levels ASC LIMIT :limit OFFSET :offset", "order_levels=".$_SESSION['order_levels']."&limit={$this->limitResult}&offset={$pagination->getOffset()}");
 
         $this->resultBd = $listAccessesNivels->getResult();
         if ($this->resultBd) {
