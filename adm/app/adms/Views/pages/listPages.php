@@ -22,6 +22,7 @@ if (isset($this->data['form'])) {
                 </div>
                 <div class="col-3 top_list_right">
                     <a class="btn btn-sm btn_success" href="<?= URLADM.'add-pages/index';?>" type="button">Cadastrar Página</a>
+                    <a class="btn btn-sm btn_warning" href="<?= URLADM.'sync-pages-nivels/index';?>" type="button">Sincronizar</a>
                 </div>
             </div>
             <!-- DIV com o campo de pesquisa -->

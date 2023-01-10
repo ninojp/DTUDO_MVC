@@ -23,7 +23,8 @@ if (isset($this->data['form'])) {
                             unset($_SESSION['msg']); } ?>
                 </div>
                 <div class="col-3 top_list_right">
-                    <a class="btn btn-sm btn_success" href="<?= URLADM.'add-access-nivels/index';?>" type="button">Cadastrar Nivel de acesso</a>
+                    <a class="btn btn-sm btn_success" href="<?= URLADM.'add-access-nivels/index';?>" type="button">Cadastrar Nivel</a>
+                    <a class="btn btn-sm btn_warning" href="<?= URLADM.'sync-pages-nivels/index';?>" type="button">Sincronizar</a>
                 </div>
             </div>
             <!-- DIV com o campo de pesquisa -->

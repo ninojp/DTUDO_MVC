@@ -6,8 +6,10 @@ class AdmsViewUsers
 {
     // Recebe do método:getResult() o valor:(true or false), q será atribuido aqui
     private bool $result = false;
+    
     /** @var array - Recebe os registros do banco de dados    */
     private array|null $resultBd;
+
     /** @var integer|string|null - Recebe o ID do registro    */
     private int|string|null $id;
 
