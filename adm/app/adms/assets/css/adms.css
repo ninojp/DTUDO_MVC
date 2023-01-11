@@ -9,7 +9,7 @@ font-family: 'Ubuntu', sans-serif; */
     padding: 0;
     box-sizing: border-box;
     font-family: 'Ubuntu', sans-serif;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 /* Variáveis GLOBAIs das CORES da Pagina */
 :root{

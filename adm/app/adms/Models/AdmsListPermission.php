@@ -23,7 +23,7 @@ class AdmsListPermission
     private int $level;
 
     /** @var integer - Recebe a quantidade de registros que deve retornar do DB    */
-    private int $limitResult = 5;
+    private int $limitResult = 20;
 
     /** @var string|null -  - Recebe a paginação  */
     private string|null $resultPg;
@@ -81,7 +81,7 @@ class AdmsListPermission
 
             $listPermission = new \App\adms\Models\helper\AdmsRead();
             //INNER JOIN, é obrigátorio(para retornar o registro) q a chave EXTRANGEIRA:adms_sits_user_id exista na tabela outra tabela, a qual está se fazendo o inner join(adms_sits_users)
-            $listPermission->fullRead("SELECT lev_pag.id, lev_pag.permission, lev_pag.order_level_page, lev_pag.adms_page_id, pag.name_page FROM adms_levels_pages AS lev_pag LEFT JOIN adms_pages AS pag ON pag.id=adms_page_id WHERE lev_pag.adms_access_level_id =:adms_access_level_id ORDER BY lev_pag.order_level_page ASC LIMIT :limit OFFSET :offset", "adms_access_level_id={$this->level}&limit={$this->limitResult}&offset={$pagination->getOffset()}");
+            $listPermission->fullRead("SELECT lev_pag.id, lev_pag.permission, lev_pag.order_level_page, lev_pag.adms_access_level_id, lev_pag.adms_page_id, pag.name_page FROM adms_levels_pages AS lev_pag LEFT JOIN adms_pages AS pag ON pag.id=adms_page_id WHERE lev_pag.adms_access_level_id =:adms_access_level_id ORDER BY lev_pag.order_level_page ASC LIMIT :limit OFFSET :offset", "adms_access_level_id={$this->level}&limit={$this->limitResult}&offset={$pagination->getOffset()}");
 
             $this->resultBd = $listPermission->getResult();
             if ($this->resultBd) {
@@ -108,7 +108,7 @@ class AdmsListPermission
             // var_dump($this->resultBd);
             return true;
         }else{
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Nivel de acesso não encontrado!</p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (viewAccessNivels())! Nivel de acesso não encontrado!</p>";
             return false;
         }
     }

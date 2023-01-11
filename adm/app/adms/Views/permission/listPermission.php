@@ -7,7 +7,6 @@ if (isset($this->data['form'])) {
     // var_dump($this->data['form']);
     $valorForm = $this->data['form'];
 } ?>
-
 <!-- Inicio do conteudo LISTAR do ADM -->
 <div class="wrapper_list">
     <div class="row_list">
@@ -48,7 +47,14 @@ if (isset($this->data['form'])) {
                     <td class="list_body_content"><?=$id;?></td>
                     <td class="list_body_content"><?=$name_page;?></td>
                     <td class="list_body_content tb_sm_none"><?=$order_level_page;?></td>
-                    <td class="list_body_content"><?=$permission;?></td>
+                    <td class="list_body_content">
+                        <?php if($permission == 1){
+                            echo "<a href='".URLADM."edit-permission/index/$id?&level=$adms_access_level_id&pag=".$this->data['pag']."'><span class='text-success'>Liberado</span></a>";
+                        } else {
+                            echo "<a href='".URLADM."edit-permission/index/$id?&level=$adms_access_level_id&pag=".$this->data['pag']."'><span class='text-danger'>Bloqueado</span></a>";
+                        }
+                        ?>
+                    </td>
                     <td class="list_body_content">
                          <!-- echo "<a class='btn btn-sm btn-outline-primary mx-1' href='".URLADM."order-access-nivels/index/$id?pag=".$this->data['pag']."'><i class='fa-solid fa-arrow-up-short-wide'></i> Ordem</a>";
                         echo "<a class='btn btn-sm btn-outline-primary mx-1' href='".URLADM."list-permission/index?level=$id'><i class='icon fa-solid fa-user-lock'></i> Permissão</a>";

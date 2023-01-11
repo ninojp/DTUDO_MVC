@@ -56,6 +56,9 @@ class ListPermission
             // var_dump($this->data['viewAccessLevel']);
             // PAGINAÇÃO - cria a POSIÇÃO:['pagination'] no array:$this->data
             $this->data['pagination'] = $listPermission->getResultPg();
+            
+            $this->data['pag'] = $this->page;
+
             $this->loadViewPermission();
         }else{
             // $this->data['listPermission'] = [];
