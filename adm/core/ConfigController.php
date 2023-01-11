@@ -145,7 +145,7 @@ class ConfigController extends Config
         //usa o objeto para instaciar o MÉTODO q está no atributo:$urlMetodo
         // $classPage->{$this->urlMetodo}();
 
-        $loadPgAdm = new CarregarPgAdm();
+        $loadPgAdm = new \Core\CarregarPgAdmLevel();
         $loadPgAdm->loadPage($this->urlController, $this->urlMetodo, $this->urlParameter);
 
 

@@ -21,7 +21,7 @@ if (isset($this->data['form'])) {
                             echo $_SESSION['msg'];
                             unset($_SESSION['msg']); } ?>
                 </div>
-                <div class="col-3 top_list_right">
+                <div class="col-3 top_list_right mb-2">
                     <a class="btn btn-sm btn_info" href="<?= URLADM.'list-access-nivels/index';?>" type="button">Listar Niveis de acesso</a>
                 </div>
             </div>
@@ -31,11 +31,11 @@ if (isset($this->data['form'])) {
             <thead class="list_head">
                 <tr>
                     <th class="list_head_content">ID</th>
-                    <th class="list_head_content">Página</th>
+                    <th class="list_head_content">Nome da Página</th>
                     <!-- classe:tb_sm_none para OCULTAR o item em resolucão menores -->
-                    <th class="list_head_content tb_sm_none">Ordem</th>
+                    <th class="list_head_content tb_sm_none">Ordem (order_level_page)</th>
                     <th class="list_head_content">Permissão</th>
-                    <th class="list_head_content">Botões de Ações</th>
+                    <!-- <th class="list_head_content">Botões de Ações</th> -->
                 </tr>
             </thead>
             <?php
@@ -55,7 +55,7 @@ if (isset($this->data['form'])) {
                         }
                         ?>
                     </td>
-                    <td class="list_body_content">
+                    <!-- <td class="list_body_content"> -->
                          <!-- echo "<a class='btn btn-sm btn-outline-primary mx-1' href='".URLADM."order-access-nivels/index/$id?pag=".$this->data['pag']."'><i class='fa-solid fa-arrow-up-short-wide'></i> Ordem</a>";
                         echo "<a class='btn btn-sm btn-outline-primary mx-1' href='".URLADM."list-permission/index?level=$id'><i class='icon fa-solid fa-user-lock'></i> Permissão</a>";
 
@@ -63,7 +63,7 @@ if (isset($this->data['form'])) {
                         echo "<a class='btn btn-sm btn-outline-warning mx-1' href='".URLADM."edit-access-nivels/index/$id'><i class='fa-solid fa-pen-to-square'></i> Editar</a>";
                         echo "<a class='btn btn-sm btn-outline-danger mx-1' href='".URLADM."delete-access-nivels/index/$id' onclick='return confirm(\"Tem certeza que deseja excluir o registro?\")'><i class='fa-solid fa-trash-can'></i> Apagar</a>";
                         ?> -->
-                    </td>
+                    <!-- </td> -->
                 </tr>
                 <?php } ?>
             </tbody>

@@ -1,5 +1,6 @@
 001 - Erro de conexão com o Banco de dados(AdmsConn.php)
 002 - Erro ao carregar a VIEW(ConfigView.php)
-003 - Erro ao carregar a Classe(CarregarPgAdm.php)
-004 - Erro ao carregar a Método(CarregarPgAdm.php)
+003 - Erro ao carregar a Classe(CarregarPgAdmLevel.php)
+004 - Erro ao carregar o Método(CarregarPgAdmLevel.php)
 005 - Erro ao carregar a VIEW(login.php)
+006 - Erro não encontrou a pagina no DB (CarregarPgAdmLevel.php)
