@@ -39,25 +39,25 @@ class CarregarPgAdmLevel
     private function searchPage():void
     {
         $searchPage = new \App\adms\Models\helper\AdmsRead();
-        $searchPage->fullRead("SELECT id, publish FROM adms_pages WHERE controller =:controller AND metodo =:metodo LIMIT :limit", "controller={$this->urlController}&metodo={$this->urlMetodo}&limit=1");
+        $searchPage->fullRead("SELECT pag.id, pag.publish, typ.type FROM adms_pages AS pag INNER JOIN adms_types_pgs AS typ ON typ.id=pag.adms_types_pgs_id WHERE pag.controller =:controller AND pag.metodo =:metodo LIMIT :limit", "controller={$this->urlController}&metodo={$this->urlMetodo}&limit=1");
         $this->resultPage = $searchPage->getResult();
 
         if($this->resultPage){
             // var_dump($this->resultPage);
             if($this->resultPage[0]['publish'] == 1){
-                $this->classLoad = "\\App\\adms\\Controllers\\".$this->urlController;
+                $this->classLoad = "\\App\\".$this->resultPage[0]['type']."\\Controllers\\".$this->urlController;
                 $this->loadMetodo();
             } else {
                 // echo "Verificar se o user está logado <br>";
                 $this->verifyLogin();
             }
         }else{
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (searchPage()): Página não encontrada!</p>";
-            $urlRedirect = URLADM."login/index";
-            header("Location: $urlRedirect");
+            // $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (searchPage()): Página não encontrada!</p>";
+            // $urlRedirect = URLADM."login/index";
+            // header("Location: $urlRedirect");
 
             // Ao invés de fazer o redirecionamento pode se usar o DIE() para finalizar
-            // die("Erro 006 - (searchPage())! Tente Novamente ou entre em contato: ".EMAILADM);
+            die("Erro 006 - (searchPage())! Tente Novamente ou entre em contato: ".EMAILADM);
         }
     }
     /** ============================================================================================
@@ -86,7 +86,9 @@ class CarregarPgAdmLevel
             $urlRedirect = URLADM."login/index";
             header("Location: $urlRedirect"); 
         }
-    } 
+    }
+    /** ------------------------------------------------------------------------------------------
+     * @return void     */ 
     private function searchLevelPage():void
     {
         $searchLevelPage = new \App\adms\Models\helper\AdmsRead();
@@ -94,7 +96,7 @@ class CarregarPgAdmLevel
 
         $this->resultLevelPage = $searchLevelPage->getResult();
         if($this->resultLevelPage){
-            $this->classLoad = "\\App\\adms\\Controllers\\".$this->urlController;
+            $this->classLoad = "\\App\\".$this->resultPage[0]['type']."\\Controllers\\".$this->urlController;
             $this->loadMetodo();
         } else {
             $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (searchLevelPage()): Necessário permissão para acessar a página!</p>";
