@@ -79,6 +79,20 @@ class ListPages
             $this->data['listPages'] = [];
             $this->data['pagination'] = "";
         }
+        // ----------- Exibir ou ocultar botões conforme o nivel de acesso -------------------
+        // Cria o array e suas devidas posições
+        $button = ['add_pages' => ['menu_controller' => 'add-pages', 'menu_metodo' => 'index'], 
+        'sync_pages_nivels' => ['menu_controller' => 'sync-pages-nivels', 'menu_metodo' => 'index'],
+        'view_pages' => ['menu_controller' => 'view-pages', 'menu_metodo' => 'index'],
+        'edit_pages' => ['menu_controller' => 'edit-pages', 'menu_metodo' => 'index'],
+        'delete_pages' => ['menu_controller' => 'delete-pages', 'menu_metodo' => 'index']];
+        // Instância a classe:AdmsButton() e cria o objeto:$listButton
+        $listButton = new \App\adms\Models\helper\AdmsButton();
+        // Passa como parametro o array:$button criado acima, para o método:buttonPermission()
+        // E Atribui o resultado para o atributo:$this->data['button'], criando esta posição
+        $this->data['button'] = $listButton->buttonPermission($button);
+        // var_dump($this->data['button']);
+
         // posição no array:$this->data['sidebarActive'], que define como ACTIVE no menu SIDEBAR
         $this->data['sidebarActive'] = "list-pages";
 

@@ -45,9 +45,11 @@ if (isset($this->data['form'])) {
                             echo $_SESSION['msg'];
                             unset($_SESSION['msg']); } ?>
                 </div>
-                <div class="col-3 top_list_right">
-                    <a class="btn btn-sm btn_success" href="<?= URLADM.'add-users/index';?>" type="button">Cadastrar Usuário</a>
-                </div>
+                <?php if($this->data['button']['add_users']) {?>
+                    <div class="col-3 top_list_right">
+                        <a class="btn btn-sm btn_success" href="<?= URLADM.'add-users/index';?>" type="button">Cadastrar Usuário</a>
+                    </div>
+                <?php }?>
             </div>
             <!-- DIV com o campo de pesquisa -->
             <div class="div_row_form">
@@ -96,10 +98,12 @@ if (isset($this->data['form'])) {
                     <td class="list_body_content tb_sm_none"><?=$email;?></td>
                     <td class="list_body_content tb_sm_none"><span style='color:<?=$color;?>'><?=$name_sit;?></span></td>
                     <td class="list_body_content">
-                        <?php echo "<a class='btn btn-sm btn-outline-primary mx-1' href='".URLADM."view-users/index/$id'><i class='fa-solid fa-eye'></i> Ver</a>"; 
-                        echo "<a class='btn btn-sm btn-outline-warning mx-1' href='".URLADM."edit-users/index/$id'><i class='fa-solid fa-pen-to-square'></i> Editar</a>";
-                        echo "<a class='btn btn-sm btn-outline-danger mx-1' href='".URLADM."delete-users/index/$id' onclick='return confirm(\"Tem certeza que deseja excluir o registro?\")'><i class='fa-solid fa-trash-can'></i> Apagar</a>";
-                        ?>
+                        <?php if($this->data['button']['view_users']) {
+                            echo "<a class='btn btn-sm btn-outline-primary mx-1' href='".URLADM."view-users/index/$id'><i class='fa-solid fa-eye'></i> Ver</a>"; }
+                        if($this->data['button']['edit_users']) {
+                            echo "<a class='btn btn-sm btn-outline-warning mx-1' href='".URLADM."edit-users/index/$id'><i class='fa-solid fa-pen-to-square'></i> Editar</a>"; }
+                        if($this->data['button']['delete_users']) {
+                        echo "<a class='btn btn-sm btn-outline-danger mx-1' href='".URLADM."delete-users/index/$id' onclick='return confirm(\"Tem certeza que deseja excluir o registro?\")'><i class='fa-solid fa-trash-can'></i> Apagar</a>"; } ?>
                     </td>
                 </tr>
                 <?php } ?>

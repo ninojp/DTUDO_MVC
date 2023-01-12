@@ -40,6 +40,13 @@ class ViewPages
      * método para carregar a VIEW - @return void     */
     private function loadViewPages():void
     {
+        // ----------- Exibir ou ocultar botões conforme o nivel de acesso -------------------
+        $button = ['add_pages' => ['menu_controller' => 'add-pages', 'menu_metodo' => 'index'],
+        'edit_pages' => ['menu_controller' => 'edit-pages', 'menu_metodo' => 'index'],
+        'delete_pages' => ['menu_controller' => 'delete-pages', 'menu_metodo' => 'index']];
+        $listButton = new \App\adms\Models\helper\AdmsButton();
+        $this->data['button'] = $listButton->buttonPermission($button);
+
         // posição no array:$this->data['sidebarActive'], que define como ACTIVE no menu SIDEBAR
         $this->data['sidebarActive'] = "view-pages";
         

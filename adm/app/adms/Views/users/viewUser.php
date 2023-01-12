@@ -54,8 +54,10 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
             } ?>
         </div>
         <div class="col-12 text-center pb-3">
-            <a class="btn btn-sm btn-outline-success mx-4" href="<?= URLADM; ?>list-users/index"><i class="fa-solid fa-rectangle-list"></i> Listar</a>
-            <a class="btn btn-sm btn-outline-primary mx-4" href="<?= URLADM; ?>edit-users-image/index/<?= $id; ?>"><i class="fa-solid fa-image"></i> Editar Imagem</a>
+        <?php if($this->data['button']['list_users']) { ?>
+            <a class="btn btn-sm btn-outline-success mx-4" href="<?= URLADM; ?>list-users/index"><i class="fa-solid fa-rectangle-list"></i> Listar</a> <?php } 
+        if($this->data['button']['edit_users_image']) { ?>
+            <a class="btn btn-sm btn-outline-primary mx-4" href="<?= URLADM; ?>edit-users-image/index/<?= $id; ?>"><i class="fa-solid fa-image"></i> Editar Imagem</a> <?php } ?>
         </div>
         <?php if (isset($_SESSION['msg'])) { 
             echo "<div id='msg' class='msg_alert'>";
@@ -110,9 +112,12 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
                 </div> <?php } ?>
         </div>
         <div class="col-12 text-center p-4">
-            <a class="btn btn-sm btn-outline-warning mx-2" href="<?= URLADM; ?>edit-users/index/<?= $id; ?>"><i class='fa-solid fa-pen-to-square'></i> Editar</a>
-            <a class="btn btn-sm btn-outline-info mx-2" href="<?= URLADM; ?>edit-users-password/index/<?= $id; ?>"><i class="fa-solid fa-unlock-keyhole"></i> Editar Senha</a>
-            <a class="btn btn-sm btn-outline-danger mx-2" href="<?= URLADM; ?>delete-users/index/<?= $id; ?>" onclick="return confirm('Tem certeza que deseja excluir o registro?')"><i class='fa-solid fa-trash-can'></i> Apagar Usuário</a>
+        <?php if($this->data['button']['edit_users']) { ?>
+            <a class="btn btn-sm btn-outline-warning mx-2" href="<?= URLADM; ?>edit-users/index/<?= $id; ?>"><i class='fa-solid fa-pen-to-square'></i> Editar</a> <?php }
+        if($this->data['button']['edit_users_password']) { ?>
+            <a class="btn btn-sm btn-outline-info mx-2" href="<?= URLADM; ?>edit-users-password/index/<?= $id; ?>"><i class="fa-solid fa-unlock-keyhole"></i> Editar Senha</a><?php }
+        if($this->data['button']['delete_users']) { ?>
+            <a class="btn btn-sm btn-outline-danger mx-2" href="<?= URLADM; ?>delete-users/index/<?= $id; ?>" onclick="return confirm('Tem certeza que deseja excluir o registro?')"><i class='fa-solid fa-trash-can'></i> Apagar Usuário</a> <?php } ?>
         </div>
         <?php } ?>
     </div>

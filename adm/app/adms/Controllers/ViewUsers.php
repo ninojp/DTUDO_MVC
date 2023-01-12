@@ -42,6 +42,18 @@ class ViewUsers
      * método para carregar a VIEW - @return void     */
     private function viewUser():void
     {
+        // ----------- Exibir ou ocultar botões conforme o nivel de acesso -------------------
+        $button = ['list_users' => ['menu_controller' => 'list-users', 'menu_metodo' => 'index'], 
+        'edit_users' => ['menu_controller' => 'edit-users', 'menu_metodo' => 'index'],
+        'edit_users_password' => ['menu_controller' => 'edit-users-password', 'menu_metodo' => 'index'],
+        'edit_users_image' => ['menu_controller' => 'edit-users-image', 'menu_metodo' => 'index'],
+        'delete_users' => ['menu_controller' => 'delete-users', 'menu_metodo' => 'index']];
+        // Instância a classe:AdmsButton() e cria o objeto:$listButton
+        $listButton = new \App\adms\Models\helper\AdmsButton();
+        // E Atribui o resultado para o atributo:$this->data['button'], criando esta posição
+        $this->data['button'] = $listButton->buttonPermission($button);
+        // var_dump($this->data['button']);
+
         // posição no array:$this->data['sidebarActive'], que define como ACTIVE no menu SIDEBAR
         $this->data['sidebarActive'] = "list-users";
         
