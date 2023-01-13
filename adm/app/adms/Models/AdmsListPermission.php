@@ -81,7 +81,7 @@ class AdmsListPermission
 
             $listPermission = new \App\adms\Models\helper\AdmsRead();
             //INNER JOIN, é obrigátorio(para retornar o registro) q a chave EXTRANGEIRA:adms_sits_user_id exista na tabela outra tabela, a qual está se fazendo o inner join(adms_sits_users)
-            $listPermission->fullRead("SELECT lev_pag.id, lev_pag.permission, lev_pag.order_level_page, lev_pag.adms_access_level_id, lev_pag.adms_page_id, pag.name_page FROM adms_levels_pages AS lev_pag LEFT JOIN adms_pages AS pag ON pag.id=adms_page_id WHERE lev_pag.adms_access_level_id =:adms_access_level_id ORDER BY lev_pag.order_level_page ASC LIMIT :limit OFFSET :offset", "adms_access_level_id={$this->level}&limit={$this->limitResult}&offset={$pagination->getOffset()}");
+            $listPermission->fullRead("SELECT lev_pag.id, lev_pag.permission, lev_pag.order_level_page, lev_pag.print_menu, lev_pag.adms_access_level_id, lev_pag.adms_page_id, pag.name_page FROM adms_levels_pages AS lev_pag LEFT JOIN adms_pages AS pag ON pag.id=adms_page_id WHERE lev_pag.adms_access_level_id =:adms_access_level_id ORDER BY lev_pag.order_level_page ASC LIMIT :limit OFFSET :offset", "adms_access_level_id={$this->level}&limit={$this->limitResult}&offset={$pagination->getOffset()}");
 
             $this->resultBd = $listPermission->getResult();
             if ($this->resultBd) {
@@ -101,7 +101,7 @@ class AdmsListPermission
     private function viewAccessNivels():bool
     {
         $viewAccessNivels = new \App\adms\Models\helper\AdmsRead();
-        $viewAccessNivels->fullRead("SELECT name FROM adms_access_levels WHERE id=:id AND order_levels > :order_levels LIMIT :limit", "id={$this->level}&order_levels=".$_SESSION['order_levels']."&limit=1");
+        $viewAccessNivels->fullRead("SELECT name FROM adms_access_levels WHERE id=:id AND order_levels >=:order_levels LIMIT :limit", "id={$this->level}&order_levels=".$_SESSION['order_levels']."&limit=1");
 
         $this->resultBdLevel = $viewAccessNivels->getResult();
         if($this->resultBdLevel){

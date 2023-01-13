@@ -28,6 +28,10 @@ class ViewProfile
      * método para carregar a VIEW - @return void     */
     private function loadViewProfile():void
     {
+        // implementação da apresentação dinâmica do menu sidebar
+        $listMenu = new \App\adms\Models\helper\AdmsMenu();
+        $this->data['menu'] = $listMenu->itemMenu();
+        
         //instancia a classe, cria o objeto e passa o parametro:$this->data, recebido da VIEW
         $loadView = new ConfigView("adms/Views/users/viewProfile", $this->data);
         //Instancia o método:loadView() da classe:ConfigView

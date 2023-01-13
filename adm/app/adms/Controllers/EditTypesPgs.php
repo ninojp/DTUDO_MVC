@@ -40,6 +40,10 @@ class EditTypesPgs
      * @return void     */
     private function loadViewEditTypesPgs(): void
     {
+        // implementação da apresentação dinâmica do menu sidebar
+        $listMenu = new \App\adms\Models\helper\AdmsMenu();
+        $this->data['menu'] = $listMenu->itemMenu();
+        
         // posição no array:$this->data['sidebarActive'], que define como ACTIVE no menu SIDEBAR
         $this->data['sidebarActive'] = "edit-types-pgs";
 

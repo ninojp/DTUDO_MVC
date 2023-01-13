@@ -70,7 +70,7 @@ class AdmsListAccessNivels
         //instância o método para fazer a paginação
         $pagination->condition($this->page, $this->limitResult);
         //cria a query, buscar quantidade total de registros da tabela:adms_users
-        $pagination->pagination("SELECT COUNT(id) AS num_result FROM adms_access_levels WHERE order_levels >:order_levels", "order_levels=".$_SESSION['order_levels']);
+        $pagination->pagination("SELECT COUNT(id) AS num_result FROM adms_access_levels WHERE order_levels >=:order_levels", "order_levels=".$_SESSION['order_levels']);
         //recebe o resultado do método:getResult() e atribui para:$this->resultPg
         $this->resultPg = $pagination->getResult();
         // var_dump($this->resultPg);
@@ -78,7 +78,7 @@ class AdmsListAccessNivels
 
         $listAccessesNivels = new \App\adms\Models\helper\AdmsRead();
         //INNER JOIN, é obrigátorio(para retornar o registro) q a chave EXTRANGEIRA:adms_sits_user_id exista na tabela outra tabela, a qual está se fazendo o inner join(adms_sits_users)
-        $listAccessesNivels->fullRead("SELECT id, name, order_levels FROM adms_access_levels WHERE order_levels > :order_levels ORDER BY order_levels ASC LIMIT :limit OFFSET :offset", "order_levels=".$_SESSION['order_levels']."&limit={$this->limitResult}&offset={$pagination->getOffset()}");
+        $listAccessesNivels->fullRead("SELECT id, name, order_levels FROM adms_access_levels WHERE order_levels >=:order_levels ORDER BY order_levels ASC LIMIT :limit OFFSET :offset", "order_levels=".$_SESSION['order_levels']."&limit={$this->limitResult}&offset={$pagination->getOffset()}");
 
         $this->resultBd = $listAccessesNivels->getResult();
         if ($this->resultBd) {

@@ -43,6 +43,7 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
             <span>Alertas(exemplo)</span>
         </div>
     </div>
+    <!-- <?php //var_dump($this->data['menu']); ?> -->
 </div>
 <!-- </div> -->
 <!-- FIM do conteudo do ADM -->

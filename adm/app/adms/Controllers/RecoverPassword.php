@@ -37,6 +37,10 @@ class RecoverPassword
      */
     private function viewRecoverPass():void
     {
+        // implementação da apresentação dinâmica do menu sidebar
+        $listMenu = new \App\adms\Models\helper\AdmsMenu();
+        $this->data['menu'] = $listMenu->itemMenu();
+        
        $loadView = new ConfigView("adms/Views/login/recoverPassword", $this->data);
        $loadView->loadViewLogin();
     }

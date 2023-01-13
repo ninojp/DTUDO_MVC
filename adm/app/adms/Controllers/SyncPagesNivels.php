@@ -8,6 +8,7 @@ class SyncPagesNivels
      * @return void */
     public function index():void
     {
+        
         $syncPagesNivels = new \App\adms\Models\AdmsSyncPagesNivels();
         $syncPagesNivels->syncPagesNivels();
         

@@ -20,6 +20,10 @@ class Dashboard
         } else {
             $this->data['countUsers'] = false;
         }
+        // implementação da apresentação dinâmica do menu sidebar
+        $listMenu = new \App\adms\Models\helper\AdmsMenu();
+        $this->data['menu'] = $listMenu->itemMenu();
+        // var_dump($this->data['menu']);
 
         // echo "adms/Controller/Dashboard.php: <h1> Página(controller) de Dashboard!</h1>";
         // $this->data = "Bem vindo ";
