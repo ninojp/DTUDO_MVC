@@ -25,12 +25,16 @@ class AdmsDeletePages
     {
         $this->id = (int) $id;
         // var_dump($this->id);
-        if($this->viewPages()){
-            $deleteUser = new \App\adms\Models\helper\AdmsDelete();
-            $deleteUser->exeDelete("adms_pages", "WHERE id =:id", "id={$this->id}");
+        if($this->viewPages()) {
+            // Forma de apagar os registros relacionados a tabela PAGES(depois de liberar no PHPMyAdmin)
+            // $deleteLevelPages = new \App\adms\Models\helper\AdmsDelete();
+            // $deleteLevelPages->exeDelete("adms_levels_pages", "WHERE adms_page_id=:adms_page_id", "adms_page_id={$this->id}");
 
-            if($deleteUser->getResult()){
-                $_SESSION['msg'] = "<p class='alert alert-danger'>OK! Página APAGADA com sucesso!</p>";
+            $deletePages = new \App\adms\Models\helper\AdmsDelete();
+            $deletePages->exeDelete("adms_pages", "WHERE id =:id", "id={$this->id}");
+
+            if($deletePages->getResult()) {
+                $_SESSION['msg'] = "<p class='alert alert-warning'>OK! Página APAGADA com sucesso!</p>";
                 $this->result = true;
             } else {
                 $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Página Não APAGADO com sucesso!!</p>";
@@ -41,11 +45,11 @@ class AdmsDeletePages
         }
     }
     /** ============================================================================================
-    * @return boolean   */
+     * Método para verificar se a pagina esta cadastrada na tabela e envia o resultado para a fução deletePage    -   @return boolean   */
     private function viewPages():bool
     {
         $viewPages = new \App\adms\Models\helper\AdmsRead();
-        $viewPages->fullRead("SELECT pgs.id, pgs.controller, pgs.metodo, pgs.menu_controller, pgs.menu_metodo, pgs.name_page, pgs.publish, pgs.adms_sits_pgs_id, pgs.adms_types_pgs_id, pgs.adms_groups_pgs_id, pgs.created FROM adms_pages AS pgs WHERE pgs.id=:id LIMIT :limit", "id={$this->id}&limit=1");
+        $viewPages->fullRead("SELECT pgs.id FROM adms_pages AS pgs WHERE pgs.id=:id LIMIT :limit", "id={$this->id}&limit=1");
 
         $this->resultBd = $viewPages->getResult();
         if($this->resultBd){

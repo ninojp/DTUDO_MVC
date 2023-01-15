@@ -18,7 +18,7 @@ class AdmsListPages
     private int $page;
 
     /** @var integer - Recebe a quantidade de registros que deve retornar do DB    */
-    private int $limitResult = 20;
+    private int $limitResult = 40;
 
     /** @var string|null -  - Recebe a paginação  */
     private string|null $resultPg;

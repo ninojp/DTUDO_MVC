@@ -9,14 +9,22 @@ class AdmsNewUser
 {
     //recebido como parametro através do método:create() e colocado neste atributo
     private array|null $data;
+
+    /** @var array|null - Recebe os registros do banco de dados    */
+    private array|null $resultBd;
+    
     // Recebe do método:getResult() o valor:(true or false), q será atribuido aqui
-    private $result;
+    private bool $result;
+
     /** @var string - Recebe o e-mail do remetente    */
     private string $fromEmail;
+
     /** @var string - Recebe o primeiro nome(digitado) do usuário    */
     private string $firstName;
+
     /** @var string - Recebe a URL com o endereço para o usuário confirmar o e-mail   */
     private string $url;
+
     /** @var array - Recebe os dados do conteúdo do e-mail     */
     private array $emailData;
 
@@ -85,25 +93,49 @@ class AdmsNewUser
      * Retorna true quando cadastrar com sucesso e false quando não cadastrar   */
     private function add(): void
     {
-        // Criptografar a senha
-        $this->data['password'] = password_hash($this->data['password'], PASSWORD_DEFAULT);
-        $this->data['user'] = $this->data['email'];
-        $this->data['conf_email'] = password_hash($this->data['password'].date("Y-m-d H:i:s"), PASSWORD_DEFAULT);
-        $this->data['created'] = date("Y-m-d H:i:s");
-        // var_dump($this->data);
+        if($this->accessLevel()){
+            // Criptografar a senha
+            $this->data['password'] = password_hash($this->data['password'], PASSWORD_DEFAULT);
+            $this->data['user'] = $this->data['email'];
+            $this->data['conf_email'] = password_hash($this->data['password'].date("Y-m-d H:i:s"), PASSWORD_DEFAULT);
+            $this->data['created'] = date("Y-m-d H:i:s");
+            var_dump($this->data);
 
-        $createUser = new \App\adms\Models\helper\AdmsCreate();
-        $createUser->exeCreate("adms_users", $this->data);
+            $createUser = new \App\adms\Models\helper\AdmsCreate();
+            $createUser->exeCreate("adms_users", $this->data);
 
-        //verifica se existe o ultimo ID inserido
-        if ($createUser->getResult()) {
-            // $_SESSION['msg'] = "<p class='alert alert-success'>Ok! Usuário cadastrado com sucesso</p>";
-            // $this->result = true;
-            $this->sendEmail();
+            //verifica se existe o ultimo ID inserido
+            if ($createUser->getResult()) {
+                // $_SESSION['msg'] = "<p class='alert alert-success'>Ok! Usuário cadastrado com sucesso</p>";
+                // $this->result = true;
+                $this->sendEmail();
+            } else {
+                $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Não foi possível cadastrar o usuário</p>";
+                $this->result = false;
+            }
         } else {
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Não foi possível cadastrar o usuário</p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (accessLevel())! Não foi possível cadastrar o usuário</p>";
             $this->result = false;
         }
+    }
+    /** -------------------------------------------------------------------------------------------
+     * Pesquisar no banco de dados o nivel de acesso e a situação que deve ser utilizada no formulário cadastrar usuário na pagina de login
+     * @return bool - verdadeiro ou false    */
+    private function accessLevel(): bool
+    {
+        $viewAccessLevel = new \App\adms\Models\helper\AdmsRead();
+        $viewAccessLevel->fullRead("SELECT adms_access_level_id, adms_sits_user_id FROM adms_levels_forms ORDER BY id ASC LIMIT :limit", "limit=1");
+        $this->resultBd = $viewAccessLevel->getResult();
+        var_dump($this->resultBd);
+        if($this->resultBd){
+            //ERRO MEU... na tabela adms_users DEVERIA ser:adms_access_level_id eu colquei:access_level_id
+            $this->data['access_level_id'] = $this->resultBd[0]['adms_access_level_id'];
+            $this->data['adms_sits_user_id'] = $this->resultBd[0]['adms_sits_user_id'];
+            return true;
+        } else {
+            return false;
+        }
+        
     }
     /** =============================================================================================
      * Médoto responsável por enviar o e-mail    -  @return void     */

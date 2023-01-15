@@ -26,6 +26,10 @@ class AdmsDeleteAccessNivels
         $this->id = (int) $id;
         // var_dump($this->id);
         if(($this->viewAtualAccessNivels()) and ($this->checkStatusUsed())){
+            // Forma de deletar registros relacionados via PHP
+            // $deleteLevelPages = new \App\adms\Models\helper\AdmsDelete();
+            // $deleteLevelPages->exeDelete("adms_levels_pages", "WHERE adms_access_level_id=:adms_access_level_id", "adms_access_level_id={$this->id}");
+
             $deleteAccessNivels = new \App\adms\Models\helper\AdmsDelete();
             $deleteAccessNivels->exeDelete("adms_access_levels", "WHERE id =:id", "id={$this->id}");
 
@@ -33,7 +37,7 @@ class AdmsDeleteAccessNivels
                 $_SESSION['msg'] = "<p class='alert alert-warning'>OK! O Nivel de Acesso APAGADO com sucesso!</p>";
                 $this->result = true;
             } else {
-                $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! O Nivel de Acesso NÃO APAGADA!!</p>";
+                $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (viewAtualAccessNivels())! O Nivel de Acesso NÃO APAGADO!!</p>";
                 $this->result = false;
             }
         } else {
@@ -64,7 +68,7 @@ class AdmsDeleteAccessNivels
         $checkStatusUsed = new \App\adms\Models\helper\AdmsRead();
         $checkStatusUsed->fullRead("SELECT id FROM adms_users WHERE access_level_id =:access_level_id LIMIT :limit", "access_level_id={$this->id}&limit=1",);
         if($checkStatusUsed->getResult()){
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! O Nivel de Acesso não pode ser apagada, pois existe um usuário o utilizando!</p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (checkStatusUsed())! O Nivel de Acesso não pode ser apagada, pois existe um usuário o utilizando!</p>";
             return false;
         } else {
             return true;

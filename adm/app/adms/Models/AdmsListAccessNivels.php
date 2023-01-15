@@ -18,7 +18,7 @@ class AdmsListAccessNivels
     private int $page;
 
     /** @var integer - Recebe a quantidade de registros que deve retornar do DB    */
-    private int $limitResult = 4;
+    private int $limitResult = 8;
 
     /** @var string|null -  - Recebe a paginação  */
     private string|null $resultPg;
