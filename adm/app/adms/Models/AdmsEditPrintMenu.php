@@ -37,8 +37,14 @@ class AdmsEditPrintMenu
         // var_dump($this->id);
 
         $vieweditPrintMenu = new \App\adms\Models\helper\AdmsRead();
-        $vieweditPrintMenu->fullRead("SELECT lev_pag.id, lev_pag.print_menu 
-        FROM adms_levels_pages AS lev_pag INNER JOIN adms_access_levels AS lev ON lev.id=lev_pag.adms_access_level_id WHERE lev_pag.id=:id AND lev.order_levels >=:order_levels LIMIT :limit", "id={$this->id}&order_levels=".$_SESSION['order_levels']."&limit=1");
+        $vieweditPrintMenu->fullRead("SELECT lev_pag.id, lev_pag.print_menu
+        FROM adms_levels_pages AS lev_pag 
+        INNER JOIN adms_access_levels AS lev ON lev.id=lev_pag.adms_access_level_id 
+        LEFT JOIN adms_pages AS pag ON pag.id=lev_pag.adms_page_id
+        WHERE lev_pag.id=:id AND lev.order_levels >=:order_levels
+        AND (((SELECT permission FROM adms_levels_pages WHERE adms_page_id =lev_pag.adms_page_id 
+        AND adms_access_level_id ={$_SESSION['access_level_id']}) = 1) OR (publish = 1))
+        LIMIT :limit", "id={$this->id}&order_levels=".$_SESSION['order_levels']."&limit=1");
 
         $this->resultBd = $vieweditPrintMenu->getResult();
         if($this->resultBd){

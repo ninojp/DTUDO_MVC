@@ -7,11 +7,20 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
 class AdmsOrderAccessNivels
 
 {
+    /** @var boolean - Recebe true ou false     */
     private bool $result;
+
+    /** @var array|null - Recebe os registros do DB    */
     private array|null $resultBd;
+
+    /** @var array|null - Rcebe os registros do DB     */
     private array|null $resultBdPrev;
+
+    /** @var integer|string|null - Rcebe o id do registro     */
     private int|string|null $id;
-    private $data;
+
+    /** @var array|null - Recebe as novas posições e as atribui para o array - Eu que criei, na aula o prof não o fez     */
+    private array|null $data;
 
     /** ==========================================================================================
      * @return boolean         */
@@ -63,7 +72,7 @@ class AdmsOrderAccessNivels
             $this->editMoveDown();
             // $this->result = true;
         } else {
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Nivel de Acesso não encontrada!</p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (viewPrevAccessNivels())! Nivel de Acesso não encontrada!</p>";
             $this->result = false;
         }
     }
@@ -82,7 +91,7 @@ class AdmsOrderAccessNivels
             $this->result = true;
             $this->editMoveUp();
         } else {
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Ordem do Nivel de Acesso editado com sucesso!</p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (editMoveDown())! Ordem do Nivel de Acesso não editado com sucesso!</p>";
             $this->result = false;
         }
     }
@@ -99,7 +108,7 @@ class AdmsOrderAccessNivels
             $_SESSION['msg'] = "<p class='alert alert-success'>Ok! Ordem do Nivel de Acesso editado com sucesso!</p>";
             $this->result = true;
         } else {
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Ordem do Nivel de Acesso Não editado com sucesso!</p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (editMoveUp())! Ordem do Nivel de Acesso Não editado com sucesso!</p>";
             $this->result = false;
         }
 
