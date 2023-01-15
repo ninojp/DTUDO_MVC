@@ -1,12 +1,15 @@
 <?php
 namespace App\adms\controllers;
 if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
-// Classe(Models) para vizualizar os detalhes da cor
+// Classe(Controller) para vizualizar os detalhes da cor
 class ViewColors
 {
-    private array|null $data;
+    private array|string|null $data;
     private int|string|null $id;
 
+    /** ========================================================================================
+     * @param integer|string|null|null $id  -  @return void
+     */
     public function index(int|string|null $id = null):void
     {
         //verifica se existe um ID, se existir prossegue
@@ -33,7 +36,7 @@ class ViewColors
             header("Location: $urlRedirect");
         }
     }
-    /** ==============================================================================================
+    /** ============================================================================================
      * Método privado que intância a classe:ConfigView(parametro:endereço da view, dados) e o método:loadView() para executar a view
      * @return void     */
     private function loadViewColors()
