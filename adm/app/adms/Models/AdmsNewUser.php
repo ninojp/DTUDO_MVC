@@ -93,13 +93,14 @@ class AdmsNewUser
      * Retorna true quando cadastrar com sucesso e false quando não cadastrar   */
     private function add(): void
     {
+        // Verifica através do método:accessLevel(), o nivel de acesso e a situação do usuário na tabela:adms_levels_forms, que deve ser cadastrada para o novo usuário
         if($this->accessLevel()){
             // Criptografar a senha
             $this->data['password'] = password_hash($this->data['password'], PASSWORD_DEFAULT);
             $this->data['user'] = $this->data['email'];
             $this->data['conf_email'] = password_hash($this->data['password'].date("Y-m-d H:i:s"), PASSWORD_DEFAULT);
             $this->data['created'] = date("Y-m-d H:i:s");
-            var_dump($this->data);
+            // var_dump($this->data);
 
             $createUser = new \App\adms\Models\helper\AdmsCreate();
             $createUser->exeCreate("adms_users", $this->data);
@@ -126,7 +127,7 @@ class AdmsNewUser
         $viewAccessLevel = new \App\adms\Models\helper\AdmsRead();
         $viewAccessLevel->fullRead("SELECT adms_access_level_id, adms_sits_user_id FROM adms_levels_forms ORDER BY id ASC LIMIT :limit", "limit=1");
         $this->resultBd = $viewAccessLevel->getResult();
-        var_dump($this->resultBd);
+        // var_dump($this->resultBd);
         if($this->resultBd){
             //ERRO MEU... na tabela adms_users DEVERIA ser:adms_access_level_id eu colquei:access_level_id
             $this->data['access_level_id'] = $this->resultBd[0]['adms_access_level_id'];
@@ -135,7 +136,6 @@ class AdmsNewUser
         } else {
             return false;
         }
-        
     }
     /** =============================================================================================
      * Médoto responsável por enviar o e-mail    -  @return void     */

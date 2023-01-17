@@ -13,15 +13,14 @@ if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://lo
         echo "</div>";
         if (!empty($this->data['viewLevelsForm'])) {
             extract($this->data['viewLevelsForm'][0]); 
-            // var_dump($this->data['viewLevelsForm'][0]);
-            ?>
+            // var_dump($this->data['viewLevelsForm'][0]); ?>
         <div class="content_adm">
             <div class="view_det">
                 <span class="view_det_title">ID:</span>
                 <span class="view_det_info"><?=$id;?></span>
             </div>
             <div class="view_det">
-                <span class="view_det_title">Nivel de Acesso:</span>
+                <span class="view_det_title">Nivel de Acesso (New User):</span>
                 <span class="view_det_info"><?=$name_aal;?></span>
             </div>
             <div class="view_det">
@@ -30,12 +29,12 @@ if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://lo
             </div>
             
             <div class="view_det">
-                <span class="view_det_title">Data Criação:</span>
+                <span class="view_det_title">Data Criação (Registro):</span>
                 <span class="view_det_info"><?=date('d/m/Y H:i:s', strtotime($created));?></span>
             </div>
             <?php if(!empty($modified)) { ?>
             <div class="view_det">
-                <span class="view_det_title">Modificado:</span>
+                <span class="view_det_title">Modificado (Registro):</span>
                 <span class="view_det_info"><?=date('d/m/Y H:i:s', strtotime($modified)); ?></span>
             </div> <?php } ?>
         </div>

@@ -26,9 +26,8 @@ class ViewLevelsForms
             $urlRedirect = URLADM."dashboard/index";
             header("Location: $urlRedirect");
             }
-        
     }
-    /** ==============================================================================================
+    /** ===========================================================================================
      * Método privado que intância a classe:ConfigView(parametro:endereço da view, dados) e o método:loadView() para executar a view
      * @return void     */
     private function loadViewLevelsForm()
