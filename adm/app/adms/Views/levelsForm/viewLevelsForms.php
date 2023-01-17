@@ -4,7 +4,7 @@ if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://lo
 <div class="wrapper_form">
     <div class="row_form">
         <div class="title_form">
-            <h2>Detalhes da Cor</h2>
+            <h2>Configurações para todos<br>os novos usuários</h2>
         </div>
         <?php echo "<div id='msg' class='msg_alert'>";
         if (isset($_SESSION['msg'])) { 

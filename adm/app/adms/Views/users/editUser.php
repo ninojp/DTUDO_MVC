@@ -64,6 +64,7 @@ if(isset($this->data['form'][0])){
                         <option value="">Selecione</option>
                         <?php foreach($this->data['select']['sit'] as $sit){
                             extract($sit);
+                            //verifica se existe, E SE É IGUAL ao valor do id
                             if((isset($valorForm['adms_sits_user_id'])) and ($valorForm['adms_sits_user_id'] == $id_sit)){
                                 echo "<option value='$id_sit' selected>$name_sit</option>";
                             } else {

@@ -34,7 +34,7 @@ class AdmsLevelsForms
         //instância a classe:AdmsRead() e cria o objeto:$viewSitsUsers
         $viewLevelsForms = new \App\adms\Models\helper\AdmsRead();
         //usa o objeto para instânciar o método:fullRead(), passando a query desejada
-        $viewLevelsForms->fullRead("SELECT alf.id, alf.adms_access_level_id, alf.adms_sits_user_id, alf.created, alf.modified, aal.name AS name_aal, asu.name AS name_asu
+        $viewLevelsForms->fullRead("SELECT alf.id, alf.created, alf.modified, aal.name AS name_aal, asu.name AS name_asu
         FROM adms_levels_forms AS alf 
         INNER JOIN adms_access_levels AS aal ON aal.id=alf.adms_access_level_id
         INNER JOIN adms_sits_users AS asu ON asu.id=adms_sits_user_id");
