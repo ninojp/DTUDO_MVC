@@ -21,4 +21,5 @@ echo "<main class='main_content'>";
             }
         } 
     echo "</div>";
+    var_dump($this->data['menu']);
     // <!-- FIM do SIDE-BAR -->
