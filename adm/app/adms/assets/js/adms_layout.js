@@ -57,7 +57,7 @@ function closeDropAction(){
 }
 // --------------------------------------------------------------------------------------------------
 /* Inicio menu dropdown no sidebar */
-var dropdownSidebar = document.getElementsByClassName("dropdown-btn");
+var dropdownSidebar = document.getElementsByClassName("dropdown_btn");
 var i;
 
 for (i = 0; i < dropdownSidebar.length; i++) {
@@ -71,4 +71,17 @@ for (i = 0; i < dropdownSidebar.length; i++) {
         }
     });
 }
+/* Menu dropdown no sidebar ATIVO */
+var sidebarNav = document.getElementsByClassName("sidebar_nav");
+
+for(var i = 0; i < sidebarNav.length; i++){
+    // console.log(sidebarNav[i]);
+    if(sidebarNav[i].classList.contains("active")){
+        // console.log("ok! Possui o active!");
+        // console.log(sidebarNav[i]);
+        document.querySelector(".btn_" + sidebarNav[i].classList[1]).classList.add("active");
+        document.querySelector(".cont_" + sidebarNav[i].classList[1]).classList.add("active");
+    }
+}
+
 /* Fim dropdown sidebar */

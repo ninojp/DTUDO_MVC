@@ -38,7 +38,6 @@ font-family: 'Ubuntu', sans-serif; */
     --info-color: rgb(91, 192, 222);
     --azulClaro: rgba(13,110,253,1);
     --site-color: rgb(57, 123, 254);
-    --third-bg-color: rgb(58, 122, 254);
     --primary-color: rgb(0, 136, 204);
     --azulMedio: rgba(4,9,170,1);
     --main-bg-color: rgb(25, 32, 57);
@@ -191,11 +190,7 @@ body{
     background-color: var(--azulScuro);
     box-shadow: 0px 3px 5px 0px var(--azulClaro);
 }
-/* .main_content .row{
-    background-color: var(--branco);
-    border-radius: 6px;
-} */
-/* Definições do MENU LATERAL - SIDE-BAR *********************************************************/
+/* Definições do DIV MENU LATERAL - SIDE-BAR ***************************************************/
 .sidebar{
     position: sticky;
     top: 60px;/*testar depois, ainda não muda nada */
@@ -223,17 +218,6 @@ body{
     /* width: 250px; */
     width: fit-content;
 }
-.sidebar .sidebar_nav{
-    display: flex;
-    text-decoration: none;
-    align-items: center;
-    position: relative;
-    cursor: pointer;
-    font-size: 1em;
-    transition: 0.3s background ease;/* erro testar novamente*/
-    font-size: 16px;
-    padding: 15px 3px;
-}
 .sidebar a{
     color: var(--azulClaro);
     text-decoration: none;
@@ -243,11 +227,60 @@ body{
     color: var(--azulClaro);
     text-decoration: none;
 }
-.sidebar .sidebar_nav.active{
+/* BUTTON class:dropdown_btn  - Botão DropDown **************************************************/
+.dropdown_btn{
+    padding: 15px 0;
+    font-size: 16px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    width: 100%;
+    color: var(--azulClaro);
+}
+.dropdown_btn span{
+    margin-right: 5px;
+}
+.dropdown_btn:hover{
+    background-color: var(--second-bg-color);
+    color: var(--active-color);
+}
+.dropdown_btn .icon{
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+.dropdown_btn.active{
+    background-color: var(--second-bg-color);
+    color: var(--active-color);
+}
+/* DIV dos ITENS do menu DropDown ************************************************************/
+.dropdown_container{
+    display: none;
+    background-color: var(--fourth-bg-color);
+}
+.dropdown_container.active{
+    display: block !important;
+}
+/* ITENS do menu dropDown */
+.sidebar_nav{
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    font-size: 1em;
+    transition: 0.3s background ease;/* erro testar novamente*/
+    padding: 3px 5px 3px 25px;
+}
+.sidebar_nav.active{
     background-color: var(--azulEscuro);
     color: var(--azulClaro);
 }
-.sidebar .sidebar_nav.active::before{
+.sidebar_nav.active::before{
     content: "";
     position: absolute;
     left: 0;
@@ -257,14 +290,23 @@ body{
     background-color: var(--branco);
 }
 .sidebar_nav .icon{
-    width: 60px;
+    width: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 22px;
     flex-shrink: 0;
 }
-/* Botão DropDown *********************************************************************************/
+.sidebar_nav .icon_itens{
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+/* Verificar depois a onde pertence e se está sendo usado */
 .drop_btn_action{
     background-color: var(--azulMedio);
     color: var(--branco);
@@ -306,52 +348,10 @@ body{
     display: block;
     border-radius: 7px;
 }
-/* Inicio dropdown sidebar - COPIADO *************************************************************/
-.sidebar .dropdown-btn{
-    padding: 15px 0;
-    font-size: 16px;
-    border: none;
-    background: none;
-    cursor: pointer;
-    display: flex;
-    width: 100%;
-    color: var(--main-color);
-}
-.sidebar .dropdown-btn span{
-    margin-right: 5px;
-}
-.sidebar .dropdown-btn:hover{
-    background-color: var(--second-bg-color);
-    color: var(--active-color);
-}
-.dropdown-btn .icon{
-    width: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    flex-shrink: 0;
-}
-.sidebar .dropdown-btn.active{
-    background-color: var(--second-bg-color);
-    color: var(--active-color);
-}
-.sidebar .dropdown-container{
-    display: none;
-    background-color: var(--fourth-bg-color);
-}
-.sidebar .dropdown-container.active{
-    display: block !important;
-}
-.sidebar-nav{
-    display: block;
-    text-decoration: none;
-
-}
 /* Fim dropdown sidebar */
 
 /* ============================================================================================ */
-/* Definições da VIEW Dashboard.php *****************************************************************/
+/* Definições da VIEW Dashboard.php ************************************************************/
 .box{
     position: relative;
     display: flex;
