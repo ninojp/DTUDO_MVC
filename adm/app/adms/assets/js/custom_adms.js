@@ -688,5 +688,23 @@ if (formaddEmailConfs) {
         }
     });
 }
+// ================================================================================================
+// Validação DO FORMULÁRIO DA VIEW:editPageMenu
+const formEditPageMenu = document.getElementById("form-edit-page-menu");
+if (formEditPageMenu) {
+    formEditPageMenu.addEventListener("submit", async (e) => {
+        //Validar o valor do campo IMAGE
+        var items_menu_id = document.querySelector("#adms_items_menu_id").value;
+        // Verificar se o campo está vazio
+        if (items_menu_id === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert alert-danger'>Erro! Necessário Selecionar um Item de Menu(DropDown)!(JS)</p>";
+            return;
+        } else {
+        document.getElementById("msg").innerHTML = "<p></p>";
+        return;
+    }
+    });
+}
 
 

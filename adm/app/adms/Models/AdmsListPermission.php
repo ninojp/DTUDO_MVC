@@ -23,7 +23,7 @@ class AdmsListPermission
     private int $level;
 
     /** @var integer - Recebe a quantidade de registros que deve retornar do DB    */
-    private int $limitResult = 20;
+    private int $limitResult = 40;
 
     /** @var string|null -  - Recebe a paginação  */
     private string|null $resultPg;
@@ -98,7 +98,7 @@ class AdmsListPermission
             AND lev.order_levels >=:order_levels
             AND (((SELECT permission FROM adms_levels_pages WHERE adms_page_id = lev_pag.adms_page_id 
             AND adms_access_level_id = {$_SESSION['access_level_id']}) = 1) OR (publish = 1))
-            ORDER BY lev_pag.order_level_page ASC LIMIT :limit OFFSET :offset", "adms_access_level_id={$this->level}&order_levels=".$_SESSION['order_levels']."&limit={$this->limitResult}&offset={$pagination->getOffset()}");
+            ORDER BY pag.id DESC LIMIT :limit OFFSET :offset", "adms_access_level_id={$this->level}&order_levels=".$_SESSION['order_levels']."&limit={$this->limitResult}&offset={$pagination->getOffset()}");
 
             $this->resultBd = $listPermission->getResult();
             if ($this->resultBd) {

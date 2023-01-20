@@ -72,6 +72,16 @@ class ListPermission
      * método para carregar a VIEW - @return void     */
     private function loadViewPermission():void
     {
+        // ----------- Exibir ou ocultar botões conforme o nivel de acesso -------------------
+        // Cria o array e suas devidas posições
+        $button = ['list_access_nivels' => ['menu_controller' => 'list-access-nivels', 'menu_metodo' => 'index'], 'order_page_menu' => ['menu_controller' => 'order-page-menu', 'menu_metodo' => 'index'], 'edit_page_menu' => ['menu_controller' => 'edit-page-menu', 'menu_metodo' => 'index']];
+        // Instância a classe:AdmsButton() e cria o objeto:$listButton
+        $listButton = new \App\adms\Models\helper\AdmsButton();
+        // Passa como parametro o array:$button criado acima, para o método:buttonPermission()
+        // E Atribui o resultado para o atributo:$this->data['button'], criando esta posição
+        $this->data['button'] = $listButton->buttonPermission($button);
+        // var_dump($this->data['button']);
+
         // implementação da apresentação dinâmica do menu sidebar
         $listMenu = new \App\adms\Models\helper\AdmsMenu();
         $this->data['menu'] = $listMenu->itemMenu();

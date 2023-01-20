@@ -14,7 +14,8 @@ if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://lo
                         unset($_SESSION['msg']); } ?>
                 </div>
                 <div class="col-3 top_list_right">
-                    <a class="btn btn-sm btn_success" href="<?= URLADM.'add-itens-menu/index';?>" type="button">Cadastrar Iten Menu</a>
+                <?php if($this->data['button']['add_tens_menu']){
+                    echo "<a class='btn btn-sm btn_success' href='" .URLADM . "add-itens-menu/index' type='button'>Cadastrar Iten Menu</a>"; } ?>
                 </div>
             </div>
         </div>
@@ -36,12 +37,14 @@ if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://lo
                     <td class="list_body_content tb_sm_none"><?=$icon;?></td>
                     <td class="list_body_content tb_sm_none"><?=$order_item_menu;?></td>
                     <td class="list_body_content">
-                        <?php 
-                        echo "<a class='btn btn-sm btn-outline-primary mx-1' href='".URLADM."order-itens-menu/index/$id?pag=".$this->data['pag']."'><i class='fa-solid fa-arrow-up-short-wide'></i> Ordem</a>";
-                        echo "<a class='btn btn-sm btn-outline-primary mx-1' href='".URLADM."view-itens-menu/index/$id'><i class='fa-solid fa-eye'></i> Ver</a>"; 
-                        echo "<a class='btn btn-sm btn-outline-warning mx-1' href='".URLADM."edit-itens-menu/index/$id'><i class='fa-solid fa-pen-to-square'></i> Editar</a>";
-                        echo "<a class='btn btn-sm btn-outline-danger mx-1' href='".URLADM."delete-itens-menu/index/$id' onclick='return confirm(\"Tem certeza que deseja excluir o registro?\")'><i class='fa-solid fa-trash-can'></i> Apagar</a>";
-                        ?>
+                        <?php  if($this->data['button']['order_tens_menu']) {
+                        echo "<a class='btn btn-sm btn-outline-primary mx-1' href='".URLADM."order-itens-menu/index/$id?pag=".$this->data['pag']."'><i class='fa-solid fa-arrow-up-short-wide'></i> Ordem</a>"; }
+                        if($this->data['button']['view_tens_menu']) {
+                        echo "<a class='btn btn-sm btn-outline-primary mx-1' href='".URLADM."view-itens-menu/index/$id'><i class='fa-solid fa-eye'></i> Ver</a>"; }
+                        if($this->data['button']['edit_tens_menu']) {
+                        echo "<a class='btn btn-sm btn-outline-warning mx-1' href='".URLADM."edit-itens-menu/index/$id'><i class='fa-solid fa-pen-to-square'></i> Editar</a>"; }
+                        if($this->data['button']['delete_tens_menu']) {
+                        echo "<a class='btn btn-sm btn-outline-danger mx-1' href='".URLADM."delete-itens-menu/index/$id' onclick='return confirm(\"Tem certeza que deseja excluir o registro?\")'><i class='fa-solid fa-trash-can'></i> Apagar</a>"; } ?>
                     </td>
                 </tr>  <?php } ?>
             </tbody>
