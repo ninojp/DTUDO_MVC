@@ -33,7 +33,7 @@ class AdmsEditPageMenu
     }
     /** ===========================================================================================
      * Método para visualizar os detalhes da página no Item de menu(sidebar)    */
-    public function viewPageMenu(int $id):void
+    public function viewPageMenu(int $id):bool
     {
         $this->id = $id;
 
@@ -41,15 +41,21 @@ class AdmsEditPageMenu
         $viewPageMenu->fullRead("SELECT lev_pag.id, lev_pag.adms_items_menu_id, pag.name_page
         FROM adms_levels_pages AS lev_pag
         INNER JOIN adms_pages AS pag ON pag.id=lev_pag.adms_page_id
-        WHERE lev_pag.id=:id LIMIT :limit", "id={$this->id}&limit=1");
+        INNER JOIN adms_access_levels AS lev ON lev.id=lev_pag.adms_access_level_id
+        WHERE lev_pag.id=:id AND lev.order_levels >=:order_levels
+        AND (((SELECT permission FROM adms_levels_pages WHERE adms_page_id =lev_pag.adms_page_id 
+        AND adms_access_level_id ={$_SESSION['access_level_id']}) = 1) OR (publish = 1)) LIMIT :limit", "id={$this->id}&order_levels=".$_SESSION['order_levels']."&limit=1");
 
         $this->resultBd = $viewPageMenu->getResult();
         if($this->resultBd){
             // var_dump($this->resultBd);
             $this->result = true;
+            //retorna true, pode continuar o processamento
+            return true;
         }else{
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (viewPageMenu(0)! Item de Menu da página, não encontrada no DB!</p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (viewPageMenu()! Item de Menu da página, não encontrada no DB!</p>";
             $this->result = false;
+            return false;
         }
     }
 /** ===========================================================================================
@@ -68,7 +74,14 @@ class AdmsEditPageMenu
         $valEmptyField->valField($this->data);
         //verifica se o método:getResult() retorna true, se sim significa q deu tudo certo se não aprensenta o Erro
         if ($valEmptyField->getResult()) {
-            $this->editPageMenu();
+            //se retornou true(usuário tem a permissão de acessar)
+            if($this->viewPageMenu($this->data['id'])){
+                // então instancia o método:editPageMenu(), e pode editar o item;
+                $this->editPageMenu();
+            } else {
+                $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (updatePageMenu()!Sem permissão de editar!</p>";
+            $this->result = false;
+            }
             // $this->result = false;
         } else {
             $this->result = false;
