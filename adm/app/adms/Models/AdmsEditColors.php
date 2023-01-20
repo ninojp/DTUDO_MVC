@@ -45,8 +45,10 @@ class AdmsEditColors
         }
     }
     /** ===========================================================================================
-     * @param array|null $data
-     * @return void   */
+     * Recebe como parametro as informações que devem ser editadas
+     * Instância a classe HELPER:AdmsValEmptyField(), validar se os campos foram preenchidos
+     * instância o método:editColors para atualizar os dados no DB
+     * @param array|null $data    -   @return void   */
     public function updateColors(array $data = null):void
     {
         $this->data = $data;
@@ -65,6 +67,7 @@ class AdmsEditColors
         }
     }
     /** =============================================================================================
+     * Método:editColors para atualizar os dados no DB
      * @return void     */
     private function editColors():void
     {

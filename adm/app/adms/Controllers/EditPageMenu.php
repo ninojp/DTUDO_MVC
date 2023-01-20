@@ -16,6 +16,9 @@ class EditPageMenu
     //Recebe o numero da página
     private int|string|null $pag;
 
+    //recebe os dados do formulário da view
+    private array|null $dataForm;
+
     /** =============================================================================================
      * Alterar a ordem do Item de menu
      * Recebe como parametro o id que será usado na pesquisa das informações no DB e instância a Models:...(), Após editado retorna MSG e redireciona para o ... 
@@ -26,10 +29,11 @@ class EditPageMenu
         $this->level = filter_input(INPUT_GET, "level", FILTER_SANITIZE_NUMBER_INT);
         $this->pag = filter_input(INPUT_GET, "pag", FILTER_SANITIZE_NUMBER_INT);
 
-        $this->dataForm;
+        // Atribui para o array:$this->dataForm os dados vindos do Formulário da view
+        $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-        //verifica se recebeu o ID, nivel de acesso(level) e pagina atual(pag) se recebeu prossegue
-        if((!empty($this->id)) and (!empty($this->level)) and (!empty($this->pag))){
+        //verifica se recebeu o ID, nivel de acesso(level), pagina atual(pag) e se a posição:$this->dataForm['SendEditPageMenu'] ESTÁ VAZIA(não foi clicado) então prossegue
+        if((!empty($this->id)) and (!empty($this->level)) and (!empty($this->pag)) and (empty($this->dataForm['SendEditPageMenu']))){
             $viewPageMenu = new \App\adms\Models\AdmsEditPageMenu();
             $viewPageMenu->viewPageMenu($this->id);
 
@@ -41,13 +45,14 @@ class EditPageMenu
                 $urlRedirect = URLADM."list-permission/index/{$this->pag}?level={$this->level}";
                 header("Location: $urlRedirect");
             }
-            
+        // CASO o botão:$this->dataForm['SendEditPageMenu'] foi clicado, então instância o método    
         } else {
-            // $_SESSION['msg'] = "<p class='alert alert-danger'>Erro (index(controller))! Necessário selecionar Item de Menu</p>";
-            // $urlRedirect = URLADM."list-access-nivels/index";
-            // header("Location: $urlRedirect");
+            $this->editPageMenu();
         }
     }
+    /** ======================================================================================
+     * Método para executar a View:editPageMenu e atribuir as posições e dados no array:$this->data
+     *  @return void     */
     private function viewEditPageMenu():void
     {
         // ----------- Exibir ou ocultar botões conforme o nivel de acesso -------------------
@@ -79,5 +84,24 @@ class EditPageMenu
         $loadView = new \Core\ConfigView("adms/Views/permission/editPageMenu", $this->data);
         //Instancia o método:loadView() da classe:ConfigView
         $loadView->loadView();
+    }
+    private function editPageMenu():void
+    {
+        if(!empty($this->dataForm['SendEditPageMenu'])){
+            unset($this->dataForm['SendEditPageMenu']);
+            $editPageMenu = new \App\adms\Models\AdmsEditPageMenu();
+            $editPageMenu->updatePageMenu($this->dataForm);
+            if($editPageMenu->getResult()){
+                $urlRedirect = URLADM."list-permission/index/{$this->pag}?level={$this->level}";
+                header("Location: $urlRedirect");
+            }else{
+                $this->data['form'] = $this->dataForm;
+                $this->viewEditPageMenu();
+            }
+        } else {
+            $_SESSION['msg'] = "<p class='alert alert-danger'>Erro (editPageMenu())! (ID)Item de Menu não encontrado!</p>";
+            $urlRedirect = URLADM . "list-access-nivels/index";
+            header("Location: $urlRedirect");
+        }
     }
 }
