@@ -8,17 +8,25 @@ class AdmsSyncPagesNivels
 {
     private bool $result;
 
+    /** @var array|null - Recebe os registros do banco de dados(DB)     */
     private array|null $resultBd;
 
+    /** @var array|null - Recebe os registros do banco de dados(DB)     */
     private array|null $resultBdNivels;
 
+    /** @var array|null - Recebe os registros do banco de dados(DB)     */
     private array|null $resultBdPages;
 
     /** @var array|null - Recebe as informações q devem ser salvas no DB     */
     private array|null $resultBdNivelsPage;
 
+    /** @var array|null - Recebe os registros do banco de dados(DB)     */
     private array|null $resultBdLastOrder;
+
+    /** @var array|null - Recebe os registros do banco de dados(DB)     */
+    private array|null $resultBdNivelDefault;
     
+    /** @var array|null - Recebe os registros do banco de dados(DB)     */
     private array|null $dataNivelPage;
 
     /** @var integer|string|null - Recebe o Id do Nivel de acesso   */
@@ -29,8 +37,6 @@ class AdmsSyncPagesNivels
 
     /** @var integer|string|null - Recebe o tipo de permissão da página */
     private int|string|null $publish;
-
-
 
     /** ==========================================================================================
      * @return boolean         */
@@ -148,7 +154,11 @@ class AdmsSyncPagesNivels
     private function addNivelPermission():void
     {
         $this->searchLastOrder();
-        $this->dataNivelPage['permission'] = (($this->nivelId == 1) or ($this->publish == 1)) ? 1 : 2;
+        // Se o nivel de acesso for 1(super adm) OU a página for publica (publish=1), ? = 1, por padrão tem permissão de acessar. Se não : = 2, não tem permissão
+        $this->dataNivelPage['permission'] = (($this->nivelId==1) or ($this->publish==1)) ? 1 : 2;
+        // Método para Procurar, se econtrar executa o nivel(LEVEL) de acesso PADRÃO 
+        $this->searchNivelDefault();
+
         $this->dataNivelPage['order_level_page'] = $this->resultBdLastOrder[0]['order_level_page'] +1;
         $this->dataNivelPage['adms_access_level_id'] = $this->nivelId;
         $this->dataNivelPage['adms_page_id'] = $this->pageId;
@@ -179,5 +189,23 @@ class AdmsSyncPagesNivels
             $this->resultBdLastOrder[0]['order_level_page'] = 0;
         }
         // var_dump($this->resultBdLastOrder);
+    }
+
+    private function searchNivelDefault():void
+    {
+        $viewNivelDefault = new \App\adms\Models\helper\AdmsRead();
+        $viewNivelDefault->fullRead("SELECT permission, print_menu, dropdown, adms_items_menu_id  
+        FROM adms_levels_pages WHERE adms_page_id=:adms_page_id AND adms_access_level_id=7
+        LIMIT :limit",
+        "adms_page_id={$this->pageId}&limit=1");
+
+        $this->resultBdNivelDefault = $viewNivelDefault->getResult();
+        // Verifica, se existir usa os dados do nivel de acesso padrão
+        if($this->resultBdNivelDefault){
+            $this->dataNivelPage['permission'] = $this->resultBdNivelDefault[0]['permission'];
+            $this->dataNivelPage['print_menu'] = $this->resultBdNivelDefault[0]['print_menu'];
+            $this->dataNivelPage['dropdown'] = $this->resultBdNivelDefault[0]['dropdown'];
+            $this->dataNivelPage['adms_items_menu_id'] = $this->resultBdNivelDefault[0]['adms_items_menu_id'];
+        }
     }
 }
