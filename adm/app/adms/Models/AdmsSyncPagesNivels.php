@@ -107,7 +107,6 @@ class AdmsSyncPagesNivels
             $this->nivelId = $id;
             $this->readPages();
         }
-        
     }
     /** =============================================================================================
      * @return void - Ler as paginas de acesso no DB     */
@@ -174,7 +173,6 @@ class AdmsSyncPagesNivels
             $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Não foi possivel sincronisar as permissões!</p>";
             $this->result = false;
         }
-
     }
     /** ============================================================================================
      * @return void - Método para se ha página está cadastrada para o nivel de acesso na tabela:adms_levels_pages      */
@@ -190,7 +188,10 @@ class AdmsSyncPagesNivels
         }
         // var_dump($this->resultBdLastOrder);
     }
-
+    /** =======================================================================================
+     * Método para verificar se existe o nivel(LEVEL) de acesso DEFAULT(padrão, ID=7)
+     * Se existir usa os dados do mesmo como padrão para a criação do novo nivel(quando sincronizar)
+     * @return void      */
     private function searchNivelDefault():void
     {
         $viewNivelDefault = new \App\adms\Models\helper\AdmsRead();

@@ -60,7 +60,7 @@ if (isset($this->data['form'])) {
                             if (isset($valorForm['search_name'])) {
                                 $search_name = $valorForm['search_name'];
                             } ?>
-                            <label class="">Nome: </label>
+                            <label for="seach_name">Nome: </label>
                             <input type="text" name="search_name" id="seach_name" value="<?php echo $search_name; ?>" placeholder="Pesquisar pelo nome">
                         </div>
                         <div class="col-3">
@@ -71,7 +71,7 @@ if (isset($this->data['form'])) {
                             if (isset($valorForm['search_email'])) {
                                 $search_email = $valorForm['search_email'];
                             } ?>
-                            <label class="">E-mail: </label>
+                            <label for="seach_email">E-mail: </label>
                             <input type="text" name="search_email" id="seach_email" value="<?= $search_email; ?>" placeholder="Pesquisar pelo e-mail">
                         </div>
                     </div>
