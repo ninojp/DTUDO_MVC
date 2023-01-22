@@ -3,37 +3,60 @@
 namespace App\adms\Models\helper;
 
 if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
-    header("Location: https://localhost/dtudo/public/");
-}
-
+    header("Location: https://localhost/dtudo/public/"); }
 /** Classe genérica para paginar os registros do DB */
 class AdmsPagination
 {
+    /** @var integer - Recebe o bunero da pagina   */
     private int $page;
+
+    /** @var integer - Recebe o limite de resultados   */
     private int $limitResult;
+
+    /** @var integer - Recebe o calculo entre a quantidade de paginas e o limite de resultado   */
     private int $offset;
+
+    /** @var string - Recebe a query que será feita a paginação    */
     private string $query;
+
+    /** @var string|null - Recebe a parseString   */
     private string|null $parseString;
+
+    /** @var array - Recebe o resultado que vem do DB    */
     private array $resultBd;
+
+    /** @var string|null - Recebe o resultado True ou False    */
     private string|null $result;
+
+    /** @var integer - Recebe o total de paginas   */
     private int $totalPages;
+
+    /** @var integer - Recebe o número maximo de paginas   */
     private int $maxLinks = 2;
+
+    /** @var string - Recebe o link da pagina    */
     private string $link;
+
+    /** @var string|null - Recebe a informação relacionada com a pagina   */
     private string|null $var;
 
-    /** =============================================================================================
+    /** ===========================================================================================
+     * Recebe o resultado do calculo entre a quantidade de paginas e o limite de resultado
      * @return void     */
     public function getOffset(): int
     {
         return $this->offset;
     }
-    /** =============================================================================================
+
+    /** ===========================================================================================
      * @return void     */
     public function getResult(): string|null
     {
         return $this->result;
     }
-    /** =============================================================================================
+
+    /** ===========================================================================================
+     * Método para criar o link da página
      * @param string $link  -  @param string|null|null $var     */
     function __construct(string $link, string|null $var = null)
     {
@@ -42,10 +65,10 @@ class AdmsPagination
         // var_dump($this->link);
         // var_dump($this->var);
     }
-    /** ==============================================================================================
-     * @param integer $page
-     * @param integer $limitResult
-     * @return void     */
+
+    /** ===========================================================================================
+     * Método recebe a página e o limite de resltados a ser exibidos
+     * @param integer $page -  @param integer $limitResult  -  @return void     */
     public function condition(int $page, int $limitResult): void
     {
         $this->page = (int) $page ? $page : 1;
@@ -57,10 +80,11 @@ class AdmsPagination
         $this->offset = (int) ($this->page * $this->limitResult) - $this->limitResult;
         // var_dump($this->offset);
     }
-    /** ==============================================================================================
-     * @param string $query
-     * @param string|null|null $parseString
-     * @return void     */
+
+    /** ===========================================================================================
+     * Recebe a query que será feita a paginação e a parseString
+     * Chama o helper AdmsRead para fazer a pesquisa no DB
+     * @param string $query  -  @param string|null|null $parseString  -  @return void     */
     public function pagination(string $query, string|null $parseString = null): void
     {
         $this->query = (string) $query;
@@ -72,11 +96,14 @@ class AdmsPagination
         $this->resultBd = $count->getResult();
         $this->pageInstruction();
     }
-    /** ==============================================================================================
+
+    /** ===========================================================================================
+     * Método faz o calculo do total de paginas e chama o método:layoutPagination()
      * @return void      */
     private function pageInstruction(): void
     {
         // (if)para resolver o erro de paginação quando não existe dados na tabela
+        // verifica se o resultado do DB for DIFERENTE de 0, (ou seja encontrou um registro no DB)
         if(!$this->resultBd[0]['num_result'] == 0 ){
             // var_dump($this->resultBd[0]['num_result']);
             $this->totalPages = (int) ceil($this->resultBd[0]['num_result'] / $this->limitResult);

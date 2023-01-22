@@ -17,8 +17,11 @@ class AdmsMenu
         FROM adms_levels_pages AS lev_pag
         INNER JOIN adms_items_menus AS itm_men ON itm_men.id=lev_pag.adms_items_menu_id
         INNER JOIN adms_pages AS pag ON pag.id=lev_pag.adms_page_id
-        WHERE ((lev_pag.adms_access_level_id=:adms_access_level_id) AND (lev_pag.permission=1) AND (print_menu = 1))
-        ORDER BY itm_men.order_item_menu, lev_pag.order_level_page ASC", "adms_access_level_id=".$_SESSION['access_level_id']);
+        WHERE ((lev_pag.adms_access_level_id=:adms_access_level_id)
+        AND (lev_pag.permission=:permission) AND (print_menu = 1)
+        AND (pag.adms_sits_pgs_id=:adms_sits_pgs_id))
+        ORDER BY itm_men.order_item_menu, lev_pag.order_level_page ASC",
+        "adms_access_level_id=".$_SESSION['access_level_id']."&permission=1&adms_sits_pgs_id=1");
 
         $this->resultBd = $listMenu->getResult();
         if($this->resultBd) {
