@@ -30,7 +30,7 @@ abstract class Config
         define('HOST','localhost');
         define('DBNAME','celke');
         define('USER','root');
-        define('PASS','');
+        define('PASS','3RtsEpuR21!@');
         define('PORT',3306);
         
     }

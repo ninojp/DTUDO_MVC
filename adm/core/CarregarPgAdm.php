@@ -44,6 +44,7 @@ class CarregarPgAdm
         if(class_exists($this->classLoad)){
             $this->loadMetodo();
         }else{
+            $this->loadClassSts();
             //abaixo pode ser usado o DIE ou a função RECURSIVA para chamar a pagina indica:CONTROLLER
             die("Erro - (loadPage())! Tente Novamente ou entre em contato: ".EMAILADM);
             // $this->urlController = $this->slugController(CONTROLLER);
@@ -51,6 +52,21 @@ class CarregarPgAdm
             // $this->urlParameter = "";
             // //função(método) recursiva:loadPage()
             // $this->loadPage($this->urlController,$this->urlMetodo,$this->urlParameter);
+        }
+    }
+    /** ============================================================================================
+     * Verificar se existe a classe ou a pagina no pacote STS
+     * @return void    */
+    private function loadClassSts():void
+    {
+        $this->classLoad = "\\App\\sts\\Controllers\\".$this->urlController;
+
+        if(class_exists($this->classLoad)){
+            $this->loadMetodo();
+        }else{
+
+            die("Erro - (loadClassSts())! Tente Novamente ou entre em contato: ".EMAILADM);
+
         }
     }
     /** ============================================================================================
@@ -90,9 +106,12 @@ class CarregarPgAdm
             // $this->classLoad = "\\App\\adms\\Controllers\\".$this->urlController;
             $this->verifyLogin();
         }else{
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (pgPrivate()): Página não encontrada!</p>";
-            $urlRedirect = URLADM."login/index";
-            header("Location: $urlRedirect");
+            // $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (pgPrivate()): Página não encontrada!</p>";
+            // $urlRedirect = URLADM."login/index";
+            // header("Location: $urlRedirect");
+
+            // Ao invés de fazer o redirecionamento pode se usar o DIE() para finalizar
+            die("Erro 006 - (searchPage())! Tente Novamente ou entre em contato: ".EMAILADM);
         }
     }
     /** ===========================================================================================

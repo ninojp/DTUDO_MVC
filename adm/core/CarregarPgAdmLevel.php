@@ -7,10 +7,13 @@ class CarregarPgAdmLevel
 {
     /** @var string $urlController Recebe da URL o nome da controller */
     private string $urlController;
+
     /** @var string $urlMetodo Recebe da URL o nome do método */
     private string $urlMetodo;
+
     /** @var string $urlParamentro Recebe da URL o parâmetro */
     private string $urlParameter;
+    
     /** @var string $classLoad Controller que deve ser carregada */
     private string $classLoad;
 
