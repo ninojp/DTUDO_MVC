@@ -1,71 +1,61 @@
 <?php
-if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
+if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
+    header("Location: https://localhost/dtudo/public/");
+}
 //cria uma variável:$sidebar_active. Verifica se contém valor no array:$this->data['sidebarActive'], se tiver coloca o valor na variável criada.
 $sidebar_active = "";
-if(isset($this->data['sidebarActive'])){
+if (isset($this->data['sidebarActive'])) {
     $sidebar_active = $this->data['sidebarActive'];
-} 
-// Criado para o menu DROPDOWN apenas
-
-?>
+} ?>
 <!-- Inicio do conteúdo da pagina ADM -->
-<main class="main_content">
+<main class='main_content'>
     <!-- Inicio do SIDE-BAR -->
-    <div class="sidebar">
-        <?php $dashboard = "";
-            if($sidebar_active=="dashboard"){
-            $dashboard = "active";} ?>
-        <a href="<?=URLADM;?>dashboard/index" class="sidebar_nav <?= $dashboard;?>"><i class="icon fa-solid fa-table-columns"></i><span>Dashboard</span></a>
+    <div class='sidebar'>
+        <?php
+        //Menu DropDown Dinâmico com os dados da tabela:adms_items_menus
+        if ((isset($this->data['menu'])) and ($this->data['menu'])) {
+            $count_drop_start = 0;
+            $count_drop_end = 0;
+            foreach ($this->data['menu'] as $item_menu) {
+                extract($item_menu);
+                $active_item_menu = "";
+                if ($sidebar_active == $menu_controller) {
+                    $active_item_menu = "active";
+                }
 
-        <?php $list_users = "";
-        $dropDown = "";
-        if($sidebar_active=="list-users"){
-            $list_users = "active";
-            $dropDown = "active"; } ?>
-        <a href="<?=URLADM;?>list-users/index" class="sidebar_nav <?=$list_users;?>"><i class="icon fa-solid fa-users"></i><span>Usuários</span></a>
+                if ($dropdown == 1) {
+                    if ($count_drop_start != $id_itm_men) {
+                        //verifica se o $count_drop_end tem o valor 1, quer dizer q está aberto
+                        if (($count_drop_end == 1) and ($count_drop_start != 0)) {
+                            echo "</div>";
+                            $count_drop_end = 0;
+                        }
+                        //Imprime o MENU DropDown(nome) com o seu icone
+                        echo "<button class='dropdown_btn btn_active$id_itm_men'>";
+                        echo "<i class='icon $icon_itm_men'></i><span>$name_itm_men</span><i class='fa-solid fa-caret-down'></i>";
+                        echo "</button>";
 
-        <?php $sits_users = "";
-        if($sidebar_active=="list-sits-users"){
-            $sits_users = "active";
-            $dropDown = "active"; } ?>
-        <a href="<?=URLADM;?>list-sits-users/index" class="sidebar_nav <?=$sits_users;?>"><i class="icon fa-solid fa-users-line"></i><span>Situação Usuários</span></a>
+                        echo "<div class='dropdown_container cont_active$id_itm_men'>";
+                    }
+                    // Aqui imprime os itens do menu DropDown
+                    echo "<a href='" . URLADM . "$menu_controller/$menu_metodo' class='sidebar_nav active$id_itm_men $active_item_menu'><i class='icon_itens $icon'></i><span>$name_page</span></a>";
 
-        <?php $list_access_nivels = "";
-        if($sidebar_active=="list-access-nivels"){
-            $list_access_nivels = "active"; } ?>
-        <a href="<?=URLADM;?>list-access-nivels/index" class="sidebar_nav <?=$list_access_nivels;?>"><i class="icon fa-solid fa-key"></i><span>Niveis de Acesso</span></a>
-
-        <?php $list_pages = "";
-        if($sidebar_active=="list-pages"){
-            $list_pages = "active"; } ?>
-        <a href="<?=URLADM;?>list-pages/index" class="sidebar_nav <?=$list_pages;?>"><i class="icon fa-regular fa-file-lines"></i><span>Listar Páginas</span></a>
-
-        <?php $types_pgs = "";
-        if($sidebar_active=="list-types-pgs"){
-            $types_pgs = "active"; } ?>
-        <a href="<?=URLADM;?>list-types-pgs/index" class="sidebar_nav <?=$types_pgs;?>"><i class="icon fa-brands fa-wpforms"></i><span>Tipos de Páginas</span></a>
-
-        <?php $sits_pgs = "";
-        if($sidebar_active=="list-sits-pgs"){
-            $sits_pgs = "active"; } ?>
-        <a href="<?=URLADM;?>list-sits-pgs/index" class="sidebar_nav <?=$sits_pgs;?>"><i class="icon fa-solid fa-rectangle-list"></i><span>Situações da Página</span></a>
-        
-        <?php $groups_pgs = "";
-        if($sidebar_active=="list-groups-pgs"){
-            $groups_pgs = "active"; } ?>
-        <a href="<?=URLADM;?>list-groups-pgs/index" class="sidebar_nav <?=$groups_pgs;?>"><i class="icon fa-solid fa-layer-group"></i><span>Grupos de Páginas</span></a>
-
-        <?php $email_confs = "";
-        if($sidebar_active=="list-email-confs"){
-            $email_confs = "active";
-            $dropDown = "active";}?>
-        <a href="<?=URLADM;?>list-email-confs/index" class="sidebar_nav <?=$email_confs;?>"><i class="icon fa-solid fa-list"></i><span>Configurações E-mail</span></a>
-
-        <?php $list_colors = "";
-        if($sidebar_active=="list-colors"){
-            $list_colors = "active"; }?>
-        <a href="<?=URLADM;?>list-colors/index" class="sidebar_nav <?=$list_colors;?>"><i class="icon fa-solid fa-palette"></i><span>Cores</span></a>
-
-        <a href="<?=URLADM?>logout/index" class="sidebar_nav"><i class="icon fa-solid fa-right-from-bracket"></i><span>Sair</span></a>
+                    $count_drop_start = $id_itm_men;
+                    $count_drop_end = 1;
+                } else {
+                    // se o $count_drop_end tem o valor 1(está aberto), então deve ser fechado
+                    if ($count_drop_end == 1) {
+                        echo "</div>";
+                        $count_drop_end = 0;
+                    }
+                    // os itens que NÃO forem dropdown, são impressos por aqui
+                    echo "<a href='" . URLADM . "$menu_controller/$menu_metodo' class='sidebar_nav $active_item_menu'><i class='icon $icon'></i><span>$name_page</span></a>";
+                }
+            }
+            if ($count_drop_end == 1) {
+                echo "</div>";
+                $count_drop_end = 0;
+            }
+        } ?>
     </div>
     <!-- FIM do SIDE-BAR -->

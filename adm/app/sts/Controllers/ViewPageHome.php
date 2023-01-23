@@ -16,8 +16,12 @@ class ViewPageHome
         $viewPageHome = new \App\sts\Models\StsViewPageHome();
         $viewPageHome->viewPageHome();
 
+        // implementação da apresentação dinâmica do menu sidebar
+        $listMenu = new \App\adms\Models\helper\AdmsMenu();
+        $this->data['menu'] = $listMenu->itemMenu();
+
         // posição no array:$this->data['sidebarActive'], que define como ACTIVE no menu SIDEBAR
-        $this->data['sidebarActive'] = "dashboard";
+        $this->data['sidebarActive'] = "view-page-home";
 
         $loadView = new \App\sts\core\ConfigViewSts("sts/Views/home/viewPageHome", $this->data);
         $loadView->loadViewSts();

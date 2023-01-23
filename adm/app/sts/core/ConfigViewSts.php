@@ -27,8 +27,8 @@ class ConfigViewSts
             include 'app/sts/Views/include/headSts.php';
             //inclui o arquivo com o NAVBAR
             include 'app/sts/Views/include/navbarSts.php';
-            //inclui o arquivo com o MENU
-            include 'app/sts/Views/include/menuSts.php';
+            //inclui o arquivo:menu.php (MENU DO PACOTE ADMS), O MESMO DO ADMINISTRATIVO!
+            include 'app/adms/Views/include/menu.php';
             //se existir, inclui o arquivo(indicado pela controller)
             include 'app/'.$this->nameView.'.php';
             //inclui o arquivo footer.php com o rodapé html para todas as Paginas(Views)
