@@ -11,10 +11,9 @@ class ViewPageHome
 
     public function index():void
     {
-        // echo "Acessou o administrativo da Página Home do site! <br>";
-
         $viewPageHome = new \App\sts\Models\StsViewPageHome();
-        $viewPageHome->viewPageHome();
+        $viewPageHome->viewPageHomeTop();
+        $this->data['viewHomeTop'] = $viewPageHome->getResultBdTop();
 
         // implementação da apresentação dinâmica do menu sidebar
         $listMenu = new \App\adms\Models\helper\AdmsMenu();

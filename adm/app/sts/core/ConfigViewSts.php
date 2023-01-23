@@ -23,15 +23,15 @@ class ConfigViewSts
         //verifica se existe o arquivo(indicado pela controller) a ser carregado 
         if(file_exists('app/'.$this->nameView.'.php')){
             // var_dump($this->data);
-            //inclui o arquivo head.php com o cabeçalho html para todas as Paginas(Views)
+            //inclui o arquivo:headSts.php, cabeçalho html para todas as Paginas(Views) (EXCLUSIVO PARA O PACOTE STS) 
             include 'app/sts/Views/include/headSts.php';
-            //inclui o arquivo com o NAVBAR
-            include 'app/sts/Views/include/navbarSts.php';
-            //inclui o arquivo:menu.php (MENU DO PACOTE ADMS), O MESMO DO ADMINISTRATIVO!
+            //inclui o arquivo:navbar.php, (NAVBAR DO PACOTE ADMS), O MESMO DO ADMINISTRATIVO!
+            include 'app/adms/Views/include/navbar.php';
+            //inclui o arquivo:menu.php, (MENU DO PACOTE ADMS), O MESMO DO ADMINISTRATIVO!
             include 'app/adms/Views/include/menu.php';
             //se existir, inclui o arquivo(indicado pela controller)
             include 'app/'.$this->nameView.'.php';
-            //inclui o arquivo footer.php com o rodapé html para todas as Paginas(Views)
+            //inclui o arquivo:footer.php com o rodapé html para todas as Paginas(Views) (EXCLUSIVO PARA O PACOTE STS)
             include 'app/sts/Views/include/footerSts.php';
         }else{
             //pode-se criar uma tabela com codigos de erros, para uso interno:Erro 501

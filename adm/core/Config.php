@@ -21,7 +21,7 @@ abstract class Config
         define('DBNAME','adms_celke');
         define('PORT',3306);
 
-        //credenciais do DB CELKE
+        // credenciais do DB CELKE
         // define('HOST','localhost');
         // define('USER','root');
         // define('PASS','3RtsEpuR21!@');

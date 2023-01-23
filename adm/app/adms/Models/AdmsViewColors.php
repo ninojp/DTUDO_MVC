@@ -32,11 +32,11 @@ class AdmsViewColors
         $viewColors = new \App\adms\Models\helper\AdmsRead();
         //usa o objeto para instânciar o método:fullRead(), passando a query desejada
         $viewColors->fullRead("SELECT id, name, color, created, modified FROM adms_colors WHERE id=:id LIMIT :limit", "id={$this->id}&limit=1");
-        //usa o objeto para instânciar o método:getResult() e atribui o seu valor no atributo:$this->resultBd
 
         //ESTE VAR_DUMP MOSTRA TUDO INCLUSIVE OS DADOS DE CONEXAO COM O DB (SENHA)
         // var_dump($viewSitUser); ME PARECE UMA FALHA DE SEGURANÇA
 
+        //usa o objeto para instânciar o método:getResult() e atribui o seu valor no atributo:$this->resultBd
         $this->resultBd = $viewColors->getResult();
         //verifica se atributo:$this->resultBd é true, se for atribui o true para o atributo:$this->result
         if ($this->resultBd) {
