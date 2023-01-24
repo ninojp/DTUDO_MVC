@@ -69,6 +69,9 @@ class UpdatePassword
         // implementação da apresentação dinâmica do menu sidebar
         $listMenu = new \App\adms\Models\helper\AdmsMenu();
         $this->data['menu'] = $listMenu->itemMenu();
+        
+        // posição no array:$this->data['sidebarActive'], que define como ACTIVE no menu SIDEBAR
+        $this->data['sidebarActive'] = "update-password";
 
         // instancia a classe, cria o objeto e passa o parametro:$this->data
         $loadView = new \Core\ConfigView("adms/Views/login/updatePassword", $this->data);

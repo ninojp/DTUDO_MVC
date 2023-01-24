@@ -41,6 +41,9 @@ class RecoverPassword
         $listMenu = new \App\adms\Models\helper\AdmsMenu();
         $this->data['menu'] = $listMenu->itemMenu();
         
+        // posição no array:$this->data['sidebarActive'], que define como ACTIVE no menu SIDEBAR
+        $this->data['sidebarActive'] = "recover-password";
+        
        $loadView = new ConfigView("adms/Views/login/recoverPassword", $this->data);
        $loadView->loadViewLogin();
     }

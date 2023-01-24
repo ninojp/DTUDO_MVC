@@ -12,9 +12,18 @@ class ViewPageHome
     public function index():void
     {
         $viewPageHome = new \App\sts\Models\StsViewPageHome();
+        // Usa o objeto criado para instanciar o método:viewPageHomeTop() e obter os dados
         $viewPageHome->viewPageHomeTop();
+        // Cria a posi~ção no array:$this->data['viewHomeTop'] e os envia para a View
         $this->data['viewHomeTop'] = $viewPageHome->getResultBdTop();
 
+        $viewPageHome->viewPageHomeServ();
+        $this->data['viewHomeServ'] = $viewPageHome->getResultBdServ();
+
+        $viewPageHome->viewPageHomeServPrime();
+        $this->data['viewHomeServPrime'] = $viewPageHome->getResultBdServPrime();
+
+        //-------------------------------------------------------------------------------------
         // implementação da apresentação dinâmica do menu sidebar
         $listMenu = new \App\adms\Models\helper\AdmsMenu();
         $this->data['menu'] = $listMenu->itemMenu();

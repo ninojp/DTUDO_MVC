@@ -44,6 +44,13 @@ class EditProfileImage
      * @return void     */
     private function viewEditProfileImage(): void
     {
+        // implementação da apresentação dinâmica do menu sidebar
+        $listMenu = new \App\adms\Models\helper\AdmsMenu();
+        $this->data['menu'] = $listMenu->itemMenu();
+        
+        // posição no array:$this->data['sidebarActive'], que define como ACTIVE no menu SIDEBAR
+        $this->data['sidebarActive'] = "view-profile";
+
         //Instancio a classe:ConfigView() e crio o objeto:$loadView
         $loadView = new ConfigView("adms/Views/users/editProfileImage", $this->data);
         //Instancia o método:loadView() da classe:ConfigView

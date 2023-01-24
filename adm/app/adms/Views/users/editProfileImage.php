@@ -11,25 +11,17 @@ if (isset($this->data['form'][0])) {
 }
 // var_dump($this->data['form'][0]);
 ?>
-<!-- <h1 class="text-center mt-5">Editar Imagem</h1> -->
-<?php
-echo "<a class='btn btn-sm btn-outline-primary ms-4' href='" . URLADM . "view-profile/index'>Perfil</a>";
-// if (isset($_SESSION['msg'])) {
-//     echo $_SESSION['msg'];
-//     unset($_SESSION['msg']);
-// } ?>
 <!-- <span id="msg"></span> -->
 <div class="wrapper_form">
     <div class="row_form">
         <div class="title_form">
             <h2>Editar Imagem do Perfil</h2>
         </div>
-        <?php if (isset($_SESSION['msg'])) {
-            echo "<div id='msg' class='msg_alert'>";
+        <?php echo "<div id='msg' class='msg_alert'>";
+            if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
-            unset($_SESSION['msg']);
-            echo "</div>";
-        } ?>
+            unset($_SESSION['msg']);}
+            echo "</div>"; ?>
         <!--OBRIGATóRIO o enctype="multipart/form-data", para trabalhar com imagens dentro de formulários-->
         <form class="form_adms" action="" method="POST" id="form-edit-prof-img" enctype="multipart/form-data">
             <div class="text-center">
