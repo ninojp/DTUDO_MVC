@@ -6,7 +6,7 @@ if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://lo
 <nav class="navbar">
     <div class="max-width">
         <div class="logo">
-            <a href="<?php echo URL; ?>">Celke</a>
+            <a href="<?php echo URL; ?>"><img src="<?php echo URLADM; ?>app/sts/assets/imgs/Logo-Dtudo_102x40.png"></a>
         </div>
         <ul class="menu" id="menu-site">
             <li><a href="<?php echo URL; ?>">Home</a></li>

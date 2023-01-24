@@ -13,7 +13,7 @@ if (!empty($this->data['home']['top'][0])) {
    //A função extract é utilizado para extrair o array e imprimir através do nome da chave
    extract($this->data['home']['top'][0]);
 ?>
-   <section class="top" style="background: linear-gradient(to right, var(--main-color) 25%, rgba(255, 255, 255, 0)), url('<?php echo URLADM; ?>app/sts/assets/image/home_top/<?php echo $image_top; ?>') no-repeat center; background-size: cover; background-attachment: fixed;">
+   <section class="top" style="background: linear-gradient(to right, var(--main-color) 25%, rgba(255, 255, 255, 0)), url('<?php echo URLADM; ?>app/sts/assets/imgs/home_top/<?php echo $image_top; ?>') no-repeat center; background-size: cover; background-attachment: fixed;">
       <div class="max-width">
          <div class="top-content">
             <div class="text-1"><?php echo $title_one_top; ?></div>
@@ -82,7 +82,7 @@ if (!empty($this->data['home']['prem'][0])) {
          <h2 class="title"><?php echo $prem_title; ?></h2>
          <div class="premium-content">
             <div class="column left">
-               <img src="<?php echo URLADM; ?>app/sts/assets/image/home_prem/<?php echo $prem_image; ?>" alt="Serviço premium">
+               <img src="<?php echo URLADM; ?>app/sts/assets/imgs/home_prem/<?php echo $prem_image; ?>" alt="Serviço premium">
             </div>
             <div class="column right">
                <div class="text">

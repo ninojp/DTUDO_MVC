@@ -2,7 +2,7 @@
 namespace App\sts\controllers;
 if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
 /** Classe(Controlles) para editar o conteúdo do toppo da pagina Home  */
-class EditHomeTop
+class EditHomeServ
 {
     //Envia os dados a serem editados no formulário da view
     private array|string|null $data = [];
@@ -19,27 +19,27 @@ class EditHomeTop
         // var_dump($this->dataForm);
         //Se for vazio, ou seja usuário não clicou no botão
         if (empty($this->dataForm['SendEditHomeTop'])) {
-            $viewHomeTopBd = new \App\sts\Models\StsEditHomeTop();
-            $viewHomeTopBd->viewHomeTopBd();
-            if($viewHomeTopBd->getResult()){
+            $viewHomeServBd = new \App\sts\Models\StsEditHomeServ();
+            $viewHomeServBd->viewHomeServBd();
+            if($viewHomeServBd->getResult()){
                 //pega o resultado da query q está dentro de:getResultBd() e atribui para o atributo $data com a POSIÇÃO [FORM}
-                $this->data['form'] = $viewHomeTopBd->getResultBd();
+                $this->data['form'] = $viewHomeServBd->getResultBd();
                 // var_dump($this->data['form']);
-                $this->loadViewEditHomeTop();
+                $this->loadViewEditHomeServ();
             }else{
                 $urlRedirect = URLADM . "view-page-home/index";
                 header("Location: $urlRedirect");
             }
         // Se usuário clicou no botão
         } else {
-            $this->ctEditHomeTop();
+            $this->ctEditHomeServ();
         }
         
     }
     /** =============================================================================================
      * Instânciar a classe responsável em carregar a view e enviar os dados para a view
      * @return void     */
-    private function loadViewEditHomeTop(): void
+    private function loadViewEditHomeServ(): void
     {
         // implementação da apresentação dinâmica do menu sidebar
         $listMenu = new \App\adms\Models\helper\AdmsMenu();
@@ -48,28 +48,28 @@ class EditHomeTop
         // posição no array:$this->data['sidebarActive'], que define como ACTIVE no menu SIDEBAR
         $this->data['sidebarActive'] = "view-page-home";
 
-        $loadView = new \App\sts\core\ConfigViewSts("sts/Views/home/editHomeTop", $this->data);
+        $loadView = new \App\sts\core\ConfigViewSts("sts/Views/home/editHomeServ", $this->data);
         $loadView->loadViewSts();
     }
     /** =============================================================================================
      * @return void     */
-    private function ctEditHomeTop():void
+    private function ctEditHomeServ():void
     {
         // Se for Diferente de vazio, o usuário clicou
-        if(!empty($this->dataForm['SendEditHomeTop'])){
-            unset($this->dataForm['SendEditHomeTop']);
-            $editHomeTop = new \App\sts\Models\StsEditHomeTop();
+        if(!empty($this->dataForm['SendEditHomeServ'])){
+            unset($this->dataForm['SendEditHomeServ']);
+            $editHomeServ = new \App\sts\Models\StsEditHomeServ();
             // $editColors->updateColors($this->dataForm);
-            $editHomeTop->veriFormHomeTop($this->dataForm);
-            if($editHomeTop->getResult()){
+            $editHomeServ->veriFormHomeServ($this->dataForm);
+            if($editHomeServ->getResult()){
                 $urlRedirect = URLADM . "view-page-home/index";
                 header("Location: $urlRedirect");
             }else{
                 $this->data['form'] = $this->dataForm;
-                $this->loadViewEditHomeTop();
+                $this->loadViewEditHomeServ();
             }
         } else {
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (ctEditHomeTop)! (ID)registro HomeTop não encontrado!</p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (ctEditHomeServ)! (ID)registro HomeServ não encontrado!</p>";
             $urlRedirect = URLADM . "view-page-home/index";
             header("Location: $urlRedirect");
         }
