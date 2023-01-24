@@ -1,0 +1,17 @@
+{
+    "description": "Projeto Nino",
+    "authors": [
+        {
+            "name": "Nino JP",
+            "email": "meu.sem@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Core\\": "core",
+            "App\\": "app",
+            "Sts\\": "app/sts"
+        }
+    },
+    "require": {}
+}
