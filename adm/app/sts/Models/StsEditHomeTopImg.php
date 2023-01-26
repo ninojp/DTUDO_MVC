@@ -1,8 +1,8 @@
 <?php
-namespace App\adms\Models;
+namespace App\sts\Models;
 if(!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')){ header("Location: https://localhost/dtudo/public/"); }
-/** Classe:AdmsViewUsers, Editar Imagem do perfil do usuário */
-class AdmsEditProfileImage
+/** Classe:StsEditHomeTopImg, para para editar Imagem do Topo da pagina Home */
+class StsEditHomeTopImg
 {
     // Recebe do método:getResult() o valor:(true or false), q será atribuido aqui
     private bool $result = false;
@@ -13,8 +13,8 @@ class AdmsEditProfileImage
     /** @var array - Recebe os dados da view, como um parametro    */
     private array|null $data;
 
-    /** @var array - ...    */
-    private array|null $dataImagem;
+    /** @var array|string|null - ...    */
+    private array|string|null $dataImagem;
 
     /** @var array|string - ...    */
     private array|string|null $nameImg;
@@ -38,20 +38,19 @@ class AdmsEditProfileImage
     {
         return $this->resultBd;
     }
-    /** ============================================================================================
-    */
-    public function viewProfile():bool
+    /** =========================================================================================  */
+    public function viewHomeTopImg():bool
     {
-        $viewUsers = new \App\adms\Models\helper\AdmsRead();
-        $viewUsers->fullRead("SELECT id, image FROM adms_users WHERE id =:id LIMIT :limit", "id=".$_SESSION['user_id']."&limit=1");
+        $viewHomeTopImg = new \App\adms\Models\helper\AdmsRead();
+        $viewHomeTopImg->fullRead("SELECT id, image_top FROM sts_homes_tops LIMIT :limit", "&limit=1");
 
-        $this->resultBd = $viewUsers->getResult();
+        $this->resultBd = $viewHomeTopImg->getResult();
         if($this->resultBd){
             // var_dump($this->resultBd);
             $this->result = true;
             return true;
         }else{
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Perfil não encontrado!</p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (viewHomeTopImg())! Imagem do topo da pagina Home  não encontrado!</p>";
             $this->result = false;
             return false;
         }
@@ -94,7 +93,7 @@ class AdmsEditProfileImage
         $valExtImg = new \App\adms\Models\helper\AdmsValExtImg();
         $valExtImg->validateExtImg($this->dataImagem['type']);
 
-        if(($this->viewProfile()) and ($valExtImg->getResult())){
+        if(($this->viewHomeTopImg()) and ($valExtImg->getResult())){
             // $this->result = false;
             $this->upload();
         } else {
@@ -112,12 +111,17 @@ class AdmsEditProfileImage
         // var_dump($this->nameImg);
 
         //Diretório onde ficaram as imagens do usuário(criada dinamicamente com o ID do usuário)
-        $this->directory = "app/adms/assets/imgs/users/".$_SESSION['user_id']."/";
+        $this->directory = "app/sts/assets/imgs/home_top/";
 
-        $uploadImgRes = new \App\adms\Models\helper\AdmsUploadImgRes();
-        $uploadImgRes->upload($this->dataImagem, $this->directory, $this->nameImg, 300, 300);
+        // Upload de imagem COM Redimencionamento
+        // $uploadImgRes = new \App\adms\Models\helper\AdmsUploadImgRes();
+        // $uploadImgRes->upload($this->dataImagem, $this->directory, $this->nameImg, 1300, 600);
 
-        if($uploadImgRes->getResult()){
+        // Upload de imagem SEM Redimencionamento
+        $uploadImg = new \App\sts\Models\helper\StsUploadImg();
+        $uploadImg->upload($this->directory, $this->dataImagem, $this->nameImg);
+
+        if($uploadImg->getResult()){
             $this->edit();
         } else {
             $this->result = false;
@@ -127,16 +131,15 @@ class AdmsEditProfileImage
     * @return void     */
     private function edit():void
     {
-        $this->data['image'] = $this->nameImg;
+        $this->data['image_top'] = $this->nameImg;
         $this->data['modified'] = date("Y-m-d H:i:s");
 
         $upUser = new \App\adms\Models\helper\AdmsUpdate();
-        $upUser->exeUpdate("adms_users", $this->data, "WHERE id=:id", "id=".$_SESSION['user_id']);
+        $upUser->exeUpdate("sts_homes_tops", $this->data, "WHERE id=:id", "id={$this->data['id']}");
         if($upUser->getResult()){
-            $_SESSION['user_image'] = $this->nameImg;
             $this->deleteImage();
         } else {
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Imagem Não Editada com sucesso</p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro edit(models)! Imagem Não Editada com sucesso</p>";
             $this->result = false;
         }
     }
@@ -144,8 +147,8 @@ class AdmsEditProfileImage
      * @return void     */
     private function deleteImage():void
     {
-        if(((!empty($this->resultBd[0]['image'])) or ($this->resultBd[0]['image'] != null)) and ($this->resultBd[0]['image'] != $this->nameImg)){
-            $this->delImg = "app/adms/assets/imgs/users/".$_SESSION['user_id']."/".$this->resultBd[0]['image'];
+        if(((!empty($this->resultBd[0]['image_top'])) or ($this->resultBd[0]['image_top'] != null)) and ($this->resultBd[0]['image_top'] != $this->nameImg)){
+            $this->delImg = "app/sts/assets/imgs/home_top/".$this->resultBd[0]['image_top'];
             if(file_exists($this->delImg)){
             unlink($this->delImg);
             }

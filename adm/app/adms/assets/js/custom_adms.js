@@ -463,7 +463,7 @@ function previewImage(new_image){
         var reader = new FileReader();
         //onload - dispar um evento quando qualquer elemento tenha sido carregado
         reader.onload = function(e){
-            document.getElementById('preview-img').innerHTML = "<img src='"+ e.target.result +"' alt='Imagem' style='width: 200px;'>";
+            document.getElementById('preview-img').innerHTML = "<img src='"+ e.target.result +"' alt='Imagem' style='width: 300px;'>";
         }
     }
     //readAsDataURL - Retorna os dados do formato blob como uma URL de dados - blob representa um arquivo

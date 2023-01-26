@@ -28,7 +28,7 @@ class AdmsUploadImgRes
         $this->name = $name;
         $this->width = $width;
         $this->height = $height;
-        var_dump($this->imageData);
+        // var_dump($this->imageData);
 
         $this->valDirectory();
     }
@@ -57,7 +57,11 @@ class AdmsUploadImgRes
         }
     }
 
-    /** =============================================================================================
+    /** ============================================================================================
+     * Método para verificar o tipo da imagem JPEG ou PNG
+     * Chama o método:uploadFileJpeg() caso a imagem seja JPEG
+     * Chama o método:uploadFilePng() caso a imagem seja PNG
+     * Retorna falso se houver erro
      * @return void     */
     private function uploadFile():void
     {
