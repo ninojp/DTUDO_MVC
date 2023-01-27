@@ -17,7 +17,7 @@ if (isset($this->data['form'][0])) {
 <div class="wrapper_form">
     <div class="row_form">
         <div class="title_form">
-            <h2>Editar Imagem do Topo da Home</h2>
+            <h2>Editar Imagem do Serv. Premium da Home</h2>
         </div>
         <div class="button_center">
             <?php echo "<a class='btn btn-sm btn-outline-info mx-4' href='" . URLADM . "view-page-home/index'> Visualizar </a> "; ?>
@@ -29,16 +29,16 @@ if (isset($this->data['form'][0])) {
         }
         echo "</div>"; ?>
         <!--OBRIGATóRIO o enctype="multipart/form-data", para trabalhar com imagens dentro de formulários-->
-        <form class="form_adms" action="" method="POST" id="form-edit-home-top-img" enctype="multipart/form-data">
+        <form class="form_adms" action="" method="POST" id="form-edit-home-prim-img" enctype="multipart/form-data">
             <!-- input oculto pra enviar o id, via post -->
             <?php $id = "";
             if(isset($valorForm['id'])){
                 $id = $valorForm['id']; } ?>
             <input class="form-control" type="hidden" name="id" id="id" value="<?= $id; ?>">
 
-            <?php $image_top = "";
-            if (isset($valorForm['image_top'])) {
-                $image_top = $valorForm['image_top']; } ?>
+            <?php $prem_image = "";
+            if (isset($valorForm['prem_image'])) {
+                $prem_image = $valorForm['prem_image']; } ?>
             <div class="row_edit">
                 <label class="" for="new_image">Imagem:</label>
                 <i class="fa-solid fa-image"></i>
@@ -47,19 +47,20 @@ if (isset($this->data['form'][0])) {
             <div class="view-det-adm">
                 <span class="view-det-title">Foto:</span>
                 <?php
-                if ((!empty($valorForm['image_top'])) and (file_exists("app/sts/assets/imgs/home_top/".$valorForm['image_top']))) {
-                    $old_img = URLADM . "app/sts/assets/imgs/home_top/".$valorForm['image_top'];
+                if ((!empty($valorForm['prem_image'])) and (file_exists("app/sts/assets/imgs/home_prem/".$valorForm['prem_image']))) {
+                    $old_img = URLADM . "app/sts/assets/imgs/home_prem/".$valorForm['prem_image'];
                 } else {
                     $old_img = URLADM . "app/sts/assets/imgs/Logo_Dtudo_2022-300p.png";
                 } ?>
                 <span id="preview-img">
-                    <img src="<?=$old_img;?>" alt="Imagem" style="width: 300px;height: 300px;">
+                    <img src="<?=$old_img;?>" alt="Imagem" style="width: 300px;">
                 </span>
             </div>
 
             <div class="button_center">
-                <button class="btn btn-primary" type="submit" name="SendEditHomeTopImg" value="Salvar">Salvar Mudança</button>
+                <button class="btn btn-primary" type="submit" name="SendEditHomePrimeImg" value="Salvar">Salvar Mudança</button>
             </div>
         </form>
+        
     </div>
 </div>

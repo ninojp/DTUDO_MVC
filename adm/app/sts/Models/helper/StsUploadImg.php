@@ -11,6 +11,7 @@ class StsUploadImg
     /** @var array  - Recebe as informações da imagem     */
     private array $imageData;
 
+    /** @var string  -    */
     private string $name;
 
     /** @var boolean - Recebe true quando executar com sucesso e False caso contrário    */
@@ -71,7 +72,7 @@ class StsUploadImg
             mkdir($this->directory, 0755);
             //verifica se conseguiu criar o diretório, se não conseguiu retorna false e apresenta uma menssagem
             if((!file_exists($this->directory)) and (!is_dir($this->directory))){
-                $_SESSION['msg'] = "<p class='alert alert-warning'>Erro! Upload não realizado com sucesso! Tente novamente</p>";
+                $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (valDirectory())! Upload não realizado com sucesso! Tente novamente</p>";
                 $this->result = false;
             } else {
                 $this->uploadFile();

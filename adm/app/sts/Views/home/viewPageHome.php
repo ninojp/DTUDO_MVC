@@ -82,7 +82,6 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
         <div class="top-list-right">
             <?php if (!empty($this->data['viewHomeServ'])) {
                 echo "<a href='" . URLADM . "edit-home-serv/index' class='btn btn-warning ms-3'>Editar</a>";
-                echo "<a href='" . URLADM . "edit-home-serv-img/index' class='btn btn-warning ms-3'>Editar Imagem</a>";
             } ?>
         </div>
     </div>
@@ -152,7 +151,7 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
     <div class="top-list-right">
         <?php if (!empty($this->data['viewHomeServPrime'])) {
             echo "<a href='" . URLADM . "edit-home-serv-prime/index' class='btn btn-warning ms-3'>Editar</a>";
-            echo "<a href='" . URLADM . "edit-home-serv-prime-img/index' class='btn btn-warning ms-3'>Editar Imagem</a>";
+            echo "<a href='" . URLADM . "edit-home-prim-Img/index' class='btn btn-warning ms-3'>Editar Imagem</a>";
         } ?>
     </div>
 </div>
