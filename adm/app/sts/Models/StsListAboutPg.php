@@ -65,26 +65,14 @@ class StsListAboutPg
         $pagination->condition($this->page, $this->limitResult);
 
         $pagination->pagination("SELECT COUNT(sac.id) AS num_result FROM sts_abouts_companies AS sac");
-
-        //cria a query, buscar quantidade total de registros da tabela:adms_users
-        // $pagination->pagination("SELECT COUNT(sac.id) AS num_result FROM sts_abouts_companies AS sac
-        // INNER JOIN adms_users AS usr ON usr.access_level_id=lev.id
-        // INNER JOIN adms_access_levels AS lev ON lev.id=usr.access_level_id
-        // WHERE lev.order_levels >:order_levels", "order_levels=".$_SESSION['order_levels']);
-        //recebe o resultado do método:getResult() e atribui para:$this->resultPg
         $this->resultPg = $pagination->getResult();
         // var_dump($this->resultPg);
         //-------------------------------------------------------------------------------------
-
         $listAboutPg = new \App\adms\Models\helper\AdmsRead();
-        //INNER JOIN, é obrigátorio(para retornar o registro) q a chave EXTRANGEIRA:adms_sits_user_id exista na tabela outra tabela, a qual está se fazendo o inner join(adms_sits_users)
         $listAboutPg->fullRead("SELECT sac.id, sac.title, sac.sts_situation_id, sit.name
-        FROM sts_abouts_companies AS sac 
+        FROM sts_abouts_companies AS sac
         INNER JOIN sts_situations AS sit ON sit.id=sac.sts_situation_id
-        INNER JOIN adms_users AS usr ON usr.access_level_id=lev.id
-        INNER JOIN adms_access_levels AS lev ON lev.id=usr.access_level_id 
-        WHERE lev.order_levels >:order_levels
-        ORDER BY sac.id DESC LIMIT :limit OFFSET :offset", "order_levels=".$_SESSION['order_levels']."&limit={$this->limitResult}&offset={$pagination->getOffset()}");
+        ORDER BY sac.id DESC LIMIT :limit OFFSET :offset", "limit={$this->limitResult}&offset={$pagination->getOffset()}");
 
         $this->resultBd = $listAboutPg->getResult();
         if ($this->resultBd) {
@@ -113,11 +101,7 @@ class StsListAboutPg
         //define que a variavel q vai ser usada na query de pesquisa pode ter valores antes e depois
         $this->searchTitleValue = "%".$this->searchTitle."%";
         // var_dump($this->searchTitleValue);
-
-        //verifica se está recebendo os dois campos de pesquisa, nome e email
-        if ((!empty($this->searchTitle))) {
-            $this->searchAboutPgTitle();
-        }
+        $this->searchAboutPgTitle();
     }
     /** ============================================================================================
      * Método para pesquisar pelo NOME e E-Mail    */
@@ -127,31 +111,21 @@ class StsListAboutPg
         $pagination = new \App\adms\Models\helper\AdmsPagination(URLADM . 'list-about-pg/index', "?title={$this->searchTitle}");
         //instância o método para fazer a paginação
         $pagination->condition($this->page, $this->limitResult);
-        
-        //  TESTES.......
-        // $pagination->pagination("SELECT COUNT(sac.id) AS num_result FROM sts_abouts_companies AS sac WHERE ((lev.order_levels >:order_levels) AND (sac.title LIKE :title))", "order_levels=".$_SESSION['order_levels']."&title={$this->searchTitleValue}");
-
         //cria a query, buscar quantidade total de registros da tabela:adms_users
         $pagination->pagination("SELECT COUNT(sac.id) AS num_result FROM sts_abouts_companies AS sac
-        INNER JOIN adms_users AS usr ON usr.access_level_id=lev.id
-        INNER JOIN adms_access_levels AS lev ON lev.id=usr.access_level_id
-        WHERE ((lev.order_levels >:order_levels) AND (sac.title LIKE :title))", "order_levels=".$_SESSION['order_levels']."&title={$this->searchTitleValue}");
-
+        WHERE sac.title LIKE :title OR sac.description LIKE :descript", "title={$this->searchTitleValue}&descript={$this->searchTitleValue}");
         //recebe o resultado do método:getResult() e atribui para:$this->resultPg
         $this->resultPg = $pagination->getResult();
         // var_dump($this->resultPg);
         //-------------------------------------------------------------------------------------
-
         $listsearchAboutPgTitle = new \App\adms\Models\helper\AdmsRead();
         //INNER JOIN, é obrigátorio(para retornar o registro) q a chave EXTRANGEIRA:adms_sits_user_id exista na tabela outra tabela, a qual está se fazendo o inner join(adms_sits_users)
         $listsearchAboutPgTitle->fullRead("SELECT sac.id, sac.title, sac.sts_situation_id, sit.name
         FROM sts_abouts_companies AS sac 
         INNER JOIN sts_situations AS sit ON sit.id=sac.sts_situation_id
-        INNER JOIN adms_users AS usr ON usr.access_level_id=lev.id
-        INNER JOIN adms_access_levels AS lev ON lev.id=usr.access_level_id
-        WHERE ((lev.order_levels >:order_levels) AND (sac.title LIKE :title))
+        WHERE sac.title LIKE :title OR sac.description LIKE :descript
         ORDER BY sac.id DESC LIMIT :limit OFFSET :offset",
-        "order_levels=".$_SESSION['order_levels']."&title={$this->searchTitleValue}&limit={$this->limitResult}&offset={$pagination->getOffset()}" );
+        "title={$this->searchTitleValue}&descript={$this->searchTitleValue}&limit={$this->limitResult}&offset={$pagination->getOffset()}");
 
         $this->resultBd = $listsearchAboutPgTitle->getResult();
         if ($this->resultBd) {

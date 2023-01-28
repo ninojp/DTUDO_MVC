@@ -79,13 +79,13 @@ class ListAboutPg
         }
         // ----------- Exibir ou ocultar botões conforme o nivel de acesso -------------------
         // Cria o array e suas devidas posições
-        $button = [ 'add_about_pg' => ['menu_controller' => 'add-about-pg', 'menu_metodo' => 'index'], 'view_about_pg' => ['menu_controller' => 'view-about-pg', 'menu_metodo' => 'index'], 'edit_about_pg' => ['menu_controller' => 'edit-about-pg', 'menu_metodo' => 'index'], 'delete_about_pg' => ['menu_controller' => 'delete-about-pg', 'menu_metodo' => 'index']
-        ];
+        // $button = [ 'add_about_pg' => ['menu_controller' => 'add-about-pg', 'menu_metodo' => 'index'], 'view_about_pg' => ['menu_controller' => 'view-about-pg', 'menu_metodo' => 'index'], 'edit_about_pg' => ['menu_controller' => 'edit-about-pg', 'menu_metodo' => 'index'], 'delete_about_pg' => ['menu_controller' => 'delete-about-pg', 'menu_metodo' => 'index']
+        // ];
         // Instância a classe:AdmsButton() e cria o objeto:$listButton
-        $listButton = new \App\adms\Models\helper\AdmsButton();
+        // $listButton = new \App\adms\Models\helper\AdmsButton();
         // Passa como parametro o array:$button criado acima, para o método:buttonPermission()
         // E Atribui o resultado para o atributo:$this->data['button'], criando esta posição
-        $this->data['button'] = $listButton->buttonPermission($button);
+        // $this->data['button'] = $listButton->buttonPermission($button);
         // var_dump($this->data['button']);
 
         // implementação da apresentação dinâmica do menu sidebar

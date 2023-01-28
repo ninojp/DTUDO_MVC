@@ -21,11 +21,9 @@ if (isset($this->data['form'])) {
                             echo $_SESSION['msg'];
                             unset($_SESSION['msg']); } ?>
                 </div>
-                <?php if($this->data['button']['add_about_pg']) {?>
-                    <div class="col-3 top_list_right">
-                        <a class="btn btn-sm btn_success" href="<?= URLADM.'add-about-pg/index';?>" type="button">Cadastrar Artigo</a>
-                    </div>
-                <?php }?>
+                <div class="col-3 top_list_right">
+                    <a class="btn btn-sm btn_success" href="<?= URLADM.'add-about-pg/index';?>" type="button">Cadastrar Artigo</a>
+                </div>
             </div>
             <!-- DIV com o campo de pesquisa -->
             <div class="div_row_form">
@@ -62,19 +60,23 @@ if (isset($this->data['form'])) {
                 <tr>
                     <td class="list_body_content"><?=$id;?></td>
                     <td class="list_body_content"><?=$title;?></td>
-                    <td class="list_body_content tb_sm_none"><?=$nome;?></td>
+                    <td class="list_body_content tb_sm_none"><?=$name;?></td>
                     <td class="list_body_content">
-                        <?php if($this->data['button']['view_about_pg']) {
-                            echo "<a class='btn btn-sm btn-outline-primary mx-1' href='".URLADM."view-about-pg/index/$id'><i class='fa-solid fa-eye'></i> Ver</a>"; }
-                        if($this->data['button']['edit_about_pg']) {
-                            echo "<a class='btn btn-sm btn-outline-warning mx-1' href='".URLADM."edit-about-pg/index/$id'><i class='fa-solid fa-pen-to-square'></i> Editar</a>"; }
-                        if($this->data['button']['delete_about_pg']) {
-                        echo "<a class='btn btn-sm btn-outline-danger mx-1' href='".URLADM."delete-about-pg/index/$id' onclick='return confirm(\"Tem certeza que deseja excluir o registro?\")'><i class='fa-solid fa-trash-can'></i> Apagar</a>"; } ?>
+                        <?php
+                            echo "<a class='btn btn-sm btn-outline-primary mx-1' href='".URLADM."view-about-pg/index/$id'><i class='fa-solid fa-eye'></i> Ver</a>";
+
+                            echo "<a class='btn btn-sm btn-outline-warning mx-1' href='".URLADM."edit-about-pg/index/$id'><i class='fa-solid fa-pen-to-square'></i> Editar</a>";
+
+                            echo "<a class='btn btn-sm btn-outline-danger mx-1' href='".URLADM."delete-about-pg/index/$id' onclick='return confirm(\"Tem certeza que deseja excluir o registro?\")'><i class='fa-solid fa-trash-can'></i> Apagar</a>";
+                        ?>
                     </td>
                 </tr>
                 <?php } ?>
         </table>
         <!-- Inicio da paginação -->
-        <?php echo $this->data['pagination']; ?>
+        <?php echo $this->data['pagination'];
+        // var_dump($this->data['listAboutPg']);
+        // var_dump($this->data['button']);
+        ?>
     </div>
 </div>
