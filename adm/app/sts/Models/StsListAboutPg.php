@@ -24,10 +24,10 @@ class StsListAboutPg
     private string|null $resultPg;
 
     /** @var string|null -  - Recebe o nome a ser pesquisado  */
-    private string|null $searchName;
+    private string|null $searchTitle;
 
     /** @var string|null - Recebe o nome a ser pesquisado, que pode conter caracteres antes e depois  */
-    private string|null $searchNameValue;
+    private string|null $searchTitleValue;
 
     /** ============================================================================================
      * Retorna true quando executar o processo com sucesso e false quando houver erro
@@ -63,28 +63,35 @@ class StsListAboutPg
         $pagination = new \App\adms\Models\helper\AdmsPagination(URLADM . 'list-about-pg/index');
         //instância o método para fazer a paginação
         $pagination->condition($this->page, $this->limitResult);
+
+        $pagination->pagination("SELECT COUNT(sac.id) AS num_result FROM sts_abouts_companies AS sac");
+
         //cria a query, buscar quantidade total de registros da tabela:adms_users
-        $pagination->pagination("SELECT COUNT(usr.id) AS num_result FROM adms_users AS usr INNER JOIN adms_access_levels AS lev ON lev.id=access_level_id 
-        WHERE lev.order_levels >:order_levels", "order_levels=".$_SESSION['order_levels']);
+        // $pagination->pagination("SELECT COUNT(sac.id) AS num_result FROM sts_abouts_companies AS sac
+        // INNER JOIN adms_users AS usr ON usr.access_level_id=lev.id
+        // INNER JOIN adms_access_levels AS lev ON lev.id=usr.access_level_id
+        // WHERE lev.order_levels >:order_levels", "order_levels=".$_SESSION['order_levels']);
         //recebe o resultado do método:getResult() e atribui para:$this->resultPg
         $this->resultPg = $pagination->getResult();
         // var_dump($this->resultPg);
         //-------------------------------------------------------------------------------------
 
-        $listUsers = new \App\adms\Models\helper\AdmsRead();
+        $listAboutPg = new \App\adms\Models\helper\AdmsRead();
         //INNER JOIN, é obrigátorio(para retornar o registro) q a chave EXTRANGEIRA:adms_sits_user_id exista na tabela outra tabela, a qual está se fazendo o inner join(adms_sits_users)
-        $listUsers->fullRead("SELECT usr.id, usr.name AS name_usr, usr.email, usr.adms_sits_user_id, sit.name AS name_sit, col.name AS name_col, col.color 
-        FROM adms_users AS usr INNER JOIN adms_sits_users AS sit ON sit.id=usr.adms_sits_user_id INNER JOIN adms_colors AS col ON sit.adms_color_id=col.id
-        INNER JOIN adms_access_levels AS lev ON lev.id=access_level_id 
+        $listAboutPg->fullRead("SELECT sac.id, sac.title, sac.sts_situation_id, sit.name
+        FROM sts_abouts_companies AS sac 
+        INNER JOIN sts_situations AS sit ON sit.id=sac.sts_situation_id
+        INNER JOIN adms_users AS usr ON usr.access_level_id=lev.id
+        INNER JOIN adms_access_levels AS lev ON lev.id=usr.access_level_id 
         WHERE lev.order_levels >:order_levels
-        ORDER BY usr.id DESC LIMIT :limit OFFSET :offset", "order_levels=".$_SESSION['order_levels']."&limit={$this->limitResult}&offset={$pagination->getOffset()}");
+        ORDER BY sac.id DESC LIMIT :limit OFFSET :offset", "order_levels=".$_SESSION['order_levels']."&limit={$this->limitResult}&offset={$pagination->getOffset()}");
 
-        $this->resultBd = $listUsers->getResult();
+        $this->resultBd = $listAboutPg->getResult();
         if ($this->resultBd) {
             // var_dump($this->resultBd);
             $this->result = true;
         } else {
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (listUsers())! Nenhum usuário encontrado!</p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (listAboutPg())! Nenhum Artigo encontrado!</p>";
             $this->result = false;
         }
     }
@@ -93,61 +100,65 @@ class StsListAboutPg
      * Recebe o parametro:$page para que seja feita a paginação do resultado
      * Recebe o parametro:search_name para que seja feita a pesquisa pelo nome
      * Recebe o parametro:search_email para que seja feita a pesquisa pelo e-mail    */
-    public function listSearchUsers(int $page = null, string|null $search_name): void
+    public function listSearchAboutPg(int $page = null, string|null $title): void
     {
         //atribui os parametros recebidos para os devidos atributos
         $this->page = (int) $page ? $page : 1;
 
         //usa o trim para retirar os espaços em branco
-        $this->searchName = trim($search_name);
-        // $this->searchName = $search_name;
-        // var_dump($this->searchName);
+        $this->searchTitle = trim($title);
+        // $this->searchTitle = $search_name;
+        // var_dump($this->searchTitle);
 
         //define que a variavel q vai ser usada na query de pesquisa pode ter valores antes e depois
-        $this->searchNameValue = "%".$this->searchName."%";
-        // var_dump($this->searchNameValue);
+        $this->searchTitleValue = "%".$this->searchTitle."%";
+        // var_dump($this->searchTitleValue);
 
         //verifica se está recebendo os dois campos de pesquisa, nome e email
-        if ((!empty($this->searchName))) {
-            $this->searchUserNameEmail();
+        if ((!empty($this->searchTitle))) {
+            $this->searchAboutPgTitle();
         }
     }
     /** ============================================================================================
      * Método para pesquisar pelo NOME e E-Mail    */
-    public function searchUserNameEmail(): void
+    public function searchAboutPgTitle(): void
     {
         //instância a classe:AdmsPagination, cria o objeto:$pagination 
-        $pagination = new \App\adms\Models\helper\AdmsPagination(URLADM . 'list-users/index', "?search_name={$this->searchName}&search_email={$this->searchEmail}");
+        $pagination = new \App\adms\Models\helper\AdmsPagination(URLADM . 'list-about-pg/index', "?title={$this->searchTitle}");
         //instância o método para fazer a paginação
         $pagination->condition($this->page, $this->limitResult);
+        
+        //  TESTES.......
+        // $pagination->pagination("SELECT COUNT(sac.id) AS num_result FROM sts_abouts_companies AS sac WHERE ((lev.order_levels >:order_levels) AND (sac.title LIKE :title))", "order_levels=".$_SESSION['order_levels']."&title={$this->searchTitleValue}");
+
         //cria a query, buscar quantidade total de registros da tabela:adms_users
-        $pagination->pagination("SELECT COUNT(usr.id) AS num_result FROM adms_users AS usr
+        $pagination->pagination("SELECT COUNT(sac.id) AS num_result FROM sts_abouts_companies AS sac
+        INNER JOIN adms_users AS usr ON usr.access_level_id=lev.id
         INNER JOIN adms_access_levels AS lev ON lev.id=usr.access_level_id
-        WHERE (lev.order_levels >:order_levels) AND ((usr.name LIKE :search_name) OR (usr.email LIKE :search_email))",
-        "order_levels=".$_SESSION['order_levels']."&search_name={$this->searchNameValue}&search_email={$this->searchEmailValue}");
+        WHERE ((lev.order_levels >:order_levels) AND (sac.title LIKE :title))", "order_levels=".$_SESSION['order_levels']."&title={$this->searchTitleValue}");
+
         //recebe o resultado do método:getResult() e atribui para:$this->resultPg
         $this->resultPg = $pagination->getResult();
         // var_dump($this->resultPg);
         //-------------------------------------------------------------------------------------
 
-        $listUsersNameEmail = new \App\adms\Models\helper\AdmsRead();
+        $listsearchAboutPgTitle = new \App\adms\Models\helper\AdmsRead();
         //INNER JOIN, é obrigátorio(para retornar o registro) q a chave EXTRANGEIRA:adms_sits_user_id exista na tabela outra tabela, a qual está se fazendo o inner join(adms_sits_users)
-        $listUsersNameEmail->fullRead("SELECT usr.id, usr.name AS name_usr, usr.email, usr.adms_sits_user_id, sit.name AS name_sit, col.name AS name_col, col.color 
-        FROM adms_users AS usr
+        $listsearchAboutPgTitle->fullRead("SELECT sac.id, sac.title, sac.sts_situation_id, sit.name
+        FROM sts_abouts_companies AS sac 
+        INNER JOIN sts_situations AS sit ON sit.id=sac.sts_situation_id
+        INNER JOIN adms_users AS usr ON usr.access_level_id=lev.id
         INNER JOIN adms_access_levels AS lev ON lev.id=usr.access_level_id
-        INNER JOIN adms_sits_users AS sit ON sit.id=usr.adms_sits_user_id
-        INNER JOIN adms_colors AS col ON sit.adms_color_id=col.id
-        WHERE (lev.order_levels >:order_levels)
-        AND ((usr.name LIKE :search_name) OR (usr.email LIKE :search_email))
-        ORDER BY usr.id DESC LIMIT :limit OFFSET :offset",
-        "order_levels=".$_SESSION['order_levels']."&search_name={$this->searchNameValue}&search_email={$this->searchEmailValue}&limit={$this->limitResult}&offset={$pagination->getOffset()}" );
+        WHERE ((lev.order_levels >:order_levels) AND (sac.title LIKE :title))
+        ORDER BY sac.id DESC LIMIT :limit OFFSET :offset",
+        "order_levels=".$_SESSION['order_levels']."&title={$this->searchTitleValue}&limit={$this->limitResult}&offset={$pagination->getOffset()}" );
 
-        $this->resultBd = $listUsersNameEmail->getResult();
+        $this->resultBd = $listsearchAboutPgTitle->getResult();
         if ($this->resultBd) {
             // var_dump($this->resultBd);
             $this->result = true;
         } else {
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (searchUserNameEmail())! Nenhum usuário ou e-mail encontrado!</p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (searchAboutPgTitle())! Nenhum Artigo(titulo) encontrado!</p>";
             $this->result = false;
         }
     }

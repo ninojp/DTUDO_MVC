@@ -48,7 +48,7 @@ class ListAboutPg
             $this->page = 1;
 
             //instância o método que fara a pesquisa e passa como parametro a pagina e os dados que estão nas posições do array:$this->dataForm['']
-            $listAboutPg->listSearchUsers($this->page, $this->dataForm['searchTitle']);
+            $listAboutPg->listSearchAboutPg($this->page, $this->dataForm['title']);
 
             //para manter os dados no formulário, na view
             $this->data['form'] = $this->dataForm;
@@ -57,7 +57,7 @@ class ListAboutPg
         } elseif ((!empty($this->searchTitle))) {
 
             //instância o método que fara a pesquisa e passa como parametro a pagina e os dados que estão nas posições do array:$this->dataForm['']
-            $listAboutPg->listSearchUsers($this->page, $this->searchTitle);
+            $listAboutPg->listSearchAboutPg($this->page, $this->searchTitle);
 
             //para manter os dados no formulário, na view
             $this->data['form']['title'] = $this->searchTitle;

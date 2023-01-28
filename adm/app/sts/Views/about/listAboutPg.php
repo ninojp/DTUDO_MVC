@@ -21,9 +21,9 @@ if (isset($this->data['form'])) {
                             echo $_SESSION['msg'];
                             unset($_SESSION['msg']); } ?>
                 </div>
-                <?php if($this->data['button']['add_users']) {?>
+                <?php if($this->data['button']['add_about_pg']) {?>
                     <div class="col-3 top_list_right">
-                        <a class="btn btn-sm btn_success" href="<?= URLADM.'add-users/index';?>" type="button">Cadastrar Artigo</a>
+                        <a class="btn btn-sm btn_success" href="<?= URLADM.'add-about-pg/index';?>" type="button">Cadastrar Artigo</a>
                     </div>
                 <?php }?>
             </div>
@@ -51,27 +51,25 @@ if (isset($this->data['form'])) {
             <thead class="list_head">
                 <tr>
                     <th class="list_head_content">ID</th>
-                    <th class="list_head_content">Nome</th>
+                    <th class="list_head_content">Título (Artigo)</th>
                     <!-- classe:tb_sm_none para OCULTAR o item em resolucão menores -->
-                    <th class="list_head_content tb_sm_none">E-mail</th>
-                    <th class="list_head_content tb_sm_none">Situação Cadastral</th>
+                    <th class="list_head_content tb_sm_none">Situação (Artigo)</th>
                     <th class="list_head_content">Botões de Ações</th>
                 </tr>
             </thead>
             <tbody class="list_body">
-                <?php foreach ($this->data['listUsers'] as $user) { extract($user);  ?>
+                <?php foreach ($this->data['listAboutPg'] as $about) { extract($about);  ?>
                 <tr>
                     <td class="list_body_content"><?=$id;?></td>
-                    <td class="list_body_content"><?=$name_usr;?></td>
-                    <td class="list_body_content tb_sm_none"><?=$email;?></td>
-                    <td class="list_body_content tb_sm_none"><span style='color:<?=$color;?>'><?=$name_sit;?></span></td>
+                    <td class="list_body_content"><?=$title;?></td>
+                    <td class="list_body_content tb_sm_none"><?=$nome;?></td>
                     <td class="list_body_content">
-                        <?php if($this->data['button']['view_users']) {
-                            echo "<a class='btn btn-sm btn-outline-primary mx-1' href='".URLADM."view-users/index/$id'><i class='fa-solid fa-eye'></i> Ver</a>"; }
-                        if($this->data['button']['edit_users']) {
-                            echo "<a class='btn btn-sm btn-outline-warning mx-1' href='".URLADM."edit-users/index/$id'><i class='fa-solid fa-pen-to-square'></i> Editar</a>"; }
-                        if($this->data['button']['delete_users']) {
-                        echo "<a class='btn btn-sm btn-outline-danger mx-1' href='".URLADM."delete-users/index/$id' onclick='return confirm(\"Tem certeza que deseja excluir o registro?\")'><i class='fa-solid fa-trash-can'></i> Apagar</a>"; } ?>
+                        <?php if($this->data['button']['view_about_pg']) {
+                            echo "<a class='btn btn-sm btn-outline-primary mx-1' href='".URLADM."view-about-pg/index/$id'><i class='fa-solid fa-eye'></i> Ver</a>"; }
+                        if($this->data['button']['edit_about_pg']) {
+                            echo "<a class='btn btn-sm btn-outline-warning mx-1' href='".URLADM."edit-about-pg/index/$id'><i class='fa-solid fa-pen-to-square'></i> Editar</a>"; }
+                        if($this->data['button']['delete_about_pg']) {
+                        echo "<a class='btn btn-sm btn-outline-danger mx-1' href='".URLADM."delete-about-pg/index/$id' onclick='return confirm(\"Tem certeza que deseja excluir o registro?\")'><i class='fa-solid fa-trash-can'></i> Apagar</a>"; } ?>
                     </td>
                 </tr>
                 <?php } ?>
