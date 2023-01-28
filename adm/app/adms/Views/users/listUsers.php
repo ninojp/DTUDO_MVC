@@ -60,8 +60,8 @@ if (isset($this->data['form'])) {
                             if (isset($valorForm['search_name'])) {
                                 $search_name = $valorForm['search_name'];
                             } ?>
-                            <label for="seach_name">Nome: </label>
-                            <input type="text" name="search_name" id="seach_name" value="<?php echo $search_name; ?>" placeholder="Pesquisar pelo nome">
+                            <label for="search_name">Nome: </label>
+                            <input type="text" name="search_name" id="search_name" value="<?php echo $search_name; ?>" placeholder="Pesquisar pelo nome">
                         </div>
                         <div class="col-3">
                             <button  class="btn btn-sm btn-outline-info" type="submit" name="SendSearchUser" value="Pesquisar">Pesquisar por nome ou e-mail</button>
