@@ -53,8 +53,7 @@ if (isset($this->data['form'])) {
                             } else {
                                 echo "<option value='$id_sit'>$name_sit</option>";
                             }
-                        }
-                        ?>
+                        } ?>
                     </select>
                 </div>
             </div>

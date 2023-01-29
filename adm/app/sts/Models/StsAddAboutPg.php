@@ -33,29 +33,20 @@ class StsAddAboutPg
      * Retorna false quando algun campo está vazio  -  @return void    */
     public function createAboutPg(array $data = null)
     {
-        $this->data = $data;
 
-        $valEmptyField = new \App\adms\Models\helper\AdmsValEmptyField();
+        //atribui o parametro:$data para o atributo:$this->data
+        $this->data = $data;
+        // var_dump($this->data);
+        //instancia a classe:AdmsValEmptyField e cria o objeto:$valEmptyField
+        $valEmptyField = new AdmsValEmptyField();
+        //usa o objeto:$valEmptyField para instanciar o método:valField() para validar os dados dentro do atributo:$this->data
         $valEmptyField->valField($this->data);
+        //verifica se o método:getResult() retorna true, se sim significa q deu tudo certo se não aprensenta o Erro
         if ($valEmptyField->getResult()) {
             $this->addAboutPg();
         } else {
             $this->result = false;
         }
-
-        //atribui o parametro:$data para o atributo:$this->data
-        // $this->data = $data;
-        // // var_dump($this->data);
-        // //instancia a classe:AdmsValEmptyField e cria o objeto:$valEmptyField
-        // $valEmptyField = new AdmsValEmptyField();
-        // //usa o objeto:$valEmptyField para instanciar o método:valField() para validar os dados dentro do atributo:$this->data
-        // $valEmptyField->valField($this->data);
-        // //verifica se o método:getResult() retorna true, se sim significa q deu tudo certo se não aprensenta o Erro
-        // if ($valEmptyField->getResult()) {
-        //     $this->addAboutPg();
-        // } else {
-        //     $this->result = false;
-        // }
     }
     /** ===========================================================================================
      * Cadastrar usuário no DB  - @return void
