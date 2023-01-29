@@ -59,11 +59,11 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
         if($this->data['button']['edit_users_image']) { ?>
             <a class="btn btn-sm btn-outline-primary mx-4" href="<?= URLADM; ?>edit-users-image/index/<?= $id; ?>"><i class="fa-solid fa-image"></i> Editar Imagem</a> <?php } ?>
         </div>
-        <?php if (isset($_SESSION['msg'])) { 
-            echo "<div id='msg' class='msg_alert'>";
+        <?php echo "<div id='msg' class='msg_alert'>";
+            if (isset($_SESSION['msg'])) { 
             echo $_SESSION['msg'];
-            unset($_SESSION['msg']);
-            echo "</div>"; } ?>
+            unset($_SESSION['msg']); }
+            echo "</div>"; ?>
         <div class="content_adm">
             <div class="view_det">
                 <span class="view_det_title">ID:</span>

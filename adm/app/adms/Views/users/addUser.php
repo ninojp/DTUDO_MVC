@@ -13,12 +13,11 @@ if (isset($this->data['form'])) {
         <div class="title_form">
             <h2>Cadastrar Novo Usuário</h2>
         </div>
-        <?php if (isset($_SESSION['msg'])) { 
-            echo "<div class='msg_alert'>";
+        <?php echo "<div class='msg_alert' id='msg'>";
+            if (isset($_SESSION['msg'])) { 
             echo $_SESSION['msg'];
-            unset($_SESSION['msg']);
-            echo "</div>"; } ?>
-        <div class="msg_alert" id='msg'></div>
+            unset($_SESSION['msg']);}
+            echo "</div>"; ?>
         <form class="form_adms" action="" method="POST" id="form-add-user">
             <div class="row_input">
                 <?php $name = "";
