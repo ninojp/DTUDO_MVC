@@ -25,7 +25,7 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
                         echo "<img src='" . URLADM . "app/sts/assets/imgs/Logo_Dtudo_2022-300p.png' width='250'><br>";
                     }
                     echo "<span class='view_det_title'>Imagem:</span><br>";
-                    echo "<a href='" . URLADM . "edit-about-pg-img/index/$id' class='btn btn-sm btn-warning ms-3'>Editar Imagem</a>";
+                    echo "<a href='" . URLADM . "edit-about-pg-img/index/".$this->data['viewAboutPg'][0]['id']."' class='btn btn-sm btn-warning ms-3'>Editar Imagem</a>";
                     ?>
                 </div>
                 <div class="view_det">
@@ -57,14 +57,14 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
         <div class="col-12 text-center p-4">
                 <?php if (!empty($this->data['viewAboutPg'])) {
                     echo "<a href='" . URLADM . "list-about-pg/index' class='btn btn-sm btn-info ms-3'>Listar</a>";
-                    echo "<a class='btn btn-sm btn-outline-warning mx-1' href='".URLADM."edit-about-pg/index/$id'><i class='fa-solid fa-pen-to-square'></i> Editar</a>";
+                    echo "<a class='btn btn-sm btn-outline-warning mx-1' href='".URLADM."edit-about-pg/index/".$this->data['viewAboutPg'][0]['id']."'><i class='fa-solid fa-pen-to-square'></i> Editar</a>";
 
-                    echo "<a class='btn btn-sm btn-outline-danger mx-1' href='".URLADM."delete-about-pg/index/$id' onclick='return confirm(\"Tem certeza que deseja excluir o registro?\")'><i class='fa-solid fa-trash-can'></i> Apagar</a>";
+                    echo "<a class='btn btn-sm btn-outline-danger mx-1' href='".URLADM."delete-about-pg/index/".$this->data['viewAboutPg'][0]['id']."' onclick='return confirm(\"Tem certeza que deseja excluir o registro?\")'><i class='fa-solid fa-trash-can'></i> Apagar</a>";
                 } ?>
             </div>
         <?php } else {
                 echo "<p class='alert alert-danger'>Erro (viewAboutPg)! Conteudo do TOP não encontrado!</p>";
         }  ?>
     </div>
-    <?php var_dump($this->data); ?>
+    <!-- <?php //var_dump($this->data['viewAboutPg'][0]['id']); ?> -->
 </div>

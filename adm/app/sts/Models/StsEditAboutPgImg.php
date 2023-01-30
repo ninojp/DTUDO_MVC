@@ -25,6 +25,9 @@ class StsEditAboutPgImg
     /** @var array|string - ...    */
     private array|string|null $delImg;
 
+    /** @var int|string|null $id Recebe o id do registro */
+    private int|string|null $id;
+
     /** ============================================================================================
      * Retorna TRUE se executar o processo com sucesso, FALSE quando houver erro e atribui para o atributo:$this->result    -  @return void     */
     function getResult():bool
@@ -41,10 +44,11 @@ class StsEditAboutPgImg
     /** =========================================================================================
      * Método para para visualizar os dados da Imagem do Premium da pagina Home
       */
-    public function viewAboutPgImg():bool
+    public function viewAboutPgImg(int $id):bool
     {
+        $this->id = (int) $id;
         $viewAboutPgImg = new \App\adms\Models\helper\AdmsRead();
-        $viewAboutPgImg->fullRead("SELECT id, image FROM sts_abouts_companies LIMIT :limit", "limit=1");
+        $viewAboutPgImg->fullRead("SELECT id, image FROM sts_abouts_companies WHERE id=:id LIMIT :limit", "id={$this->id}&limit=1");
 
         $this->resultBd = $viewAboutPgImg->getResult();
         if($this->resultBd){

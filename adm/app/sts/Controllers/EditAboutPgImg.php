@@ -39,7 +39,7 @@ class EditAboutPgImg
                 $this->data['form'] = $viewAboutPgImg->getResultBd();
                 $this->loadViewEditAboutPgImg();
             } else {
-                $urlRedirect = URLADM."view-about-pg/index";
+                $urlRedirect = URLADM."list-about-pg/index";
                 header("Location: $urlRedirect");
             }
         } else {
@@ -79,7 +79,7 @@ class EditAboutPgImg
             $editAboutPgImg = new \App\sts\Models\StsEditAboutPgImg();
             $editAboutPgImg->updateAboutPg($this->dataForm);
             if($editAboutPgImg->getResult()){
-                $urlRedirect = URLADM . "view-about-pg/index";
+                $urlRedirect = URLADM . "view-about-pg/index/" . $this->dataForm['id'];
                 header("Location: $urlRedirect");
             }else{
                 $this->data['form'] = $this->dataForm;
@@ -87,7 +87,7 @@ class EditAboutPgImg
             }
         } else {
             $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (editAboutPgImg())! Imagem do topo da pagina Home  não encontrado!</p>";
-            $urlRedirect = URLADM . "view-about-pg/index";
+            $urlRedirect = URLADM . "list-about-pg/index";
             header("Location: $urlRedirect");
         }
     }
