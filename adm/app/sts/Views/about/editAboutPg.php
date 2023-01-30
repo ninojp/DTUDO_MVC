@@ -32,7 +32,7 @@ if(isset($this->data['form'][0])){
                         echo "<img src='" . URLADM . "app/sts/assets/imgs/Logo_Dtudo_2022-300p.png' width='250'><br>";
                     }
                     echo "<span class='view_det_title'>Imagem:</span><br>";
-                    echo "<a href='" . URLADM . "edit-about-pg-img/index' class='btn btn-warning ms-3'>Editar Imagem</a>";
+                    echo "<a href='" . URLADM . "edit-about-pg-img/index/".$valorForm['id']."' class='btn btn-sm btn-warning ms-3'>Editar Imagem</a>";
                     ?>
                 </div>
             <div class="row_edit">
