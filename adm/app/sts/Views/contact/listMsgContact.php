@@ -15,7 +15,7 @@ if (isset($this->data['form'])) {
                 <h2 class="title_h2">Listar Mensagens - Página de Contato</h2>
             </div>
             <div class="div_row_msg_btn">
-                <div id="msg" class="col-9 msg_alert">
+            <div id='msg' class='msg_alert'>
                     <!-- Mensagens de avisos -->
                     <?php if (isset($_SESSION['msg'])) {
                             echo $_SESSION['msg'];

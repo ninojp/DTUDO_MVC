@@ -24,10 +24,10 @@ class StsListMsgContact
     private string|null $resultPg;
 
     /** @var string|null -  - Recebe o nome a ser pesquisado  */
-    private string|null $searchTitle;
+    private string|null $searchSubject;
 
     /** @var string|null - Recebe o nome a ser pesquisado, que pode conter caracteres antes e depois  */
-    private string|null $searchTitleValue;
+    private string|null $searchSubjectValue;
 
     /** ============================================================================================
      * Retorna true quando executar o processo com sucesso e false quando houver erro
@@ -76,7 +76,7 @@ class StsListMsgContact
             // var_dump($this->resultBd);
             $this->result = true;
         } else {
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (listAboutPg())! Nenhum Artigo encontrado!</p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (listMsgContact())! Nenhuma Mensagem encontrado!</p>";
             $this->result = false;
         }
     }
@@ -85,19 +85,19 @@ class StsListMsgContact
      * Recebe o parametro:$page para que seja feita a paginação do resultado
      * Recebe o parametro:search_name para que seja feita a pesquisa pelo nome
      * Recebe o parametro:search_email para que seja feita a pesquisa pelo e-mail    */
-    public function listSearchMsgContact(int $page = null, string|null $title): void
+    public function listSearchMsgContact(int $page = null, string|null $subject): void
     {
         //atribui os parametros recebidos para os devidos atributos
         $this->page = (int) $page ? $page : 1;
 
         //usa o trim para retirar os espaços em branco
-        $this->searchTitle = trim($title);
-        // $this->searchTitle = $search_name;
-        // var_dump($this->searchTitle);
+        $this->searchSubject = trim($subject);
+        // $this->searchSubject = $search_name;
+        // var_dump($this->searchSubject);
 
         //define que a variavel q vai ser usada na query de pesquisa pode ter valores antes e depois
-        $this->searchTitleValue = "%".$this->searchTitle."%";
-        // var_dump($this->searchTitleValue);
+        $this->searchSubjectValue = "%".$this->searchSubject."%";
+        // var_dump($this->searchSubjectValue);
         $this->searchMsgContact();
     }
     /** ============================================================================================
@@ -105,29 +105,29 @@ class StsListMsgContact
     public function searchMsgContact(): void
     {
         //instância a classe:AdmsPagination, cria o objeto:$pagination 
-        $pagination = new \App\adms\Models\helper\AdmsPagination(URLADM . 'list-about-pg/index', "?title={$this->searchTitle}");
+        $pagination = new \App\adms\Models\helper\AdmsPagination(URLADM . 'list-msg-contact/index', "?subject={$this->searchSubject}");
         //instância o método para fazer a paginação
         $pagination->condition($this->page, $this->limitResult);
         //cria a query, buscar quantidade total de registros da tabela:adms_users
         $pagination->pagination("SELECT COUNT(scm.id) AS num_result FROM sts_contacts_msgs AS scm
-        WHERE scm.subject LIKE :subject OR scm.content LIKE :content", "subject={$this->searchTitleValue}&content={$this->searchTitleValue}");
+        WHERE scm.subject LIKE :subject OR scm.content LIKE :content", "subject={$this->searchSubjectValue}&content={$this->searchSubjectValue}");
         //recebe o resultado do método:getResult() e atribui para:$this->resultPg
         $this->resultPg = $pagination->getResult();
         // var_dump($this->resultPg);
         //-------------------------------------------------------------------------------------
-        $listsearchAboutPgTitle = new \App\adms\Models\helper\AdmsRead();
+        $listsearchMsgContact = new \App\adms\Models\helper\AdmsRead();
         //INNER JOIN, é obrigátorio(para retornar o registro) q a chave EXTRANGEIRA:adms_sits_user_id exista na tabela outra tabela, a qual está se fazendo o inner join(adms_sits_users)
-        $listsearchAboutPgTitle->fullRead("SELECT scm.id, scm.name, scm.email, scm.subject, scm.content FROM sts_contacts_msgs AS scm 
+        $listsearchMsgContact->fullRead("SELECT scm.id, scm.name, scm.email, scm.subject, scm.content FROM sts_contacts_msgs AS scm 
         WHERE scm.subject LIKE :subject OR scm.content LIKE :content
         ORDER BY scm.id DESC LIMIT :limit OFFSET :offset",
-        "subject={$this->searchTitleValue}&content={$this->searchTitleValue}&limit={$this->limitResult}&offset={$pagination->getOffset()}");
+        "subject={$this->searchSubjectValue}&content={$this->searchSubjectValue}&limit={$this->limitResult}&offset={$pagination->getOffset()}");
 
-        $this->resultBd = $listsearchAboutPgTitle->getResult();
+        $this->resultBd = $listsearchMsgContact->getResult();
         if ($this->resultBd) {
             // var_dump($this->resultBd);
             $this->result = true;
         } else {
-            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (searchAboutPgTitle())! Nenhum Artigo(titulo) encontrado!</p>";
+            $_SESSION['msg'] = "<p class='alert alert-warning'>Erro (searchMsgContact())! Nenhuma Mensagem encontrado!</p>";
             $this->result = false;
         }
     }

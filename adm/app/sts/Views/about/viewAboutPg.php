@@ -7,7 +7,7 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
         <div class="title_form">
             <h2>Visualizar Detalhes<br> do Artigo Sobre Empresa</h2>
         </div>
-        <div class="content-adm-alert">
+        <div id='msg' class='msg_alert'>
             <?php
             if (isset($_SESSION['msg'])) {
                 echo $_SESSION['msg'];

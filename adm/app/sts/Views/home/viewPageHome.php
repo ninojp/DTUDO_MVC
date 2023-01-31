@@ -5,7 +5,7 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
 <div class="wrapper_form">
     <div class="row_form_sts">
         <h1 class="col-12 m-4">Editar Pagina home</h1>
-        <div class="content-adm-alert">
+        <div id='msg' class='msg_alert'>
             <?php
             if (isset($_SESSION['msg'])) {
                 echo $_SESSION['msg'];
