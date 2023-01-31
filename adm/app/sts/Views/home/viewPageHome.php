@@ -2,9 +2,9 @@
 if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
     header("Location: https://localhost/dtudo/public/");
 } ?>
-<div class="wrapper">
-    <div class="row">
-        <h1>Pagina home</h1>
+<div class="wrapper_form">
+    <div class="row_form_sts">
+        <h1 class="col-12 m-4">Editar Pagina home</h1>
         <div class="content-adm-alert">
             <?php
             if (isset($_SESSION['msg'])) {
@@ -12,9 +12,8 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
                 unset($_SESSION['msg']);
             } ?>
         </div>
-        <h2>Bloco com os dados da viewHomeTop</h2>
-        <div class="top-list">
-            <span class="title-content">Detalhes do topo</span>
+        <div class="title_form">
+            <span class="title-content">Editar dados do topo</span>
             <div class="top-list-right">
                 <?php if (!empty($this->data['viewHomeTop'])) {
                     echo "<a href='" . URLADM . "edit-home-top/index' class='btn btn-warning ms-3'>Editar</a>";
@@ -25,14 +24,16 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
         <div class="content-adm">
             <?php if (!empty($this->data['viewHomeTop'])) {
                 extract($this->data['viewHomeTop'][0]); ?>
-                <div class="view-det-adm">
-                    <span class="view-det-title">Foto:</span>
+                <div class="view_det">
+                    <div class="col-12 m-2">
+                    <span>Imagem de fundo do Topo:</span><br>
                     <?php
                     if ((!empty($image_top)) and (file_exists("app/sts/assets/imgs/home_top/$image_top"))) {
-                        echo "<img src='" . URLADM . "app/sts/assets/imgs/home_top/$image_top' width='250' ><br><br>";
+                        echo "<img src='" . URLADM . "app/sts/assets/imgs/home_top/$image_top' width='250'><br><br>";
                     } else {
                         echo "<img src='" . URLADM . "app/sts/assets/imgs/Logo_Dtudo_2022-300p.png' width='250'><br><br>";
                     } ?>
+                    </div>
                 </div>
                 <div class="view-det-adm">
                     <span class="view-det-title">ID:</span>
@@ -76,9 +77,9 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
     <?php } else {
                 echo "<p class='alert alert-danger'>Erro (viewHomeTop)! Conteudo do TOP não encontrado!</p>";
             }  ?>
-    <h2>Bloco com os dados da viewHomeServ</h2>
-    <div class="top-list">
-        <span class="title-content">Detalhes do Serviço</span>
+
+    <div class="title_form mt-5">
+        <span class="title-content">Editar dados do Serviço</span>
         <div class="top-list-right">
             <?php if (!empty($this->data['viewHomeServ'])) {
                 echo "<a href='" . URLADM . "edit-home-serv/index' class='btn btn-warning ms-3'>Editar</a>";
@@ -145,9 +146,9 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
 <?php } else {
             echo "<p class='alert alert-danger'>Erro (viewHomeServ)! Conteudo do Serviços não encontrado!</p>";
         }  ?>
-<h2>Bloco com os dados da viewHomeServPrime</h2>
-<div class="top-list">
-    <span class="title-content">Detalhes do Serviço Premium</span>
+
+<div class="title_form mt-5">
+    <span class="title-content">Editar dados do Serviço Premium</span>
     <div class="top-list-right">
         <?php if (!empty($this->data['viewHomeServPrime'])) {
             echo "<a href='" . URLADM . "edit-home-serv-prime/index' class='btn btn-warning ms-3'>Editar</a>";
@@ -159,7 +160,7 @@ if (!defined('$2y!10#OaHjLtRhiDTKNv(2022)TkYurzF')) {
     <?php if (!empty($this->data['viewHomeServPrime'])) {
         extract($this->data['viewHomeServPrime'][0]); ?>
         <div class="view-det-adm">
-            <span class="view-det-title">Foto:</span>
+            <span class="view-det-title">Imagem do Serviço Premium:</span><br>
             <?php
             if ((!empty($prem_image)) and (file_exists("app/sts/assets/imgs/home_prem/$prem_image"))) {
                 echo "<img src='" . URLADM . "app/sts/assets/imgs/home_prem/$prem_image' width='250' ><br><br>";
