@@ -14,77 +14,37 @@ if(isset($this->data['form'][0])){
 <div class="wrapper_form">
     <div class="row_form">
         <div class="title_form">
-            <h2>Editar dados da Página Contatos</h2>
+            <h2>Editar dados do Rodapé (Footer)</h2>
         </div>
         <div class="button_center">
-            <?php  echo "<a class='btn btn-sm btn-outline-info mx-4' href='".URLADM."view-pg-contact/index'> Visualizar </a> "; ?>
+            <?php  echo "<a class='btn btn-sm btn-outline-info mx-4' href='".URLADM."view-footer/index'> Visualizar </a> "; ?>
         </div>
         <?php echo "<div id='msg' class='msg_alert'>";
             if (isset($_SESSION['msg'])) { 
             echo $_SESSION['msg'];
             unset($_SESSION['msg']);}
         echo "</div>"; ?>
-        <form class="form_adms" action="" method="POST" id="form-edit-pg-contact">
+        <form class="form_adms" action="" method="POST" id="form-edit-footer">
             <!-- input oculto pra enviar o id, via post -->
-            <input class="form-control" type="hidden" name="id" id="id" value="<?php if(isset($valorForm['id'])){echo $valorForm['id'];} ?>" required>
+            <input class="form-control" type="hidden" name="id" id="id" value="<?php if(isset($valorForm['id'])){echo $valorForm['id'];} ?>">
 
             <div class="row_edit">
-                <label class="" for="name">title_contact:</label>
+                <label class="" for="footer_desc">footer_desc:</label>
                 <i class="fa-solid fa-file-signature"></i>
-                <input class="form-control" type="text" name="title_contact" id="title_contact" value="<?php if(isset($valorForm['title_contact'])){echo $valorForm['title_contact'];}?>" required>
+                <input class="form-control" type="text" name="footer_desc" id="footer_desc" value="<?php if(isset($valorForm['footer_desc'])){echo $valorForm['footer_desc'];}?>" required>
             </div>
             <div class="row_edit">
-                <label class="" for="name">desc_contact:</label>
+                <label class="" for="footer_text_link">footer_text_link:</label>
                 <i class="fa-solid fa-file-signature"></i>
-                <input class="form-control" type="text" name="desc_contact" id="desc_contact" value="<?php if(isset($valorForm['desc_contact'])){echo $valorForm['desc_contact'];}?>" required>
+                <input class="form-control" type="text" name="footer_text_link" id="footer_text_link" value="<?php if(isset($valorForm['footer_text_link'])){echo $valorForm['footer_text_link'];}?>" required>
             </div>
             <div class="row_edit">
-                <label class="" for="name">icon_company (Somente a classe):</label>
-                <i class="<?= $valorForm['icon_company'];?>"></i>
-                <input class="form-control" type="text" name="icon_company" id="icon_company" value="<?php if(isset($valorForm['icon_company'])){echo $valorForm['icon_company'];}?>" required>
-            </div>
-            <div class="row_edit">
-                <label class="" for="name">title_company:</label>
+                <label class="" for="footer_link">footer_link:</label>
                 <i class="fa-solid fa-file-signature"></i>
-                <input class="form-control" type="text" name="title_company" id="title_company" value="<?php if(isset($valorForm['title_company'])){echo $valorForm['title_company'];}?>" required>
-            </div>
-            <div class="row_edit">
-                <label class="" for="name">desc_company:</label>
-                <i class="fa-solid fa-file-signature"></i>
-                <input class="form-control" type="text" name="desc_company" id="desc_company" value="<?php if(isset($valorForm['desc_company'])){echo $valorForm['desc_company'];}?>" required>
-            </div>
-            <div class="row_edit">
-                <label class="" for="name">icon_address (Somente a classe):</label>
-                <i class="<?=$valorForm['icon_address'];?>"></i>
-                <input class="form-control" type="text" name="icon_address" id="icon_address" value="<?php if(isset($valorForm['icon_address'])){echo $valorForm['icon_address'];}?>" required>
-            </div>
-            <div class="row_edit">
-                <label class="" for="name">title_address:</label>
-                <i class="fa-solid fa-file-signature"></i>
-                <input class="form-control" type="text" name="title_address" id="title_address" value="<?php if(isset($valorForm['title_address'])){echo $valorForm['title_address'];}?>" required>
-            </div>
-            <div class="row_edit">
-                <label class="" for="name">desc_address:</label>
-                <i class="fa-solid fa-file-signature"></i>
-                <input class="form-control" type="text" name="desc_address" id="desc_address" value="<?php if(isset($valorForm['desc_address'])){echo $valorForm['desc_address'];}?>" required>
-            </div>
-            <div class="row_edit">
-                <label class="" for="name">icon_email (Somente a classe):</label>
-                <i class="<?= $valorForm['icon_email'];?>"></i>
-                <input class="form-control" type="text" name="icon_email" id="icon_email" value="<?php if(isset($valorForm['icon_email'])){echo $valorForm['icon_email'];}?>" required>
-            </div>
-            <div class="row_edit">
-                <label class="" for="name">title_form:</label>
-                <i class="fa-solid fa-file-signature"></i>
-                <input class="form-control" type="text" name="title_form" id="title_form" value="<?php if(isset($valorForm['title_form'])){echo $valorForm['title_form'];}?>" required>
-            </div>
-            <div class="row_edit">
-                <label class="" for="name">desc_email:</label>
-                <i class="fa-solid fa-file-signature"></i>
-                <input class="form-control" type="text" name="desc_email" id="desc_email" value="<?php if(isset($valorForm['desc_email'])){echo $valorForm['desc_email'];}?>" required>
+                <input class="form-control" type="text" name="footer_link" id="footer_link" value="<?php if(isset($valorForm['footer_link'])){echo $valorForm['footer_link'];}?>" required>
             </div>
             <div class="button_center">
-                <button class="btn btn-primary" type="submit" name="SendEditPgcontact" value="Editar">Salvar Mudança</button>
+                <button class="btn btn-primary" type="submit" name="SendEditFooter" value="Editar">Salvar Mudança</button>
             </div>
         </form>
     </div>
