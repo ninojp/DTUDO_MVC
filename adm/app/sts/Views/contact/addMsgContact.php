@@ -11,7 +11,7 @@ if (isset($this->data['form'])) {
 <div class="wrapper_form">
     <div class="row_form">
         <div class="title_form">
-            <h2>Cadastrar Novo Artigo (Sobre Empresa)</h2>
+            <h2>Cadastrar Nova Mensagem (Pg Contato)</h2>
         </div>
         <?php echo "<div id='msg' class='msg_alert'>";
         if (isset($_SESSION['msg'])) {
@@ -19,50 +19,42 @@ if (isset($this->data['form'])) {
             unset($_SESSION['msg']);
         }
         echo "</div>"; ?>
-        <form class="form_adms" action="" method="POST" id="form-add-about-pg">
+        <form class="form_adms" action="" method="POST" id="form-add-msg-contact">
             <div class="row_input">
-                <?php $title = "";
-                if (isset($valorForm['title'])) {
-                    $title = $valorForm['title'];
-                } ?>
-                <!-- <label class="form-label" for="title">Nome:<span style="color:#f00;">*</span></label> -->
+                <?php $name = "";
+                if (isset($valorForm['name'])) {
+                    $name = $valorForm['name']; } ?>
                 <i class="fa-solid fa-file-signature"></i>
-                <input class="form-control" type="text" name="title" id="title" value="<?php echo $title; ?>" placeholder="Digite o nome Completo  *">
+                <input class="form-control" type="text" name="name" id="name" value="<?php echo $name; ?>" placeholder="Digite o nome Para Msg *">
             </div>
             <div class="row_input">
-                <?php $description = "";
-                if (isset($valorForm['description'])) {
-                    $description = $valorForm['description'];
-                } ?>
-                <!-- <label class="form-label" for="description">description:<span style="color:#f00;">*</span></label> -->
+                <?php $email = "";
+                if (isset($valorForm['email'])) {
+                    $email = $valorForm['email']; } ?>
                 <i class="fa-solid fa-envelope"></i>
-                <input class="form-control" type="text" name="description" id="description" value="<?= $description; ?>" placeholder="Digite uma Descrição *" required>
+                <input class="form-control" type="email" name="email" id="email" value="<?= $email; ?>" placeholder="Digite o E-mail *" required>
+            </div>
+            <div class="row_input">
+                <?php $subject = "";
+                if (isset($valorForm['subject'])) {
+                    $subject = $valorForm['subject']; } ?>
+                <i class="fa-solid fa-envelope"></i>
+                <input class="form-control" type="text" name="subject" id="subject" value="<?= $subject; ?>" placeholder="Digite o Assunto *" required>
+            </div>
+            <div class="row_input">
+                <?php $content = "";
+                if (isset($valorForm['content'])) {
+                    $content = $valorForm['content']; } ?>
+                <i class="fa-solid fa-envelope"></i>
+                <input class="form-control" type="content" name="content" id="content" value="<?= $content; ?>" placeholder="Digite o conteúdo da Msg *" required>
             </div>
 
-            <div class="row_input">
-                <i class="fa-solid fa-hand-pointer"></i>
-                <div class="select_input">
-                    <label class="form_label" for="sts_situation_id">Situação:<span style="color:#f00;">*</span></label>
-                    <select name="sts_situation_id" id="sts_situation_id" class="input-adm" required>
-                        <option value="">Selecione</option>
-                        <?php
-                        foreach ($this->data['select']['sit'] as $sit) {
-                            extract($sit);
-                            if ((isset($valorForm['sts_situation_id'])) and ($valorForm['sts_situation_id'] == $id_sit)) {
-                                echo "<option value='$id_sit' selected>$name_sit</option>";
-                            } else {
-                                echo "<option value='$id_sit'>$name_sit</option>";
-                            }
-                        } ?>
-                    </select>
-                </div>
-            </div>
             <span class="span_obrigatorio">* Campos obrigatórios</span><br>
             <div class="button_center">
-                <button class="btn btn-primary" type="submit" name="SendAddAboutPg" value="Cadastrar">Cadastrar Artigo</button>
+                <button class="btn btn-primary" type="submit" name="SendAddMsgContact" value="Cadastrar">Cadastrar Mensagem</button>
             </div>
             <div class="button_center">
-                <a class="btn btn-sm btn-outline-info" href="<?= URLADM; ?>list-about-pg/index"> Listar Artigos </a>
+                <a class="btn btn-sm btn-outline-info" href="<?= URLADM; ?>list-msg-contact/index"> Listar Mensagem </a>
             </div>
         </form>
     </div>

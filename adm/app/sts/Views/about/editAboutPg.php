@@ -36,7 +36,7 @@ if(isset($this->data['form'][0])){
                     ?>
                 </div>
             <div class="row_edit">
-                <label class="" for="name">Titulo:</label>
+                <label class="" for="title">Titulo:</label>
                 <i class="fa-solid fa-file-signature"></i>
                 <input class="form-control" type="text" name="title" id="title" value="<?php if(isset($valorForm['title'])){echo $valorForm['title'];} ?>" placeholder="Digite o Titulo" required>
             </div>
